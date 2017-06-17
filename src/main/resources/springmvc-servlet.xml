@@ -15,6 +15,10 @@
  
     <!-- if you use annotation you must configure following setting -->
     <mvc:annotation-driven />
+
+	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
+	<mvc:resources location="/WEB-INF/css/" mapping="/css/**" /> 
      
     <!-- configure the InternalResourceViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
