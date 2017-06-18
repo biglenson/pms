@@ -21,17 +21,6 @@
 		<servlet-class>com.fr.web.ReportServlet</servlet-class>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
-
-	<servlet>
-		<servlet-name>CMCCOpenReportServlet</servlet-name>
-		<servlet-class>OpenReport.CMCCOpenReportServlet</servlet-class>
-		<init-param>
-			<param-name>enable_map</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<load-on-startup>6</load-on-startup>
-	</servlet>
-	
 	
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
@@ -41,11 +30,6 @@
 	<servlet-mapping>
 		<servlet-name>ReportServer</servlet-name>
 		<url-pattern>/ReportServer</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>CMCCOpenReportServlet</servlet-name>
-		<url-pattern>/CMCCReportServer</url-pattern>
 	</servlet-mapping>
 
 </web-app>
