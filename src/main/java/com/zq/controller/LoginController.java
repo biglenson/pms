@@ -2,6 +2,7 @@ package com.zq.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,8 @@ import com.zq.service.SysMenuService;
 */
 @Controller
 public class LoginController {
+	
+	private static Logger logger = Logger.getLogger(LoginController.class);  
 	
 	@Autowired
 	SysMenuService sysMenuService;	

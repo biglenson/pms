@@ -36,9 +36,15 @@ public class CMCCConstant {
 	public static final String PJVDashBoard="projectview/PJVDashBoard";
 	
 	/** 
-	* <p>Title:采报表JSP </p> 
+	* <p>Title:报表JSP </p> 
 	* <p>Description: multianalysis</p> 
 	*/
 	public static final String MADashBoard="multianalysis/MADashBoard";
+	
+	/** 
+	* <p>Title:通用GRUD JSP </p> 
+	* <p>Description: generalGRUDform</p> 
+	*/
+	public static final String GeneralGRUDForm="generalGRUDform/GeneralGRUDForm";
 	
 }

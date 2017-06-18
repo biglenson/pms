@@ -1,5 +1,6 @@
 package com.zq.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,8 @@ import com.zq.Util.CMCCConstant;
 @Controller
 @RequestMapping("/")
 public class ComprehensiveViewController {
+	
+	private static Logger logger = Logger.getLogger(ComprehensiveViewController.class);  
 	/** 
 	* @Title: comprehensiveView 
 	* @Description: TODO(这里用一句话描述这个方法的作用) 
