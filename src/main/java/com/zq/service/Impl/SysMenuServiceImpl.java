@@ -1,4 +1,4 @@
-package com.zq.service;
+package com.zq.service.Impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zq.dao.SysMenuRepository;
 import com.zq.entity.SysMenu;
+import com.zq.service.SysMenuService;
 
 /** 
 * @ClassName: SysMenuServiceImpl 

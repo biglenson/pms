@@ -42,7 +42,7 @@ public class LoginController {
 
 		List<SysMenu> sysMenu = sysMenuService.getAllSysMenu();
 		model.addAttribute("topMenu", sysMenu);
-		System.out.println(sysMenu.get(0).getName());
+		logger.info(sysMenu.get(0).getName());
 		return CMCCConstant.CVDashBoard;
 	}
 
