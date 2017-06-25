@@ -4,21 +4,17 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
-/** 
-* @ClassName: SysMenu 
-* @Description: TODO(系统菜单实体) 
-* @author shujukuss 
-* @date 2017年6月18日 下午7:06:52 
-*  
-*/
+/**
+ * The persistent class for the sys_menu database table.
+ * 
+ */
 @Entity
 @Table(name="sys_menu")
 public class SysMenu implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="SYS_MENU_ID_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SYS_MENU_ID_GENERATOR")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
 	private String clienturl;

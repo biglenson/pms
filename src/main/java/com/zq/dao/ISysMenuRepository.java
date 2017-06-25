@@ -11,6 +11,6 @@ import com.zq.entity.SysMenu;
 *  
 */
 
-public interface SysMenuRepository extends JpaRepository<SysMenu, Long> {	
+public interface ISysMenuRepository extends JpaRepository<SysMenu, Long> {	
 
 }

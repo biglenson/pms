@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd    
+    http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd   
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	<description>SpringJpa配置</description>
+
+	<!-- 如果spring用了jpa，并且类型为LocalContainerEntityManagerFactoryBean，则组件注册在此配置文件出现即可，其余配置文件可忽略 
+		使用component来替代annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入\ -->
+	<context:component-scan base-package="com.zq.entity" />
+
+	<!-- spring启动时扫描项目路径下的properties文件,后续用${key}方式取出对应值,这样可以代码解耦和，后续只需修改properties文件即可 -->
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	</bean>
+
+	<!-- 配置entityManagerFactory -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<!-- 指定数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!--适配器 -->
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<!-- 指定Entity实体类包路径 -->
+		<property name="packagesToScan" value="com.zq.entity" />
+		<!-- 指定JPA属性；如Hibernate中指定是否显示SQL的是否显示、方言等 -->
+		<property name="jpaProperties">
+			<props>
+				<!--命名策略 -->
+				<prop key="hibernate.physical_naming_strategy">org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</prop>
+				<!--基本配置 -->
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<!--二级缓存 -->
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+			</props>
+		</property>
+		<property name="sharedCacheMode" value="ENABLE_SELECTIVE" />
+	</bean>
+
+	<!-- 重要配置：启用扫描并自动创建代理的功能 -->
+	<jpa:repositories base-package="com.zq.dao" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory" />
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+	 <!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
+ 	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="${db.master.url}" />
+        <property name="username" value="${db.master.user}" />
+        <property name="password" value="${db.master.password}" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat,mergeStat,wall,log4j" />
+		<!-- 配置初始化大小、最小、最大 -->		
+		<property name="initialSize" value="5" />
+		<property name="maxActive" value="100" />
+		<property name="minIdle" value="10" />
+		<!-- 配置获取连接等待超时的时间 -->		
+		<property name="maxWait" value="60000" />
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->		
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->		
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!--在内置监控页面weburi-detail.html中，查看JdbcPoolConnectionOpenCount和JdbcPoolConnectionCloseCount属性，如果不相等，就是泄漏了。 -->
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="1800" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+		<property name="proxyFilters">
+        <list>
+            <ref bean="log-filter"/>
+        </list>
+    </property>
+	</bean>
+
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+		<property name="resultSetLogEnabled" value="false" />		
+        <property name="statementExecutableSqlLogEnable" value="true" />
+	</bean>
+
+	<!-- 事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+	<!-- 事务管理 属性 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="select*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置切面 -->
+	<aop:config expose-proxy="true" proxy-target-class="true">
+		<aop:advisor advice-ref="transactionAdvice"
+			pointcut="execution(* com.zq.service..*.*(..))" />
+	</aop:config>
+</beans>

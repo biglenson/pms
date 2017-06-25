@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zq.dao.SysMenuRepository;
+import com.zq.dao.ISysMenuRepository;
 import com.zq.entity.SysMenu;
 import com.zq.service.SysMenuService;
 
@@ -18,10 +18,10 @@ import com.zq.service.SysMenuService;
 * @date 2017年6月18日 下午7:07:32 
 *  
 */
-@Service("SysMenuService")
+@Service
 public class SysMenuServiceImpl implements SysMenuService{
 	@Autowired
-	SysMenuRepository sysMenuRepository;
+	ISysMenuRepository iSysMenuRepository;
 	
 	/* (非 Javadoc) 
 	* <p>Title: getAllSysMenu</p> 
@@ -32,7 +32,7 @@ public class SysMenuServiceImpl implements SysMenuService{
 	@Transactional
 	public List<SysMenu> getAllSysMenu() {
 		Sort sort = new Sort("seqno");
-		return (List<SysMenu>) sysMenuRepository.findAll(sort);
+		return (List<SysMenu>) iSysMenuRepository.findAll(sort);
 	}
 
 }
