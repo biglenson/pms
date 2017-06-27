@@ -20,16 +20,5 @@ import com.zq.commons.utils.CMCCConstant;
 public class MultiAnalysisController {
 	
 	private static Logger logger = Logger.getLogger(MultiAnalysisController.class);  
-	/** 
-	* @Title: multiAnalysis 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @author shujukuss 
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws 
-	*/
-	@RequestMapping(value = "multianalysis", method = RequestMethod.GET)
-	public String multiAnalysis() {
-		return CMCCConstant.MADashBoard;
-	}
+
 }

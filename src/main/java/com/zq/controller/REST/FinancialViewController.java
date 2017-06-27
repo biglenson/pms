@@ -20,16 +20,5 @@ public class FinancialViewController {
 	
 	private static Logger logger = Logger.getLogger(FinancialViewController.class);  
 	
-	/** 
-	* @Title: financialView 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @author shujukuss 
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws 
-	*/
-	@RequestMapping(value = "financialview", method = RequestMethod.GET)
-	public String financialView() {
-		return CMCCConstant.FVDashBoard;
-	}
+
 }
