@@ -35,20 +35,20 @@
 				changeyear(yearInput.value);
 				if(yearInput.value == yearStart){
 					jprevObj.addClass("disable");
-					jprevObj.attr("src","/images/16x16/cmcc_left_disable.png");
+					jprevObj.attr("src","/static/images/16x16/cmcc_left_disable.png");
 					jprevObj.removeAttr("overImg");
 				}else{
 					jprevObj.removeClass("disable");
-					jprevObj.attr("src","/images/16x16/cmcc_left.png");					
+					jprevObj.attr("src","/static/images/16x16/cmcc_left.png");					
 				}
 				if(yearInput.value == maxYear){
 					jnextObj.addClass("disable");
-					jnextObj.attr("src","/images/16x16/cmcc_right_disable.png");
+					jnextObj.attr("src","/static/images/16x16/cmcc_right_disable.png");
 					jnextObj.removeAttr("overImg");
 				}else{
 					jnextObj.removeClass("disable");
-					jnextObj.attr("src","/images/16x16/cmcc_left.png");
-					//jnextObj.attr("overImg","/images/16x16/arrow_next_over.png");
+					jnextObj.attr("src","/static/images/16x16/cmcc_left.png");
+					//jnextObj.attr("overImg","/static/images/16x16/arrow_next_over.png");
 				}
 				floatDIV.hide();
 		}).on("mouseenter",function(event){
@@ -96,8 +96,8 @@
 			var obj=$(this);
 			if(jnextObj.hasClass("disable")){
 				jnextObj.removeClass("disable");
-				jnextObj.attr("src","/images/16x16/cmcc_right.png");
-				//jnextObj.attr("overImg","/images/16x16/arrow_next_over.png");
+				jnextObj.attr("src","/static/images/16x16/cmcc_right.png");
+				//jnextObj.attr("overImg","/static/images/16x16/arrow_next_over.png");
 			}
 			if(!obj.hasClass("disable")){
 				var yearValue=parseInt(yearInput.value,10);
@@ -106,7 +106,7 @@
 					yearInput.value=yearValue;
 					if(yearValue == yearStart){
 						obj.addClass("disable");
-						obj.attr("src","/images/16x16/cmcc_left_disable.png");
+						obj.attr("src","/static/images/16x16/cmcc_left_disable.png");
 						obj.removeAttr("overImg");
 					}
 				}
@@ -119,8 +119,8 @@
 			var obj=$(this);
 			if(jprevObj.hasClass("disable")){
 				jprevObj.removeClass("disable");
-				jprevObj.attr("src","/images/16x16/cmcc_left.png");
-				//jprevObj.attr("overImg","/images/16x16/arrow_prev_over.png");
+				jprevObj.attr("src","/static/images/16x16/cmcc_left.png");
+				//jprevObj.attr("overImg","/static/images/16x16/arrow_prev_over.png");
 			}
 			if(!obj.hasClass("disable")){
 				var yearValue=parseInt(yearInput.value,10);
@@ -129,7 +129,7 @@
 					yearInput.value=yearValue;
 					if(yearValue == maxYear){
 						obj.addClass("disable");
-						obj.attr("src","/images/16x16/cmcc_right_disable.png");
+						obj.attr("src","/static/images/16x16/cmcc_right_disable.png");
 						//obj.removeAttr("overImg");
 					}
 				}
@@ -144,12 +144,12 @@
 </script>
 <input type="hidden" name="toolYear" id="yearID" value="2017">
 <div class="yearSelectDIV" id="departContainer">
-		<img class="  yearSelectPrev " src="/images/16x16/cmcc_left.png">
+		<img class="  yearSelectPrev " src="/static/images/16x16/cmcc_left.png">
 			<span style="font-size: 12px;" class="showYearSelectSpan  ">
 					<span>2017</span>
-					<img src="/images/yearSelect.png">
+					<img src="/static/images/yearSelect.png">
 			</span>
-			<img class="  yearSelectNext  " src="/images/16x16/cmcc_right.png">
+			<img class="  yearSelectNext  " src="/static/images/16x16/cmcc_right.png">
 </div>
 <div class="yearFloatDIV" id="departContainerFloatDIV">
 	<div class="yearDIV dumascroll" id="departContaineryearDIV" style="width: 68px; overflow: hidden;"><div class="dumascroll_area showYScroll">		
@@ -164,7 +164,7 @@
 	<div class="cmcc_textImgDIV" style="float:right;">
 		<input type="hidden" name="departmentID" value="69">
 		<input type="text" style="outline: none;" name="departmentName" value="中国移动政企分公司" autocomplete="off">
-		<img src="/images/16x16/cmcc_down.png" style="cursor: pointer;">
+		<img src="/static/images/16x16/cmcc_down.png" style="cursor: pointer;">
 	</div>
 	<script type="text/javascript">
 		var config={noEmpty:true};

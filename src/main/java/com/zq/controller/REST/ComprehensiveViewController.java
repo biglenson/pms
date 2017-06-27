@@ -1,11 +1,11 @@
-package com.zq.controller;
+package com.zq.controller.REST;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.zq.Util.CMCCConstant;
+import com.zq.commons.utils.CMCCConstant;
 
 /** 
 * @ClassName: ComprehensiveViewController 

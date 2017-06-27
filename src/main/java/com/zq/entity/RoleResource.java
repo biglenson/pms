@@ -18,10 +18,10 @@ public class RoleResource implements Serializable {
 	private Long id;
 
 	@Column(name="resources_id")
-	private BigInteger resourceId;
+	private Long resourceId;
 
 	@Column(name="roles_id")
-	private BigInteger roleId;
+	private Long roleId;
 
 	public RoleResource() {
 	}
@@ -34,19 +34,19 @@ public class RoleResource implements Serializable {
 		this.id = id;
 	}
 
-	public BigInteger getResourceId() {
+	public Long getResourceId() {
 		return this.resourceId;
 	}
 
-	public void setResourceId(BigInteger resourceId) {
+	public void setResourceId(Long resourceId) {
 		this.resourceId = resourceId;
 	}
 
-	public BigInteger getRoleId() {
+	public Long getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(BigInteger roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 

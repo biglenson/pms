@@ -1,4 +1,4 @@
-package com.zq.Util;
+package com.zq.commons.utils;
 
 
 /** 
@@ -6,6 +6,20 @@ package com.zq.Util;
 * @Description: TODO(常量) 
 * @author shujukuss 
 * @date 2017年6月18日 下午7:08:02 
+*  
+*/
+/** 
+* @ClassName: CMCCConstant 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author shujukuss 
+* @date 2017年6月25日 下午5:21:51 
+*  
+*/
+/** 
+* @ClassName: CMCCConstant 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author shujukuss 
+* @date 2017年6月25日 下午5:21:58 
 *  
 */
 public class CMCCConstant {	
@@ -46,5 +60,11 @@ public class CMCCConstant {
 	* <p>Description: generalGRUDform</p> 
 	*/
 	public static final String GeneralGRUDForm="generalGRUDform/GeneralGRUDForm";
+	
+	/** 
+	* <p>Title: 登录页</p> 
+	* <p>Description: </p> 
+	*/
+	public static final String LOGIN="login";
 	
 }

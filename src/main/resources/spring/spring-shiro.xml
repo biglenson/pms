@@ -57,7 +57,7 @@
         <!-- 默认的登陆访问url -->
         <property name="loginUrl" value="/login"/>
         <!-- 登陆成功后跳转的url -->
-        <property name="successUrl" value="/index"/>
+        <property name="successUrl" value="/comprehensiveview/CVDashBoard"/>
         <!-- 没有权限跳转的url -->
         <property name="unauthorizedUrl" value="/unauth"/>
         <property name="filterChainDefinitions">
@@ -71,13 +71,9 @@
                 /static/** = anon
                 /webhooks = anon
                 /login = anon
+                /index = authc
                 /** = user
             </value>
-        </property>
-        <property name="filters">
-            <map>
-                <entry key="user" value-ref="ajaxSessionFilter" />
-            </map>
         </property>
     </bean>
     <!-- ajax session超时时处理 -->

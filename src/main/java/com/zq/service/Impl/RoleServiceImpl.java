@@ -71,7 +71,7 @@ public class RoleServiceImpl  implements IRoleService {
         Set<String> urlSet = new HashSet<String>();
         Set<String> roles = new HashSet<String>();
         for (Long roleId : roleIdList) {
-            List<Resource> resourceList = iRoleRepository.selectResourcesByRoleId(roleId);
+            List<Resource> resourceList = iRoleRepository.findById(roleId).getResources();
             if (resourceList != null) {
                 for (Resource resource : resourceList) {
                     if (StringUtils.isNotBlank(resource.getUrl())) {

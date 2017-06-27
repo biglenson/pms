@@ -12,7 +12,7 @@
 				<li><a href="/multianalysis">报表</a></li>
 			</ul>
 			<div class="NavSelectHiddenDIV" id="Nav_NavSelectHiddenDIV" style="display: none;">
-				<img src="/images/16x16/icon-changeMenu.png">
+				<img src="/static/images/16x16/icon-changeMenu.png">
 			</div>
 		</div>
 	</div>
@@ -25,11 +25,11 @@
 	<div class="top_header_userName">zhengqi1</div>	
 		<div class="top_header_searchInputDIV">
 			<input type="text" placeholder="请输入关键字搜索" id="top_header_searchInputDIVInput">
-			<img src="/images/newui/search.png">
+			<img src="/static/images/newui/search.png">
 		</div>
 		 <div class="top_header_searchTypeDIV" id="top_header_searchTypeDIV" typeid="1011">
 			<span class="spanType">产品</span>
-			<img src="/images/16x16/toolbar-dropDown.png">
+			<img src="/static/images/16x16/toolbar-dropDown.png">
 		</div>	
 </div>
 <div class="top_header_top_typeSelect" id="top_header_top_typeSelect">	
@@ -170,15 +170,15 @@
 	<div class="topHeader_changeSysWrap">
 			<table><tbody><tr>					
 					<td><div class="topHeader_changeProduct " onclick="systemWitch(1)">
-						<img src="/images/app/PPM.png">
+						<img src="/static/images/app/PPM.png">
 						<div class="productName">综合视图</div>
 					</div></td>					
 					<td><a href="generalGRUDform"><div class="topHeader_changeProduct ">
-						<img src="/images/app/CM.png">
+						<img src="/static/images/app/CM.png">
 						<div class="productName">数据管理</div>
 					</div></a></td>					
 					<td><div class="topHeader_changeProduct " onclick="systemWitch(3)">
-						<img src="/images/app/Admin.png">
+						<img src="/static/images/app/Admin.png">
 						<div class="productName">系统管理</div>
 					</div></td>					
 				</tr></tbody></table>

@@ -1,5 +1,6 @@
 package com.zq.commons.shiro;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
@@ -33,5 +34,10 @@ public class PasswordHash implements InitializingBean {
 	
 	public String toHex(Object source, Object salt) {
 		return DigestUtils.hashByShiro(algorithmName, source, salt, hashIterations);
+	}
+	public static void main(String[] args){
+		String pwd = "test";
+		String salt = "test";
+		System.out.println(new SimpleHash("md5", pwd, salt, 1).toHex());
 	}
 }

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.zq.entity.UserRole;
 
 public interface IUserRoleRepository extends JpaRepository<UserRole, Long> {
-	@Query("SELECT ur.roleId FROM UserRole ur WHERE userId = ?0")
+	@Query("SELECT roleId FROM UserRole WHERE userId = ?1")
 	List<Long> selectRoleIdListByUserId(Long userId);
 
 

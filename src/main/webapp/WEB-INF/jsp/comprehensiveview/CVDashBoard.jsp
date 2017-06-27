@@ -450,7 +450,7 @@ function showTouziSummaryTip(obj){
 	
 }
 
-jQuery(document).ready(function(){
+/* jQuery(document).ready(function(){
 	var doAjax=function(subOperation){
 		$.ajax({
 			url:"/ZongheAction.do?operation=summary",
@@ -470,7 +470,7 @@ jQuery(document).ready(function(){
 	doAjax("doTouzhiSummary");
 	doAjax("doTouziProcessSummary");
 	doAjax("kaizhiAndZhuanZhiSummary");
-})
+}) */
 </script><style type="text/css">
 	#productResultTable.listTable  tbody tr td{
 		border: none;
@@ -504,7 +504,7 @@ jQuery(document).ready(function(){
 	}
 </style>
 <script type="text/javascript">
-	function loadProductAndDepart(subOperation){
+	/* function loadProductAndDepart(subOperation){
 		var data={
 				year:document.frm.year.value
 				,departmentID:"69"
@@ -523,7 +523,7 @@ jQuery(document).ready(function(){
 				div.html(html);
 			}
 		});
-	}
+	} */
 	jQuery(document).ready(function(){
 		loadProductAndDepart("productAndDepart_Product");
 		loadProductAndDepart("productAndDepart_Depart");
@@ -1086,7 +1086,7 @@ jQuery(document).ready(function(){
 
 <script type="text/javascript">
 
-	function loadProjectSetFun(){
+	/* function loadProjectSetFun(){
 		var data={
 				year:document.frm.year.value
 				,departmentID:document.frm.departmentID.value
@@ -1103,7 +1103,7 @@ jQuery(document).ready(function(){
 	}
 	jQuery(document).ready(function(){
 		loadProjectSetFun();
-	})
+	}) */
 </script>
 	<div class="chartContainerDIV cmccViewContainer" style="margin: 26px auto;">
 		<div class="tabMore linkURL" onclick="openProjectSetSummaryList()">更多</div>
@@ -1577,7 +1577,7 @@ jQuery(document).ready(function(){
 
 
 <script type="text/javascript">
-	function loadTouziDetialFun(index){
+	/* function loadTouziDetialFun(index){
 		var data={
 				year:document.frm.year.value
 				,departmentID:document.frm.departmentID.value
@@ -1595,7 +1595,7 @@ jQuery(document).ready(function(){
 	}
 	jQuery(document).ready(function(){
 		loadTouziDetialFun(0);
-	})
+	}) */
 </script>
 <div class="chartContainerDIV cmccViewContainer">
 	<div id="touziDetailDIV">
@@ -1758,7 +1758,7 @@ jQuery(document).ready(function(){
 	<tbody><tr>
 		<td style="vertical-align: top;"><div class="cmcc_phase_column" style="font-weight: bold;">CAPEX项目流程:</div></td>
 		<td>
-			<div style="padding-bottom:20px;"><img src="/images/cmcc/liucheng.png"></div>
+			<div style="padding-bottom:20px;"><img src="/static/images/cmcc/liucheng.png"></div>
 		</td>
 	</tr>
 	
@@ -1876,7 +1876,7 @@ jQuery(document).ready(function(){
 <div id="capex_phaseStatusDIVTimeDIV" class="viewChangeTime marginTopTime"></div>
 
 <script type="text/javascript">
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$.ajax({
 		url:"/ZongheAction.do?operation=capexPhaseStatus",
 		method:"POST",
@@ -1908,7 +1908,7 @@ function showCapexPhaseTip(obj){
 		x:2,
 		y:3
 	})
-}
+} */
 </script> 
 			
 
@@ -1947,7 +1947,7 @@ function showCapexPhaseTip(obj){
 	<tbody><tr>
 		<td style="vertical-align: top;"><div class="cmcc_phase_column" style="width:119px;font-weight: bold;">OPEX项目流程：</div></td>
 		<td>
-			<div style="padding-bottom:20px;"><img src="/images/cmcc/liucheng2.png"></div>
+			<div style="padding-bottom:20px;"><img src="/static/images/cmcc/liucheng2.png"></div>
 		</td>
 	</tr>
 	<tr><td style="height:10px;"></td></tr>
@@ -2061,7 +2061,7 @@ function showCapexPhaseTip(obj){
 <div id="opexProjectStatusDIVTime" class="viewChangeTime marginTopTime"><span id="opexProjectStatusDIVTimeSpan" class="viewChangeSpan  ">数据更新时间:2小时前</span></div>
 
 <script type="text/javascript">
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$.ajax({
 		url:"/ZongheAction.do?operation=opexProjectStatus",
 		method:"POST",
@@ -2076,7 +2076,7 @@ $(document).ready(function(){
 		}
 	});
 	
-})
+}) */
 function showOpexPhaseTip(obj){
 	var detaiObj=obj.detaiObj;
 	if(detaiObj==null){
@@ -2139,5 +2139,5 @@ function showOpexPhaseTip(obj){
 
 
 
-<div style="display: none;"><img src="images/16x16/empty.png" id="checkbox_img_clonenode" onclick="checkboxIMG_clickFun(this,event)" onmouseover="checkboxIMG_onmouseover(this)" onmouseout="checkboxIMG_onmouseout(this)"></div><div id="floatDIV" class="floatDIV" style="width:200px;height:180px" onclick="floatController.bShow=true"></div><div id="coverDIV" class="coverDIV"></div>
+<div style="display: none;"><img src="/static/images/16x16/empty.png" id="checkbox_img_clonenode" onclick="checkboxIMG_clickFun(this,event)" onmouseover="checkboxIMG_onmouseover(this)" onmouseout="checkboxIMG_onmouseout(this)"></div><div id="floatDIV" class="floatDIV" style="width:200px;height:180px" onclick="floatController.bShow=true"></div><div id="coverDIV" class="coverDIV"></div>
 </body></html>

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.zq.entity.RoleResource;
 
 public interface IRoleResourceRepository extends JpaRepository<RoleResource, Long> {
-	@Query("SELECT rr.resourceId FROM RoleResource rr WHERE roleId = ?0")
+	@Query("SELECT resourceId FROM RoleResource  WHERE roleId = ?1")
 	List<Long> selectResourceIdListByRoleId(Long id);
 
 

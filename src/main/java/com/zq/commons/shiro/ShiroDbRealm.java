@@ -25,7 +25,7 @@ import com.zq.service.IUserService;
 
 
 public class ShiroDbRealm extends AuthorizingRealm {
-    private static final Logger LOGGER = Logger.getLogger(ShiroDbRealm.class);
+    private static final Logger logger = Logger.getLogger(ShiroDbRealm.class);
 
     @Autowired
     IUserService iUserService;
@@ -34,19 +34,24 @@ public class ShiroDbRealm extends AuthorizingRealm {
     
     public ShiroDbRealm(CacheManager cacheManager, CredentialsMatcher matcher) {
         super(cacheManager, matcher);
-    }
-    
-    /**
-     * Shiro登录认证(原理：用户提交 用户名和密码  --- shiro 封装令牌 ---- realm 通过用户名将密码查询返回 ---- shiro 自动去比较查询出密码和用户输入密码是否一致---- 进行登陆控制 )
-     */
+    }  
+    /* (非 Javadoc) 
+    * <p>Title: doGetAuthenticationInfo</p> 
+    * <p>Description: Shiro登录认证
+    * (原理：用户提交 用户名和密码  --- shiro 封装令牌 ---- realm 通过用户名将密码查询返回 
+    * ---- shiro 自动去比较查询出密码和用户输入密码是否一致---- 进行登陆控制 )</p> 
+    * @param authcToken
+    * @return
+    * @throws AuthenticationException 
+    * @see org.apache.shiro.realm.AuthenticatingRealm#doGetAuthenticationInfo(org.apache.shiro.authc.AuthenticationToken) 
+    */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(
-            AuthenticationToken authcToken) throws AuthenticationException {
-        LOGGER.info("Shiro开始登录认证");
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+    	logger.info("Shiro开始登录认证");
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        User user1 = new User();
-        user1.setLoginName(token.getUsername());
-        List<User> list = iUserService.selectByLoginName(user1);
+        User login_user = new User();
+        login_user.setLoginName(token.getUsername());
+        List<User> list = iUserService.selectByLoginName(login_user);
         // 账号不存在
         if (list == null || list.isEmpty()) {
             return null;
@@ -64,7 +69,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         shiroUser.setRoles(roles);
         // 认证缓存信息
         return new SimpleAuthenticationInfo(shiroUser, user.getPassword().toCharArray(), 
-                ShiroByteSource.of(user.getSalt()), getName());
+        ShiroByteSource.of(user.getSalt()), getName());
     }
 
     /**

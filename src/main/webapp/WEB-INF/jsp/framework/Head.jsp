@@ -6,12 +6,12 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="css/style_new.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/firefox/et.js"></script>
-<script type="text/javascript" src="/js/firefox/FloatAndDialog.js"></script>
-<script type="text/javascript" src="/js/jquery/jquery-1.12.0.min.js"></script>
-<script type="text/javascript" src="/js/lable_message.js"></script>
+<link href="/static/css/style_new.css" rel="stylesheet" type="text/css">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/js/firefox/et.js"></script>
+<script type="text/javascript" src="/static/js/firefox/FloatAndDialog.js"></script>
+<script type="text/javascript" src="/static/js/jquery/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="/static/js/lable_message.js"></script>
 <script type="text/javascript">
 	ET.current_app_ID=1; //保存当前的appID ,在弹出框的时候 ，模板中自动加载特殊的css 
 	ET.path="/";
@@ -114,8 +114,8 @@
 		initialLayoutFunction();		
 	});
 </script>
-<script type="text/javascript" src="/js/firefox/DataTableAll.js"></script>
-<script type="text/javascript" src="js/Highcharts/highcharts.js"></script>
+<script type="text/javascript" src="/static/js/firefox/DataTableAll.js"></script>
+<script type="text/javascript" src="/static/js/Highcharts/highcharts.js"></script>
 <script type="text/javascript">
 Highcharts.setOptions({
    colors: ['#46c6f0', '#a8da72', '#7be4d8', '#fde485', '#fe902c', '#fe5151', '#db8ebf', '#f6c468', '#5db1e2'],

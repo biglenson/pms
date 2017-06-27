@@ -1,35 +1,35 @@
-package com.zq.controller;
+package com.zq.controller.REST;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.zq.Util.CMCCConstant;
+import com.zq.commons.utils.CMCCConstant;
 
 
 /** 
-* @ClassName: SysMenuController 
-* @Description: TODO(系统菜单) 
+* @ClassName: PurchaseViewController 
+* @Description: TODO(采购视图) 
 * @author shujukuss 
-* @date 2017年6月18日 下午7:06:02 
+* @date 2017年6月18日 下午7:05:47 
 *  
 */
 @Controller
 @RequestMapping("/")
-public class SysMenuController {
+public class PurchaseViewController {
 	
-	private static Logger logger = Logger.getLogger(SysMenuController.class);  
+	private static Logger logger = Logger.getLogger(PurchaseViewController.class);  
 	/** 
-	* @Title: generalGRUDForm 
+	* @Title: purchaseView 
 	* @Description: TODO(这里用一句话描述这个方法的作用) 
 	* @author shujukuss 
 	* @param @return    设定文件 
 	* @return String    返回类型 
 	* @throws 
 	*/
-	@RequestMapping(value = "generalGRUDform", method = RequestMethod.GET)
-	public String generalGRUDForm() {
-		return CMCCConstant.GeneralGRUDForm;
+	@RequestMapping(value = "purchaseview", method = RequestMethod.GET)
+	public String purchaseView() {
+		return CMCCConstant.PCVDashBoard;
 	}
 }
