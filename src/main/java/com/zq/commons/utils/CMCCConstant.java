@@ -29,25 +29,25 @@ public class CMCCConstant {
 	* <p>Title:综合视图JSP </p> 
 	* <p>Description:comprehensiveview </p> 
 	*/
-	public static final String CVDashBoard="comprehensiveview/CVDashBoard";
+	public static final String CVDashBoard="comprehensive/CVDashBoard";
 	
 	/** 
 	* <p>Title:财务视图JSP </p> 
 	* <p>Description:financialview </p> 
 	*/
-	public static final String FVDashBoard="financialview/FVDashBoard";
+	public static final String FVDashBoard="financial/FVDashBoard";
 	
 	/** 
 	* <p>Title:采购视图JSP </p> 
 	* <p>Description: purchaseview</p> 
 	*/
-	public static final String PCVDashBoard="purchaseview/PCVDashBoard";
+	public static final String PCVDashBoard="purchase/PCVDashBoard";
 	
 	/** 
 	* <p>Title:工程视图JSP </p> 
 	* <p>Description:projectview </p> 
 	*/
-	public static final String PJVDashBoard="projectview/PJVDashBoard";
+	public static final String PJVDashBoard="project/PJVDashBoard";
 	
 	/** 
 	* <p>Title:报表JSP </p> 
@@ -59,7 +59,7 @@ public class CMCCConstant {
 	* <p>Title:通用GRUD JSP </p> 
 	* <p>Description: generalGRUDform</p> 
 	*/
-	public static final String GeneralGRUDForm="generalGRUDform/GeneralGRUDForm";
+	public static final String GeneralGRUDForm="general/GeneralGRUDForm";
 	
 	/** 
 	* <p>Title: 登录页</p> 

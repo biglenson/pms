@@ -42,7 +42,7 @@ public class LoginController {
 	@RequestMapping(value = "login", method = RequestMethod.GET)  
 	 public String login(){  
 		logger.info("登录中！"); 
-		return "login";  
+		return CMCCConstant.LOGIN;  
 	 } 
 	/** 
 	* @Title: login 
@@ -77,7 +77,7 @@ public class LoginController {
 		        	logger.info("userName:" + userName + "登录成功！"); 
 		            return CMCCConstant.CVDashBoard;  
 		        } else {  
-		            return "login";  
+		            return CMCCConstant.LOGIN;  
 		        }  
 		    } catch (IncorrectCredentialsException e) {  
 		        msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";  
@@ -108,7 +108,7 @@ public class LoginController {
 		        model.addAttribute("message", msg);  
 		        logger.warn(msg);   
 		    }  
-		    return "login";
+		    return CMCCConstant.LOGIN;
 	}
 	
 }

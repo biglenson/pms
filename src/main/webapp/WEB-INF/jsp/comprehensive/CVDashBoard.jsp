@@ -54,12 +54,10 @@
 <div>
 	<table style="width:1000px;margin:10px auto;">
 		<tbody><tr><td style="width:27%;vertical-align: top;">
-			<div style="margin-right:10px;">
-				
+			<div style="margin-right:10px;">				
 				<div class="sumTitle">
 					本年分公司真实收入	
-				</div>
-				
+				</div>				
 				<div class="sumContainer1" style="height:170px;" id="shouRuSummary">	
 <div style="height:160px;padding-top:10px;position: relative;">
 	<div style="position:absolute;right:-5px; top:-5px;">
