@@ -14,15 +14,15 @@
 <script type="text/javascript" src="/static/js/lable_message.js"></script>
 <script type="text/javascript">
 	ET.current_app_ID=1; //保存当前的appID ,在弹出框的时候 ，模板中自动加载特殊的css 
-	ET.path="/";
+	ET.path="<%=request.getContextPath() %>";
 	ET.language="GB";
 	ET.i18n="zh";
 	ET.label={};
 	ET.label["LeaveWithoutSavingConfirm"]="您确定不保存就离开吗?";
-	ET.label["SessionTimeoutException"]="com.easytrack.commons.exception.SessionTimeoutException";
+	ET.label["SessionTimeoutException"]="com.pm.commons.exception.SessionTimeoutException";
 	ET.label["profile.SessionTimeOut.Reason"]="您需要重新登录系统:\n超时或者您已经登录";
 	ET.label["ConfirmLogout"]="您确定要退出?";
-	ET.label["about"]="关于EasyTrack";
+	ET.label["about"]="关于项目全流程";
 	ET.label["webServerInfo"]="web服务器信息";
 	ET.label["WindowReturnList"]="返回上一层";
 	ET.label["task_attention"]="关注";

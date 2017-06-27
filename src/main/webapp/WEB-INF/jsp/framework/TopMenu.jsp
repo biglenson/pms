@@ -22,7 +22,7 @@
 </div>
 <div class="top_header_searchDIV">
 	<div class="top_header_Exit" onclick="exit();">退出</div>
-	<div class="top_header_userName">zhengqi1</div>	
+	<div class="top_header_userName"><%= request.getAttribute("userName") %></div>	
 		<div class="top_header_searchInputDIV">
 			<input type="text" placeholder="请输入关键字搜索" id="top_header_searchInputDIVInput">
 			<img src="/static/images/newui/search.png">

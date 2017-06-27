@@ -292,9 +292,10 @@ function onloadForDWR(){
 }
 ET.Utils.addEvent(window,'load',onloadForDWR);
 
+/*登出*/
 function exit() {
 	if(confirm(ET.label["ConfirmLogout"])) {
-		 window.location =ET.path+"/LoginAction.do?operation=logout";
+		 window.location =ET.path+"logout";
 	}
 }
 function about() {

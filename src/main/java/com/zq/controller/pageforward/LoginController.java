@@ -110,5 +110,39 @@ public class LoginController {
 		    }  
 		    return CMCCConstant.LOGIN;
 	}
-	
+    
+	/** 
+	* @Title: unauth 
+	* @Description: TODO(未授权) 
+	* @author shujukuss 
+	* @date 2017年6月27日 下午6:07:00 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "unauth", method = RequestMethod.POST)
+    public String unauth() {
+        if (SecurityUtils.getSubject().isAuthenticated() == false) {
+            return CMCCConstant.LOGIN;
+        }
+        return "unauth";
+    }
+
+
+    /** 
+    * @Title: logout 
+    * @Description: TODO(退出) 
+    * @author shujukuss 
+    * @date 2017年6月27日 下午6:08:03 
+    * @param @return    设定文件 
+    * @return Object    返回类型 
+    * @throws 
+    */
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout() {
+        logger.info("登出");
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return CMCCConstant.LOGIN;
+    }
 }

@@ -13,7 +13,6 @@
 $(function(){
     $("#btn-login").click(function(){
        $("#frm").submit();
-       alert("提交中");
     });
 });
 </script>
