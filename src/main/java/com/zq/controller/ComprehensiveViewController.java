@@ -1,4 +1,4 @@
-package com.zq.controller.REST;
+package com.zq.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -8,17 +8,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.zq.commons.utils.CMCCConstant;
 
 /** 
-* @ClassName: FinancialViewController 
-* @Description: TODO(财务视图) 
+* @ClassName: ComprehensiveViewController 
+* @Description: TODO(综合视图) 
 * @author shujukuss 
-* @date 2017年6月18日 下午7:01:20 
+* @date 2017年6月18日 下午7:01:05 
 *  
 */
 @Controller
 @RequestMapping("/")
-public class FinancialViewController {
+public class ComprehensiveViewController {
 	
-	private static Logger logger = Logger.getLogger(FinancialViewController.class);  
-	
+	private static Logger logger = Logger.getLogger(ComprehensiveViewController.class);  
 
 }

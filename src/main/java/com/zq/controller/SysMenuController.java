@@ -1,4 +1,4 @@
-package com.zq.controller.pageforward;
+package com.zq.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.zq.controller.REST;
+package com.zq.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -9,16 +9,16 @@ import com.zq.commons.utils.CMCCConstant;
 
 
 /** 
-* @ClassName: PurchaseViewController 
-* @Description: TODO(采购视图) 
+* @ClassName: MultiAnalysisController 
+* @Description: TODO(报表) 
 * @author shujukuss 
-* @date 2017年6月18日 下午7:05:47 
+* @date 2017年6月18日 下午7:04:45 
 *  
 */
 @Controller
 @RequestMapping("/")
-public class PurchaseViewController {
+public class MultiAnalysisController {
 	
-	private static Logger logger = Logger.getLogger(PurchaseViewController.class);  
+	private static Logger logger = Logger.getLogger(MultiAnalysisController.class);  
 
 }

@@ -1,4 +1,4 @@
-package com.zq.controller.pageforward;
+package com.zq.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
