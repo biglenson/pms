@@ -12,29 +12,33 @@ import org.springframework.util.Assert;
 
 import com.zq.commons.utils.WebUtils;
 import com.zq.commons.utils.StringUtils;
-/**
- * 如梦验证码
- * @author L.cm
- *
- */
-public class DreamCaptcha implements InitializingBean {
-	private final static Logger logger = LogManager.getLogger(DreamCaptcha.class);
-	private static final String DEFAULT_COOKIE_NAME = "dream-captcha";
-	private final static String DEFAULT_CHACHE_NAME = "dreamCaptchaCache";
+
+
+/** 
+* @ClassName: CMCCCaptcha 
+* @Description: TODO(验证码) 
+* @author shujukuss 
+* @date 2017年6月28日 上午11:26:27 
+*  
+*/
+public class CMCCCaptcha implements InitializingBean {
+	private final static Logger logger = LogManager.getLogger(CMCCCaptcha.class);
+	private static final String DEFAULT_COOKIE_NAME = "cmcc-captcha";
+	private final static String DEFAULT_CHACHE_NAME = "cmccCaptchaCache";
 	private final static int DEFAULT_MAX_AGE = -1; // cookie超时默认为session会话状态
 	
 	private CacheManager cacheManager;
 	private String cacheName;
 	private String cookieName;
 	
-	private Cache<String, String> dreamCaptchaCache;
+	private Cache<String, String> cmccCaptchaCache;
 	
-	public DreamCaptcha() {
+	public CMCCCaptcha() {
 		this.cacheName = DEFAULT_CHACHE_NAME;
 		this.cookieName = DEFAULT_COOKIE_NAME;
 	}
 	
-	public DreamCaptcha(CacheManager cacheManager) {
+	public CMCCCaptcha(CacheManager cacheManager) {
 		this();
 		this.cacheManager = cacheManager;
 	}
@@ -67,7 +71,7 @@ public class DreamCaptcha implements InitializingBean {
 		Assert.notNull(cacheManager, "cacheManager must not be null!");
 		Assert.hasText(cacheName, "cacheName must not be empty!");
 		Assert.hasText(cookieName, "cookieName must not be empty!");
-		this.dreamCaptchaCache = cacheManager.getCache(cacheName);
+		this.cmccCaptchaCache = cacheManager.getCache(cacheName);
 	}
 	
 	/**
@@ -88,7 +92,7 @@ public class DreamCaptcha implements InitializingBean {
 		}
 		// 生成验证码
 		CaptchaUtils.generate(response, captchaCode);
-		dreamCaptchaCache.put(cookieValue, captchaCode);
+		cmccCaptchaCache.put(cookieValue, captchaCode);
 	}
 	
 	/**
@@ -106,7 +110,7 @@ public class DreamCaptcha implements InitializingBean {
 		if (StringUtils.isBlank(cookieValue)) {
 			return false;
 		}
-		String captchaCode = dreamCaptchaCache.get(cookieValue);
+		String captchaCode = cmccCaptchaCache.get(cookieValue);
 		if (StringUtils.isBlank(captchaCode)) {
 			return false;
 		}
@@ -114,7 +118,7 @@ public class DreamCaptcha implements InitializingBean {
 		userInputCaptcha = userInputCaptcha.toUpperCase();
 		boolean result = userInputCaptcha.equals(captchaCode);
 		if (result) {
-			dreamCaptchaCache.remove(cookieValue);
+			cmccCaptchaCache.remove(cookieValue);
 			WebUtils.removeCookie(response, cookieName);
 		}
 		return result;

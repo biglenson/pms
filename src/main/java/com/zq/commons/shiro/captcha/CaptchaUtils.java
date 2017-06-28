@@ -15,10 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.zq.commons.utils.IOUtils;
 
-/**
- * 验证码工具类
- * @author L.cm
- */
+/** 
+* @ClassName: CaptchaUtils 
+* @Description: TODO(验证码工具类) 
+* @author shujukuss 
+* @date 2017年6月28日 上午11:24:38 
+*  
+*/
 class CaptchaUtils {
 	// 默认的验证码大小
 	private static final int WIDTH = 108, HEIGHT = 40, CODE_SIZE = 4;

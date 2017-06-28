@@ -32,21 +32,26 @@ $(function(){
 					<span style="color:red"><c:out value="${message}"/></span>							
 					<div class="loginSpan" style="  margin-top: 54px;">
 						<div class="login_icon ico_user"></div>
-						<input type="text" placeholder="用户" title='用户' name="userName" id="userName" class="loginInput ">
+						<input type="text" placeholder="用户" title='用户' name="userName" id="userName" class="loginInput " tabindex="1">
 					</div>
 					<div class="loginSpan" >
 						<div class="login_icon ico_lock "></div>
-						<input type="password" title='密码'  placeholder="密码"name="password" id="password" class="loginInput ">
-					</div>
-					<div class="loginButton">
-						<div id="btn-login" class="btn-save">登 录</div>
-					</div>
+						<input type="password" title='密码'  placeholder="密码"name="password" id="password" class="loginInput " tabindex="2">
+					</div>				
 					<div>
+						<input class="captcha" style="width:100px;height:38px" type="text" name="captcha" placeholder="请输入验证码" tabindex="3"/> 
+						<img id="captcha" alt="验证码" 	src="/captcha.jpg"  onclick="this.src='/captcha.jpg?d='+Math.random();"
+							style="vertical-align: middle; border-radius: 4px; width: 195px; height: 35px; cursor: pointer;">
+					</div>
+					<div style="  margin-top:4px;"> 
 						<span class="reg-checkbox">
-							<input type="checkbox"name="keepLogin" tabindex="5" id="keepLogin">
+							<input type="checkbox"name="rememberMe" value="1" tabindex="4" id="rememberMe">
 						</span> 
 						<span class="reg-check_text">在本机记录登录信息</span>
 						<div style="clear: both;"></div>
+					</div>
+						<div class="loginButton">
+						<div id="btn-login" class="btn-save">登 录</div>
 					</div>
 				</div>
 
