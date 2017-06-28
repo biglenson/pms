@@ -75,6 +75,7 @@ public class LoginController {
 		        subject.login(token);  
 		        if (subject.isAuthenticated()) { 
 		        	logger.info("userName:" + userName + "登录成功！"); 
+		        	request.getSession().setAttribute("userName", userName);
 		            return CMCCConstant.CVDashBoard;  
 		        } else {  
 		            return CMCCConstant.LOGIN;  
