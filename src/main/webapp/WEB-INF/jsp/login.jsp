@@ -10,11 +10,19 @@
 <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/static/js/jquery/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-$(function(){
-    $("#btn-login").click(function(){
-       $("#frm").submit();
-    });
-});
+	$(function() {
+		$("#btn-login").click(function() {
+			$("#frm").submit();
+		});
+	});
+	//回车提交事件
+	$(function() {
+		$("body").keydown(function() {
+			if (event.keyCode == "13") {//keyCode=13是回车键
+				$("#frm").submit();
+			}
+		});
+	});
 </script>
 </head>
 <body>
