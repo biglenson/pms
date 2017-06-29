@@ -173,10 +173,10 @@
 						<img src="/static/images/app/PPM.png">
 						<div class="productName">综合视图</div>
 					</div></td>					
-					<td><a href="generalGRUDform"><div class="topHeader_changeProduct ">
+					<td><div class="topHeader_changeProduct " onclick="systemWitch(2)">
 						<img src="/static/images/app/CM.png">
 						<div class="productName">数据管理</div>
-					</div></a></td>					
+					</div></td>					
 					<td><div class="topHeader_changeProduct " onclick="systemWitch(3)">
 						<img src="/static/images/app/Admin.png">
 						<div class="productName">系统管理</div>

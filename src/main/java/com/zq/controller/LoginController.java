@@ -76,6 +76,13 @@ public class LoginController {
 				logger.warn("密码不能为空");
 				throw new RuntimeException("密码不能为空");
 			}
+		} catch (RuntimeException e) {
+			msg = e.getMessage();
+			model.addAttribute("message", msg);
+			logger.warn(msg);
+			return CMCCConstant.LOGIN;
+		}
+		try {
 			if (StringUtils.isBlank(captcha)) {
 				throw new RuntimeException("验证码不能为空");
 			}
@@ -86,6 +93,8 @@ public class LoginController {
 			msg = e.getMessage();
 			model.addAttribute("message", msg);
 			logger.warn(msg);
+			model.addAttribute("userName", userName);
+			model.addAttribute("password", password);
 			return CMCCConstant.LOGIN;
 		}
 

@@ -72,21 +72,16 @@
 			for (var i = 0; elements && i < elements.length; i++) {
 				elements[i].value = "";
 			}if(systemFlag==1){
-				url="/MyHomeAction.do?operation=openMyHome";
+				url="/comprehensiveview";
 			}else if(systemFlag==2){
-				url="/WikiDocumentAction.do?operation=goWikiMain";
+				url="/datamanager";
 			}else if(systemFlag==3){
-				url="/SystemMonitorAction.do?operation=monitorDashboard&menuID=9&subMenuID=901";
-			}else if(systemFlag==6){
-				url="/DemandAction.do?operation=goAlmMain";
-			}else if(systemFlag==8){
-				url="/ETAgileAction.do?operation=goMain";
-			}else if(systemFlag==7){
-				url="/ContractAction.do?operation=goCmMain";
+				url="/systemmanager";
 			}
-			MenuAction.changeSystemFlag(systemFlag,function(data){
-				form.action=url;form.submit();
-			});
+			
+			form.action=url;
+			form.submit();
+			
 		}
 
 		function initialLayoutFunction(){

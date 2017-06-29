@@ -28,7 +28,7 @@ public class SysMenuController {
 	* @return String    返回类型 
 	* @throws 
 	*/
-	@RequestMapping(value = "comprehensiveview", method = RequestMethod.GET)
+	@RequestMapping(value = "comprehensiveview")
 	public String comprehensiveView() {
 		return CMCCConstant.CVDashBoard;
 	}
@@ -40,7 +40,7 @@ public class SysMenuController {
 	* @return String    返回类型 
 	* @throws 
 	*/
-	@RequestMapping(value = "financialview", method = RequestMethod.GET)
+	@RequestMapping(value = "financialview")
 	public String financialView() {
 		return CMCCConstant.FVDashBoard;
 	}
@@ -52,7 +52,7 @@ public class SysMenuController {
 	* @return String    返回类型 
 	* @throws 
 	*/
-	@RequestMapping(value = "multianalysis", method = RequestMethod.GET)
+	@RequestMapping(value = "multianalysis")
 	public String multiAnalysis() {
 		return CMCCConstant.MADashBoard;
 	}
@@ -64,7 +64,7 @@ public class SysMenuController {
 	* @return String    返回类型 
 	* @throws 
 	*/
-	@RequestMapping(value = "projectview", method = RequestMethod.GET)
+	@RequestMapping(value = "projectview")
 	public String projectView() {
 		return CMCCConstant.PJVDashBoard;
 	}
@@ -76,20 +76,37 @@ public class SysMenuController {
 	* @return String    返回类型 
 	* @throws 
 	*/
-	@RequestMapping(value = "purchaseview", method = RequestMethod.GET)
+	@RequestMapping(value = "purchaseview")
 	public String purchaseView() {
 		return CMCCConstant.PCVDashBoard;
 	}
+	
 	/** 
-	* @Title: generalGRUDForm 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
+	* @Title: dataManager 
+	* @Description: TODO(数据管理页面) 
 	* @author shujukuss 
+	* @date 2017年6月29日 上午11:11:28 
 	* @param @return    设定文件 
 	* @return String    返回类型 
 	* @throws 
 	*/
-	@RequestMapping(value = "generalGRUDform", method = RequestMethod.GET)
-	public String generalGRUDForm() {
-		return CMCCConstant.GeneralGRUDForm;
+	@RequestMapping(value = "datamanager")
+	public String dataManager() {
+		return CMCCConstant.dataManager;
 	}
+	
+	/** 
+	* @Title: systemManager 
+	* @Description: TODO(系统管理页面) 
+	* @author shujukuss 
+	* @date 2017年6月29日 上午11:11:30 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "systemmanager")
+	public String systemManager() {
+		return CMCCConstant.systemManager;
+	}
+	
 }

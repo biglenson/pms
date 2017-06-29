@@ -12,21 +12,21 @@
 <script type="text/javascript">
 	$(function() {
 		$("#btn-login").click(function() {
-			$("#frm").submit();
+			$("#loginfrm").submit();
 		});
 	});
 	//回车提交事件
 	$(function() {
 		$("body").keydown(function() {
 			if (event.keyCode == "13") {//keyCode=13是回车键
-				$("#frm").submit();
+				$("#loginfrm").submit();
 			}
 		});
 	});
 </script>
 </head>
 <body>
-	<form name="frm" id="frm" action="/login" method="post">	
+	<form name="loginfrm" id="loginfrm" action="/login" method="post">	
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="login-top">
 			<div style="float: right; width: 120px; height: 100%;"></div>
@@ -38,7 +38,7 @@
 			<div class="login-center-content">
 				<div class="reg-content">
 					<span style="color:red"><c:out value="${message}"/></span>							
-					<div class="loginSpan" style="  margin-top: 54px;">
+					<div class="loginSpan" style="  margin-top: 45px;">
 						<div class="login_icon ico_user"></div>
 						<input type="text" placeholder="用户" title='用户' name="userName" id="userName" class="loginInput " tabindex="1">
 					</div>

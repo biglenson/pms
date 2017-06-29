@@ -59,12 +59,26 @@ public class CMCCConstant {
 	* <p>Title:通用GRUD JSP </p> 
 	* <p>Description: generalGRUDform</p> 
 	*/
-	public static final String GeneralGRUDForm="general/GeneralGRUDForm";
+	public static final String GeneralGRUDForm="data/GeneralGRUDForm";
 	
 	/** 
 	* <p>Title: 登录页</p> 
 	* <p>Description: </p> 
 	*/
 	public static final String LOGIN="login";
+
+	/** 
+	* <p>Title: 数据管理JSP</p> 
+	* <p>Description: </p> 
+	* @date 2017年6月29日 上午11:22:46 
+	*/
+	public static final String dataManager = "data/GeneralGRUDForm";
+
+	/** 
+	* <p>Title: 系统管理JSP</p> 
+	* <p>Description: </p> 
+	* @date 2017年6月29日 上午11:22:58 
+	*/
+	public static final String systemManager = "system/SystemManager";
 	
 }

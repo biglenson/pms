@@ -1,0 +1,77 @@
+/*  顶部背景颜色，产品图标 */
+.header-box{
+	background-color: #4A5D78;
+	background-image: url(../images/app/ETPPM_main_02.png);
+}
+
+/* 顶部切换系统的汉堡图标 */
+ .header_changeApp{
+	background-image: url(../images/16x16/icon-changeCM.png)
+}
+
+
+/* 顶部模块 选中背景颜色 */
+ .Nav  ul li.topon{
+	background-color: #6E7D93;
+}
+
+/* 顶部模块 鼠标滑动到上面的颜色 */
+.Nav ul li:hover a{
+  background-color: #6E7D93;
+}
+
+
+/* 顶部点击个人头像下拉按钮的颜色 */
+.loginUserContent .topHeader_content:HOVER {
+    background-color: #6E7D93;
+}
+
+/* 拖动分隔线的颜色*/
+#bodyStart_dragDIV.dragOver,#bodyStart_dragDIV:HOVER  {
+	background-color: #A46660;
+}
+
+/* 二级菜单的tabpanel颜色 */
+.newMenuTabPanel ul li.on{
+	border-color: #6E7D93;
+	background-color:#6E7D93;
+}
+/* 自定义切换tabpanel的颜色 */
+.topnav .hd ul li.on{
+	color: #6E7D93;
+	border-color: #6E7D93;
+}
+
+/* 下拉按钮的颜色 */
+.NewPopmenuItem:HOVER{
+	background-color:#6E7D93;
+}
+
+/* 左侧菜单的颜色 */
+.sidebar .menuDIV.menuSelected  {
+	color:#6E7D93;
+}
+
+/* 左侧页面标题的颜色 */
+.title_layout .titleRow{
+	color:#6E7D93;
+}
+
+/* 选项目时相互切换的颜色 */
+.searchProjectDIVChangeType  ul li.on{
+	color:#6E7D93;
+	border-color:#6E7D93;
+}
+
+/*********选择年控件************/
+.yearFloatDIV   .yearItem:HOVER ,  .yearFloatDIV   .yearItem.selected{
+	background-color:#6E7D93;
+}
+
+
+.top_header_top_typeSelect .item:HOVER ,
+	.top_header_top_typeSelect .item.selected
+	{
+		background-color: #6E7D93;
+		color:#FFF;
+	}
