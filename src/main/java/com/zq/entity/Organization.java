@@ -31,7 +31,7 @@ public class Organization implements Serializable {
 
 	private Long pid;
 
-	private byte seq;
+	private Integer seq;
 
 	public Organization() {
 	}
@@ -92,11 +92,11 @@ public class Organization implements Serializable {
 		this.pid = pid;
 	}
 
-	public byte getSeq() {
+	public Integer getSeq() {
 		return this.seq;
 	}
 
-	public void setSeq(byte seq) {
+	public void setSeq(Integer seq) {
 		this.seq = seq;
 	}
 

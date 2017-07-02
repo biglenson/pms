@@ -1,9 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.result.Tree"%>
+<%@ page import=" org.apache.shiro.session.Session"%>
+<%
+	List<Tree> menuList = (List<Tree>)session.getAttribute("NavMenu");
+%>
 <div class="header-box " id="headerDIV">
 <%-- 输出系统顶级模块的菜单 --%>
 <div class="header-down ">	 
 	<div class="header_changeApp " id="moduleDIV_changeTopSystemID" onclick="showTopSystemWitch(this);" title="应用"></div>
-		<div class="Nav " id="NavMenu">
+		<!-- <div class="Nav " id="NavMenu">
 			<ul>
 				<li class="topon"><a href="/comprehensiveview">综合视图</a></li>
 				<li><a href="/financialview">财务视图</a></li>
@@ -14,7 +19,19 @@
 			<div class="NavSelectHiddenDIV" id="Nav_NavSelectHiddenDIV" style="display: none;">
 				<img src="/static/images/16x16/icon-changeMenu.png">
 			</div>
-		</div>
+		</div> -->
+	<div class="Nav" id="NavMenu">
+		<ul>
+		<%for(Tree menu : menuList){
+			if(menu.getAppid()== Integer.parseInt(request.getParameter("appid"))&& menu.getPid() == 0){
+		%>			
+			<li<%if(menu.getAttributes().equals(request.getParameter("url"))){%> class="topon"  <%} %> >  				
+				<a  href="<%=menu.getAttributes() %>" > <%= menu.getText() %></a>					
+			</li>
+		<%}} %>
+		</ul>
+		<div class="NavSelectHiddenDIV"  id="Nav_NavSelectHiddenDIV"><img src="/static/images/16x16/icon-changeMenu.png"/></div>
+	</div>
 	</div>
 	<div class="loginUserDetail" id="NavSelectContainer" style="visibility: hidden; display: none; left: 0px; top: 0px;">
 		<div class="loginUserContent" id="NavSelectContainerContent"></div>

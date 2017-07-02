@@ -17,7 +17,7 @@ import com.zq.commons.utils.CMCCConstant;
 */
 @Controller
 @RequestMapping("/")
-public class SystemManagerController {
+public class SystemManagerController extends BaseController{
 	
 	private static Logger logger = Logger.getLogger(SystemManagerController.class);  
 

@@ -1,5 +1,7 @@
 package com.zq.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,6 +15,7 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.zq.commons.result.Tree;
 import com.zq.commons.shiro.captcha.CMCCCaptcha;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.StringUtils;
-import com.zq.service.SysMenuService;
+import com.zq.service.IResourceService;
 
 
 /** 
@@ -36,14 +40,13 @@ import com.zq.service.SysMenuService;
 */
 @Controller
 @RequestMapping("/") 
-public class LoginController {	
+public class LoginController extends BaseController{	
 	private static Logger logger = Logger.getLogger(LoginController.class);  
-	
-	@Autowired
-	SysMenuService sysMenuService;	
 	
     @Autowired
     private CMCCCaptcha cmccCaptcha;
+    @Autowired
+    private IResourceService iResourceService;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)  
 	 public String login(){  
@@ -105,7 +108,13 @@ public class LoginController {
 			subject.login(token);
 			if (subject.isAuthenticated()) {
 				logger.info("userName:" + userName + "登录成功！");
-				request.getSession().setAttribute("userName", userName);
+		        Session session = subject.getSession();  
+		        logger.info("sessionId:" + session.getId());
+		        logger.info("IP地址:" + session.getHost());
+		        logger.info("session存活时间:" + session.getTimeout()); 
+		        session.setAttribute("userName", userName);
+		        List<Tree> NavMenu = iResourceService.selectTree(getShiroUser());
+		        session.setAttribute("NavMenu", NavMenu);  
 				return CMCCConstant.CVDashBoard;
 			} else {
 				return CMCCConstant.LOGIN;

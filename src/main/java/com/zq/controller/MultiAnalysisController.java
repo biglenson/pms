@@ -17,7 +17,7 @@ import com.zq.commons.utils.CMCCConstant;
 */
 @Controller
 @RequestMapping("/")
-public class MultiAnalysisController {
+public class MultiAnalysisController extends BaseController{
 	
 	private static Logger logger = Logger.getLogger(MultiAnalysisController.class);  
 

@@ -5,11 +5,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-/**
- * @description：TreeVO
- * @author：zhixuan.wang
- * @date：2015/10/1 14:51
- */
+
+/** 
+* @ClassName: Tree 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author shujukuss 
+* @date 2017年7月2日 上午11:50:09 
+*  
+*/
 public class Tree implements java.io.Serializable {
 
     private static final long serialVersionUID = 980682543891282923L;
@@ -22,6 +25,7 @@ public class Tree implements java.io.Serializable {
     private List<Tree> children; // null不输出
     private String iconCls;
     private Long pid;
+    private int appid;
     /**
      * ajax,iframe,
      */
@@ -102,5 +106,13 @@ public class Tree implements java.io.Serializable {
     public void setOpenMode(String openMode) {
         this.openMode = openMode;
     }
+
+	public int getAppid() {
+		return appid;
+	}
+
+	public void setAppid(int appid) {
+		this.appid = appid;
+	}
 
 }

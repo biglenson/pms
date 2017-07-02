@@ -17,9 +17,10 @@ import com.zq.commons.utils.CMCCConstant;
 */
 @Controller
 @RequestMapping("/")
-public class SysMenuController {
+public class SysMenuController extends BaseController{
 	
 	private static Logger logger = Logger.getLogger(SysMenuController.class);
+	
 	/** 
 	* @Title: comprehensiveView 
 	* @Description: TODO(这里用一句话描述这个方法的作用) 
@@ -108,5 +109,6 @@ public class SysMenuController {
 	public String systemManager() {
 		return CMCCConstant.systemManager;
 	}
+	
 	
 }

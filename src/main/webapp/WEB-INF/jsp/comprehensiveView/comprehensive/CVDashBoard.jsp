@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%-- 输出head模块 --%>
-<jsp:include  page="../framework/Head.jsp" /> 
+<jsp:include  page="../../common/Head.jsp"/>
 <body>
 <%-- 输出系统顶级模块的菜单 --%>
-<jsp:include  page="../framework/TopMenu.jsp" /> 
+<jsp:include page="../../common/TopMenu.jsp" >
+	<jsp:param name="appid" value="1" />
+	<jsp:param name="url" value="/comprehensiveview" />
+</jsp:include>
 <div class="container  " id="bodyStart_container" style="top:50px">
-	<jsp:include  page="../framework/Banner.jsp" /> 
+	<jsp:include  page="../../common/Banner.jsp" /> 
 	<div id="propDIV" class="yibiao_start dumascroll" style="overflow: hidden; height: 10px;"> 	
 		<div class=" dumascroll_area showYScroll"><div style="width: 1000px;margin: 0 auto;">
 <style>

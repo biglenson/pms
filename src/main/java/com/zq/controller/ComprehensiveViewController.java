@@ -16,7 +16,7 @@ import com.zq.commons.utils.CMCCConstant;
 */
 @Controller
 @RequestMapping("/")
-public class ComprehensiveViewController {
+public class ComprehensiveViewController extends BaseController{
 	
 	private static Logger logger = Logger.getLogger(ComprehensiveViewController.class);  
 

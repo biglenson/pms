@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zq.commons.result.Tree;
 import com.zq.commons.shiro.ShiroUser;
+import com.zq.commons.utils.CMCCConstant;
 import com.zq.dao.IResourceRepository;
 import com.zq.dao.IRoleRepository;
 import com.zq.dao.IUserRepository;
@@ -26,7 +28,6 @@ import com.zq.service.IResourceService;
  */
 @Service
 public class ResourceServiceImpl implements IResourceService {
-    private static final int RESOURCE_MENU = 0; // 菜单
   
 	@Autowired
 	IResourceRepository iResourceRepository;
@@ -42,14 +43,18 @@ public class ResourceServiceImpl implements IResourceService {
 		return iResourceRepository.findAll();
     }
 	@Transactional
-    public List<Resource> selectByType(Integer type) {
-		return iResourceRepository.findByresourceType(type);
+    public List<Resource> selectByType(int type) {
+		return iResourceRepository.findByResourceType(type);
     }
+	@Transactional
+	private List<Resource> selectByTypeAndAppid(int type,int appid) {
+		return iResourceRepository.findByResourceTypeAndAppid(type,appid);
+	}
     
     public List<Tree> selectAllMenu() {
         List<Tree> trees = new ArrayList<Tree>();
         // 查询所有菜单
-        List<Resource> resources = this.selectByType(RESOURCE_MENU);
+        List<Resource> resources = this.selectByType(CMCCConstant.RESOURCE_MENU);
         if (resources == null) {
             return trees;
         }
@@ -61,6 +66,7 @@ public class ResourceServiceImpl implements IResourceService {
             tree.setIconCls(resource.getIcon());
             tree.setAttributes(resource.getUrl());
             tree.setState(resource.getOpened());
+            tree.setAppid(resource.getAppid());
             trees.add(tree);
         }
         return trees;
@@ -81,6 +87,7 @@ public class ResourceServiceImpl implements IResourceService {
             tree.setIconCls(resource.getIcon());
             tree.setAttributes(resource.getUrl());
             tree.setState(resource.getOpened());
+            tree.setAppid(resource.getAppid());
             trees.add(tree);
         }
         return trees;
@@ -95,7 +102,7 @@ public class ResourceServiceImpl implements IResourceService {
         }
         // 如果有超级管理员权限
         if (roles.contains("admin")) {
-            List<Resource> resourceList = this.selectByType(RESOURCE_MENU);
+            List<Resource> resourceList = this.selectByType(CMCCConstant.RESOURCE_MENU);
             if (resourceList == null) {
                 return trees;
             }
@@ -108,6 +115,7 @@ public class ResourceServiceImpl implements IResourceService {
                 tree.setAttributes(resource.getUrl());
                 tree.setOpenMode(resource.getOpenMode());
                 tree.setState(resource.getOpened());
+                tree.setAppid(resource.getAppid());
                 trees.add(tree);
             }
             return trees;
@@ -117,16 +125,12 @@ public class ResourceServiceImpl implements IResourceService {
         if (roleIdList == null) {
             return trees;
         }
-        List<Resource> resourceLists = null;
+        List<Resource> resourceLists = new ArrayList<>();
         for(Long roleId:roleIdList){
-        	for(Resource resource:(iRoleRepository.findById(roleId).getResources())){
-            	resourceLists.add(resource);
-        	}
+        	List<Resource> res = iRoleRepository.findById(roleId).getResources();
+        	resourceLists.addAll(res);
         }
         
-        if (resourceLists == null) {
-            return trees;
-        }
         for (Resource resource : resourceLists) {
             Tree tree = new Tree();
             tree.setId(resource.getId());
@@ -136,6 +140,7 @@ public class ResourceServiceImpl implements IResourceService {
             tree.setAttributes(resource.getUrl());
             tree.setOpenMode(resource.getOpenMode());
             tree.setState(resource.getOpened());
+            tree.setAppid(resource.getAppid());
             trees.add(tree);
         }
         return trees;
@@ -143,6 +148,6 @@ public class ResourceServiceImpl implements IResourceService {
 
 	public boolean deleteById(Serializable resourceId) {
 		return iResourceRepository.deleteById(resourceId);
-	}
+	}	
 
 }

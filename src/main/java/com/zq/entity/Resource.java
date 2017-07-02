@@ -17,33 +17,34 @@ public class Resource implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	private String name;
+	
+	private String url;
+	
+	@Column(name="open_mode")
+	private String openMode;
+	
+	private String description;
+	
+	private String icon;
+	
+	private Long pid;
+	
+	private Integer seq;
+	
+	private Integer status;
+	
+	private String opened;
+	
+	@Column(name="resource_type")
+	private Integer resourceType;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_time")
 	private Date createTime;
-
-	private String description;
-
-	private String icon;
-
-	private String name;
-
-	@Column(name="open_mode")
-	private String openMode;
-
-	private String opened;
-
-	private Long pid;
-
-	@Column(name="resource_type")
-	private byte resourceType;
-
-	private byte seq;
-
-	private byte status;
-
-	private String url;
-
+	
+	private Integer appid; 
 	//bi-directional many-to-many association to Role
 	@ManyToMany(mappedBy="resources")
 	private List<Role> roles;
@@ -115,27 +116,27 @@ public class Resource implements Serializable {
 		this.pid = pid;
 	}
 
-	public byte getResourceType() {
+	public Integer getResourceType() {
 		return this.resourceType;
 	}
 
-	public void setResourceType(byte resourceType) {
+	public void setResourceType(Integer resourceType) {
 		this.resourceType = resourceType;
 	}
 
-	public byte getSeq() {
+	public Integer getSeq() {
 		return this.seq;
 	}
 
-	public void setSeq(byte seq) {
+	public void setSeq(Integer seq) {
 		this.seq = seq;
 	}
 
-	public byte getStatus() {
+	public Integer getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
@@ -153,6 +154,14 @@ public class Resource implements Serializable {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Integer getAppid() {
+		return appid;
+	}
+
+	public void setAppid(Integer appid) {
+		this.appid = appid;
 	}
 
 }

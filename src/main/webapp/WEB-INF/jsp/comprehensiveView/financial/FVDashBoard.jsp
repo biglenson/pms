@@ -2,11 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%-- 输出head模块 --%>
-<jsp:include  page="../framework/Head.jsp" /> 
+<jsp:include  page="../../common/Head.jsp" /> 
 <body>
 <%-- 输出系统顶级模块的菜单 --%>
-<jsp:include  page="../framework/TopMenu.jsp" /> 
-
+<jsp:include page="../../common/TopMenu.jsp" >
+	<jsp:param name="appid" value="1" />
+	<jsp:param name="url" value="/financialview" />
+</jsp:include>
 <div class="container  " id="bodyStart_container" style="top:50px">
 	<div class="content-wrap" id="bodyStart__content_Wrap" style="left:0px;">
 		<div class="content-empty"></div>

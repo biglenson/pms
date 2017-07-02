@@ -9,6 +9,9 @@ public interface IResourceRepository extends JpaRepository<Resource, Long> {
 
 	boolean deleteById(Serializable resourceId);
 
-	List<Resource> findByresourceType(Integer type);
+	List<Resource> findByResourceType(Integer type);
+
+	List<Resource> findByResourceTypeAndAppid(int type, int appid);
+
 
 }

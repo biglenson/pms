@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,13 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="/static/css/style_new.css" rel="stylesheet" type="text/css">
 <link href="/static/css/style.css" rel="stylesheet" type="text/css">
-<link href="/static/css/style_admin.css" rel="stylesheet"
-	type="text/css">
+<link href="/static/css/style_admin.css" rel="stylesheet" 	type="text/css">
 <script type="text/javascript" src="/static/js/firefox/et.js"></script>
-<script type="text/javascript"
-	src="/static/js/firefox/FloatAndDialog.js"></script>
-<script type="text/javascript"
-	src="/static/js/jquery/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" 	src="/static/js/firefox/FloatAndDialog.js"></script>
+<script type="text/javascript" 	src="/static/js/jquery/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="/static/js/lable_message.js"></script>
 <script type="text/javascript">
 	ET.current_app_ID=3; //保存当前的appID ,在弹出框的时候 ，模板中自动加载特殊的css 
@@ -360,12 +356,9 @@
 </script>
 
 
-<script type="text/javascript" src="/pm/js/firefox/DataTableAll.js"></script>
-<script type="text/javascript"
-	src="/pm/js/webuploader/webuploader.min.js"></script>
-<script type="text/javascript"
-	src="/pm/dwr/interface/SimpleFormAction.js"></script>
-<script type="text/javascript" src="/pm/dwr/interface/CMCCAction.js"></script>
+<script type="text/javascript" src="/static/js/firefox/DataTableAll.js"></script>
+<script type="text/javascript" 	src="/static/js/webuploader/webuploader.min.js"></script>
+
 
 <script type="text/javascript">
 
@@ -859,262 +852,10 @@ function changeState(id,status, actionID,alertType,lastUpdateTime) {
 }</script>
 </head>
 <body>
-	<div class="header-box admin" id="headerDIV">
-		<div class="header-down admin">
-			<div class="header_changeApp admin" id="moduleDIV_changeTopSystemID"
-				onclick="showTopSystemWitch(this);" title="应用"></div>
-			<div class="Nav admin" id="NavMenu">
-				<ul>
-					<li><a
-						href="/pm/SystemMonitorAction.do?operation=monitorDashboard&amp;menuID=9&amp;subMenuID=901">
-							系统管理</a></li>
-
-					<li><a
-						href="/pm/RoleAction.do?operation=listSystemRole&amp;menuID=67&amp;subMenuID=6701">
-							系统配置</a></li>
-
-					<li class="topon"><a
-						href="/pm/CMCCAction.do?operation=cmccList&amp;&amp;schemaID=1080&amp;menuID=68&amp;subMenuID=6801">
-							部门和用户</a></li>
-
-				</ul>
-				<div class="NavSelectHiddenDIV" id="Nav_NavSelectHiddenDIV"
-					style="display: none;">
-					<img src="/static/images/16x16/icon-changeMenu.png">
-				</div>
-			</div>
-		</div>
-		<div class="loginUserDetail" id="NavSelectContainer"
-			style="visibility: hidden; display: none; left: 0px; top: 0px;">
-			<div class="loginUserContent" id="NavSelectContainerContent"></div>
-		</div>
-	</div>
-	<div class="top_header_searchDIV">
-		<div class="top_header_Exit" onclick="exit();">退出</div>
-		<div class="top_header_userName">zhengqi1</div>
-		<div class="top_header_searchInputDIV">
-			<input type="text" placeholder="请输入关键字搜索"
-				id="top_header_searchInputDIVInput"> <img
-				src="/static/images/newui/search.png">
-		</div>
-		<div class="top_header_searchTypeDIV" id="top_header_searchTypeDIV"
-			typeid="1011">
-			<span class="spanType">产品</span> <img
-				src="/static/images/16x16/toolbar-dropDown.png">
-		</div>
-
-	</div>
-	<div class="top_header_top_typeSelect" id="top_header_top_typeSelect"
-		style="visibility: hidden; display: none; left: 0px; top: 0px;">
-
-		<div class="item  selected" typeid="1011">产品</div>
-		<div class="item " typeid="1080">部门</div>
-		<div class="item " typeid="1041">项目</div>
-
-
-		<div class="item " typeid="1029">CAPEX</div>
-
-
-		<div class="item " typeid="1030">OPEX</div>
-
-
-		<div class="item " typeid="-80">报表</div>
-
-	</div>
-	<div id="top_header_top_searchResult"
-		class="top_header_top_searchResult"
-		style="visibility: hidden; display: none; left: 0px; top: 0px;">
-		<div id="top_headerReult" class=" dumascroll"
-			style="overflow: hidden;">
-			<div class="dumascroll_area"></div>
-			<div class="dumascroll_barY" style="display: none;">
-				<div class="dumascroll_arrow_up"></div>
-				<div class="dumascroll_handleY"></div>
-				<div class="dumascroll_arrow_down"></div>
-			</div>
-			<div class="dumascroll_barX" style="display: none;">
-				<div class="dumascroll_arrow_left"></div>
-				<div class="dumascroll_handleX"></div>
-				<div class="dumascroll_arrow_right"></div>
-			</div>
-			<div class="duma_rightButtom"></div>
-		</div>
-		<div id="top_header_top_searchLoading">
-			<div class="loaddingClass"></div>
-		</div>
-	</div>
-	<script type="text/javascript">
-	function javal_openTopSeachReportView(pathFile,title,isFenye){
-		var arg={};
-		arg.src = "/pm/CMCCReportServer?reportlet="+pathFile;
-		//if(!isFenye){
-		//	arg.src+="&op=view";
-		//}
-		arg.src+="&_id="+Math.random();
-		arg.title = title;
-		arg.containerClass="fineReport";
-		top.ET.showNewWindow(arg, function (ret) { 
-		})
-	}
-	function java_openTopSeachView(id,categoryID){
-		function openView(name ,url){
-			var arg = new Array();
-			arg.src=url;
-			arg.src+="&isDialog=true";
-			arg.src+="&_id="+Math.random();
-			//arg.title = name;
-			top.ET.showNewWindow(arg, function (ret) { 
-			});
-		}
-		if(categoryID==1011){
-			openView("产品全视图","/pm/ProductAction.do?operation=dashBoard&productID="+id);
-		}else if(categoryID==1029){
-			openView("CAPEX全视图","/pm/CAPEXAction.do?operation=capexMain&projectID="+id);
-		}else if(categoryID==1030){
-			openView("OPEX全视图","/pm/OPEXAction.do?operation=opexMain&projectID="+id);
-		}else if(categoryID==1041){
-			openView("项目全视图","/pm/CMCCItemSetAction.do?operation=itemSetMain&itemID="+id);
-		}else if(categoryID==1080){
-			var arg = new Array();
-			arg.src = "/pm/ZongheAction.do?operation=dashBoard";
-			arg.src+="&departmentID="+id;
-			arg.src+="&isDialog=true";
-			arg.title = undefined;
-			top.ET.showNewWindow(arg, function (ret) { 
-				if(ret != null){
-					
-				}
-			});
-		}
-	}
-	$(document).ready(function(){
-		var firstItem=$("#top_header_top_typeSelect").find(".item:first");
-		firstItem.addClass("selected");
-		var top_header_searchTypeDIV=$("#top_header_searchTypeDIV");
-		top_header_searchTypeDIV.attr("typeID",firstItem.attr("typeID"));
-		top_header_searchTypeDIV.find("span.spanType").text(firstItem.text());
-		var scrollResult=new ET.ScrollBar("top_headerReult");
-		var top_header_searchInputDIVInput=$("#top_header_searchInputDIVInput");
-		var typeSelect=new ET.FloatDIV("top_header_top_typeSelect");
-		top_header_searchTypeDIV.on("click",function(event){
-			typeSelect.popup(this,{
-				y:6
-			})
-		});
-		$(typeSelect.sourceElement).on("click",".item",function(event){
-			var typeID=$(this).attr("typeID");
-			$(typeSelect.sourceElement).find(".item").removeClass("selected");
-			$(this).addClass("selected");
-			top_header_searchTypeDIV.attr("typeID",typeID);
-			top_header_searchTypeDIV.find("span.spanType").text($(this).text());
-			typeSelect.hide();
-		});
-		
-		var lastAjax=null;
-		var callBackFun=[];
-		var do_searchFun=function(){
-			if(lastAjax!=null){
-				try{
-					lastAjax.abort();
-				}catch (e) {
-					
-				}
-			}
-			for(var i=0,j=callBackFun.length;i<j;i++){
-				callBackFun[i].isTimeout=true;
-			}
-			var top_header_top_searchLoading=$("#top_header_top_searchLoading");
-			top_header_top_searchLoading.show();
-			var backFun=function(html){
-				if(!backFun.isTimeout){
-					scrollResult.contentDIV.innerHTML=html;
-					scrollResult.resize();
-					top_header_top_searchLoading.hide();
-				}
-			}
-			callBackFun=[];
-			callBackFun.push(backFun);
-			lastAjax=$.ajax({
-				url:"/pm/CMCCAction.do?operation=topSearch"
-				,method:"POST"
-				,data:{
-					typeID:top_header_searchTypeDIV.attr("typeID")
-					,search:top_header_searchInputDIVInput.val()
-				}
-				,success:backFun
-			});
-			
-		}
-		$(scrollResult.contentDIV).on("click",".resultItem.linkURL",function(){
-			top_header_top_searchResult.hide();
-		});
-		var top_header_top_searchResult=new ET.FloatDIV("top_header_top_searchResult");
-		top_header_searchInputDIVInput.on('keyup  click',function(event){
-			window.clearTimeout(top_header_searchInputDIVInput.timeoutID);
-			top_header_searchInputDIVInput.timeoutID=window.setTimeout(function(){
-				top_header_top_searchResult.popupPosition({
-					top:50
-				    ,right:1
-				});
-				$(document.body).click();
-				do_searchFun();
-			},200)
-		})
-	})
-</script>
-	<div id="topHeader_changeSys" class="topHeader_changeSys">
-		<div class="topHeader_changeSysWrap">
-			<table>
-				<tbody>
-					<tr>
-						<td><div class="topHeader_changeProduct "
-								onclick="systemWitch(1)">
-								<img src="/static/images/app/PPM.png">
-								<div class="productName">综合视图</div>
-							</div></td>
-						<td><div class="topHeader_changeProduct "
-								onclick="systemWitch(7)">
-								<img src="/static/images/app/CM.png">
-								<div class="productName">数据管理</div>
-							</div></td>
-						<td><div class="topHeader_changeProduct  currentProduct">
-								<img src="/static/images/app/Admin.png">
-								<div class="productName">系统管理</div>
-							</div></td>
-
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<script type="text/javascript">
-function showTopSystemWitch(obj) {
-	var systemFloat=window.systemFloatObj;
-	if(systemFloat==undefined){
-		systemFloat=new ET.FloatDIV('topHeader_changeSys',{
-			onHide:function(){
-				var moduleDIV_changeTopSystemID=document.getElementById('moduleDIV_changeTopSystemID');
-				ET.Utils.removeClass(moduleDIV_changeTopSystemID,'header_changeAppOver');
-			}
-		});
-		window.systemFloatObj=systemFloat;
-	}
-	systemFloat.popupPosition({
-		left:200
-		,top:54
-	});
-	//systemFloat.sourceElement.style.zIndex=2147483647;
-}
-ET.Utils.addEvent(window,'load',function(event){
-	var moduleDIV_changeTopSystemID=document.getElementById('moduleDIV_changeTopSystemID');
-	if(moduleDIV_changeTopSystemID!=null){
-		var floatDIV=document.getElementById('topHeader_changeSys');
-		ET.Utils.addEvent(floatDIV,'mouseover',function(){
-			ET.Utils.addClass(moduleDIV_changeTopSystemID,'header_changeAppOver');
-		})
-	}
-})
-</script>
+<%-- 输出系统顶级模块的菜单 --%>
+<jsp:include page="../../common/TopMenu.jsp">
+	<jsp:param name="appid" value="3" />
+</jsp:include>
 	<div class="container  " id="bodyStart_container">
 		<div class="leftAllDIV  null" id="bodyLeftAllDIV">
 			<div class="leftsidebar null" id="bodyStart_leftsidebar">

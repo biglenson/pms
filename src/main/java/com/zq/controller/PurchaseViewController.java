@@ -17,7 +17,7 @@ import com.zq.commons.utils.CMCCConstant;
 */
 @Controller
 @RequestMapping("/")
-public class PurchaseViewController {
+public class PurchaseViewController extends BaseController{
 	
 	private static Logger logger = Logger.getLogger(PurchaseViewController.class);  
 

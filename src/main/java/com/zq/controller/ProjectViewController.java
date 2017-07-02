@@ -17,7 +17,7 @@ import com.zq.commons.utils.CMCCConstant;
 */
 @Controller
 @RequestMapping("/")
-public class ProjectViewController {
+public class ProjectViewController extends BaseController{
 	
 	private static Logger logger = Logger.getLogger(ProjectViewController.class);  
 

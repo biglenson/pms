@@ -24,61 +24,56 @@ package com.zq.commons.utils;
 */
 public class CMCCConstant {	
 	
-
-	/** 
-	* <p>Title:综合视图JSP </p> 
-	* <p>Description:comprehensiveview </p> 
-	*/
-	public static final String CVDashBoard="comprehensive/CVDashBoard";
-	
-	/** 
-	* <p>Title:财务视图JSP </p> 
-	* <p>Description:financialview </p> 
-	*/
-	public static final String FVDashBoard="financial/FVDashBoard";
-	
-	/** 
-	* <p>Title:采购视图JSP </p> 
-	* <p>Description: purchaseview</p> 
-	*/
-	public static final String PCVDashBoard="purchase/PCVDashBoard";
-	
-	/** 
-	* <p>Title:工程视图JSP </p> 
-	* <p>Description:projectview </p> 
-	*/
-	public static final String PJVDashBoard="project/PJVDashBoard";
-	
-	/** 
-	* <p>Title:报表JSP </p> 
-	* <p>Description: multianalysis</p> 
-	*/
-	public static final String MADashBoard="multianalysis/MADashBoard";
-	
-	/** 
-	* <p>Title:通用GRUD JSP </p> 
-	* <p>Description: generalGRUDform</p> 
-	*/
-	public static final String GeneralGRUDForm="data/GeneralGRUDForm";
-	
 	/** 
 	* <p>Title: 登录页</p> 
 	* <p>Description: </p> 
 	*/
 	public static final String LOGIN="login";
-
+	
+	/** 
+	* <p>Title:综合视图JSP </p> 
+	* <p>Description:comprehensiveview </p> 
+	*/
+	public static final String CVDashBoard="comprehensiveView/comprehensive/CVDashBoard";
+	
+	/** 
+	* <p>Title:财务视图JSP </p> 
+	* <p>Description:financialview </p> 
+	*/
+	public static final String FVDashBoard="comprehensiveView/financial/FVDashBoard";
+	
+	/** 
+	* <p>Title:采购视图JSP </p> 
+	* <p>Description: purchaseview</p> 
+	*/
+	public static final String PCVDashBoard="comprehensiveView/purchase/PCVDashBoard";
+	
+	/** 
+	* <p>Title:工程视图JSP </p> 
+	* <p>Description:projectview </p> 
+	*/
+	public static final String PJVDashBoard="comprehensiveView/project/PJVDashBoard";
+	
+	/** 
+	* <p>Title:报表JSP </p> 
+	* <p>Description: multianalysis</p> 
+	*/
+	public static final String MADashBoard="comprehensiveView/multianalysis/MADashBoard";
+	
 	/** 
 	* <p>Title: 数据管理JSP</p> 
 	* <p>Description: </p> 
 	* @date 2017年6月29日 上午11:22:46 
 	*/
-	public static final String dataManager = "data/GeneralGRUDForm";
+	public static final String dataManager = "dataManager/capex/GeneralGRUDForm";
 
 	/** 
 	* <p>Title: 系统管理JSP</p> 
 	* <p>Description: </p> 
 	* @date 2017年6月29日 上午11:22:58 
 	*/
-	public static final String systemManager = "system/SystemManager";
+	public static final String systemManager = "systemManager/systemManager/SystemManager";
+	
+    public static final int RESOURCE_MENU = 0; // 菜单
 	
 }

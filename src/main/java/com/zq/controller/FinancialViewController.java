@@ -16,7 +16,7 @@ import com.zq.commons.utils.CMCCConstant;
 */
 @Controller
 @RequestMapping("/")
-public class FinancialViewController {
+public class FinancialViewController extends BaseController{
 	
 	private static Logger logger = Logger.getLogger(FinancialViewController.class);  
 	

@@ -21,9 +21,9 @@ public class Role implements Serializable {
 
 	private String name;
 
-	private byte seq;
+	private int seq;
 
-	private byte status;
+	private int status;
 
 	//bi-directional many-to-many association to User
 	@ManyToMany(mappedBy="roles")
@@ -61,19 +61,19 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public byte getSeq() {
+	public int getSeq() {
 		return this.seq;
 	}
 
-	public void setSeq(byte seq) {
+	public void setSeq(int seq) {
 		this.seq = seq;
 	}
 
-	public byte getStatus() {
+	public int getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

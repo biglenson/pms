@@ -18,7 +18,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	private byte age;
+	private Integer age;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_time")
@@ -30,7 +30,7 @@ public class User implements Serializable {
 	private String name;
 
 	@Column(name="organization_id")
-	private int organizationId;
+	private Integer organizationId;
 
 	private String password;
 
@@ -38,12 +38,12 @@ public class User implements Serializable {
 
 	private String salt;
 
-	private byte sex;
+	private Integer sex;
 
-	private byte status;
+	private Integer status;
 
 	@Column(name="user_type")
-	private byte userType;
+	private Integer userType;
 
 	//bi-directional many-to-many association to Role
 	@ManyToMany
@@ -61,11 +61,11 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public byte getAge() {
+	public Integer getAge() {
 		return this.age;
 	}
 
-	public void setAge(byte age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -93,11 +93,11 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public int getOrganizationId() {
+	public Integer getOrganizationId() {
 		return this.organizationId;
 	}
 
-	public void setOrganizationId(int organizationId) {
+	public void setOrganizationId(Integer organizationId) {
 		this.organizationId = organizationId;
 	}
 
@@ -125,27 +125,27 @@ public class User implements Serializable {
 		this.salt = salt;
 	}
 
-	public byte getSex() {
+	public Integer getSex() {
 		return this.sex;
 	}
 
-	public void setSex(byte sex) {
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
 
-	public byte getStatus() {
+	public Integer getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
-	public byte getUserType() {
+	public Integer getUserType() {
 		return this.userType;
 	}
 
-	public void setUserType(byte userType) {
+	public void setUserType(Integer userType) {
 		this.userType = userType;
 	}
 
