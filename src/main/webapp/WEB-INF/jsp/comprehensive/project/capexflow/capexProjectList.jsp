@@ -1,15 +1,7 @@
-<%@page import="java.util.Map"%>
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.Locale"%>
-<%@page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%  
 	String path=request.getContextPath();
-	Locale locale = (Locale) session.getAttribute("org.apache.struts.action.LOCALE");
-    SessionManager webMgr = new SessionManager();
-    webMgr.init(session);
-    User user=webMgr.getCurrentUser();
-    PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	List<CAPEXProject> dataList = pageInfo.getItems();
 	Map<String,String> projectZhunziMoney = (Map<String,String>)request.getAttribute("projectZhunziMoney");
 	Map<String,CMCCTouziPlan> projectTouziMap = (Map<String,CMCCTouziPlan>)request.getAttribute("projectTouziMap");

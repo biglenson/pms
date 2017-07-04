@@ -1,22 +1,7 @@
-<%@page import="com.easytrack.customization.cmcc.bean.CMCCTouziPlan"%>
-<%@page import="com.easytrack.customization.cmcc.action.FormBaseResove"%>
-<%@page import="com.easytrack.customization.cmcc.bean.CAPEXProject"%>
-<%@page import="com.easytrack.commons.db.PageInfo"%>
-<%@page import="com.easytrack.platform.ui.UIUtils_NEW"%>
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@page import="java.util.List"%>
-<%@page import="com.easytrack.platform.constants.*"%>
-<%@page import="com.easytrack.commons.util.CalendarUtils"%>
-<%@page import="com.easytrack.commons.util.TypeUtils"%>
-<%@page import="com.easytrack.commons.util.MessageUtils"%>
-<%@page import="java.util.Locale"%>
-<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>	
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%  
 	String path=request.getContextPath();
-	Locale locale = (Locale) session.getAttribute("org.apache.struts.action.LOCALE");
-    SessionManager webMgr = new SessionManager();
-    webMgr.init(session);
-    User user=webMgr.getCurrentUser();
     PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	List<CMCCTouziPlan> dataList = pageInfo.getItems();
 %>
@@ -40,23 +25,23 @@
 				for(int i=0,j=dataList.size();i<j;i++){
 					CMCCTouziPlan touziPlan = dataList.get(i);
 					CMCCTouziPlan p=touziPlan;
-					Double zongValue=FormBaseResove.getDoubleValue(user, p, "num02");
-					Double lastValue=FormBaseResove.getDoubleValue(user, p, "num06");
-					Double lastValue2=FormBaseResove.getDoubleValue(user,p, "num04");
+					Double zongValue=TypeUtils.getDoubleValue(user, p, "num02");
+					Double lastValue=TypeUtils.getDoubleValue(user, p, "num06");
+					Double lastValue2=TypeUtils.getDoubleValue(user,p, "num04");
 			%>
 				<tr class='listTableTR'>
 					<td align="center"><%=TypeUtils.xmlEncoderForIE(touziPlan.getStr18()) %></td>
 					<td align="center"><%=TypeUtils.xmlEncoderForIE(touziPlan.getStr01()) %></td>
-					<td align="center"><%=TypeUtils.xmlEncoderForIE(FormBaseResove.resoveFieldAsString(user, p, "enum01", request)) %></td>
-					<td align="center"><%=TypeUtils.xmlEncoderForIE(FormBaseResove.resoveFieldAsString(user, p, "enum04", request)) %></td>
+					<td align="center"><%=TypeUtils.xmlEncoderForIE(TypeUtils.resoveFieldAsString(user, p, "enum01", request)) %></td>
+					<td align="center"><%=TypeUtils.xmlEncoderForIE(TypeUtils.resoveFieldAsString(user, p, "enum04", request)) %></td>
 					<td align="center">
-						<%=FormBaseResove.formatWanMoney(zongValue) %>
+						<%=TypeUtils.formatWanMoney(zongValue) %>
 					</td>
 					<td align="center">
-						<%=FormBaseResove.formatWanMoney(lastValue) %>
+						<%=TypeUtils.formatWanMoney(lastValue) %>
 					</td>
 					<td align="center">
-						<%=FormBaseResove.formatWanMoney(lastValue2) %>
+						<%=TypeUtils.formatWanMoney(lastValue2) %>
 					</td>
 				</tr>
 			<%

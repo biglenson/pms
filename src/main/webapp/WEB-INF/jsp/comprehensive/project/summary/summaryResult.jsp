@@ -1,18 +1,7 @@
-<%@page import="net.sf.json.JSONArray"%>
-<%@page import="com.easytrack.framework.dashboard.Bean.HighChartData"%>
-<%@page import="com.easytrack.customization.cmcc.action.FormBaseResove"%>
-<%@page import="com.easytrack.commons.util.TypeUtils"%>
-<%@page import="com.easytrack.component.ComponentFactory"%>
-<%@page import="com.easytrack.customization.cmcc.bean.CAPEXProject"%>
-<%@page import="com.easytrack.component.profile.*"%>
-<%@page import="com.easytrack.platform.ui.*"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%
 String path = request.getContextPath();
-SessionManager webMgr = new SessionManager();
-webMgr.init(session);
-User user = webMgr.getCurrentUser();
-Locale locale = webMgr.getCurrentLocale();
 Integer index=(Integer)request.getAttribute("index");
 %>
 <%if(index==0){
@@ -21,7 +10,7 @@ Integer index=(Integer)request.getAttribute("index");
 	boolean delay=yearValue>allValue;//false;
 %>
 	<div  class="sumValue" style="color:<%=delay?"#BF100F":"#0ACC4B" %>;" >
-		<%=FormBaseResove.formatWanMoney(yearValue) %>
+		<%=TypeUtils.formatWanMoney(yearValue) %>
 	</div>
 	<div style='width:97%;margin:15px auto;height:8px;background-color:#E8E9ED;'>
 		<%Double percent=allValue!=0?yearValue/allValue*100:null; %>
@@ -36,7 +25,7 @@ Integer index=(Integer)request.getAttribute("index");
 					<div><span class='tipSpan '>投资总额&nbsp;:</span></div>
 				</td>
 				<td width="100%" align="right">
-					<b style="font-size: 14px;"><%=FormBaseResove.formatWanMoney(allValue,"")%></b>
+					<b style="font-size: 14px;"><%=TypeUtils.formatWanMoney(allValue,"")%></b>
 				</td>
 			</tr>
 			<tr>
@@ -49,7 +38,7 @@ Integer index=(Integer)request.getAttribute("index");
 			</tr>
 		</table>
 	</div>
-	<jsp:include page="/jsp/viewChangeTime.jsp">
+	<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 		<jsp:param  name="lastUpdateDIV" value="gongchengSummary0TimeDIV"/>
 	</jsp:include>
 <%}else if(index==1){
@@ -64,24 +53,24 @@ Integer index=(Integer)request.getAttribute("index");
 	<div style="margin-left:125px;padding-top:5px;line-height: 22px;margin-right: 2px;">
 		<div style='height:8px;width:8px;display: inline-block;background-color:#46C6EF '> </div>
 		立项金额 :
-		<div style="padding-bottom:3px;text-align: right;"><b style="font-size: 14px;"><%=FormBaseResove.formatWanMoney(projectValue)%></b></div>
+		<div style="padding-bottom:3px;text-align: right;"><b style="font-size: 14px;"><%=TypeUtils.formatWanMoney(projectValue)%></b></div>
 		
 		<div style='height:8px;width:8px;display: inline-block;background-color:#0080CC '> </div>
 		预占未立项金额 :
-		<div style="padding-bottom:3px;text-align: right;"><b style="font-size: 14px;"><%=FormBaseResove.formatWanMoney(yuZhuanValue)%></b></div>
+		<div style="padding-bottom:3px;text-align: right;"><b style="font-size: 14px;"><%=TypeUtils.formatWanMoney(yuZhuanValue)%></b></div>
 		
 		<div style='height:8px;width:8px;display: inline-block;background-color:#0ACC4B '> </div>
 		剩余金额 :
-		<div style="padding-bottom:3px;text-align: right;"><b style="font-size: 14px;"><%=FormBaseResove.formatWanMoney(leftValue)%></b></div>
+		<div style="padding-bottom:3px;text-align: right;"><b style="font-size: 14px;"><%=TypeUtils.formatWanMoney(leftValue)%></b></div>
 	</div>
 </div>
-<jsp:include page="/jsp/viewChangeTime.jsp">
+<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 		<jsp:param  name="lastUpdateDIV" value="gongchengSummary1TimeDIV"/>
 	</jsp:include>
 <script type="text/javascript">
 		$("#zizhuJinSummaryChart").highcharts({
 	        title: {
-	            text:'自主资金池总额<br><b><%=FormBaseResove.formatWanMoney(allValue) %></b>',
+	            text:'自主资金池总额<br><b><%=TypeUtils.formatWanMoney(allValue) %></b>',
 	            y:70,
 	            x:0,
 	            style:{
@@ -244,7 +233,7 @@ Integer index=(Integer)request.getAttribute("index");
 				<div>资本开支实际&nbsp;:</div>
 			</td>
 			<td align="right" width="40%">
-				<b style="font-size: 14px;"><%=FormBaseResove.formatWanMoney(kaizhiActual,"") %></b>
+				<b style="font-size: 14px;"><%=TypeUtils.formatWanMoney(kaizhiActual,"") %></b>
 			</td>
 		</tr>
 		<tr style="border-bottom:1px solid #D9D9D9;">
@@ -262,7 +251,7 @@ Integer index=(Integer)request.getAttribute("index");
 				<div>转资实际&nbsp;:</div>
 			</td>
 			<td align="right">
-				<b style="font-size: 14px;"><%=FormBaseResove.formatWanMoney(zhuanZiActual,"") %></b>
+				<b style="font-size: 14px;"><%=TypeUtils.formatWanMoney(zhuanZiActual,"") %></b>
 			</td>
 		</tr>
 		<tr>
@@ -276,7 +265,7 @@ Integer index=(Integer)request.getAttribute("index");
 			</td>
 		</tr>
 	</table>
-	<jsp:include page="/jsp/viewChangeTime.jsp">
+	<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 		<jsp:param  name="lastUpdateDIV" value="gongchengSummary2TimeDIV"/>
 	</jsp:include>
 <%}%>

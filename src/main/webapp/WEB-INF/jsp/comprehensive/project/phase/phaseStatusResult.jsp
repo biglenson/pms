@@ -1,20 +1,8 @@
-<%@page import="com.easytrack.customization.cmcc.action.FormBaseResove"%>
-<%@page import="com.easytrack.commons.util.TypeUtils"%>
-<%@page import="com.easytrack.component.ComponentFactory"%>
-<%@page import="com.easytrack.customization.cmcc.bean.CAPEXProject"%>
-<%@page import="com.easytrack.component.profile.*"%>
-<%@page import="com.easytrack.platform.ui.*"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%
 String path = request.getContextPath();
-SessionManager webMgr = new SessionManager();
-webMgr.init(session);
-User user = webMgr.getCurrentUser();
-Locale locale = webMgr.getCurrentLocale();
 String[] phaseName=CAPEXProject.PHASENAMES;
-
-
-
 int[] allCount=(int[])request.getAttribute("allCount");
 int[] newCount=(int[])request.getAttribute("newCount");
 int totalCount=(Integer)request.getAttribute("totalCount");
@@ -35,16 +23,16 @@ int newTotalCount=(Integer)request.getAttribute("newTotalCount");
 	</tr>
 	<tr>
 		<td><div class="column1" >项目总数</div></td>
-		<td ><div class="valueDIV linkURL" onclick="openCapexProjectList(-1,0)" ><%=FormBaseResove.formatCount(totalCount) %></div></td>
+		<td ><div class="valueDIV linkURL" onclick="openCapexProjectList(-1,0)" ><%=TypeUtils.formatCount(totalCount) %></div></td>
 		<%for(int i=0,j=phaseName.length;i<j;i++){%>
-		<td  ><div class="valueDIV linkURL" onclick="openCapexProjectList(<%=i %>,0)" ><%=FormBaseResove.formatCount(allCount[i]) %></div></td>
+		<td  ><div class="valueDIV linkURL" onclick="openCapexProjectList(<%=i %>,0)" ><%=TypeUtils.formatCount(allCount[i]) %></div></td>
 		<%} %>
 	</tr>
 	<tr>
 		<td><div class="column1" >新建项目数</div></td>
-		<td ><div class="valueDIV2 linkURL" onclick="openCapexProjectList(-1,1)" ><%=FormBaseResove.formatCount(newTotalCount) %></div></td>
+		<td ><div class="valueDIV2 linkURL" onclick="openCapexProjectList(-1,1)" ><%=TypeUtils.formatCount(newTotalCount) %></div></td>
 		<%for(int i=0,j=phaseName.length;i<j;i++){%>
-		<td ><div class="valueDIV2 linkURL" onclick="openCapexProjectList(<%=i %>,1);" ><%=FormBaseResove.formatCount(newCount[i]) %></div></td>
+		<td ><div class="valueDIV2 linkURL" onclick="openCapexProjectList(<%=i %>,1);" ><%=TypeUtils.formatCount(newCount[i]) %></div></td>
 		<%} %>
 	</tr>
 	<tr>
@@ -65,11 +53,11 @@ int newTotalCount=(Integer)request.getAttribute("newTotalCount");
 			String s=moneyName[i];
 			Double v=s!=null?moneyDouble[i]:null;
 		%>
-		<td  style="text-align:center;"><div ><%=FormBaseResove.formatWanMoney(v,"")%></div></td>
+		<td  style="text-align:center;"><div ><%=TypeUtils.formatWanMoney(v,"")%></div></td>
 		<td></td>
 		<%} %>
 	</tr>
 </table>
-<jsp:include page="/jsp/viewChangeTime.jsp">
+<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 		<jsp:param  name="lastUpdateDIV" value="gongcheng_phaseStatusDIVTimeDIV"/>
 	</jsp:include>

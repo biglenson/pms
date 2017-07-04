@@ -1,24 +1,12 @@
-<%@page import="com.easytrack.commons.hierarchy.Hierarchyable"%>
-<%@page import="com.easytrack.customization.cmcc.bean.CMCCItemSet"%>
-<%@page import="com.easytrack.customization.cmcc.bean.CMCCProduct"%>
-<%@page import="com.easytrack.customization.cmcc.action.FormBaseResove"%>
-<%@page import="com.easytrack.commons.util.TypeUtils"%>
-<%@page import="com.easytrack.component.ComponentFactory"%>
-<%@page import="com.easytrack.customization.cmcc.bean.CAPEXProject"%>
-<%@page import="com.easytrack.component.profile.*"%>
-<%@page import="com.easytrack.platform.ui.*"%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%-- <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%
 String path = request.getContextPath();
-SessionManager webMgr = new SessionManager();
-webMgr.init(session);
-User user = webMgr.getCurrentUser();
-Locale locale = webMgr.getCurrentLocale();
 double capexValue=(Double)request.getAttribute("capexValue");
 double shiYongValue=(Double)request.getAttribute("shiYongValue");
 double ziJinValue=(Double)request.getAttribute("ziJinValue");
 double ziJinShiYongValue=(Double)request.getAttribute("ziJinShiYongValue");
-List<Hierarchyable>roleList=(List<Hierarchyable>)request.getAttribute("roleList");
+/* List<Hierarchyable>roleList=(List<Hierarchyable>)request.getAttribute("roleList"); */
 Map<Integer,Double> capexValueMap=(Map<Integer,Double>)request.getAttribute("capexValueMap");
 Map<Integer,Double> shiYongValueMap=(Map<Integer,Double>)request.getAttribute("shiYongValueMap");
 
@@ -27,21 +15,21 @@ Map<Integer,Double> shiYongValueMap=(Map<Integer,Double>)request.getAttribute("s
 	<div style="width:190px;margin-left:10px;float:left">
 		<div style="margin-top:8px;">
 			<div style="">投资使用&nbsp;:</div>
-			<div style="padding-bottom:8px;text-align: center;font-size: 18px;font-weight: bold;"><%=FormBaseResove.formatWanMoney(shiYongValue,"") %></div>
+			<div style="padding-bottom:8px;text-align: center;font-size: 18px;font-weight: bold;"><%=TypeUtils.formatWanMoney(shiYongValue,"") %></div>
 			<div style='width:100%;margin:0px auto;height:8px;background-color:#E8E9ED;'>
 				<div style=' height:100%;width:<%=capexValue!=0? (shiYongValue>capexValue?100:shiYongValue/capexValue*100):0%>%;background-color:#0ACC4B'></div>
 			</div>
-			<div style="padding-bottom:18px;border-bottom:1px solid #EBE8EF;">投资计划总额&nbsp;: <b style="font-size: 18px;"><%=FormBaseResove.formatWanMoney(capexValue,"")  %></b></div>
+			<div style="padding-bottom:18px;border-bottom:1px solid #EBE8EF;">投资计划总额&nbsp;: <b style="font-size: 18px;"><%=TypeUtils.formatWanMoney(capexValue,"")  %></b></div>
 		</div>
 		
 		
 		<div style="margin-top:15px;">
 			<div style="">自主资金使用&nbsp;:</div>
-			<div style="padding-bottom:10px;text-align: center;font-size: 18px;font-weight: bold;"><%=FormBaseResove.formatWanMoney(ziJinShiYongValue,"") %></div>
+			<div style="padding-bottom:10px;text-align: center;font-size: 18px;font-weight: bold;"><%=TypeUtils.formatWanMoney(ziJinShiYongValue,"") %></div>
 			<div style='width:100%;margin:0px auto;height:8px;background-color:#E8E9ED;'>
 				<div style=' height:100%;width:<%=ziJinValue!=0?(ziJinShiYongValue>ziJinValue?100: ziJinShiYongValue/ziJinValue*100):0%>%;background-color:#0ACC4B'></div>
 			</div>
-			<div style="padding-bottom:8px;">自主资金池总额&nbsp;: <b style="font-size: 18px;"><%=FormBaseResove.formatWanMoney(ziJinValue,"")  %></b></div>
+			<div style="padding-bottom:8px;">自主资金池总额&nbsp;: <b style="font-size: 18px;"><%=TypeUtils.formatWanMoney(ziJinValue,"")  %></b></div>
 		</div>
 	</div>
 	<div id="touziDetialCapexDepartDIV" style="margin-left:220px;">
@@ -71,8 +59,8 @@ Map<Integer,Double> shiYongValueMap=(Map<Integer,Double>)request.getAttribute("s
 				%>
 				<tr>
 					<td align="center" class="linkURL" onclick="openDepartmentView(<%=role.getId()%>)"><div><%=TypeUtils.xmlEncoderForIE(role.getName()) %></div></td>
-					<td align="center"><div style="padding-right:5px;"><%=FormBaseResove.formatWanMoney(capexV, "") %></div></td>	
-					<td align="center"><div style="padding-right:5px;"><%=FormBaseResove.formatWanMoney(capexV2, "") %></div></td>	
+					<td align="center"><div style="padding-right:5px;"><%=TypeUtils.formatWanMoney(capexV, "") %></div></td>	
+					<td align="center"><div style="padding-right:5px;"><%=TypeUtils.formatWanMoney(capexV2, "") %></div></td>	
 					<td align="center"><div style="padding-right:5px;"><%=per!=null?TypeUtils.double2String(per):"0.00"%>%</div></td>
 				</tr>
 				<%} %>
@@ -86,4 +74,4 @@ Map<Integer,Double> shiYongValueMap=(Map<Integer,Double>)request.getAttribute("s
 	window.touziDetialCapexDepartDIVTableObj=new EasyTrack.DataTable("touziDetialCapexDepartDIVTable",{
 		autoHeight:false
 	})
-</script>
+</script> --%>

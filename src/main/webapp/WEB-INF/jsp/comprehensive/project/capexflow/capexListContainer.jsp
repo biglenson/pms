@@ -1,13 +1,5 @@
-<%@page import="com.easytrack.customization.cmcc.CMCCConstant"%>
-<%@page import="com.easytrack.platform.ui.UIUtils_NEW"%>
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@page import="java.util.List"%>
-<%@page import="com.easytrack.platform.constants.*"%>
-<%@page import="com.easytrack.commons.util.CalendarUtils"%>
-<%@page import="com.easytrack.commons.util.TypeUtils"%>
-<%@page import="com.easytrack.commons.util.MessageUtils"%>
-<%@page import="java.util.Locale"%>
-<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>	
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%  
 	String path=request.getContextPath();
 	Locale locale = (Locale) session.getAttribute("org.apache.struts.action.LOCALE");

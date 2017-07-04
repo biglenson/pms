@@ -1,17 +1,8 @@
-<%@page import="org.apache.commons.lang.StringUtils"%>
-<%@page import="com.easytrack.customization.cmcc.action.FormBaseResove"%>
-<%@page import="com.easytrack.commons.util.TypeUtils"%>
-<%@page import="com.easytrack.component.ComponentFactory"%>
-<%@page import="com.easytrack.customization.cmcc.bean.CAPEXProject"%>
-<%@page import="com.easytrack.component.profile.*"%>
-<%@page import="com.easytrack.platform.ui.*"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import="com.zq.commons.utils.StringUtils"%>
 <%
 String path = request.getContextPath();
-SessionManager webMgr = new SessionManager();
-webMgr.init(session);
-User user = webMgr.getCurrentUser();
-Locale locale = webMgr.getCurrentLocale();
 int year=(Integer)request.getAttribute("year");
 Double []plan=(Double[])request.getAttribute("plan");
 Double []actual=(Double[])request.getAttribute("actual");
@@ -26,17 +17,17 @@ Double percent=monthPlan!=0? monthActual/monthPlan*100:null;
 <div  class="tabContent"><div style="position: relative;">
 	<div style='width:190px;float:left;margin-left: 10px;'>
 		<div class="sumValue" style="color:<%=distance<0?"#BF100F":"#0ACC4B"%>">
-			<b style="font-size: 18px;"><%=FormBaseResove.formatWan2Money(monthActual,"") %></b>
+			<b style="font-size: 18px;"><%=TypeUtils.formatWan2Money(monthActual,"") %></b>
 		</div>
 		<div style='width:100%;margin:5px auto;height:8px;background-color:#E8E9ED;'>
 			<div style=' height:100%;width:<%=monthPlan!=0? monthActual/monthPlan*100:0%>%;background-color:<%=distance<0?"#BF100F":"#0ACC4B"%>;'></div>
 		</div>
 		<table style='width:100%;margin:10px auto;'>
 			<tr><td class='tipSpan' style="text-align: left;padding-left: 0px;"><span> 到本月完成率&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style='color:<%=distance<0?"#BF100F":"black"%>;font-size:24px;'><%=percent!=null?TypeUtils.double2String(percent):"0.00"%>%</span></td></tr>
-			<tr><td class='tipSpan' style="text-align: left;padding-left: 0px;"><span> 全年计划&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style=''><%=FormBaseResove.formatWan2Money(allPlan,"") %></span></td></tr>
-			<tr><td class='tipSpan' style="text-align: left;padding-left: 0px;"><span> 到本月计划&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style=''><%=FormBaseResove.formatWan2Money(monthPlan,"") %></span></td></tr>
-			<tr><td class='tipSpan' style="text-align: left;padding-left: 0px;"><span> 到本月实际&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style=''><%=FormBaseResove.formatWan2Money(monthActual,"") %></span></td></tr>
-			<tr style="display:none;"><td class='tipSpan'><span> 到本月偏差&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style='color:<%=distance<0?"#BF100F":"black"%>'><%=FormBaseResove.formatWan2Money(distance,"") %></span></td></tr>
+			<tr><td class='tipSpan' style="text-align: left;padding-left: 0px;"><span> 全年计划&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style=''><%=TypeUtils.formatWan2Money(allPlan,"") %></span></td></tr>
+			<tr><td class='tipSpan' style="text-align: left;padding-left: 0px;"><span> 到本月计划&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style=''><%=TypeUtils.formatWan2Money(monthPlan,"") %></span></td></tr>
+			<tr><td class='tipSpan' style="text-align: left;padding-left: 0px;"><span> 到本月实际&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style=''><%=TypeUtils.formatWan2Money(monthActual,"") %></span></td></tr>
+			<tr style="display:none;"><td class='tipSpan'><span> 到本月偏差&nbsp;:</span></td><td class='tipSpan2' width='100%'><span style='color:<%=distance<0?"#BF100F":"black"%>'><%=TypeUtils.formatWan2Money(distance,"") %></span></td></tr>
 		</table>	
 	</div>
 	<div style="margin-left:200px;">
@@ -56,16 +47,16 @@ Double percent=monthPlan!=0? monthActual/monthPlan*100:null;
 					<tr class="listTableTR">
 						<td align="center">计划</td>
 						<%for(int i=0;i<12;i++){ %>
-							<td align="center" title="<%=FormBaseResove.formatWan2Money(plan[i])%>">
-								<%=allPlan!=0?FormBaseResove.formatPercent(plan[i]/allPlan):"" %>
+							<td align="center" title="<%=TypeUtils.formatWan2Money(plan[i])%>">
+								<%=allPlan!=0?TypeUtils.formatPercent(plan[i]/allPlan):"" %>
 							</td>
 						<%}%>
 					</tr>
 					<tr>
 						<td align="center">执行</td>
 						<%for(int i=0;i<12;i++){ %>
-							<td align="center" title="<%=FormBaseResove.formatWan2Money(actual[i])%>" style="color:<%=(actual[i]- plan[i])>=0?"#55B366":"#F05B5A"%>">
-								<%=allActual!=0?FormBaseResove.formatPercent(actual[i]/allPlan):"" %>
+							<td align="center" title="<%=TypeUtils.formatWan2Money(actual[i])%>" style="color:<%=(actual[i]- plan[i])>=0?"#55B366":"#F05B5A"%>">
+								<%=allActual!=0?TypeUtils.formatPercent(actual[i]/allPlan):"" %>
 							</td>
 						<%}%>
 					</tr>
