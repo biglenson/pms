@@ -1,5 +1,5 @@
-<%@page import="com.zq.commons.utils.TypeUtils"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%
 String path = request.getContextPath();
 double totalPlanCostValue=(Double)request.getAttribute("totalPlanCostValue");
