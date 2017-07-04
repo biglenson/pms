@@ -1,0 +1,89 @@
+<%@page import="com.easytrack.commons.hierarchy.Hierarchyable"%>
+<%@page import="com.easytrack.customization.cmcc.bean.CMCCItemSet"%>
+<%@page import="com.easytrack.customization.cmcc.bean.CMCCProduct"%>
+<%@page import="com.easytrack.customization.cmcc.action.FormBaseResove"%>
+<%@page import="com.easytrack.commons.util.TypeUtils"%>
+<%@page import="com.easytrack.component.ComponentFactory"%>
+<%@page import="com.easytrack.customization.cmcc.bean.CAPEXProject"%>
+<%@page import="com.easytrack.component.profile.*"%>
+<%@page import="com.easytrack.platform.ui.*"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+SessionManager webMgr = new SessionManager();
+webMgr.init(session);
+User user = webMgr.getCurrentUser();
+Locale locale = webMgr.getCurrentLocale();
+double capexValue=(Double)request.getAttribute("capexValue");
+double shiYongValue=(Double)request.getAttribute("shiYongValue");
+double ziJinValue=(Double)request.getAttribute("ziJinValue");
+double ziJinShiYongValue=(Double)request.getAttribute("ziJinShiYongValue");
+List<Hierarchyable>roleList=(List<Hierarchyable>)request.getAttribute("roleList");
+Map<Integer,Double> capexValueMap=(Map<Integer,Double>)request.getAttribute("capexValueMap");
+Map<Integer,Double> shiYongValueMap=(Map<Integer,Double>)request.getAttribute("shiYongValueMap");
+
+%>
+<div id="touziDetailCapexDIV"  class="tabContent">
+	<div style="width:190px;margin-left:10px;float:left">
+		<div style="margin-top:8px;">
+			<div style="">投资使用&nbsp;:</div>
+			<div style="padding-bottom:8px;text-align: center;font-size: 18px;font-weight: bold;"><%=FormBaseResove.formatWanMoney(shiYongValue,"") %></div>
+			<div style='width:100%;margin:0px auto;height:8px;background-color:#E8E9ED;'>
+				<div style=' height:100%;width:<%=capexValue!=0? (shiYongValue>capexValue?100:shiYongValue/capexValue*100):0%>%;background-color:#0ACC4B'></div>
+			</div>
+			<div style="padding-bottom:18px;border-bottom:1px solid #EBE8EF;">投资计划总额&nbsp;: <b style="font-size: 18px;"><%=FormBaseResove.formatWanMoney(capexValue,"")  %></b></div>
+		</div>
+		
+		
+		<div style="margin-top:15px;">
+			<div style="">自主资金使用&nbsp;:</div>
+			<div style="padding-bottom:10px;text-align: center;font-size: 18px;font-weight: bold;"><%=FormBaseResove.formatWanMoney(ziJinShiYongValue,"") %></div>
+			<div style='width:100%;margin:0px auto;height:8px;background-color:#E8E9ED;'>
+				<div style=' height:100%;width:<%=ziJinValue!=0?(ziJinShiYongValue>ziJinValue?100: ziJinShiYongValue/ziJinValue*100):0%>%;background-color:#0ACC4B'></div>
+			</div>
+			<div style="padding-bottom:8px;">自主资金池总额&nbsp;: <b style="font-size: 18px;"><%=FormBaseResove.formatWanMoney(ziJinValue,"")  %></b></div>
+		</div>
+	</div>
+	<div id="touziDetialCapexDepartDIV" style="margin-left:220px;">
+		<div style="height:250px;">
+			<table id="touziDetialCapexDepartDIVTable" class="listTable"  cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th width="100%"><div style='width:100%'>部门名称</div></th>
+					<th ><div style='width:180px'>投资计划总额</div></th>
+					<th ><div style='width:180px'>立项批复金额</div></th>
+					<th><div style='width:150px'>投资计划使用进度</div></th>
+				</tr>
+			</thead>
+			<tbody>
+				<%for(Hierarchyable a:roleList){ 
+				Role role=(Role) a;
+				if("公司统筹".equals(role.getName())){
+					continue;
+				}
+				boolean contains=capexValueMap.containsKey(role.getId())||shiYongValueMap.containsKey(role.getId());
+				if(!contains){
+					continue;
+				}
+				Double capexV=capexValueMap.get(role.getId());
+				Double capexV2=shiYongValueMap.get(role.getId());
+				Double per=capexV!=null&&capexV!=0? (capexV2==null?0:capexV2)/capexV*100:null;
+				%>
+				<tr>
+					<td align="center" class="linkURL" onclick="openDepartmentView(<%=role.getId()%>)"><div><%=TypeUtils.xmlEncoderForIE(role.getName()) %></div></td>
+					<td align="center"><div style="padding-right:5px;"><%=FormBaseResove.formatWanMoney(capexV, "") %></div></td>	
+					<td align="center"><div style="padding-right:5px;"><%=FormBaseResove.formatWanMoney(capexV2, "") %></div></td>	
+					<td align="center"><div style="padding-right:5px;"><%=per!=null?TypeUtils.double2String(per):"0.00"%>%</div></td>
+				</tr>
+				<%} %>
+			</tbody>
+			</table>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<script type="text/javascript">
+	window.touziDetialCapexDepartDIVTableObj=new EasyTrack.DataTable("touziDetialCapexDepartDIVTable",{
+		autoHeight:false
+	})
+</script>
