@@ -15,35 +15,44 @@ Integer index=(Integer)request.getAttribute("index");
 		pingjunDays = totalDelayDays/delayStartCount;
 	}
 %>
-	<div style="height:100%;float: left;width: 50%;border: none;" id="startProjectsContainer">
-	</div>
-	<div style="height:100%;float: left;width: 50%;border: none;">
-		<table style="border: none;margin-top:40px;line-height: 24px;">
-			<tr>
-				<td colspan="2"><div class="blodDIV">采购项目总数:</div></td>
-				<td><div class="blodDIV"><%=startAllCount %> 个</div></td>
-			</tr>
-			<tr>
-				<td><div class="tipDIV" style="background-color: #a8da72;">&nbsp;</div></td>
-				<td><div class="blodDIV">及时启动项目数:</div></td>
-				<td><div class="blodDIV"><%=startCount %> 个</div></td>
-			</tr>
-			<tr>
-				<td><div class="tipDIV" style="background-color: #fe902c;">&nbsp;</div></td>
-				<td><div class="blodDIV">延期启动项目数:</div></td>
-				<td><div class="blodDIV"><%=delayStartCount %> 个</div></td>
-			</tr>
-			<tr>
-				<td colspan="2"><div>延期项目平均延期时间:</div></td>
-				<td><div style="margin-left: 4px;font-weight: bold;"><%=TypeUtils.formatNumber(pingjunDays, TypeUtils.DEFAULT_WORKTIME_FORMAT)%> 天</div></td>
-			</tr>
-		</table>
-		<div class="tabMore linkURL" style="margin-top: 20px;" onclick="openMoreCaigouStartDetail()">更多详情</div>
-	</div>
-	<jsp:include page="/jsp/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="summary_startDIVTimeDIV"/>
-	</jsp:include>
-	<script type="text/javascript">
+<div style="height: 100%; float: left; width: 50%; border: none;"
+	id="startProjectsContainer"></div>
+<div style="height: 100%; float: left; width: 50%; border: none;">
+	<table style="border: none; margin-top: 40px; line-height: 24px;">
+		<tr>
+			<td colspan="2"><div class="blodDIV">采购项目总数:</div></td>
+			<td><div class="blodDIV"><%=startAllCount %>
+					个
+				</div></td>
+		</tr>
+		<tr>
+			<td><div class="tipDIV" style="background-color: #a8da72;">&nbsp;</div></td>
+			<td><div class="blodDIV">及时启动项目数:</div></td>
+			<td><div class="blodDIV"><%=startCount %>
+					个
+				</div></td>
+		</tr>
+		<tr>
+			<td><div class="tipDIV" style="background-color: #fe902c;">&nbsp;</div></td>
+			<td><div class="blodDIV">延期启动项目数:</div></td>
+			<td><div class="blodDIV"><%=delayStartCount %>
+					个
+				</div></td>
+		</tr>
+		<tr>
+			<td colspan="2"><div>延期项目平均延期时间:</div></td>
+			<td><div style="margin-left: 4px; font-weight: bold;"><%=TypeUtils.formatNumber(pingjunDays, TypeUtils.DEFAULT_WORKTIME_FORMAT)%>
+					天
+				</div></td>
+		</tr>
+	</table>
+	<div class="tabMore linkURL" style="margin-top: 20px;"
+		onclick="openMoreCaigouStartDetail()">更多详情</div>
+</div>
+<jsp:include page="/jsp/viewChangeTime.jsp">
+	<jsp:param name="lastUpdateDIV" value="summary_startDIVTimeDIV" />
+</jsp:include>
+<script type="text/javascript">
 		$('#startProjectsContainer').highcharts({
 		    chart: {
 	            type: 'pie'
@@ -98,7 +107,7 @@ Integer index=(Integer)request.getAttribute("index");
 	        }]
 		});
 	</script>
-	
+
 <%}else if(index==1){
 	List<ColorHighChartData> finishDatas = (List<ColorHighChartData>)request.getAttribute("finishDatas");
 	int finishAllCount = (Integer)request.getAttribute("finishAllCount");
@@ -110,35 +119,44 @@ Integer index=(Integer)request.getAttribute("index");
 		everageDays = totalDelayFinishDays/delayFinishCount;
 	}
 %>
-	<div style="height:100%;float: left;width:50%;border: none;" id="finishProjectsContainer">
-	</div>
-	<div style="height:100%;float: left;width: 50%;border: none;">
-		<table style="border: none;margin-top:40px;line-height: 24px;">
-			<tr>
-				<td colspan="2"><div class="blodDIV">采购项目总数:</div></td>
-				<td><div class="blodDIV"><%=finishAllCount %> 个</div></td>
-			</tr>
-			<tr>
-				<td><div class="tipDIV" style="background-color: #a8da72;">&nbsp;</div></td>
-				<td><div class="blodDIV">及时完成项目数:</div></td>
-				<td><div class="blodDIV"><%=finishCount %> 个</div></td>
-			</tr>
-			<tr>
-				<td><div class="tipDIV" style="background-color: #fe902c;">&nbsp;</div></td>
-				<td><div class="blodDIV">延期完成项目数:</div></td>
-				<td><div class="blodDIV"><%=delayFinishCount %> 个</div></td>
-			</tr>
-			<tr>
-				<td colspan="2"><div>延期项目平均延期时间:</div></td>
-				<td><div style="margin-left: 4px;font-weight: bold;"><%=TypeUtils.formatNumber(everageDays, TypeUtils.DEFAULT_WORKTIME_FORMAT) %> 天</div></td>
-			</tr>
-		</table>
-		<div class="tabMore linkURL" style="margin-top: 20px;" onclick="openMoreCaigouFinishDetail()">更多详情</div>
-	</div>
-	<jsp:include page="/jsp/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="summary_finishDIVTimeDIV"/>
-	</jsp:include>
-	<script type="text/javascript">
+<div style="height: 100%; float: left; width: 50%; border: none;"
+	id="finishProjectsContainer"></div>
+<div style="height: 100%; float: left; width: 50%; border: none;">
+	<table style="border: none; margin-top: 40px; line-height: 24px;">
+		<tr>
+			<td colspan="2"><div class="blodDIV">采购项目总数:</div></td>
+			<td><div class="blodDIV"><%=finishAllCount %>
+					个
+				</div></td>
+		</tr>
+		<tr>
+			<td><div class="tipDIV" style="background-color: #a8da72;">&nbsp;</div></td>
+			<td><div class="blodDIV">及时完成项目数:</div></td>
+			<td><div class="blodDIV"><%=finishCount %>
+					个
+				</div></td>
+		</tr>
+		<tr>
+			<td><div class="tipDIV" style="background-color: #fe902c;">&nbsp;</div></td>
+			<td><div class="blodDIV">延期完成项目数:</div></td>
+			<td><div class="blodDIV"><%=delayFinishCount %>
+					个
+				</div></td>
+		</tr>
+		<tr>
+			<td colspan="2"><div>延期项目平均延期时间:</div></td>
+			<td><div style="margin-left: 4px; font-weight: bold;"><%=TypeUtils.formatNumber(everageDays, TypeUtils.DEFAULT_WORKTIME_FORMAT) %>
+					天
+				</div></td>
+		</tr>
+	</table>
+	<div class="tabMore linkURL" style="margin-top: 20px;"
+		onclick="openMoreCaigouFinishDetail()">更多详情</div>
+</div>
+<jsp:include page="/jsp/viewChangeTime.jsp">
+	<jsp:param name="lastUpdateDIV" value="summary_finishDIVTimeDIV" />
+</jsp:include>
+<script type="text/javascript">
 		$('#finishProjectsContainer').highcharts({
 		    chart: {
 	            type: 'pie'

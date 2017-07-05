@@ -10,9 +10,9 @@ Integer index=(Integer)request.getAttribute("index");
 <div class="tabMore linkURL" onclick="openYusuanFenjie()">更多</div>
 <%} %>
 
- <div class="tabTitle">
- 	<ul>
- 		<li onclick="loadTouziDetialFun(0)" class="<%=index==0?"on":""%>">投资计划执行情况</li>
- 		<li onclick="loadTouziDetialFun(1)" class="<%=index==1?"on":""%>">预算执行</li>
- 	</ul>
- </div>
+<div class="tabTitle">
+	<ul>
+		<li onclick="loadTouziDetialFun(0)" class="<%=index==0?"on":""%>">投资计划执行情况</li>
+		<li onclick="loadTouziDetialFun(1)" class="<%=index==1?"on":""%>">预算执行</li>
+	</ul>
+</div>

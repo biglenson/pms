@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head><title>项目全流程</title>
+<head>
+<title>项目全流程</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +11,10 @@
 <link href="/static/css/style_new.css" rel="stylesheet" type="text/css">
 <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/static/js/firefox/et.js"></script>
-<script type="text/javascript" src="/static/js/firefox/FloatAndDialog.js"></script>
-<script type="text/javascript" src="/static/js/jquery/jquery-1.12.0.min.js"></script>
+<script type="text/javascript"
+	src="/static/js/firefox/FloatAndDialog.js"></script>
+<script type="text/javascript"
+	src="/static/js/jquery/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="/static/js/lable_message.js"></script>
 <script type="text/javascript">
 	ET.current_app_ID=1; //保存当前的appID ,在弹出框的时候 ，模板中自动加载特殊的css 
@@ -324,8 +328,8 @@ function openduoxiangmuopex(){
 </script>
 
 <style type="text/css">
-	.showMoreColor{
-		color: #fff;
-	}
+.showMoreColor {
+	color: #fff;
+}
 </style>
 </head>

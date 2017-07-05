@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<WidgetManager xmlVersion="20091224"><IM><Icon><NAME><![CDATA[新增]]></NAME><ICONIMAGE><Image width="16" height="16"><![CDATA[9p=mYgJo65rsk=.k_i@.D8d^YL"WK>LdQ9kLcD2(aG]AmiZ$Tn&_WI[@l./R4RnEk.)Fp"Fel
+<WidgetManager xmlVersion="20091224">
+	<IM>
+		<Icon>
+			<NAME><![CDATA[新增]]></NAME>
+			<ICONIMAGE>
+				<Image width="16" height="16"><![CDATA[9p=mYgJo65rsk=.k_i@.D8d^YL"WK>LdQ9kLcD2(aG]AmiZ$Tn&_WI[@l./R4RnEk.)Fp"Fel
 e^4iYI/@dP5$n9Cp=[8TSg99:+etI*D&P_ZLG,"6Vf0q-KZAW1S#Oq2#=e$%s?2bWWfZr0*5
 4k9(Hb&WIq/]Ah";S0Gl&L$K:aVO_#DAh;<G:E]A_rqmc/9>\`\,)d-JMsc\:-F(OnF2G[,,K*
 Y3.tS%ZKu>V6gfViuG?::gu"p`]AW?L.eRNAo+LN&(>'q0f#.*E`,AeB1XG6*$$&^bN1ct=lS
@@ -14,4 +19,8 @@ Rj1`l?#32OdB9:U@:0+DOaJj_CAh=<_bEBC;,\dJ`nZdBo*&f[$^K'=6AN'TH$@Q,LmG.[BM
 LJ,5F&"^)0G9a(eJG*#T3+u(aEn,\;a=nF-o8&bL*T_)(NY-M.,kAkj$Qh#h=`T%Yd;R3&t&
 1A<Pik?$?rVu>OG^Om4//B$^RW"SgEG6K-nJVUa%\lnIo("P^^&BGh"p639WH2Yc?DuChquZ
 ~
-]]></Image></ICONIMAGE></Icon></IM></WidgetManager>
+]]></Image>
+			</ICONIMAGE>
+		</Icon>
+	</IM>
+</WidgetManager>

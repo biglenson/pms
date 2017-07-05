@@ -1,18 +1,19 @@
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<div class="content-wrap" id="bodyStart__content_Wrap" style="left:0px;">
-		<div class="content-empty"></div>
-		<div class="content-main">
-<form name="frm" action="/ZongheAction.do" method="post">  
-<input type="hidden" name="operation" value="dashBoard">
-<input type="hidden" name="year" value="2017">
-<input type="hidden" name="menuID" value="55">
-<input type="hidden" name="page" value="">
-<input type="hidden" name="isDialog" value="false">
-<div class="cmccTopTitle">
-<div style="height:34px;width: 1000px;margin: 0px auto;">	
-	<div style="float:left;font-size: 24px;font-weight: bold;color: #4C4C4C;">中国移动政企分公司</div>
-	<div class="HighChartYearSelect">
-<script type="text/javascript">
+<%@ page language="java" pageEncoding="UTF-8"%>
+<div class="content-wrap" id="bodyStart__content_Wrap"
+	style="left: 0px;">
+	<div class="content-empty"></div>
+	<div class="content-main">
+		<form name="frm" action="/ZongheAction.do" method="post">
+			<input type="hidden" name="operation" value="dashBoard"> <input
+				type="hidden" name="year" value="2017"> <input type="hidden"
+				name="menuID" value="55"> <input type="hidden" name="page"
+				value=""> <input type="hidden" name="isDialog" value="false">
+			<div class="cmccTopTitle">
+				<div style="height: 34px; width: 1000px; margin: 0px auto;">
+					<div
+						style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;">中国移动政企分公司</div>
+					<div class="HighChartYearSelect">
+						<script type="text/javascript">
 	jQuery(document).ready(function(){
 		var div=document.getElementById("departContainer");
 		var divContainerDIV=div;
@@ -142,31 +143,46 @@
 	})
 	
 </script>
-<input type="hidden" name="toolYear" id="yearID" value="2017">
-<div class="yearSelectDIV" id="departContainer">
-		<img class="  yearSelectPrev " src="/static/images/16x16/cmcc_left.png">
-			<span style="font-size: 12px;" class="showYearSelectSpan  ">
-					<span>2017</span>
-					<img src="/static/images/yearSelect.png">
-			</span>
-			<img class="  yearSelectNext  " src="/static/images/16x16/cmcc_right.png">
-</div>
-<div class="yearFloatDIV" id="departContainerFloatDIV">
-	<div class="yearDIV dumascroll" id="departContaineryearDIV" style="width: 68px; overflow: hidden;"><div class="dumascroll_area showYScroll">		
-				<div class="yearItem " year="2014">2014</div>		
-				<div class="yearItem " year="2015">2015</div>		
-				<div class="yearItem " year="2016">2016</div>		
-				<div class="yearItem selected" year="2017">2017</div>		
-				<div class="yearItem " year="2018">2018</div>		
-	</div><div class="dumascroll_barY"><div class="dumascroll_arrow_up"></div><div class="dumascroll_handleY" style="height: 5px; top: 0px;"></div><div class="dumascroll_arrow_down"></div></div><div class="dumascroll_barX showYScroll" style="display: none;"><div class="dumascroll_arrow_left"></div><div class="dumascroll_handleX"></div><div class="dumascroll_arrow_right"></div></div><div class="duma_rightButtom showYScroll"></div></div>
-</div>
-	</div>
-	<div class="cmcc_textImgDIV" style="float:right;">
-		<input type="hidden" name="departmentID" value="69">
-		<input type="text" style="outline: none;" name="departmentName" value="中国移动政企分公司" autocomplete="off">
-		<img src="/static/images/16x16/cmcc_down.png" style="cursor: pointer;">
-	</div>
-	<script type="text/javascript">
+						<input type="hidden" name="toolYear" id="yearID" value="2017">
+						<div class="yearSelectDIV" id="departContainer">
+							<img class="  yearSelectPrev "
+								src="/static/images/16x16/cmcc_left.png"> <span
+								style="font-size: 12px;" class="showYearSelectSpan  "> <span>2017</span>
+								<img src="/static/images/yearSelect.png">
+							</span> <img class="  yearSelectNext  "
+								src="/static/images/16x16/cmcc_right.png">
+						</div>
+						<div class="yearFloatDIV" id="departContainerFloatDIV">
+							<div class="yearDIV dumascroll" id="departContaineryearDIV"
+								style="width: 68px; overflow: hidden;">
+								<div class="dumascroll_area showYScroll">
+									<div class="yearItem " year="2014">2014</div>
+									<div class="yearItem " year="2015">2015</div>
+									<div class="yearItem " year="2016">2016</div>
+									<div class="yearItem selected" year="2017">2017</div>
+									<div class="yearItem " year="2018">2018</div>
+								</div>
+								<div class="dumascroll_barY">
+									<div class="dumascroll_arrow_up"></div>
+									<div class="dumascroll_handleY" style="height: 5px; top: 0px;"></div>
+									<div class="dumascroll_arrow_down"></div>
+								</div>
+								<div class="dumascroll_barX showYScroll" style="display: none;">
+									<div class="dumascroll_arrow_left"></div>
+									<div class="dumascroll_handleX"></div>
+									<div class="dumascroll_arrow_right"></div>
+								</div>
+								<div class="duma_rightButtom showYScroll"></div>
+							</div>
+						</div>
+					</div>
+					<div class="cmcc_textImgDIV" style="float: right;">
+						<input type="hidden" name="departmentID" value="69"> <input
+							type="text" style="outline: none;" name="departmentName"
+							value="中国移动政企分公司" autocomplete="off"> <img
+							src="/static/images/16x16/cmcc_down.png" style="cursor: pointer;">
+					</div>
+					<script type="text/javascript">
 		var config={noEmpty:true};
 		var values=[];
 		config.values=values;
@@ -387,7 +403,8 @@
 		
 		ET.FormSelectSearch(document.frm.departmentID,document.frm.departmentName,config);
 	</script>
-	<div style="clear:both;"></div>
-</div>		
-	<div style="font-size:12px;line-height: 25px;text-align: right;margin:0px auto;width: 1000px;">单位:万元</div>
-</div>	
+					<div style="clear: both;"></div>
+				</div>
+				<div
+					style="font-size: 12px; line-height: 25px; text-align: right; margin: 0px auto; width: 1000px;">单位:万元</div>
+			</div>

@@ -14,13 +14,14 @@
 			<div class="content-empty"></div>
 			<div class="content-main">
 				<form name="frm" action="/pm/CMCCAction.do" method="post">
-					<input type="hidden" name="operation" value="caiGou"> 
-					<input type="hidden" name="year" value="2017"> 
-					<input type="hidden" name="menuID" value="57"> 
-					<input type="hidden" name="page" value="">
+					<input type="hidden" name="operation" value="caiGou"> <input
+						type="hidden" name="year" value="2017"> <input
+						type="hidden" name="menuID" value="57"> <input
+						type="hidden" name="page" value="">
 					<div class="cmccTopTitle">
-						<div style="height: 34px; width: 1000px; margin: 0px auto;">						
-							<div style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;">采购视图</div>
+						<div style="height: 34px; width: 1000px; margin: 0px auto;">
+							<div
+								style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;">采购视图</div>
 							<div class="HighChartYearSelect">
 								<jsp:include page='/WEB-INF/jsp/common/year_toolInclude.jsp'>
 									<jsp:param name="jsFunction" value="changeyear" />
@@ -29,7 +30,8 @@
 								</jsp:include>
 							</div>
 						</div>
-						<div style="font-size: 12px; line-height: 25px; text-align: right; margin: 0px auto; width: 1000px;">单位:万元</div>
+						<div
+							style="font-size: 12px; line-height: 25px; text-align: right; margin: 0px auto; width: 1000px;">单位:万元</div>
 					</div>
 					<div id="propDIV" class='yibiao_start'>
 						<div style="width: 1000px; margin: 0 auto;">

@@ -5,14 +5,13 @@ String path = request.getContextPath();
 Role department=(Role)request.getAttribute("department");
 %>
 <style type="text/css">
-
-
 </style>
-<div class="chartContainerDIV" style="margin: 26px auto;" >
-	<div style="text-align:right">
+<div class="chartContainerDIV" style="margin: 26px auto;">
+	<div style="text-align: right">
 		<div class="showHelpe" onclick="showCapexPhaseTip(this)"></div>
 	</div>
-	<div class="helpFloatDIV" id="pahseTipNameDIV" style="line-height: 22px;">
+	<div class="helpFloatDIV" id="pahseTipNameDIV"
+		style="line-height: 22px;">
 		<div class="showHelpeContent" style="line-height: 23px;">
 			<div>投资计划项目数量：年度项目总数量</div>
 			<div>各阶段项目数量：项目阶段为当前环节的项目数量</div>
@@ -25,11 +24,12 @@ Role department=(Role)request.getAttribute("department");
 			<div>竣工投产：终验批复后</div>
 		</div>
 	</div>
-	<div id="capex_phaseStatusDIV" style="min-height:220px;">
-		<div  class="loaddingClass"></div>
+	<div id="capex_phaseStatusDIV" style="min-height: 220px;">
+		<div class="loaddingClass"></div>
 	</div>
 </div>
-<div id="capex_phaseStatusDIVTimeDIV" class="viewChangeTime marginTopTime"></div>
+<div id="capex_phaseStatusDIVTimeDIV"
+	class="viewChangeTime marginTopTime"></div>
 
 <script type="text/javascript">
 $(document).ready(function(){

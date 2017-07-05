@@ -18,10 +18,11 @@ String path = request.getContextPath();
 	}
 </script>
 <div class="chartContainerDIV" style="margin: 26px auto;">
-	<div style="text-align:right">
+	<div style="text-align: right">
 		<div class="showHelpe" onclick="showTips(this,'opexPhaseTipNameDIV')"></div>
 	</div>
-	<div class="helpFloatDIV" id="opexPhaseTipNameDIV" style="line-height: 22px;">
+	<div class="helpFloatDIV" id="opexPhaseTipNameDIV"
+		style="line-height: 22px;">
 		<div class="showHelpeContent" style="line-height: 23px;">
 			<div>预算项目数量：年度立项制OPEX项目总数量</div>
 			<div>各阶段项目数量：项目阶段为当前环节的项目数量</div>
@@ -34,7 +35,7 @@ String path = request.getContextPath();
 		</div>
 	</div>
 	<div id="opexProjectStatusDIV">
-		<div style="height:220px;" class="loaddingClass"></div>
+		<div style="height: 220px;" class="loaddingClass"></div>
 	</div>
 </div>
 <div id="opexProjectStatusDIVTime" class="viewChangeTime marginTopTime"></div>

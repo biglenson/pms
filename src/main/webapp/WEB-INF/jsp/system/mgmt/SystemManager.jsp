@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,10 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="/static/css/style_new.css" rel="stylesheet" type="text/css">
 <link href="/static/css/style.css" rel="stylesheet" type="text/css">
-<link href="/static/css/style_admin.css" rel="stylesheet" 	type="text/css">
+<link href="/static/css/style_admin.css" rel="stylesheet"
+	type="text/css">
 <script type="text/javascript" src="/static/js/firefox/et.js"></script>
-<script type="text/javascript" 	src="/static/js/firefox/FloatAndDialog.js"></script>
-<script type="text/javascript" 	src="/static/js/jquery/jquery-1.12.0.min.js"></script>
+<script type="text/javascript"
+	src="/static/js/firefox/FloatAndDialog.js"></script>
+<script type="text/javascript"
+	src="/static/js/jquery/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="/static/js/lable_message.js"></script>
 <script type="text/javascript">
 	ET.current_app_ID=3; //保存当前的appID ,在弹出框的时候 ，模板中自动加载特殊的css 
@@ -357,7 +361,8 @@
 
 
 <script type="text/javascript" src="/static/js/firefox/DataTableAll.js"></script>
-<script type="text/javascript" 	src="/static/js/webuploader/webuploader.min.js"></script>
+<script type="text/javascript"
+	src="/static/js/webuploader/webuploader.min.js"></script>
 
 
 <script type="text/javascript">
@@ -852,10 +857,10 @@ function changeState(id,status, actionID,alertType,lastUpdateTime) {
 }</script>
 </head>
 <body>
-<%-- 输出系统顶级模块的菜单 --%>
-<jsp:include page="../../common/TopMenu.jsp">
-	<jsp:param name="appid" value="3" />
-</jsp:include>
+	<%-- 输出系统顶级模块的菜单 --%>
+	<jsp:include page="../../common/TopMenu.jsp">
+		<jsp:param name="appid" value="3" />
+	</jsp:include>
 	<div class="container  " id="bodyStart_container">
 		<div class="leftAllDIV  null" id="bodyLeftAllDIV">
 			<div class="leftsidebar null" id="bodyStart_leftsidebar">
@@ -881,7 +886,8 @@ function changeState(id,status, actionID,alertType,lastUpdateTime) {
 								<img id="6802urlImgOn" class="sidebarimg"
 									src="/static/images/16x16/person_.png" style=""><img
 									id="6802urlImgOff" class="sidebarimg"
-									src="/static/images/16x16/person__on.png" style="display: none;">用户
+									src="/static/images/16x16/person__on.png"
+									style="display: none;">用户
 
 							</div>
 

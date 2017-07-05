@@ -9,14 +9,14 @@ if(index==null){
 }
 List<String> methodNames = (List<String>)request.getAttribute("methodNames");
 %>
-<jsp:include  page="zhichuAnalysisTab.jsp">
-	<jsp:param value="<%=index %>" name="index"/>
+<jsp:include page="zhichuAnalysisTab.jsp">
+	<jsp:param value="<%=index %>" name="index" />
 </jsp:include>
 <%if(index == 0) {%>
-	<jsp:include page="zhichuMoney.jsp"/>
+<jsp:include page="zhichuMoney.jsp" />
 <%}else if(index == 1){ %>
-	<jsp:include page="zhichuProject.jsp"/>
+<jsp:include page="zhichuProject.jsp" />
 <%} %>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="zhichuInfoDIVTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV" value="zhichuInfoDIVTimeDIV" />
+</jsp:include>

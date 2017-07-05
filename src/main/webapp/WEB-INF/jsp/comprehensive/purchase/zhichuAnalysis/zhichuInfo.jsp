@@ -22,16 +22,14 @@ String path = request.getContextPath();
 		changeZhichuAnalysis(0);
 	});
 </script>
-<div class="cmccViewContainer" style="width:1000px;margin: 26px auto;">
+<div class="cmccViewContainer" style="width: 1000px; margin: 26px auto;">
 	<div id="zhichuInfoDIV">
-	<jsp:include  page="zhichuAnalysisTab.jsp">
-		 	<jsp:param value="0" name="index"/>
-	</jsp:include>
-	<div style="height:300px;width: 100%" class="tabContent">
-		<div class="loaddingClass">
+		<jsp:include page="zhichuAnalysisTab.jsp">
+			<jsp:param value="0" name="index" />
+		</jsp:include>
+		<div style="height: 300px; width: 100%" class="tabContent">
+			<div class="loaddingClass"></div>
 		</div>
-	</div>
 	</div>
 </div>
 <div id="zhichuInfoDIVTimeDIV" class="viewChangeTime marginTopTime"></div>
-	

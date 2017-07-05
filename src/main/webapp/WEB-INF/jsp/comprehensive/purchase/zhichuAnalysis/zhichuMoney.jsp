@@ -6,8 +6,8 @@ Double totalMoney = (Double)request.getAttribute("totalMoney");
 List<HighChartData> moneyDatas = (List<HighChartData>)request.getAttribute("moneyDatas");
 %>
 <div class="tabContent">
-<div style="margin:26px auto;width:100%;height: 300px;" id="methodMoney">
-</div>
+	<div style="margin: 26px auto; width: 100%; height: 300px;"
+		id="methodMoney"></div>
 </div>
 <script type="text/javascript">
 	$('#methodMoney').highcharts({
@@ -85,4 +85,4 @@ List<HighChartData> moneyDatas = (List<HighChartData>)request.getAttribute("mone
     	    <%}%>
         }]
 	});
-</script>	
+</script>

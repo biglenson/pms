@@ -10,11 +10,10 @@ Integer[] count = new Integer[categoryNames.size()];
 count[0] = (Integer)openData.get(1);
 count[1] = (Integer)unOpenData.get(1);
 %>
-<div style="height:320px;" id="openTotalProject">
-</div>
+<div style="height: 320px;" id="openTotalProject"></div>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="secondOpenProjectInfoDIVTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV" value="secondOpenProjectInfoDIVTimeDIV" />
+</jsp:include>
 <script type="text/javascript">
 $('#openTotalProject').highcharts({
     title: {

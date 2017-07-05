@@ -45,15 +45,15 @@ Locale locale = webMgr.getCurrentLocale();
 		
 	}
 </script>
-	<div  class="chartContainerDIV cmccViewContainer" style="margin: 26px auto;">
-		<div id="gongcheng_planDIV" >
-			<jsp:include  page="planDIVTab.jsp">
-				 	<jsp:param value="0" name="index"/>
-			</jsp:include>
-			<div class="tabContent" style='height: 150px;' >
-				<div  class="loaddingClass"></div>
-			</div>
+<div class="chartContainerDIV cmccViewContainer"
+	style="margin: 26px auto;">
+	<div id="gongcheng_planDIV">
+		<jsp:include page="planDIVTab.jsp">
+			<jsp:param value="0" name="index" />
+		</jsp:include>
+		<div class="tabContent" style='height: 150px;'>
+			<div class="loaddingClass"></div>
 		</div>
 	</div>
-	<div id="planDIVDIVTimeDIV" class="viewChangeTime marginTopTime"></div>
-	
+</div>
+<div id="planDIVDIVTimeDIV" class="viewChangeTime marginTopTime"></div>

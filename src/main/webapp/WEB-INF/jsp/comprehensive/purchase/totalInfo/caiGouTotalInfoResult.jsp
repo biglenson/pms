@@ -35,7 +35,7 @@ Integer totalCount = firstCount + secondCount;
 String[] moneyNames = new String[]{"一级集采金额","二级集采金额","总采购金额"};
 String[] projectNames = new String[]{"一级集采项目","二级集采项目","总采购项目"};
 %>
-<table style="width: 100%;height: 100%;">
+<table style="width: 100%; height: 100%;">
 	<tr>
 		<td width="50%">
 			<div style="border-right: 1px solid #CACFD4;" id="totalMoney"></div>
@@ -46,8 +46,9 @@ String[] projectNames = new String[]{"一级集采项目","二级集采项目","
 	</tr>
 	<tr>
 		<td>
-			<table style="margin-left: 72px;width: 420px;">
-				<tr style="line-height: 22px;font-weight: bold;vertical-align: top;">
+			<table style="margin-left: 72px; width: 420px;">
+				<tr
+					style="line-height: 22px; font-weight: bold; vertical-align: top;">
 					<%
 						Double firstmoneyPer = 0d;
 						Double secondmoneyPer = 0d;
@@ -69,8 +70,9 @@ String[] projectNames = new String[]{"一级集采项目","二级集采项目","
 			</table>
 		</td>
 		<td>
-			<table style="margin-left: 60px;width: 432px;">
-				<tr style="line-height: 22px;font-weight: bold;vertical-align: top;">
+			<table style="margin-left: 60px; width: 432px;">
+				<tr
+					style="line-height: 22px; font-weight: bold; vertical-align: top;">
 					<%
 						Double firstcountPer = 0d;
 						Double secondcountPer = 0d;
@@ -94,8 +96,8 @@ String[] projectNames = new String[]{"一级集采项目","二级集采项目","
 	</tr>
 </table>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="caigouTotalInfoDIVTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV" value="caigouTotalInfoDIVTimeDIV" />
+</jsp:include>
 <script type="text/javascript">
 $('#totalMoney').highcharts({
     title: {

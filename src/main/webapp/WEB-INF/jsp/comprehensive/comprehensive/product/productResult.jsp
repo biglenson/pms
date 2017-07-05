@@ -28,24 +28,26 @@ if(maxChengBen==0d&&maxShouRu==0d){
 Double width=350d;
 %>
 <div>
-	<table id="productDepartResultTable" class="listTable" style="margin:10px auto;width:100%" cellpadding="0" cellspacing="0" border="0">
+	<table id="productDepartResultTable" class="listTable"
+		style="margin: 10px auto; width: 100%" cellpadding="0" cellspacing="0"
+		border="0">
 		<thead>
 			<tr>
-				<th width="100%"><div style='width:100%'>产品</div></th>
+				<th width="100%"><div style='width: 100%'>产品</div></th>
 				<%
 				double chengBenColumn=maxChengBen/(maxShouRu+maxChengBen)*width;
 				double shouRuColumn=maxShouRu/(maxShouRu+maxChengBen)*width;
 				%>
 				<th><div style='width:<%=chengBenColumn%>px'>成本</div></th>
 				<th><div style='width:<%=shouRuColumn%>px'>收入</div></th>
-				
-				<th><div style='width:100px'>当年成本</div></th>
-				<th><div style='width:100px'>当年收入</div></th>
+
+				<th><div style='width: 100px'>当年成本</div></th>
+				<th><div style='width: 100px'>当年收入</div></th>
 				<%-- 
 				<th><div style='width:100px'>当年资本投入</div></th>
 				--%>
-				<th><div style='width:100px'>累计成本</div></th>
-				<th><div style='width:100px'>累计收入</div></th>
+				<th><div style='width: 100px'>累计成本</div></th>
+				<th><div style='width: 100px'>累计收入</div></th>
 				<%-- 
 				<th><div style='width:100px'>累计资本投入</div></th>
 				--%>
@@ -80,44 +82,55 @@ Double width=350d;
 				t_touzi2=0d;
 			}
 			%>
-				<tr>
-					<td align="center"><div style='width:150px;' class="nowrapText linkURL" onclick="openProduct(<%=t.getId()%>)"><%=TypeUtils.xmlEncoderForIE(t.getTitle()) %></div></td>
-					<td style="border-right:1px solid #D9D9D9; ">
-							<div class='chengBenClass' title="成本：<%=TypeUtils.formatWanMoney(t_chengBen==null?0:t_chengBen) %>" style='width:<%=t_chengBen>maxChengBen?100: t_chengBen/maxChengBen*100%>%;'>
-								<%if(t_chengBen>t_shou&&t_chengBen!=0){ %>
-									<div class="liRunLine" style="left:auto;right:<%=(t_shou)/t_chengBen*100%>%;margin-right:1px;"></div>
-								<%} %>
-							</div>
-						
-					</td>
-					<td >
-							<div class='shouRuClass' title="收入：<%=TypeUtils.formatWanMoney(t_shou==null?0:t_shou) %>" style='width:<%=t_shou>maxShouRu?100: t_shou/maxShouRu*100%>%;'>
-							<%if(t_shou>t_chengBen&&t_shou!=0){ %>
-								<div class="liRunLine" style="margin-left:-1px;left:<%=(t_chengBen)/t_shou*100%>%;"></div>
-							<%} %>
-							</div>
-						
-					</td>
-					<td><div style='width:100px;text-align: center;' class="nowrapText"><%=TypeUtils.formatWanMoney(t_chengBen2, "")%></div></td>
-					<td><div style='width:100px;text-align: center;' class="nowrapText"><%=TypeUtils.formatWanMoney(t_shou2, "")%></div></td>
-					<%-- 
+			<tr>
+				<td align="center"><div style='width: 150px;'
+						class="nowrapText linkURL" onclick="openProduct(<%=t.getId()%>)"><%=TypeUtils.xmlEncoderForIE(t.getTitle()) %></div></td>
+				<td style="border-right: 1px solid #D9D9D9;">
+					<div class='chengBenClass'
+						title="成本：<%=TypeUtils.formatWanMoney(t_chengBen==null?0:t_chengBen) %>"
+						style='width:<%=t_chengBen>maxChengBen?100: t_chengBen/maxChengBen*100%>%;'>
+						<%if(t_chengBen>t_shou&&t_chengBen!=0){ %>
+						<div class="liRunLine"
+							style="left:auto;right:<%=(t_shou)/t_chengBen*100%>%;margin-right:1px;"></div>
+						<%} %>
+					</div>
+
+				</td>
+				<td>
+					<div class='shouRuClass'
+						title="收入：<%=TypeUtils.formatWanMoney(t_shou==null?0:t_shou) %>"
+						style='width:<%=t_shou>maxShouRu?100: t_shou/maxShouRu*100%>%;'>
+						<%if(t_shou>t_chengBen&&t_shou!=0){ %>
+						<div class="liRunLine"
+							style="margin-left:-1px;left:<%=(t_chengBen)/t_shou*100%>%;"></div>
+						<%} %>
+					</div>
+
+				</td>
+				<td><div style='width: 100px; text-align: center;'
+						class="nowrapText"><%=TypeUtils.formatWanMoney(t_chengBen2, "")%></div></td>
+				<td><div style='width: 100px; text-align: center;'
+						class="nowrapText"><%=TypeUtils.formatWanMoney(t_shou2, "")%></div></td>
+				<%-- 
 					<td><div style='width:100px;text-align: center;' class="nowrapText"><%=TypeUtils.formatWanMoney(t_touzi2, "")%></div></td>
 					--%>
-					<td><div style='width:100px;text-align: center;' class="nowrapText"><%=TypeUtils.formatWanMoney(t_chengBen, "")%></div></td>
-					<td><div style='width:100px;text-align: center;' class="nowrapText"><%=TypeUtils.formatWanMoney(t_shou, "")%></div></td>
-					<%--
+				<td><div style='width: 100px; text-align: center;'
+						class="nowrapText"><%=TypeUtils.formatWanMoney(t_chengBen, "")%></div></td>
+				<td><div style='width: 100px; text-align: center;'
+						class="nowrapText"><%=TypeUtils.formatWanMoney(t_shou, "")%></div></td>
+				<%--
 					<td><div style='width:100px;text-align: center;' class="nowrapText"><%=TypeUtils.formatWanMoney(t_touzi, "")%></div></td>
 				 	--%>
-					
-				</tr>
+
+			</tr>
 			<%}if(productList.isEmpty()){ %>
-				<tr>
-					<td colspan="10" style="padding-left:100px;"> 暂无数据</td>
-				</tr>
+			<tr>
+				<td colspan="10" style="padding-left: 100px;">暂无数据</td>
+			</tr>
 			<%} %>
 		</tbody>
 	</table>
 </div>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="productTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV" value="productTimeDIV" />
+</jsp:include>

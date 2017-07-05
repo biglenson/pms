@@ -4,33 +4,36 @@
 String path = request.getContextPath();
 %>
 <style type="text/css">
-	#productDepartResultTable.listTable  tbody tr td{
-		border: none;
-	}
-	#productDepartResultTable th{
-		
-	}
-	.chengBenClass{
-		width:auto;
-		height:12px;
-		float:right;
-		position:relative;
-		background-color: #047ad4;
-	}
-	.shouRuClass{
-		width:auto;
-		height:12px;
-		position:relative;
-		background-color: #0acc4b;
-	}
-	.liRunLine{
-		height: 100%;
-		background-color: #ED842C;
-		width:1px;
-		position: absolute;
-		left:0px;
-		
-	}
+#productDepartResultTable.listTable  tbody tr td {
+	border: none;
+}
+
+#productDepartResultTable th {
+	
+}
+
+.chengBenClass {
+	width: auto;
+	height: 12px;
+	float: right;
+	position: relative;
+	background-color: #047ad4;
+}
+
+.shouRuClass {
+	width: auto;
+	height: 12px;
+	position: relative;
+	background-color: #0acc4b;
+}
+
+.liRunLine {
+	height: 100%;
+	background-color: #ED842C;
+	width: 1px;
+	position: absolute;
+	left: 0px;
+}
 </style>
 <script type="text/javascript">
 	function loadProductFun(){
@@ -78,29 +81,32 @@ String path = request.getContextPath();
 	})
 }
 </script>
-	<div   class="chartContainerDIV" style="margin:26px auto;">
-		<div class="cmccDashTitle">
-			<div id="ProductOrderType2" class='orderbyImg DESC'></div>
-			<div class="showMoreSpan showMoreColor productMore" onclick="openProductSummaryList()">更多</div>
-			<span >产品累计收入排名(Top 10)</span>
-		</div>
-		<div style="text-align:right;">
-					<div style="float:right;margin-top:7px;" class="showHelpe" onclick="showCapexPhaseTip2(this,'productTipNameDIV')"></div>
-					<div class="shouRuClass" style='height:10px;width:10px;margin:10px 5px;float:right;'></div>
-					<div style="margin:5px;float:right;">收入</div>
-					
-					<div class="chengBenClass" style='height:10px;width:10px;margin:10px 5px;float:right;'></div>
-					<div style="margin:5px;float:right;">成本</div>
-				</div>
-				<div class="helpFloatDIV" id="productTipNameDIV" style="line-height: 22px;">
-					<div class="showHelpeContent" style="line-height: 23px;">
-						<div>产品毛利润计算方式为：产品收入-产品成本(OPEX成本+CAPEX折旧)</div>
-					</div>
-				</div>
-		<div id="productDIV_ID_Depart">
-			<div style="height:150px;" class="loaddingClass">
-			</div>
+<div class="chartContainerDIV" style="margin: 26px auto;">
+	<div class="cmccDashTitle">
+		<div id="ProductOrderType2" class='orderbyImg DESC'></div>
+		<div class="showMoreSpan showMoreColor productMore"
+			onclick="openProductSummaryList()">更多</div>
+		<span>产品累计收入排名(Top 10)</span>
+	</div>
+	<div style="text-align: right;">
+		<div style="float: right; margin-top: 7px;" class="showHelpe"
+			onclick="showCapexPhaseTip2(this,'productTipNameDIV')"></div>
+		<div class="shouRuClass"
+			style='height: 10px; width: 10px; margin: 10px 5px; float: right;'></div>
+		<div style="margin: 5px; float: right;">收入</div>
+
+		<div class="chengBenClass"
+			style='height: 10px; width: 10px; margin: 10px 5px; float: right;'></div>
+		<div style="margin: 5px; float: right;">成本</div>
+	</div>
+	<div class="helpFloatDIV" id="productTipNameDIV"
+		style="line-height: 22px;">
+		<div class="showHelpeContent" style="line-height: 23px;">
+			<div>产品毛利润计算方式为：产品收入-产品成本(OPEX成本+CAPEX折旧)</div>
 		</div>
 	</div>
-	<div id="productTimeDIV" class="viewChangeTime marginTopTime"></div>
-	
+	<div id="productDIV_ID_Depart">
+		<div style="height: 150px;" class="loaddingClass"></div>
+	</div>
+</div>
+<div id="productTimeDIV" class="viewChangeTime marginTopTime"></div>

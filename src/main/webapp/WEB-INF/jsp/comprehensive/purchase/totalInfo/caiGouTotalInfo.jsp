@@ -30,32 +30,27 @@ String path = request.getContextPath();
 	})
 </script>
 <div>
-	<table style='width:1000px;margin:10px auto;'>
-		<td style='width:50%;vertical-align: top;'>
-			<div style='margin-right:10px;' >
-				<div class="sumTitle">
-					采购金额
-				</div>
-				<div class='tabContent' style="height: 470px;width:488px;" id="totalMoneyInfoDIV">
-					<div  class="loaddingClass">
-					</div>
+	<table style='width: 1000px; margin: 10px auto;'>
+		<td style='width: 50%; vertical-align: top;'>
+			<div style='margin-right: 10px;'>
+				<div class="sumTitle">采购金额</div>
+				<div class='tabContent' style="height: 470px; width: 488px;"
+					id="totalMoneyInfoDIV">
+					<div class="loaddingClass"></div>
 				</div>
 				<div id="caigouTotalMoneyInfoDIVTimeDIV" class="viewChangeTime"></div>
 			</div>
 		</td>
-		
-		<td style='width:50%;vertical-align: top;'>
+
+		<td style='width: 50%; vertical-align: top;'>
 			<div>
-				<div class="sumTitle">
-					采购项目数
-				</div>
-				<div class='tabContent' style="height: 470px;" id="totalProjectInfoDIV">
-					<div  class="loaddingClass">
-					</div>
+				<div class="sumTitle">采购项目数</div>
+				<div class='tabContent' style="height: 470px;"
+					id="totalProjectInfoDIV">
+					<div class="loaddingClass"></div>
 				</div>
 				<div id="caigouTotalProjectInfoDIVTimeDIV" class="viewChangeTime"></div>
 			</div>
 		</td>
 	</table>
 </div>
-	

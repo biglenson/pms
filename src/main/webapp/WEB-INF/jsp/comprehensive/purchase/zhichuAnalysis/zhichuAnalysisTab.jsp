@@ -10,10 +10,10 @@ int index=TypeUtils.getIntFromString(request.getParameter("index"));
 	<%=UIUtils_NEW.tabPanel("javascript:changeZhichuAnalysis(1)", "项目数", index==1, request, response)%>
 <%=UIUtils_NEW.tabPanelEnd(request, response) %>
  --%>
- 
+
 <div class="tabTitle">
-	 	<ul>
-	 		<li onclick="changeZhichuAnalysis(0)" class="<%=index==0?"on":""%>">采购方式金额分析</li>
-	 		<li onclick="changeZhichuAnalysis(1)" class="<%=index==1?"on":""%>">采购方式项目数分析</li>
-	 	</ul>
-	 </div>	
+	<ul>
+		<li onclick="changeZhichuAnalysis(0)" class="<%=index==0?"on":""%>">采购方式金额分析</li>
+		<li onclick="changeZhichuAnalysis(1)" class="<%=index==1?"on":""%>">采购方式项目数分析</li>
+	</ul>
+</div>
