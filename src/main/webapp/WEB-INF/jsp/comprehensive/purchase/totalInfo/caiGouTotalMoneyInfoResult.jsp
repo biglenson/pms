@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import="com.zq.commons.utils.StringUtils"%>
 <%
 String path = request.getContextPath();
 Map<Integer,Map<Integer,List>> allProjectsCategory = (Map<Integer,Map<Integer,List>>)request.getAttribute("allProjectsCategory");
@@ -47,15 +48,15 @@ String[] moneyNames = new String[]{"一级集采金额","二级集采金额","�
 							secondmoneyPer = 1.0;
 						}
 					%>
-					<td align="center" width="33.3%;"><%=FormBaseResove.formatWanMoney(firstMoney) %><br><%=FormBaseResove.formatPercent(firstmoneyPer) %></td>
-					<td align="center" width="33.3%;"><%=FormBaseResove.formatWanMoney(secondMoney) %><br><%=FormBaseResove.formatPercent(secondmoneyPer) %></td>
-					<td align="center" width="33.3%;"><%=FormBaseResove.formatWanMoney(totalMoney) %></td>
+					<td align="center" width="33.3%;"><%=TypeUtils.formatWanMoney(firstMoney) %><br><%=TypeUtils.formatPercent(firstmoneyPer) %></td>
+					<td align="center" width="33.3%;"><%=TypeUtils.formatWanMoney(secondMoney) %><br><%=TypeUtils.formatPercent(secondmoneyPer) %></td>
+					<td align="center" width="33.3%;"><%=TypeUtils.formatWanMoney(totalMoney) %></td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 </table>
-<jsp:include page="/jsp/viewChangeTime.jsp">
+<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 	<jsp:param name="lastUpdateDIV" value="caigouTotalMoneyInfoDIVTimeDIV" />
 </jsp:include>
 <script type="text/javascript">

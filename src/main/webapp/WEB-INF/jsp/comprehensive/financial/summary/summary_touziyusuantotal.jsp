@@ -5,7 +5,6 @@ String path = request.getContextPath();
 double capexMoney=(Double)request.getAttribute("capexMoney");
 double opexMoney=(Double)request.getAttribute("opexMoney");
 Double totalPercent = (Double)request.getAttribute("percent");
-System.out.println(totalPercent);
 double total = capexMoney + opexMoney;
 %>
 

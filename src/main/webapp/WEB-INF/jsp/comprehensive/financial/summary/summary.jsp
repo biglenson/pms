@@ -97,7 +97,7 @@ int year = TypeUtils.getIntFromString(request.getParameter("year"));
 			}
 		});
 		$.ajax({
-			url:"<%=path%>/OPEXAction.do?operation=chengben",
+			url:"<%=path%>/financialview/currentCost",
 			method:"POST",
 			data:{
 				year:document.frm.year.value
@@ -108,7 +108,7 @@ int year = TypeUtils.getIntFromString(request.getParameter("year"));
 			}
 		});
 		$.ajax({
-			url:"<%=path%>/OPEXAction.do?operation=touziyusuantotal",
+			url:"<%=path%>/financialview/investmentBudget",
 			method:"POST",
 			data:{
 				year:document.frm.year.value
@@ -119,7 +119,7 @@ int year = TypeUtils.getIntFromString(request.getParameter("year"));
 			}
 		});
 		$.ajax({
-			url:"<%=path%>/OPEXAction.do?operation=kaizhizhuanzijindu",
+			url:"<%=path%>/financialview/expenditureTransfer",
 			method:"POST",
 			data:{
 				year:document.frm.year.value

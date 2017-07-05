@@ -1,20 +1,5 @@
 package com.zq.commons.utils;
 
-
-/** 
-* @ClassName: CMCCConstant 
-* @Description: TODO(常量) 
-* @author shujukuss 
-* @date 2017年6月18日 下午7:08:02 
-*  
-*/
-/** 
-* @ClassName: CMCCConstant 
-* @Description: TODO(这里用一句话描述这个类的作用) 
-* @author shujukuss 
-* @date 2017年6月25日 下午5:21:51 
-*  
-*/
 /** 
 * @ClassName: CMCCConstant 
 * @Description: TODO(这里用一句话描述这个类的作用) 
@@ -41,13 +26,18 @@ public class CMCCConstant {
 	* <p>Description:financialview </p> 
 	*/
 	public static final String FVDashBoard="comprehensive/financial/FVDashBoard";
-	public static final String realIncome="comprehensive/financial/summary/summary_shouru";
+	public static final String RealIncome="comprehensive/financial/summary/summary_shouru";
+	public static final String CurrentCost="comprehensive/financial/summary/summary_chengben";
+	public static final String InvestmentBudget="comprehensive/financial/summary/summary_touziyusuantotal";
+	public static final String ExpenditureTransfer="comprehensive/financial/summary/summary_kaizhizhuanzijindu";
 	
 	/** 
 	* <p>Title:采购视图JSP </p> 
 	* <p>Description: purchaseview</p> 
 	*/
 	public static final String PCVDashBoard="comprehensive/purchase/PCVDashBoard";
+	public static final String TotalMoneyInfo="comprehensive/purchase/totalInfo/caiGouTotalMoneyInfoResult";
+	public static final String TotalProjectInfo="comprehensive/purchase/totalInfo/caiGouTotalProjectInfoResult";
 	
 	/** 
 	* <p>Title:工程视图JSP </p> 
