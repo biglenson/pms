@@ -41,6 +41,7 @@ public class CMCCConstant {
 	* <p>Description:financialview </p> 
 	*/
 	public static final String FVDashBoard="comprehensive/financial/FVDashBoard";
+	public static final String realIncome="comprehensive/financial/summary/summary_shouru";
 	
 	/** 
 	* <p>Title:采购视图JSP </p> 

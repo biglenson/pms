@@ -92,7 +92,7 @@ int year = TypeUtils.getIntFromString(request.getParameter("year"));
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		$.ajax({
-			url:"<%=path%>/OPEXAction.do?operation=shouru",
+			url:"<%=path%>/financialview/realIncome",
 			method:"POST",
 			data:{
 				year:document.frm.year.value

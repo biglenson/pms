@@ -1,7 +1,6 @@
 <%@page import="com.zq.commons.utils.TypeUtils"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
 double totalPlanValue=(Double)request.getAttribute("totalPlanValue");
 double totalActualValue=(Double)request.getAttribute("totalActualValue");
 Map<Integer,Double> typeShouruMap = (Map<Integer,Double>)request.getAttribute("typeShouruMap");

@@ -1,7 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%
-String path = request.getContextPath();
 double totalPlanCostValue=(Double)request.getAttribute("totalPlanCostValue");
 double totalActualCostValue=(Double)request.getAttribute("totalActualCostValue");
 Map<Integer,Double> kemuMoney = (Map<Integer,Double>)request.getAttribute("kemuMoney");
