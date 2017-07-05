@@ -23,7 +23,7 @@ Integer secondCount = capexCount[1] + opexCount[1];
 Integer totalCount = firstCount + secondCount;
 String[] projectNames = new String[]{"一级集采项目","二级集采项目","总采购项目"};
 %>
-<table style="width: 100%;height: 100%;">
+<table style="width: 100%; height: 100%;">
 	<tr>
 		<td>
 			<div id="totalProject"></div>
@@ -31,8 +31,9 @@ String[] projectNames = new String[]{"一级集采项目","二级集采项目","
 	</tr>
 	<tr>
 		<td>
-			<table style="margin-left: 60px;width: 418px;">
-				<tr style="line-height: 22px;font-weight: bold;vertical-align: top;">
+			<table style="margin-left: 60px; width: 418px;">
+				<tr
+					style="line-height: 22px; font-weight: bold; vertical-align: top;">
 					<%
 						Double firstcountPer = 0d;
 						Double secondcountPer = 0d;
@@ -56,8 +57,9 @@ String[] projectNames = new String[]{"一级集采项目","二级集采项目","
 	</tr>
 </table>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="caigouTotalProjectInfoDIVTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV"
+		value="caigouTotalProjectInfoDIVTimeDIV" />
+</jsp:include>
 <script type="text/javascript">
 $('#totalProject').highcharts({
     title: {

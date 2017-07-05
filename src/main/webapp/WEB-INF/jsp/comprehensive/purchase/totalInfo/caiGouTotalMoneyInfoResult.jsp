@@ -22,7 +22,7 @@ Double secondMoney = capexMoney[1] + opexMoney[1];
 Double totalMoney = firstMoney + secondMoney;
 String[] moneyNames = new String[]{"一级集采金额","二级集采金额","总采购金额"};
 %>
-<table style="width: 100%;height: 100%;">
+<table style="width: 100%; height: 100%;">
 	<tr>
 		<td>
 			<div id="totalMoney"></div>
@@ -30,8 +30,9 @@ String[] moneyNames = new String[]{"一级集采金额","二级集采金额","�
 	</tr>
 	<tr>
 		<td>
-			<table style="margin-left: 68px;width: 420px;">
-				<tr style="line-height: 22px;font-weight: bold;vertical-align: top;">
+			<table style="margin-left: 68px; width: 420px;">
+				<tr
+					style="line-height: 22px; font-weight: bold; vertical-align: top;">
 					<%
 						Double firstmoneyPer = 0d;
 						Double secondmoneyPer = 0d;
@@ -55,8 +56,8 @@ String[] moneyNames = new String[]{"一级集采金额","二级集采金额","�
 	</tr>
 </table>
 <jsp:include page="/jsp/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="caigouTotalMoneyInfoDIVTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV" value="caigouTotalMoneyInfoDIVTimeDIV" />
+</jsp:include>
 <script type="text/javascript">
 $('#totalMoney').highcharts({
     title: {

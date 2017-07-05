@@ -5,10 +5,10 @@ String path = request.getContextPath();
 int year = TypeUtils.getIntFromString(request.getParameter("year"));
 %>
 <style>
-	.colorDIV{
-		width: 10px;
-		height:10px;
-	}
+.colorDIV {
+	width: 10px;
+	height: 10px;
+}
 </style>
 <script type="text/javascript">
 	function changeYusuanzhixing(index){
@@ -29,16 +29,17 @@ int year = TypeUtils.getIntFromString(request.getParameter("year"));
 		changeYusuanzhixing(0);
 	})
 </script>
-<div style="margin: 26px auto;" class="chartContainerDIV cmccViewContainer">
+<div style="margin: 26px auto;"
+	class="chartContainerDIV cmccViewContainer">
 	<div id="yusuanzhixingDIV">
-	<div class="subTabTitle">&nbsp;</div>
-	<jsp:include  page="yusuanzhixingTab.jsp">
-		 	<jsp:param value="0" name="index"/>
+		<div class="subTabTitle">&nbsp;</div>
+		<jsp:include page="yusuanzhixingTab.jsp">
+			<jsp:param value="0" name="index" />
 		</jsp:include>
-	<div class="tabContent" style='height: 150px;' >
-				<div  class="loaddingClass"></div>
-			</div>
+		<div class="tabContent" style='height: 150px;'>
+			<div class="loaddingClass"></div>
+		</div>
 	</div>
 </div>
-<div id="caiwuYusuanzhixingDIVTimeDIV" class="viewChangeTime marginTopTime"></div>
-	
+<div id="caiwuYusuanzhixingDIVTimeDIV"
+	class="viewChangeTime marginTopTime"></div>

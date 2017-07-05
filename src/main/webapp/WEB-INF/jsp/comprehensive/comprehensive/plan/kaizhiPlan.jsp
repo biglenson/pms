@@ -15,68 +15,95 @@ Double distance=monthActual-monthPlan;
 Double percent=monthPlan!=0? monthActual/monthPlan*100:null;
 %>
 
-<div  class="tabContent"><div style="position: relative;">
-	<div style='width:190px;float:left;'>
-		<div class="sumValue" style="color:<%=distance<0?"#BF100F":"#0ACC4B"%>">
-			<b style="font-size: 16px;"><%=TypeUtils.formatWan2Money(monthActual,"") %></b>
-		</div>
-		<div style='width:95%;margin:10px auto;height:8px;background-color:#E8E9ED;'>
-			<div style=' height:100%;width:<%=monthPlan!=0? monthActual/monthPlan*100:0%>%;background-color:<%=distance<0?"#BF100F":"#0ACC4B"%>;'></div>
-		</div>
-		<table style='width:95%;margin:20px auto;line-height: 33px;font-size:12px;'>
-			<tr><td class='tipSpan'><span> 到本月完成率&nbsp;: </span></td><td class='tipSpan2' width='100%'><b style='font-size: 21px;color:<%=distance<0?"#BF100F":"black"%>'><%=percent!=null?TypeUtils.double2String(percent):"0.00"%>%</b></td></tr>
-			<tr><td class='tipSpan'><span> 全年计划&nbsp;: </span></td><td class='tipSpan2' width='100%'><b style='font-size: 14px;'><%=TypeUtils.formatWan2Money(allPlan,"") %></b></td></tr>
-			<tr><td class='tipSpan'><span> 到本月计划&nbsp;: </span></td><td class='tipSpan2' width='100%'><b style='font-size: 14px;'><%=TypeUtils.formatWan2Money(monthPlan,"") %></b></td></tr>
-			<tr><td class='tipSpan'><span> 到本月实际&nbsp;: </span></td><td class='tipSpan2' width='100%'><b style='font-size: 14px;'><%=TypeUtils.formatWan2Money(monthActual,"") %></b></td></tr>
-			<tr style="display:none;"><td class='tipSpan'><span> 到本月偏差&nbsp;: </span></td><td class='tipSpan2' width='100%'><span style='color:<%=distance<0?"#BF100F":"black"%>'><%=TypeUtils.formatWan2Money(distance,"") %></span></td></tr>
-		</table>	
-	</div>
-	<div style="margin-left:200px;">
-		<div style="height:220px;width:750px;margin:10px auto;" id="kaizhiplanChar">
-		</div>
-		<div style="clear:both;">
-			<table style="margin-left:auto;margin-right:auto;" class="listTable" border="0" cellpadding="0" cellspacing="0"border="0" >
-				<thead>
-					<tr>
-						<th><div style='width:30px;'></div></th>
-						<%for(int i=1;i<=12;i++){ %>
-						<th><div style='width:58px;'><%=year %>-<%=i<10?"0":"" %><%=i %></div></th>
-						<%} %>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="listTableTR">
-						<td align="center">计划</td>
-						<%for(int i=0;i<12;i++){ %>
-							<td align="center" title="<%=TypeUtils.formatWan2Money(plan[i])%>">
-								<%=allPlan!=0?TypeUtils.formatPercent(plan[i]/allPlan):"0.00%" %>
-							</td>
-						<%}%>
-					</tr>
-					<tr>
-						<td align="center">执行</td>
-						<%for(int i=0;i<12;i++){ %>
-							<td align="center" title="<%=TypeUtils.formatWan2Money(actual[i])%>" style="color:<%=allActual!=0&&allPlan!=0?(actual[i]/allActual- plan[i]/allPlan>0?"#55B366":"#F05B5A"):""%>">
-								<%=allActual!=0?TypeUtils.formatPercent(actual[i]/allPlan):"0.00%" %>
-							</td>
-						<%}%>
-					</tr>
-				</tbody>
+<div class="tabContent">
+	<div style="position: relative;">
+		<div style='width: 190px; float: left;'>
+			<div class="sumValue"
+				style="color:<%=distance<0?"#BF100F":"#0ACC4B"%>">
+				<b style="font-size: 16px;"><%=TypeUtils.formatWan2Money(monthActual,"") %></b>
+			</div>
+			<div
+				style='width: 95%; margin: 10px auto; height: 8px; background-color: #E8E9ED;'>
+				<div
+					style=' height:100%;width:<%=monthPlan!=0? monthActual/monthPlan*100:0%>%;background-color:<%=distance<0?"#BF100F":"#0ACC4B"%>;'></div>
+			</div>
+			<table
+				style='width: 95%; margin: 20px auto; line-height: 33px; font-size: 12px;'>
+				<tr>
+					<td class='tipSpan'><span> 到本月完成率&nbsp;: </span></td>
+					<td class='tipSpan2' width='100%'><b
+						style='font-size: 21px;color:<%=distance<0?"#BF100F":"black"%>'><%=percent!=null?TypeUtils.double2String(percent):"0.00"%>%</b></td>
+				</tr>
+				<tr>
+					<td class='tipSpan'><span> 全年计划&nbsp;: </span></td>
+					<td class='tipSpan2' width='100%'><b style='font-size: 14px;'><%=TypeUtils.formatWan2Money(allPlan,"") %></b></td>
+				</tr>
+				<tr>
+					<td class='tipSpan'><span> 到本月计划&nbsp;: </span></td>
+					<td class='tipSpan2' width='100%'><b style='font-size: 14px;'><%=TypeUtils.formatWan2Money(monthPlan,"") %></b></td>
+				</tr>
+				<tr>
+					<td class='tipSpan'><span> 到本月实际&nbsp;: </span></td>
+					<td class='tipSpan2' width='100%'><b style='font-size: 14px;'><%=TypeUtils.formatWan2Money(monthActual,"") %></b></td>
+				</tr>
+				<tr style="display: none;">
+					<td class='tipSpan'><span> 到本月偏差&nbsp;: </span></td>
+					<td class='tipSpan2' width='100%'><span
+						style='color:<%=distance<0?"#BF100F":"black"%>'><%=TypeUtils.formatWan2Money(distance,"") %></span></td>
+				</tr>
 			</table>
 		</div>
-	</div>
-	
-	<div style="position:absolute;right:10px; top:16px;" >
-		<div class="showHelpe" onclick="showTipNames(this,'showTipNameDIV')"></div>
-	</div>
-	
-	<div class="helpFloatDIV" id="showTipNameDIV" style="line-height: 22px;">
-		<div class="showHelpeContent" style="line-height: 23px;">
-			<div>绿色:表示正常</div>
-			<div>红色:实际&lt;计划</div>
+		<div style="margin-left: 200px;">
+			<div style="height: 220px; width: 750px; margin: 10px auto;"
+				id="kaizhiplanChar"></div>
+			<div style="clear: both;">
+				<table style="margin-left: auto; margin-right: auto;"
+					class="listTable" border="0" cellpadding="0" cellspacing="0"
+					border="0">
+					<thead>
+						<tr>
+							<th><div style='width: 30px;'></div></th>
+							<%for(int i=1;i<=12;i++){ %>
+							<th><div style='width: 58px;'><%=year %>-<%=i<10?"0":"" %><%=i %></div></th>
+							<%} %>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="listTableTR">
+							<td align="center">计划</td>
+							<%for(int i=0;i<12;i++){ %>
+							<td align="center"
+								title="<%=TypeUtils.formatWan2Money(plan[i])%>"><%=allPlan!=0?TypeUtils.formatPercent(plan[i]/allPlan):"0.00%" %>
+							</td>
+							<%}%>
+						</tr>
+						<tr>
+							<td align="center">执行</td>
+							<%for(int i=0;i<12;i++){ %>
+							<td align="center"
+								title="<%=TypeUtils.formatWan2Money(actual[i])%>"
+								style="color:<%=allActual!=0&&allPlan!=0?(actual[i]/allActual- plan[i]/allPlan>0?"#55B366":"#F05B5A"):""%>">
+								<%=allActual!=0?TypeUtils.formatPercent(actual[i]/allPlan):"0.00%" %>
+							</td>
+							<%}%>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
-	<div style="clear:both;"></div>
+
+		<div style="position: absolute; right: 10px; top: 16px;">
+			<div class="showHelpe" onclick="showTipNames(this,'showTipNameDIV')"></div>
+		</div>
+
+		<div class="helpFloatDIV" id="showTipNameDIV"
+			style="line-height: 22px;">
+			<div class="showHelpeContent" style="line-height: 23px;">
+				<div>绿色:表示正常</div>
+				<div>红色:实际&lt;计划</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
 	</div>
 </div>
 <script type="text/javascript">

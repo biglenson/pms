@@ -24,14 +24,13 @@ String path = request.getContextPath();
 		loadTouziDetialFun(0);
 	})
 </script>
-<div   class="chartContainerDIV cmccViewContainer" >
+<div class="chartContainerDIV cmccViewContainer">
 	<div id="touziDetailDIV">
 		<%request.setAttribute("index", 0); %>
 		<jsp:include page="touziDetailTab.jsp"></jsp:include>
-		<div class="tabContent" style='min-height: 250px;' >
-			<div  class="loaddingClass"></div>
+		<div class="tabContent" style='min-height: 250px;'>
+			<div class="loaddingClass"></div>
 		</div>
 	</div>
 </div>
 <div id="touziDetailDIVTime" class="viewChangeTime marginTopTime"></div>
-	

@@ -10,9 +10,9 @@ int index=TypeUtils.getIntFromString(request.getParameter("index"));
 <div class="tabMore linkURL" onclick="openduoxiangmuopex()">更多</div>
 <%}%>
 <div class="tabTitle">
- 	<ul>
- 		<li onclick="A__changePlan(0)" class="<%=index==0?"on":""%>">资本开支</li>
- 		<li onclick="A__changePlan(1)" class="<%=index==1?"on":""%>">成本开支</li>
- 		<li onclick="A__changePlan(2)" class="<%=index==2?"on":""%>">转资</li>
- 	</ul>
- </div>
+	<ul>
+		<li onclick="A__changePlan(0)" class="<%=index==0?"on":""%>">资本开支</li>
+		<li onclick="A__changePlan(1)" class="<%=index==1?"on":""%>">成本开支</li>
+		<li onclick="A__changePlan(2)" class="<%=index==2?"on":""%>">转资</li>
+	</ul>
+</div>

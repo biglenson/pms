@@ -7,13 +7,13 @@ if(index==null){
 	index=0;
 }
 %>
-	<jsp:include  page="planDIVTab.jsp">
-		<jsp:param value="<%=index %>" name="index"/>
-	</jsp:include>
-	
-	<jsp:include  page="kaizhiPlan.jsp" />
-	
-	<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="planDIVDIVTimeDIV"/>
-	</jsp:include>
-	
+<jsp:include page="planDIVTab.jsp">
+	<jsp:param value="<%=index %>" name="index" />
+</jsp:include>
+
+<jsp:include page="kaizhiPlan.jsp" />
+
+<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
+	<jsp:param name="lastUpdateDIV" value="planDIVDIVTimeDIV" />
+</jsp:include>
+

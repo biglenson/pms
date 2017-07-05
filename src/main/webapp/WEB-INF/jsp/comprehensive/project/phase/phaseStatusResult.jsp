@@ -8,35 +8,45 @@ int[] newCount=(int[])request.getAttribute("newCount");
 int totalCount=(Integer)request.getAttribute("totalCount");
 int newTotalCount=(Integer)request.getAttribute("newTotalCount");
 %>
-<table class="statusTable" style="margin:0 auto;" border="0" cellspacing="0" cellpadding="0">
+<table class="statusTable" style="margin: 0 auto;" border="0"
+	cellspacing="0" cellpadding="0">
 	<tr>
 		<td><div class="column1">CAPEX项目流程:</div></td>
-		<td  class="statusHeader"><div >投资计划</div></td>
-		
+		<td class="statusHeader"><div>投资计划</div></td>
+
 		<%for(int i=0,j=phaseName.length;i<j;i++){   %>
-			<td rowspan="4" valign="top" style="border: none;"><div class="fouHao"><%//=i==0?"=":"+" %></div></td>
-			<td class="statusHeader"><div  class="touzi"><%=phaseName[i] %></div></td>
+		<td rowspan="4" valign="top" style="border: none;"><div
+				class="fouHao">
+				<%//=i==0?"=":"+" %>
+			</div></td>
+		<td class="statusHeader"><div class="touzi"><%=phaseName[i] %></div></td>
 		<%} %>
 	</tr>
 	<tr>
-		<td  style="border:none;height:10px;"  colspan="<%=2*phaseName.length+2%>"></td>
+		<td style="border: none; height: 10px;"
+			colspan="<%=2*phaseName.length+2%>"></td>
 	</tr>
 	<tr>
-		<td><div class="column1" >项目总数</div></td>
-		<td ><div class="valueDIV linkURL" onclick="openCapexProjectList(-1,0)" ><%=TypeUtils.formatCount(totalCount) %></div></td>
+		<td><div class="column1">项目总数</div></td>
+		<td><div class="valueDIV linkURL"
+				onclick="openCapexProjectList(-1,0)"><%=TypeUtils.formatCount(totalCount) %></div></td>
 		<%for(int i=0,j=phaseName.length;i<j;i++){%>
-		<td  ><div class="valueDIV linkURL" onclick="openCapexProjectList(<%=i %>,0)" ><%=TypeUtils.formatCount(allCount[i]) %></div></td>
+		<td><div class="valueDIV linkURL"
+				onclick="openCapexProjectList(<%=i %>,0)"><%=TypeUtils.formatCount(allCount[i]) %></div></td>
 		<%} %>
 	</tr>
 	<tr>
-		<td><div class="column1" >新建项目数</div></td>
-		<td ><div class="valueDIV2 linkURL" onclick="openCapexProjectList(-1,1)" ><%=TypeUtils.formatCount(newTotalCount) %></div></td>
+		<td><div class="column1">新建项目数</div></td>
+		<td><div class="valueDIV2 linkURL"
+				onclick="openCapexProjectList(-1,1)"><%=TypeUtils.formatCount(newTotalCount) %></div></td>
 		<%for(int i=0,j=phaseName.length;i<j;i++){%>
-		<td ><div class="valueDIV2 linkURL" onclick="openCapexProjectList(<%=i %>,1);" ><%=TypeUtils.formatCount(newCount[i]) %></div></td>
+		<td><div class="valueDIV2 linkURL"
+				onclick="openCapexProjectList(<%=i %>,1);"><%=TypeUtils.formatCount(newCount[i]) %></div></td>
 		<%} %>
 	</tr>
 	<tr>
-		<td  style="border:none;height:10px;"  colspan="<%=2*phaseName.length+2%>"></td>
+		<td style="border: none; height: 10px;"
+			colspan="<%=2*phaseName.length+2%>"></td>
 	</tr>
 	<%String[]moneyName={"投资计划金额",null,"立项决策总金额","合同不含税总金额","设计批复金额"}; 
 	 double[] moneyDouble=(double[])request.getAttribute("moneyDouble"); %>
@@ -53,11 +63,11 @@ int newTotalCount=(Integer)request.getAttribute("newTotalCount");
 			String s=moneyName[i];
 			Double v=s!=null?moneyDouble[i]:null;
 		%>
-		<td  style="text-align:center;"><div ><%=TypeUtils.formatWanMoney(v,"")%></div></td>
+		<td style="text-align: center;"><div><%=TypeUtils.formatWanMoney(v,"")%></div></td>
 		<td></td>
 		<%} %>
 	</tr>
 </table>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="gongcheng_phaseStatusDIVTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV" value="gongcheng_phaseStatusDIVTimeDIV" />
+</jsp:include>

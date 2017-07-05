@@ -143,23 +143,21 @@ if(sYear!=0){
 	})
 	
 </script>
-<input type="hidden"  name="toolYear"  id="${param.yearID}"  value="<%=toolYear%>" />
-<div class="yearSelectDIV"  id="${param.containerID }">
-		<img class="  yearSelectPrev <%=toolYear==yearStart?"disable":"" %>" 
-		
-		 src="<%=path%>/images/16x16/<%=toolYear==yearStart?"cmcc_left_disable":"cmcc_left"%>.png">
-			<span style="font-size: 12px;" class="showYearSelectSpan  ">
-					<span><%=toolYear%></span>
-					<img src="<%=path %>/images/yearSelect.png" />
-			</span>
-			<img class="  yearSelectNext  <%=toolYear==yearEnd?"disable":"" %>"  
-			
-			src="<%=path%>/images/16x16/<%=toolYear==yearEnd?"cmcc_right_disable":"cmcc_right"%>.png">
+<input type="hidden" name="toolYear" id="${param.yearID}"
+	value="<%=toolYear%>" />
+<div class="yearSelectDIV" id="${param.containerID }">
+	<img class="  yearSelectPrev <%=toolYear==yearStart?"disable":"" %>"
+		src="<%=path%>/images/16x16/<%=toolYear==yearStart?"cmcc_left_disable":"cmcc_left"%>.png">
+	<span style="font-size: 12px;" class="showYearSelectSpan  "> <span><%=toolYear%></span>
+		<img src="<%=path %>/images/yearSelect.png" />
+	</span> <img class="  yearSelectNext  <%=toolYear==yearEnd?"disable":"" %>"
+		src="<%=path%>/images/16x16/<%=toolYear==yearEnd?"cmcc_right_disable":"cmcc_right"%>.png">
 </div>
 <div class="yearFloatDIV" id="${param.containerID }FloatDIV">
-	<div class="yearDIV"  id="${param.containerID}yearDIV" style='width:68px;'>
+	<div class="yearDIV" id="${param.containerID}yearDIV"
+		style='width: 68px;'>
 		<%for(int i=yearStart,j=yearEnd;i<=j;i++){ %>
-				<div class="yearItem <%=toolYear==i?"selected":""%>"  year="<%=i %>"><%=i %></div>
+		<div class="yearItem <%=toolYear==i?"selected":""%>" year="<%=i %>"><%=i %></div>
 		<%} %>
 	</div>
 </div>

@@ -14,17 +14,19 @@
 		<jsp:param name="url" value="/projectview" />
 	</jsp:include>
 	<div class="container  " id="bodyStart_container" style="top: 50px">
-		<div class="content-wrap" id="bodyStart__content_Wrap" style="left: 0px;">
+		<div class="content-wrap" id="bodyStart__content_Wrap"
+			style="left: 0px;">
 			<div class="content-empty"></div>
 			<div class="content-main">
 				<form name="frm" action="/pm/CMCCAction.do" method="post">
-					<input type="hidden" name="operation" value="gongcheng"> 
-					<input type="hidden" name="year" value="2017">
-					<input type="hidden" name="isDialog" value="false"> 
-					<input type="hidden" name="page" value="">
+					<input type="hidden" name="operation" value="gongcheng"> <input
+						type="hidden" name="year" value="2017"> <input
+						type="hidden" name="isDialog" value="false"> <input
+						type="hidden" name="page" value="">
 					<div class="cmccTopTitle">
 						<div style="height: 34px; width: 1000px; margin: 0px auto;">
-							<div style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;">工程视图</div>
+							<div
+								style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;">工程视图</div>
 							<%
 								if (isDialog) {
 							%>

@@ -5,9 +5,10 @@
 	List<Tree> menuList = (List<Tree>)session.getAttribute("NavMenu");
 %>
 <div class="header-box " id="headerDIV">
-<%-- 输出系统顶级模块的菜单 --%>
-<div class="header-down ">	 
-	<div class="header_changeApp " id="moduleDIV_changeTopSystemID" onclick="showTopSystemWitch(this);" title="应用"></div>
+	<%-- 输出系统顶级模块的菜单 --%>
+	<div class="header-down ">
+		<div class="header_changeApp " id="moduleDIV_changeTopSystemID"
+			onclick="showTopSystemWitch(this);" title="应用"></div>
 		<!-- <div class="Nav " id="NavMenu">
 			<ul>
 				<li class="topon"><a href="/comprehensiveview">综合视图</a></li>
@@ -20,46 +21,66 @@
 				<img src="/static/images/16x16/icon-changeMenu.png">
 			</div>
 		</div> -->
-	<div class="Nav" id="NavMenu">
-		<ul>
-		<%for(Tree menu : menuList){
+		<div class="Nav" id="NavMenu">
+			<ul>
+				<%for(Tree menu : menuList){
 			if(menu.getAppid()== Integer.parseInt(request.getParameter("appid"))&& menu.getPid() == 0){
-		%>			
-			<li<%if(menu.getAttributes().equals(request.getParameter("url"))){%> class="topon"  <%} %> >  				
-				<a  href="<%=menu.getAttributes() %>" > <%= menu.getText() %></a>					
-			</li>
-		<%}} %>
-		</ul>
-		<div class="NavSelectHiddenDIV"  id="Nav_NavSelectHiddenDIV"><img src="/static/images/16x16/icon-changeMenu.png"/></div>
+		%>
+				<li
+					<%if(menu.getAttributes().equals(request.getParameter("url"))){%>
+					class="topon" <%} %>><a href="<%=menu.getAttributes() %>">
+						<%= menu.getText() %></a></li>
+				<%}} %>
+			</ul>
+			<div class="NavSelectHiddenDIV" id="Nav_NavSelectHiddenDIV">
+				<img src="/static/images/16x16/icon-changeMenu.png" />
+			</div>
+		</div>
 	</div>
-	</div>
-	<div class="loginUserDetail" id="NavSelectContainer" style="visibility: hidden; display: none; left: 0px; top: 0px;">
+	<div class="loginUserDetail" id="NavSelectContainer"
+		style="visibility: hidden; display: none; left: 0px; top: 0px;">
 		<div class="loginUserContent" id="NavSelectContainerContent"></div>
 	</div>
 </div>
 <div class="top_header_searchDIV">
 	<div class="top_header_Exit" onclick="exit();">退出</div>
-	<div class="top_header_userName"><%= session.getAttribute("userName")%></script></div>	
-		<div class="top_header_searchInputDIV">
-			<input type="text" placeholder="请输入关键字搜索" id="top_header_searchInputDIVInput">
-			<img src="/static/images/newui/search.png">
+	<div class="top_header_userName"><%= session.getAttribute("userName")%></script>
+	</div>
+	<div class="top_header_searchInputDIV">
+		<input type="text" placeholder="请输入关键字搜索"
+			id="top_header_searchInputDIVInput"> <img
+			src="/static/images/newui/search.png">
+	</div>
+	<div class="top_header_searchTypeDIV" id="top_header_searchTypeDIV"
+		typeid="1011">
+		<span class="spanType">产品</span> <img
+			src="/static/images/16x16/toolbar-dropDown.png">
+	</div>
+</div>
+<div class="top_header_top_typeSelect" id="top_header_top_typeSelect">
+	<div class="item  selected" typeid="1011">产品</div>
+	<div class="item " typeid="1080">部门</div>
+	<div class="item " typeid="1041">项目</div>
+	<div class="item " typeid="1029">CAPEX</div>
+	<div class="item " typeid="1030">OPEX</div>
+	<div class="item " typeid="-80">报表</div>
+</div>
+<div id="top_header_top_searchResult"
+	class="top_header_top_searchResult">
+	<div id="top_headerReult" class=" dumascroll" style="overflow: hidden;">
+		<div class="dumascroll_area"></div>
+		<div class="dumascroll_barY" style="display: none;">
+			<div class="dumascroll_arrow_up"></div>
+			<div class="dumascroll_handleY"></div>
+			<div class="dumascroll_arrow_down"></div>
 		</div>
-		 <div class="top_header_searchTypeDIV" id="top_header_searchTypeDIV" typeid="1011">
-			<span class="spanType">产品</span>
-			<img src="/static/images/16x16/toolbar-dropDown.png">
-		</div>	
-</div>
-<div class="top_header_top_typeSelect" id="top_header_top_typeSelect">	
-		<div class="item  selected" typeid="1011">产品</div>
-		<div class="item " typeid="1080">部门</div>
-		<div class="item " typeid="1041">项目</div>	
-		<div class="item " typeid="1029">CAPEX</div>	
-		<div class="item " typeid="1030">OPEX</div>	
-		<div class="item " typeid="-80">报表</div>	
-</div>
-<div id="top_header_top_searchResult" class="top_header_top_searchResult">
-	<div id="top_headerReult" class=" dumascroll" style="overflow: hidden;"><div class="dumascroll_area">
-	</div><div class="dumascroll_barY" style="display: none;"><div class="dumascroll_arrow_up"></div><div class="dumascroll_handleY"></div><div class="dumascroll_arrow_down"></div></div><div class="dumascroll_barX" style="display: none;"><div class="dumascroll_arrow_left"></div><div class="dumascroll_handleX"></div><div class="dumascroll_arrow_right"></div></div><div class="duma_rightButtom"></div></div>
+		<div class="dumascroll_barX" style="display: none;">
+			<div class="dumascroll_arrow_left"></div>
+			<div class="dumascroll_handleX"></div>
+			<div class="dumascroll_arrow_right"></div>
+		</div>
+		<div class="duma_rightButtom"></div>
+	</div>
 	<div id="top_header_top_searchLoading">
 		<div class="loaddingClass"></div>
 	</div>
@@ -182,23 +203,30 @@
 			},200)
 		})
 	})
-</script>  
+</script>
 <div id="topHeader_changeSys" class="topHeader_changeSys">
 	<div class="topHeader_changeSysWrap">
-			<table><tbody><tr>					
-					<td><div class="topHeader_changeProduct " onclick="systemWitch(1)">
-						<img src="/static/images/app/PPM.png">
-						<div class="productName">综合视图</div>
-					</div></td>					
-					<td><div class="topHeader_changeProduct " onclick="systemWitch(2)">
-						<img src="/static/images/app/CM.png">
-						<div class="productName">数据管理</div>
-					</div></td>					
-					<td><div class="topHeader_changeProduct " onclick="systemWitch(3)">
-						<img src="/static/images/app/Admin.png">
-						<div class="productName">系统管理</div>
-					</div></td>					
-				</tr></tbody></table>
+		<table>
+			<tbody>
+				<tr>
+					<td><div class="topHeader_changeProduct "
+							onclick="systemWitch(1)">
+							<img src="/static/images/app/PPM.png">
+							<div class="productName">综合视图</div>
+						</div></td>
+					<td><div class="topHeader_changeProduct "
+							onclick="systemWitch(2)">
+							<img src="/static/images/app/CM.png">
+							<div class="productName">数据管理</div>
+						</div></td>
+					<td><div class="topHeader_changeProduct "
+							onclick="systemWitch(3)">
+							<img src="/static/images/app/Admin.png">
+							<div class="productName">系统管理</div>
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 <script type="text/javascript">

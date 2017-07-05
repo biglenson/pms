@@ -18,16 +18,14 @@ String path = request.getContextPath();
 		});
 	});
 </script>
-<div class="cmccViewContainer" style="width:1000px;margin: 26px auto;">
+<div class="cmccViewContainer" style="width: 1000px; margin: 26px auto;">
 	<div class="tabTitle">
-	 	<ul>
-	 		<li class="on">二级集采采购节约成本</li>
-	 	</ul>
-	 </div>
-	<div style="height:180px;" id="costSavingInfoDIV" class="tabContent">
-		<div class="loaddingClass">
-		</div>
+		<ul>
+			<li class="on">二级集采采购节约成本</li>
+		</ul>
+	</div>
+	<div style="height: 180px;" id="costSavingInfoDIV" class="tabContent">
+		<div class="loaddingClass"></div>
 	</div>
 </div>
 <div id="costsavingInfoDIVTimeDIV" class="viewChangeTime marginTopTime"></div>
-	

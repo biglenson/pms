@@ -30,27 +30,23 @@ String path = request.getContextPath();
 	})
 </script>
 <div>
-	<table style='width:1000px;margin:26px auto;'>
-		<td style='width:50%;vertical-align: top;'>
-			<div style='margin-right:10px;' >
-				<div class="sumTitle">
-					二级集采金额公开统计
-				</div>
-				<div class='tabContent' style="height: 320px;width:500px;" id="openMoneyInfoDIV">
-					<div  class="loaddingClass">
-					</div>
+	<table style='width: 1000px; margin: 26px auto;'>
+		<td style='width: 50%; vertical-align: top;'>
+			<div style='margin-right: 10px;'>
+				<div class="sumTitle">二级集采金额公开统计</div>
+				<div class='tabContent' style="height: 320px; width: 500px;"
+					id="openMoneyInfoDIV">
+					<div class="loaddingClass"></div>
 				</div>
 				<div id="secondOpenMoneyInfoDIVTimeDIV" class="viewChangeTime"></div>
 			</div>
 		</td>
-		<td style='width:49%;vertical-align: top;'>
+		<td style='width: 49%; vertical-align: top;'>
 			<div>
-				<div class="sumTitle">
-					二级集采项目数公开统计
-				</div>
-				<div class='tabContent' style="height: 320px;" id="openProjectInfoDIV">
-					<div  class="loaddingClass">
-					</div>
+				<div class="sumTitle">二级集采项目数公开统计</div>
+				<div class='tabContent' style="height: 320px;"
+					id="openProjectInfoDIV">
+					<div class="loaddingClass"></div>
 				</div>
 				<div id="secondOpenProjectInfoDIVTimeDIV" class="viewChangeTime"></div>
 			</div>

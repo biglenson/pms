@@ -50,14 +50,15 @@
 	}
 	
 </script>
-<div class="chartContainerDIV cmccViewContainer" style="margin: 26px auto;">
+<div class="chartContainerDIV cmccViewContainer"
+	style="margin: 26px auto;">
 	<div id="capexListContainer">
-	<jsp:include  page="capexListTab.jsp">
-	 	<jsp:param value="0" name="index"/>
-	</jsp:include>
-	<div class="tabContent" style='height: 150px;' >
-				<div  class="loaddingClass"></div>
-			</div>
+		<jsp:include page="capexListTab.jsp">
+			<jsp:param value="0" name="index" />
+		</jsp:include>
+		<div class="tabContent" style='height: 150px;'>
+			<div class="loaddingClass"></div>
+		</div>
 	</div>
 </div>
 <div id="gongchengListTimeDIV" class="viewChangeTime marginTopTime"></div>

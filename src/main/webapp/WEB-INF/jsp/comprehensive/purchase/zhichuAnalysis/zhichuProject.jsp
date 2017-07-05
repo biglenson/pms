@@ -7,8 +7,8 @@ Integer totalCount = (Integer)request.getAttribute("totalCount");
 List<HighChartData> countDatas = (List<HighChartData>)request.getAttribute("countDatas");
 %>
 <div class="tabContent">
-<div style="margin:26px auto;width:100%;height: 300px;" id="methodProject">
-</div>
+	<div style="margin: 26px auto; width: 100%; height: 300px;"
+		id="methodProject"></div>
 </div>
 <script type="text/javascript">
 $('#methodProject').highcharts({

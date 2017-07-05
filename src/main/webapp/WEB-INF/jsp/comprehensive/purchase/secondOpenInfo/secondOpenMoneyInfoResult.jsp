@@ -10,11 +10,10 @@ Double[] money = new Double[categoryNames.size()];
 money[0] = (Double)openData.get(0);
 money[1] = (Double)unOpenData.get(0);
 %>
-<div style="height:320px;" id="openTotalMoney">
-</div>
+<div style="height: 320px;" id="openTotalMoney"></div>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="secondOpenMoneyInfoDIVTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV" value="secondOpenMoneyInfoDIVTimeDIV" />
+</jsp:include>
 <script type="text/javascript">
 $('#openTotalMoney').highcharts({
     title: {

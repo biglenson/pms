@@ -7,11 +7,11 @@ if(index==null){
 	index=0;
 }
 %>
-	<%if(index==0){ %>
-		<jsp:include  page="touziplanList.jsp" />
-	<%}else if(index==1){%>
-		<jsp:include  page="capexProjectList.jsp" />
-	<%} %>
-	<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="gongchengListTimeDIV"/>
-	</jsp:include>
+<%if(index==0){ %>
+<jsp:include page="touziplanList.jsp" />
+<%}else if(index==1){%>
+<jsp:include page="capexProjectList.jsp" />
+<%} %>
+<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
+	<jsp:param name="lastUpdateDIV" value="gongchengListTimeDIV" />
+</jsp:include>

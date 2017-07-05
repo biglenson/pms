@@ -13,13 +13,14 @@ money[1] = (Double)unOpenData.get(0);
 count[0] = (Integer)openData.get(1);
 count[1] = (Integer)unOpenData.get(1);
 %>
-<div style="width:50%;margin:10px auto;float: left;height:320px;" id="openTotalMoney">
-</div>
-<div style="width:49%;margin:10px auto;float: left;border-left: 1px solid #D9D9D9;height:320px;" id="openTotalProject">
-</div>
+<div style="width: 50%; margin: 10px auto; float: left; height: 320px;"
+	id="openTotalMoney"></div>
+<div
+	style="width: 49%; margin: 10px auto; float: left; border-left: 1px solid #D9D9D9; height: 320px;"
+	id="openTotalProject"></div>
 <jsp:include page="/jsp/viewChangeTime.jsp">
-		<jsp:param  name="lastUpdateDIV" value="secondOpenInfoDIVTimeDIV"/>
-	</jsp:include>
+	<jsp:param name="lastUpdateDIV" value="secondOpenInfoDIVTimeDIV" />
+</jsp:include>
 <script type="text/javascript">
 $('#openTotalMoney').highcharts({
     title: {

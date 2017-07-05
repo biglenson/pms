@@ -6,27 +6,23 @@ String path = request.getContextPath();
 <style>
 </style>
 <div>
-	<table style='width:1000px;margin:26px auto;'>
-		<td style='width:50%;vertical-align: top;'>
-			<div style='margin-right:10px;' >
-				<div class="sumTitle">
-					超时合同TOP10
-				</div>
-				<div class='tabContent' style="height: 400px;width:500px;" id="contract_overtime">
-					<div  class="loaddingClass">
-					</div>
+	<table style='width: 1000px; margin: 26px auto;'>
+		<td style='width: 50%; vertical-align: top;'>
+			<div style='margin-right: 10px;'>
+				<div class="sumTitle">超时合同TOP10</div>
+				<div class='tabContent' style="height: 400px; width: 500px;"
+					id="contract_overtime">
+					<div class="loaddingClass"></div>
 				</div>
 				<div id="contract_overtimeDIVTimeDIV" class="viewChangeTime"></div>
 			</div>
 		</td>
-		<td style='width:49%;vertical-align: top;'>
+		<td style='width: 49%; vertical-align: top;'>
 			<div>
-				<div class="sumTitle">
-					即将超时合同TOP10
-				</div>
-				<div class='tabContent' style="height: 400px;" id="contract_overtimesoon">
-					<div  class="loaddingClass">
-					</div>
+				<div class="sumTitle">即将超时合同TOP10</div>
+				<div class='tabContent' style="height: 400px;"
+					id="contract_overtimesoon">
+					<div class="loaddingClass"></div>
 				</div>
 				<div id="contract_overtimesoonDIVTimeDIV" class="viewChangeTime"></div>
 			</div>
