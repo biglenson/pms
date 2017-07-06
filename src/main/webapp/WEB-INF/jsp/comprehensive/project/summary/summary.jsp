@@ -1,11 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%-- <%
+<%
 String path = request.getContextPath();
-SessionManager webMgr = new SessionManager();
-webMgr.init(session);
-User user = webMgr.getCurrentUser();
-Locale locale = webMgr.getCurrentLocale();
-%> --%>
+
+%> 
 <style>
 .tipSpan {
 	white-space: nowrap;
@@ -99,14 +96,14 @@ Locale locale = webMgr.getCurrentLocale();
 	</table>
 </div>
 <script type="text/javascript">
-<%-- jQuery(document).ready(function(){
+jQuery(document).ready(function(){
 	var doAjax=function(index,select){
 		$.ajax({
-			url:"<%=path%>/GongchengAction.do?operation=summary2",
+			url:"<%=path%>/projectview/investmentSchedule",
 			method:"POST",
 			data:{
-				year:document.frm.year.value
-				,departmentID:<%=Role.ROOT_DEPARTMENT_ID%>
+				year:document.frm.year.value<%-- 
+				,departmentID:<%=Role.ROOT_DEPARTMENT_ID%> --%>
 				,index:index
 			},
 			success:function(html){
@@ -119,5 +116,5 @@ Locale locale = webMgr.getCurrentLocale();
 	doAjax(1,"#summary_zizhuJin");
 	doAjax(2,"#summary_projectCount");
 	doAjax(3,"#sumary_kaizhi");
-}) --%>
+}) 
 </script>

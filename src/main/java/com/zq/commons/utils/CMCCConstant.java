@@ -44,7 +44,7 @@ public class CMCCConstant {
 	* <p>Description:projectview </p> 
 	*/
 	public static final String PJVDashBoard="comprehensive/project/PJVDashBoard";
-	
+	public static final String InvestmentSchedule="comprehensive/project/summary/summaryResult";
 	/** 
 	* <p>Title:报表JSP </p> 
 	* <p>Description: multianalysis</p> 
