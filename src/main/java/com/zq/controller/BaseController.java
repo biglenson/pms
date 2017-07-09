@@ -4,13 +4,19 @@ package com.zq.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 import com.zq.commons.shiro.ShiroUser;
 import com.zq.commons.utils.StringEscapeEditor;
+import com.zq.entity.Resource;
+import com.zq.service.IResourceService;
 
 
 /** 
@@ -20,8 +26,12 @@ import com.zq.commons.utils.StringEscapeEditor;
 * @date 2017年7月2日 上午11:46:47 
 *  
 */
-public abstract class BaseController {
+public abstract class BaseController {	
+	
+	private static Logger logger = Logger.getLogger(BaseController.class);  
 
+    @Autowired
+    private IResourceService iResourceService;
 	@InitBinder
     public void initBinder(ServletRequestDataBinder binder) {
         /**
@@ -57,6 +67,15 @@ public abstract class BaseController {
     public String getStaffName() {
         return this.getShiroUser().getName();
     }
-
-
+    
+    public HttpServletRequest setLeftMenu(HttpServletRequest request,String url){    	
+    	Resource res = iResourceService.findByUrlNotRoot(url);
+    	request.setAttribute("pageTitle",res.getName());
+    	request.setAttribute("appid",res.getAppid());
+    	request.setAttribute("pid",res.getPid());
+    	request.setAttribute("url",url);
+    	logger.info(res.getName() + "侧边栏赋值完成");
+		return request;
+    	
+    }
 }

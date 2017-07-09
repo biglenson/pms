@@ -9,6 +9,8 @@ package com.zq.commons.utils;
 */
 public class CMCCConstant {	
 	
+	 public static final int RESOURCE_MENU = 0; // 菜单
+	
 	/** 
 	* <p>Title: 登录页</p> 
 	* <p>Description: </p> 
@@ -63,8 +65,26 @@ public class CMCCConstant {
 	* <p>Description: </p> 
 	* @date 2017年6月29日 上午11:22:58 
 	*/
-	public static final String systemManager = "system/mgmt/SystemManager";
+	public static final String Monitor = "system/mgmt/Monitor";
+	public static final String Backup = "system/mgmt/Backup";
+	public static final String Timer = "system/mgmt/Timer";
+	public static final String Log = "system/mgmt/Log";
+	public static final String UnlockUser = "system/mgmt/UnlockUser";
 	
-    public static final int RESOURCE_MENU = 0; // 菜单
+	/** 
+	* <p>Title: 系统配置JSP</p> 
+	* <p>Description: </p> 
+	* @date 2017年7月9日 下午9:33:51 
+	*/
+	public static final String SysCode = "system/sysconfig/SysCode";
+	
+	
+	/** 
+	* <p>Title: 权限管理JSP</p> 
+	* <p>Description: </p> 
+	* @date 2017年7月9日 下午9:34:29 
+	*/
+	public static final String Department = "system/srcmt/Department";   
+	
 	
 }

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	String path = request.getContextPath();
 	boolean isDialog = Boolean.parseBoolean(request.getParameter("isDialog"));
+	String pageTitle = "财务视图";
 %>
 <html>
 <%-- 输出head模块 --%>
@@ -28,7 +28,7 @@
 					<div class="cmccTopTitle">
 						<div style="width: 1000px; margin: 0px auto;">
 							<div
-								style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;">财务视图</div>
+								style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;"><%= pageTitle %></div>
 						</div>
 						<div style="height: 34px; width: 1000px; margin: 0px auto;">
 							<%

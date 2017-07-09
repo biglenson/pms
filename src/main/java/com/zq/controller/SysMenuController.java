@@ -100,15 +100,14 @@ public class SysMenuController extends BaseController{
 	* @Title: systemManager 
 	* @Description: TODO(系统管理页面) 
 	* @author shujukuss 
-	* @date 2017年6月29日 上午11:11:30 
+	* @date 2017年6月29日 上午11:11:28 
 	* @param @return    设定文件 
 	* @return String    返回类型 
 	* @throws 
 	*/
 	@RequestMapping(value = "systemmanager")
 	public String systemManager() {
-		return CMCCConstant.systemManager;
+		return "redirect:/systemmanager/monitor";
 	}
-	
 	
 }

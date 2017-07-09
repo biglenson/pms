@@ -23,6 +23,8 @@ public interface IResourceService {
     List<Tree> selectAllTree();
 
     List<Tree> selectTree(ShiroUser shiroUser);
+
+	Resource findByUrlNotRoot(String url);
     
     /** 
     * @Title: selectTopMenu 

@@ -7,8 +7,7 @@
 <div class="header-box " id="headerDIV">
 	<%-- 输出系统顶级模块的菜单 --%>
 	<div class="header-down ">
-		<div class="header_changeApp " id="moduleDIV_changeTopSystemID"
-			onclick="showTopSystemWitch(this);" title="应用"></div>
+		<div class="header_changeApp " id="moduleDIV_changeTopSystemID" onclick="showTopSystemWitch(this);" title="应用"></div>
 		<!-- <div class="Nav " id="NavMenu">
 			<ul>
 				<li class="topon"><a href="/comprehensiveview">综合视图</a></li>
@@ -24,12 +23,10 @@
 		<div class="Nav" id="NavMenu">
 			<ul>
 				<%for(Tree menu : menuList){
-			if(menu.getAppid()== Integer.parseInt(request.getParameter("appid"))&& menu.getPid() == 0){
-		%>
-				<li
-					<%if(menu.getAttributes().equals(request.getParameter("url"))){%>
-					class="topon" <%} %>><a href="<%=menu.getAttributes() %>">
-						<%= menu.getText() %></a></li>
+					if(menu.getAppid()== Integer.parseInt(request.getParameter("appid"))&& menu.getPid() == 0){%>
+				<li <%if(menu.getAttributes().equals(request.getParameter("url"))){%> class="topon" <%} %>>
+					<a href="<%=menu.getAttributes() %>"><%= menu.getText() %></a>
+				</li>
 				<%}} %>
 			</ul>
 			<div class="NavSelectHiddenDIV" id="Nav_NavSelectHiddenDIV">
@@ -37,8 +34,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="loginUserDetail" id="NavSelectContainer"
-		style="visibility: hidden; display: none; left: 0px; top: 0px;">
+	<div class="loginUserDetail" id="NavSelectContainer" style="visibility: hidden; display: none; left: 0px; top: 0px;">
 		<div class="loginUserContent" id="NavSelectContainerContent"></div>
 	</div>
 </div>
@@ -51,8 +47,7 @@
 			id="top_header_searchInputDIVInput"> <img
 			src="/static/images/newui/search.png">
 	</div>
-	<div class="top_header_searchTypeDIV" id="top_header_searchTypeDIV"
-		typeid="1011">
+	<div class="top_header_searchTypeDIV" id="top_header_searchTypeDIV" typeid="1011">
 		<span class="spanType">产品</span> <img
 			src="/static/images/16x16/toolbar-dropDown.png">
 	</div>
@@ -209,21 +204,21 @@
 		<table>
 			<tbody>
 				<tr>
-					<td><div class="topHeader_changeProduct "
-							onclick="systemWitch(1)">
+					<td><div class="topHeader_changeProduct " onclick="systemWitch(1)">
 							<img src="/static/images/app/PPM.png">
 							<div class="productName">综合视图</div>
-						</div></td>
-					<td><div class="topHeader_changeProduct "
-							onclick="systemWitch(2)">
+						</div>
+					</td>
+					<td><div class="topHeader_changeProduct " onclick="systemWitch(2)">
 							<img src="/static/images/app/CM.png">
 							<div class="productName">数据管理</div>
-						</div></td>
-					<td><div class="topHeader_changeProduct "
-							onclick="systemWitch(3)">
+						</div>
+					</td>
+					<td><div class="topHeader_changeProduct " onclick="systemWitch(3)">
 							<img src="/static/images/app/Admin.png">
 							<div class="productName">系统管理</div>
-						</div></td>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>

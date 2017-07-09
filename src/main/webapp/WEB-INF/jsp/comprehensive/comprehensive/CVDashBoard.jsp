@@ -9,7 +9,7 @@
 		<jsp:param name="url" value="/comprehensiveview" />
 	</jsp:include>
 	<div class="container  " id="bodyStart_container" style="top: 50px">
-		<jsp:include page="../../common/Banner.jsp" />
+<%-- 		<jsp:include page="../../common/Banner.jsp" /> --%>
 		<div id="propDIV" class="yibiao_start dumascroll"
 			style="overflow: hidden; height: 10px;">
 			<div class=" dumascroll_area showYScroll">

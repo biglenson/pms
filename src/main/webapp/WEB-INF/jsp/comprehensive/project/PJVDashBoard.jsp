@@ -26,7 +26,7 @@
 					<div class="cmccTopTitle">
 						<div style="height: 34px; width: 1000px; margin: 0px auto;">
 							<div
-								style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;">工程视图</div>
+								style="float: left; font-size: 24px; font-weight: bold; color: #4C4C4C;"><%= pageTitle %></div>
 							<%
 								if (isDialog) {
 							%>

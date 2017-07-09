@@ -148,6 +148,10 @@ public class ResourceServiceImpl implements IResourceService {
 
 	public boolean deleteById(Serializable resourceId) {
 		return iResourceRepository.deleteById(resourceId);
+	}
+	@Override
+	public Resource findByUrlNotRoot(String url) {
+		return iResourceRepository.findByUrlNotRoot(url);
 	}	
 
 }
