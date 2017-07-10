@@ -24,7 +24,7 @@
 			<ul>
 				<%for(Tree menu : menuList){
 					if(menu.getAppid()== Integer.parseInt(request.getParameter("appid"))&& menu.getPid() == 0){%>
-				<li <%if(menu.getAttributes().equals(request.getParameter("url"))){%> class="topon" <%} %>>
+				<li <%if(request.getParameter("url").contains((String)menu.getAttributes())){%> class="topon" <%} %>>
 					<a href="<%=menu.getAttributes() %>"><%= menu.getText() %></a>
 				</li>
 				<%}} %>

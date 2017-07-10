@@ -10,6 +10,7 @@
 	<jsp:include page="../common/TopMenu.jsp">
 		<jsp:param name="appid" value="<%= appid %>" />
 		<jsp:param name="url" value="<%= url %>" />
+		<jsp:param name="pid" value="<%= pid %>" />
 	</jsp:include>
 	<div class="container" id="bodyStart_container">
 	<%-- 输出侧边栏菜单--%>
