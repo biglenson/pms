@@ -53,4 +53,23 @@ public class ProjectViewController extends BaseController{
 		request.setAttribute("index", index);	
 		return CMCCConstant.InvestmentSchedule;
 	}
+    
+	/**
+			* @Title: planResult
+			* @Description: TODO(项目计划标签)
+			* @author BigCoin
+			* @date 2017年7月10日 下午4:40:07
+			* @param @param request
+			* @param @return 设定文件
+			* @return String 返回类型
+			* @throws
+			*/
+	@RequestMapping(value = "planresult", method = RequestMethod.POST)
+    public String planResult(HttpServletRequest request) {		
+		Integer index = 0;
+		CAPEXProject project = 3306;		
+		request.setAttribute("project", project);
+		request.setAttribute("index", index);	
+		return CMCCConstant.PlanResult;
+	}
 }

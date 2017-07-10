@@ -1,16 +1,12 @@
 <%@page import="com.zq.commons.utils.TypeUtils"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%-- <%
+<%
 String path = request.getContextPath();
-SessionManager webMgr = new SessionManager();
-webMgr.init(session);
-User user = webMgr.getCurrentUser();
-Locale locale = webMgr.getCurrentLocale();
-%> --%>
+%>
 <script type="text/javascript">
-<%-- 	function A__changePlan(index){
+ 	function A__changePlan(index){
 		$.ajax({
-			url:"<%=path%>/GongchengAction.do?operation=planResult",
+			url:"<%=path%>/projectview/planresult",
 			method:"POST",
 			data:{
 				year:document.frm.year.value
@@ -44,7 +40,7 @@ Locale locale = webMgr.getCurrentLocale();
 			y:3
 		})
 		
-	} --%>
+	} 
 </script>
 <div class="chartContainerDIV cmccViewContainer"
 	style="margin: 26px auto;">

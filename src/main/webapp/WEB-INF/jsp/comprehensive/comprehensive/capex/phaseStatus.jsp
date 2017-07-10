@@ -2,7 +2,7 @@
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%
 String path = request.getContextPath();
-Role department=(Role)request.getAttribute("department");
+/* Role department=(Role)request.getAttribute("department"); */
 %>
 <style type="text/css">
 </style>
@@ -34,11 +34,11 @@ Role department=(Role)request.getAttribute("department");
 <script type="text/javascript">
 $(document).ready(function(){
 	$.ajax({
-		url:"<%=path%>/ZongheAction.do?operation=capexPhaseStatus",
+		url:"<%=path%>/comprehensiveview/capexphasestatus",
 		method:"POST",
 		data:{
 			year:document.frm.year.value
-			,departmentID:<%=department.getId()%>
+			,<%-- departmentID:<%=department.getId()%> --%>
 		},
 		success:function(html){
 			var div=$("#capex_phaseStatusDIV");

@@ -3,7 +3,7 @@
 <%
 String path = request.getContextPath();
 String[] phaseName=CAPEXProject.PHASENAMES;
-Role department=(Role)request.getAttribute("department");
+/* Role department=(Role)request.getAttribute("department"); */
 int[] allCount=(int[])request.getAttribute("allCount");
 int[] newCount=(int[])request.getAttribute("newCount");
 int totalCount=(Integer)request.getAttribute("totalCount");
@@ -86,12 +86,12 @@ int newTotalCount=(Integer)request.getAttribute("newTotalCount");
 			<td style="height: 10px;"></td>
 		</tr>
 	</table>
-	<%
+<%-- 	<%
 String showCapexView=request.getParameter("showCapexView");
 if(!"false".equals(showCapexView)){
 	if(department.getId()==Role.ROOT_DEPARTMENT_ID){ %>
 	<span class="openViewButton" onclick="openGongCheng();">CAPEX年度视图</span>
-	<%}}%>
+	<%}}%> --%>
 </div>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 	<jsp:param name="lastUpdateDIV" value="capex_phaseStatusDIVTimeDIV" />

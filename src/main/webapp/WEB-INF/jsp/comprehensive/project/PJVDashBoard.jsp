@@ -53,7 +53,7 @@
 					<div id="propDIV" class='yibiao_start'>
 						<div style="width: 1000px; margin: 0 auto;">
 							<jsp:include page="summary/summary.jsp" />
-							<jsp:include page="phase/phaseStatus.jsp" />
+							<jsp:include page="../comprehensive/capex/phaseStatus.jsp" />
 							<jsp:include page="plan/planDIV.jsp" />
 							<jsp:include page="capexflow/capexListContainer.jsp" />
 						</div>

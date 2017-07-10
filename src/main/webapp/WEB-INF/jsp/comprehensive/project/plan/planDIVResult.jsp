@@ -2,7 +2,7 @@
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%
 String path = request.getContextPath();
-/* CAPEXProject project=(CAPEXProject)request.getAttribute("project"); */
+CAPEXProject project=(CAPEXProject)request.getAttribute("project");
 Integer index=(Integer)request.getAttribute("index");
 if(index==null){
 	index=0;

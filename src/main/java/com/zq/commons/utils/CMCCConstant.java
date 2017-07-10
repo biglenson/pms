@@ -22,7 +22,7 @@ public class CMCCConstant {
 	* <p>Description:comprehensiveview </p> 
 	*/
 	public static final String CVDashBoard="comprehensive/comprehensive/CVDashBoard";
-	
+	public static final String CapexPhaseStatus="comprehensive/comprehensive/capex/phaseStatusResult";
 	/** 
 	* <p>Title:财务视图JSP </p> 
 	* <p>Description:financialview </p> 
@@ -47,6 +47,7 @@ public class CMCCConstant {
 	*/
 	public static final String PJVDashBoard="comprehensive/project/PJVDashBoard";
 	public static final String InvestmentSchedule="comprehensive/project/summary/summaryResult";
+	public static final String PlanResult="comprehensive/project/plan/planDIV";
 	/** 
 	* <p>Title:报表JSP </p> 
 	* <p>Description: multianalysis</p> 
