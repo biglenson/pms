@@ -14,9 +14,11 @@
 				<ul>			
 				<%for(Tree menu : menuList){
 					if(menu.getAppid()== Integer.parseInt(request.getParameter("appid"))&& menu.getPid() == Integer.parseInt(request.getParameter("pid"))){%>
-					<li class="menuDIV menuLevel1 <%=request.getParameter("url").equals(menu.getAttributes())?"menuSelected":""%>">
-						<a href="<%=menu.getAttributes() %>"><img class="sidebarimg" src="<%= menu.getIconCls() %>"><%= menu.getText() %></a>
-					</li>	
+					<li>
+						<a class="menuDIV menuLevel1 <%=request.getParameter("url").equals(menu.getAttributes())?"menuSelected":""%>" href="<%=menu.getAttributes() %>">
+							<img class="sidebarimg" src="<%= menu.getIconCls() %>"><%= menu.getText() %>
+						</a>					
+					</li>
 				<%}} %>
 				</ul>
 				</div>				
