@@ -110,4 +110,32 @@ public class SysMenuController extends BaseController{
 		return "redirect:/systemmanager/monitor";
 	}
 	
+	/** 
+	* @Title: sysConfig 
+	* @Description: TODO(系统配置界面) 
+	* @author shujukuss 
+	* @date 2017年7月10日 上午9:44:29 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "sysconfig")
+	public String sysConfig() {
+		return "redirect:/sysconfig/syscode";
+	}
+	
+	/** 
+	* @Title: resourceManager 
+	* @Description: TODO(权限管理界面) 
+	* @author shujukuss 
+	* @date 2017年7月10日 上午9:44:33 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "resourcemanager")
+	public String resourceManager() {
+		return "redirect:/resourcemanager/department";
+	}
+	
 }

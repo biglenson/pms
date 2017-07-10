@@ -84,7 +84,10 @@ public class CMCCConstant {
 	* <p>Description: </p> 
 	* @date 2017年7月9日 下午9:34:29 
 	*/
-	public static final String Department = "system/srcmt/Department";   
+	public static final String Department = "system/srcmt/Department"; 
+	public static final String User = "system/srcmt/User";   
+	public static final String Role = "system/srcmt/Role";   
+	public static final String Resource = "system/srcmt/Resource";   
 	
 	
 }
