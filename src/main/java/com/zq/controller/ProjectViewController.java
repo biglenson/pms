@@ -39,9 +39,17 @@ public class ProjectViewController extends BaseController{
     public String investmentSchedule(HttpServletRequest request) {		
 		double allValue = 1024;
 		double yearValue = 3306;
-		Integer index=2;
+		double kaizhiTotal = 1000;
+		double kaizhiActual = 2000;
+		double zhuanZiTotal = 500;
+		double zhuanZiActual = 100;
+		Integer index=3;
 		request.setAttribute("allValue", allValue);
 		request.setAttribute("yearValue", yearValue);
+		request.setAttribute("kaizhiTotal", kaizhiTotal);
+		request.setAttribute("kaizhiActual", kaizhiActual);
+		request.setAttribute("zhuanZiTotal", zhuanZiTotal);
+		request.setAttribute("zhuanZiActual", zhuanZiActual);
 		request.setAttribute("index", index);	
 		return CMCCConstant.InvestmentSchedule;
 	}

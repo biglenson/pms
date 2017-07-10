@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import="com.zq.commons.result.HighChartData"%>
 <%@page import="net.sf.json.JSONArray"%>
 <%
 String path = request.getContextPath();
@@ -156,10 +157,10 @@ Integer index=(Integer)request.getAttribute("index");
 	
 	</script>
 <%}else if(index==2){
-	int allValue=(Integer)request.getAttribute("allValue");
-	int newValue=(Integer)request.getAttribute("newValue");
-	int xuValue=(Integer)request.getAttribute("xuValue");
-	//List<HighChartData> dataList=(List<HighChartData>)request.getAttribute("dataList");
+	double allValue=(Double)request.getAttribute("allValue");
+	double newValue=(Double)request.getAttribute("newValue");
+	double xuValue=(Double)request.getAttribute("xuValue");
+	List<HighChartData> dataList=(List<HighChartData>)request.getAttribute("dataList");
 %>
 <div style='width: 100%; height: 100%;' id="summaryProjectChart">
 </div>
