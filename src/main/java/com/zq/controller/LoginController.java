@@ -85,7 +85,7 @@ public class LoginController extends BaseController{
 			logger.warn(msg);
 			return CMCCConstant.LOGIN;
 		}
-		try {
+/*		try {
 			if (StringUtils.isBlank(captcha)) {
 				throw new RuntimeException("验证码不能为空");
 			}
@@ -99,7 +99,7 @@ public class LoginController extends BaseController{
 			model.addAttribute("userName", userName);
 			model.addAttribute("password", password);
 			return CMCCConstant.LOGIN;
-		}
+		}*/
 
 		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
 		token.setRememberMe(1 == rememberMe);
