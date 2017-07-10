@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  */
 @Entity
-public class Organization implements Serializable {
+public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -33,7 +33,7 @@ public class Organization implements Serializable {
 
 	private Integer seq;
 
-	public Organization() {
+	public Department() {
 	}
 
 	public Long getId() {
