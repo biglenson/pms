@@ -93,7 +93,7 @@ public class SysMenuController extends BaseController{
 	*/
 	@RequestMapping(value = "datamanager")
 	public String dataManager() {
-		return CMCCConstant.dataManager;
+		return "redirect:/capex/bascapexinvestplan";
 	}
 	
 	/** 

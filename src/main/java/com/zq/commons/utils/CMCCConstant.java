@@ -22,7 +22,7 @@ public class CMCCConstant {
 	* <p>Description:comprehensiveview </p> 
 	*/
 	public static final String CVDashBoard="comprehensive/comprehensive/CVDashBoard";
-	public static final String CapexPhaseStatus="comprehensive/comprehensive/capex/phaseStatusResult";
+	public static final String CAPEXPhaseStatus="comprehensive/comprehensive/CAPEX/phaseStatusResult";
 	/** 
 	* <p>Title:财务视图JSP </p> 
 	* <p>Description:financialview </p> 
@@ -59,7 +59,14 @@ public class CMCCConstant {
 	* <p>Description: </p> 
 	* @date 2017年6月29日 上午11:22:46 
 	*/
-	public static final String dataManager = "data/capex/UniversalForm";
+	public static final String BasCAPEXInvestplan = "data/capex/BasCAPEXInvestplan"; 
+	public static final String BasCAPEXAmountPool = "data/capex/BasCAPEXAmountPool";	
+	public static final String BasCAPEXRequirment = "data/capex/BasCAPEXRequirment"; 
+	public static final String BasCAPEXProject = "data/capex/BasCAPEXProject"; 
+	public static final String BasCAPEXProjInvestplan = "data/capex/BasCAPEXProjInvestplan"; 
+	public static final String BasCAPEXExpendplan = "data/capex/BasCAPEXExpendplan"; 
+	public static final String BasCAPEXTransferplan = "data/capex/BasCAPEXTransferplan"; 
+	public static final String BasCAPEXTotalInvestplan = "data/capex/BasCAPEXTotalInvestplan"; 
 
 	/** 
 	* <p>Title: 系统管理JSP</p> 
@@ -88,7 +95,9 @@ public class CMCCConstant {
 	public static final String Department = "system/srcmt/Department"; 
 	public static final String User = "system/srcmt/User";   
 	public static final String Role = "system/srcmt/Role";   
-	public static final String Resource = "system/srcmt/Resource";   
+	public static final String Resource = "system/srcmt/Resource";
+
+	  
 	
 	
 }

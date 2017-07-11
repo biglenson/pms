@@ -43,6 +43,6 @@ public class ComprehensiveViewController extends BaseController{
 		request.setAttribute("newCount", newCount);
 		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("newTotalCount", newTotalCount);	
-		return CMCCConstant.CapexPhaseStatus;
+		return CMCCConstant.CAPEXPhaseStatus;
 	}
 }
