@@ -29,15 +29,15 @@ public class ComprehensiveViewController extends BaseController{
 	private static Logger logger = Logger.getLogger(ComprehensiveViewController.class);  
 
 	/**
-			* @Title: capexPhaseStatus
-			* @Description: TODO(capex阶段进度)
-			* @author BigCoin
-			* @date 2017年7月10日 下午3:31:07
-			* @param @param request
-			* @param @return 设定文件
-			* @return String 返回类型
-			* @throws
-			*/
+	* @Title: capexPhaseStatus
+	* @Description: TODO(capex阶段进度)
+	* @author BigCoin
+	* @date 2017年7月10日 下午3:31:07
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
 	@RequestMapping(value = "capexphasestatus", method = RequestMethod.POST)
     public String capexPhaseStatus(HttpServletRequest request) {		
 		int[] allCount = {10,20,30,40};

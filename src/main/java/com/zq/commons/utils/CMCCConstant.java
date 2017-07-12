@@ -46,7 +46,7 @@ public class CMCCConstant {
 	* <p>Description:projectview </p> 
 	*/
 	public static final String PJVDashBoard="comprehensive/project/PJVDashBoard";
-	public static final String InvestmentSchedule="comprehensive/project/summary/summaryResult";
+	public static final String ProjectSummary="comprehensive/project/summary/summaryResult";
 	public static final String PlanResult="comprehensive/project/plan/planDIVResult";
 	/** 
 	* <p>Title:报表JSP </p> 
@@ -96,6 +96,8 @@ public class CMCCConstant {
 	public static final String User = "system/srcmt/User";   
 	public static final String Role = "system/srcmt/Role";   
 	public static final String Resource = "system/srcmt/Resource";
+
+	
 
 	  
 	

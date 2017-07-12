@@ -25,12 +25,16 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
 		
 		return iBasCAPEXProjectRepository.findAll();
 	}
-    
+
 	@Override
-	public BasCAPEXProject getCAPEXProject(id) {
+	public BasCAPEXProject getCAPEXProject() {
 		
-		return iBasCAPEXProjectRepository.findOne(id);
+		return null;
 	}
+
+
+    
+	
    
 
 }
