@@ -1,9 +1,12 @@
 package com.zq.service.Impl.basic;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zq.dao.basic.IBasCAPEXProjectRepository;
+import com.zq.entity.basic.BasCAPEXProject;
 import com.zq.service.basic.IBasCAPEXProjectService;
 
 /**
@@ -16,7 +19,18 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
 
     @Autowired
     private IBasCAPEXProjectRepository iBasCAPEXProjectRepository;
+
+	@Override
+	public List<BasCAPEXProject> getALLCAPEXProject() {
+		
+		return iBasCAPEXProjectRepository.findAll();
+	}
     
+	@Override
+	public BasCAPEXProject getCAPEXProject(id) {
+		
+		return iBasCAPEXProjectRepository.findOne(id);
+	}
    
 
 }

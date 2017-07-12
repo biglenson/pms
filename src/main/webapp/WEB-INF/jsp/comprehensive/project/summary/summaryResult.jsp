@@ -15,6 +15,7 @@ Integer index=(Integer)request.getAttribute("index");
 	<%=TypeUtils.formatWanMoney(yearValue) %>
 </div>
 <div
+
 	style='width: 97%; margin: 15px auto; height: 8px; background-color: #E8E9ED;'>
 	<%Double percent=allValue!=0?yearValue/allValue*100:null; %>
 	<div

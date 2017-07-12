@@ -3,11 +3,14 @@ package com.zq.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zq.commons.utils.CMCCConstant;
+import com.zq.entity.basic.BasCAPEXProject;
+import com.zq.service.basic.IBasCAPEXProjectService;
 
 /** 
 * @ClassName: ComprehensiveViewController 
@@ -19,6 +22,9 @@ import com.zq.commons.utils.CMCCConstant;
 @Controller
 @RequestMapping("/comprehensiveview/")
 public class ComprehensiveViewController extends BaseController{
+	
+	@Autowired
+	private IBasCAPEXProjectService iBasCAPEXProjectService;
 	
 	private static Logger logger = Logger.getLogger(ComprehensiveViewController.class);  
 
@@ -38,6 +44,7 @@ public class ComprehensiveViewController extends BaseController{
 		int[] newCount = {10,20,30,40};
 		int totalCount = 10;
 		int newTotalCount = 20;
+		BasCAPEXProject CAPEXProject = iBasCAPEXProjectService.getCAPEXProject();
 		Integer index=3;
 		request.setAttribute("allCount", allCount);
 		request.setAttribute("newCount", newCount);

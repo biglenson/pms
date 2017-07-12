@@ -47,7 +47,7 @@ public class CMCCConstant {
 	*/
 	public static final String PJVDashBoard="comprehensive/project/PJVDashBoard";
 	public static final String InvestmentSchedule="comprehensive/project/summary/summaryResult";
-	public static final String PlanResult="comprehensive/project/plan/planDIV";
+	public static final String PlanResult="comprehensive/project/plan/planDIVResult";
 	/** 
 	* <p>Title:报表JSP </p> 
 	* <p>Description: multianalysis</p> 
