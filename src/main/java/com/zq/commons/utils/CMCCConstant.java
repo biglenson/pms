@@ -67,6 +67,21 @@ public class CMCCConstant {
 	public static final String BasCAPEXExpendplan = "data/capex/BasCAPEXExpendplan"; 
 	public static final String BasCAPEXTransferplan = "data/capex/BasCAPEXTransferplan"; 
 	public static final String BasCAPEXTotalInvestplan = "data/capex/BasCAPEXTotalInvestplan"; 
+	
+	public static final String BasOPEXBudgetpool = "data/opex/BasOPEXBudgetpool";
+	public static final String BasOpexBudgetpoolDetail = "data/opex/BasOpexBudgetpoolDetail";
+	public static final String BasOPEXBudgetAdjust = "data/opex/BasOPEXBudgetAdjust";
+	public static final String BasOPEXBudgetProject = "data/opex/BasOPEXBudgetProject";
+	public static final String BasOPEXRequirment = "data/opex/BasOPEXRequirment";
+	public static final String BasOPEXProject = "data/opex/BasOPEXProject";
+	public static final String BasOPEXManhour = "data/opex/BasOPEXManhour";
+	
+	public static final String BasFirstBill = "data/purchase/BasFirstBill";
+	public static final String BasSecondBill = "data/purchase/BasSecondBill";
+	public static final String BasFrameContract = "data/purchase/BasFrameContract";
+	public static final String BasOtherContract = "data/purchase/BasOtherContract";
+	public static final String BasOPEXPurchaseplan = "data/purchase/BasOPEXPurchaseplan";
+
 
 	/** 
 	* <p>Title: 系统管理JSP</p> 
@@ -96,6 +111,7 @@ public class CMCCConstant {
 	public static final String User = "system/srcmt/User";   
 	public static final String Role = "system/srcmt/Role";   
 	public static final String Resource = "system/srcmt/Resource";
+
 
 	  
 	

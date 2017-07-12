@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import com.zq.commons.shiro.ShiroUser;
 import com.zq.commons.utils.StringEscapeEditor;
-import com.zq.entity.Resource;
-import com.zq.service.IResourceService;
+import com.zq.entity.system.Resource;
+import com.zq.service.system.IResourceService;
 
 
 /** 
@@ -68,6 +68,17 @@ public abstract class BaseController {
         return this.getShiroUser().getName();
     }
     
+    /** 
+    * @Title: setLeftMenu 
+    * @Description: TODO(侧边栏赋值) 
+    * @author shujukuss 
+    * @date 2017年7月12日 上午10:25:46 
+    * @param @param request
+    * @param @param url
+    * @param @return    设定文件 
+    * @return HttpServletRequest    返回类型 
+    * @throws 
+    */
     public HttpServletRequest setLeftMenu(HttpServletRequest request,String url){    	
     	Resource res = iResourceService.findByUrlNotRoot(url);
     	request.setAttribute("pageTitle",res.getName());

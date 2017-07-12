@@ -19,9 +19,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zq.entity.User;
-import com.zq.service.IRoleService;
-import com.zq.service.IUserService;
+import com.zq.entity.system.User;
+import com.zq.service.system.IRoleService;
+import com.zq.service.system.IUserService;
 
 
 public class ShiroDbRealm extends AuthorizingRealm {

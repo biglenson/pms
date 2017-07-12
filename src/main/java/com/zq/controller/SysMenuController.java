@@ -97,6 +97,48 @@ public class SysMenuController extends BaseController{
 	}
 	
 	/** 
+	* @Title: capex 
+	* @Description: TODO(CAPEX管理页面) 
+	* @author shujukuss 
+	* @date 2017年6月29日 上午11:11:28 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "capex")
+	public String capex() {
+		return "redirect:/capex/bascapexinvestplan";
+	}
+	
+	/** 
+	* @Title: opex 
+	* @Description: TODO(OPEX管理页面) 
+	* @author shujukuss 
+	* @date 2017年6月29日 上午11:11:28 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "opex")
+	public String opex() {
+		return "redirect:/opex/basopexbudgetpool";
+	}
+	
+	/** 
+	* @Title: purchase 
+	* @Description: TODO(采购管理页面) 
+	* @author shujukuss 
+	* @date 2017年6月29日 上午11:11:28 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "purchase")
+	public String purchase() {
+		return "redirect:/purchase/basfirstbill";
+	}
+	
+	/** 
 	* @Title: systemManager 
 	* @Description: TODO(系统管理页面) 
 	* @author shujukuss 

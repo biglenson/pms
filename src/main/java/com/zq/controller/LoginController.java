@@ -28,7 +28,7 @@ import com.zq.commons.result.Tree;
 import com.zq.commons.shiro.captcha.CMCCCaptcha;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.StringUtils;
-import com.zq.service.IResourceService;
+import com.zq.service.system.IResourceService;
 
 
 /** 

@@ -49,7 +49,7 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexamountpool")
-    public String BasCAPEXAmountPool(HttpServletRequest request) {
+    public String basCAPEXAmountPool(HttpServletRequest request) {
 		
 		request = setLeftMenu(request,"/capex/bascapexamountpool");
 		return CMCCConstant.BasCAPEXAmountPool;	
@@ -66,7 +66,7 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexrequirment")
-    public String BasCAPEXRequirment(HttpServletRequest request) {
+    public String basCAPEXRequirment(HttpServletRequest request) {
 		
 		request = setLeftMenu(request,"/capex/bascapexrequirment");
 		return CMCCConstant.BasCAPEXRequirment;	
@@ -82,7 +82,7 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexproject")
-    public String BasCAPEXProject(HttpServletRequest request) {
+    public String basCAPEXProject(HttpServletRequest request) {
 		
 		request = setLeftMenu(request,"/capex/bascapexproject");
 		return CMCCConstant.BasCAPEXProject;	
@@ -99,7 +99,7 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexprojinvestplan")
-    public String BasCAPEXProjInvestplan(HttpServletRequest request) {
+    public String basCAPEXProjInvestplan(HttpServletRequest request) {
 		
 		request = setLeftMenu(request,"/capex/bascapexprojinvestplan");
 		return CMCCConstant.BasCAPEXProjInvestplan;	
@@ -115,7 +115,7 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexexpendplan")
-    public String BasCAPEXExpendplan(HttpServletRequest request) {
+    public String basCAPEXExpendplan(HttpServletRequest request) {
 		
 		request = setLeftMenu(request,"/capex/bascapexexpendplan");
 		return CMCCConstant.BasCAPEXExpendplan;	
@@ -132,7 +132,7 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapextransferplan")
-    public String BasCAPEXTransferplan(HttpServletRequest request) {
+    public String basCAPEXTransferplan(HttpServletRequest request) {
 		
 		request = setLeftMenu(request,"/capex/bascapextransferplan");
 		return CMCCConstant.BasCAPEXTransferplan;	
@@ -149,7 +149,7 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapextotalinvestplan")
-    public String BasCAPEXTotalInvestplan(HttpServletRequest request) {
+    public String basCAPEXTotalInvestplan(HttpServletRequest request) {
 		
 		request = setLeftMenu(request,"/capex/bascapextotalinvestplan");
 		return CMCCConstant.BasCAPEXTotalInvestplan;	
