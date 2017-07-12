@@ -17,8 +17,10 @@ import com.zq.commons.result.HighChartData;
 import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
-import com.zq.entity.basic.BasCAPEXProject;
-import com.zq.service.basic.IBasCAPEXProjectService;
+import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
+import com.zq.entity.basic.capex.BasCAPEXProject;
+import com.zq.entity.system.User;
+import com.zq.service.basic.capex.IBasCAPEXProjectService;
 
 
 /** 
@@ -49,8 +51,7 @@ public class ProjectViewController extends BaseController{
 	@RequestMapping(value = "projectsummary", method = RequestMethod.POST)
     public String investmentSchedule(HttpServletRequest request) {
 		
-/*		User user=webMgr.getCurrentUser();
-		CMCCManager cm=ComponentFactory.getCMCCManager();*/
+		
 		int index=TypeUtils.getIntFromString(request.getParameter("index"));
 		int year=TypeUtils.getIntFromString(request.getParameter("year"));
 		Date dataUpdateDate = null;
@@ -59,18 +60,18 @@ public class ProjectViewController extends BaseController{
 			Properties ps=new Properties();
 			pageInfo.setConditions(ps);
 			ps.put("year", year);
-//			cm.getCmProjectPageInfo(user, pageInfo);
+			cm.getCmProjectPageInfo(user, pageInfo);
 			double allValue=0d;
 			double yearValue=0d;
 			List<BasCAPEXProject> projectList=pageInfo.getItems();
-			for(BasCAPEXProject c:projectList){
+			for(BasCAPEXProject capexproj:projectList){
 				if(dataUpdateDate == null){
-					dataUpdateDate = c.getLastUpdateTime();
+					dataUpdateDate = capexproj.getModify_time();
 				}
-				if(dataUpdateDate != null && c.getLastUpdateTime() != null && dataUpdateDate.before(c.getLastUpdateTime())){
-					dataUpdateDate = c.getLastUpdateTime();
+				if(dataUpdateDate != null && capexproj.getModify_time() != null && dataUpdateDate.before(capexproj.getModify_time())){
+					dataUpdateDate = capexproj.getModify_time();
 				}
-				CMCCTouziPlan plan = c.getYearTouziPlan(year);
+				BasCAPEXInvestPlan plan = capexproj.getYearTouziPlan(year);
 				String shuxing="";
 				if(plan != null){
 					shuxing = TypeUtils.resoveFieldAsString(user, plan, "enum04", request);
@@ -98,10 +99,10 @@ public class ProjectViewController extends BaseController{
 			double yuZhuanValue=0d;//
 			for(CMCCZiJinPool p:ziJinList){
 				if(dataUpdateDate == null){
-					dataUpdateDate = p.getLastUpdateTime();
+					dataUpdateDate = p.Modify_time();
 				}
-				if(dataUpdateDate != null && p.getLastUpdateTime() != null && dataUpdateDate.before(p.getLastUpdateTime())){
-					dataUpdateDate = p.getLastUpdateTime();
+				if(dataUpdateDate != null && p.Modify_time() != null && dataUpdateDate.before(p.Modify_time())){
+					dataUpdateDate = p.Modify_time();
 				}
 				allValue+=TypeUtils.getNotNullDoubleValue(user, p, "num02");
 			}
@@ -110,12 +111,12 @@ public class ProjectViewController extends BaseController{
 			TypeUtils.prepareForFormList(user, projectList, request);
 			for(BasCAPEXProject p:projectList){
 				if(dataUpdateDate == null){
-					dataUpdateDate = p.getLastUpdateTime();
+					dataUpdateDate = p.getModify_time();
 				}
-				if(dataUpdateDate != null && p.getLastUpdateTime() != null && dataUpdateDate.before(p.getLastUpdateTime())){
-					dataUpdateDate = p.getLastUpdateTime();
+				if(dataUpdateDate != null && p.getModify_time() != null && dataUpdateDate.before(p.getModify_time())){
+					dataUpdateDate = p.getModify_time();
 				}
-				CMCCTouziPlan plan =p.getYearTouziPlan(year);
+				BasCAPEXInvestPlan plan =p.getYearTouziPlan(year);
 				if(plan==null){
 					continue;
 				}
@@ -160,14 +161,14 @@ public class ProjectViewController extends BaseController{
 			
 			for(BasCAPEXProject p:projectList){
 				if(dataUpdateDate == null){
-					dataUpdateDate = p.getLastUpdateTime();
+					dataUpdateDate = p.Modify_time();
 				}
-				if(dataUpdateDate != null && p.getLastUpdateTime() != null && dataUpdateDate.before(p.getLastUpdateTime())){
-					dataUpdateDate = p.getLastUpdateTime();
+				if(dataUpdateDate != null && p.Modify_time() != null && dataUpdateDate.before(p.Modify_time())){
+					dataUpdateDate = p.Modify_time();
 				}
 //				System.out.println(p.getYear()+" year===="+year+" pID="+p.getID()+" code="+p.getCode());
 //				TouziPlanAndCapex touziAndCapex = touziAndCapexMap.get(p.getId());
-				CMCCTouziPlan plan = p.getYearTouziPlan(year);
+				BasCAPEXInvestPlan plan = p.getYearTouziPlan(year);
 				
 				String shuxing="";
 				if(plan != null){
@@ -221,10 +222,10 @@ public class ProjectViewController extends BaseController{
 			for(CMCCKaiZhiPlan c:list1){
 //				kaizhiPlan+=c.getPlanValues(user);
 				if(dataUpdateDate == null){
-					dataUpdateDate = c.getLastUpdateTime();
+					dataUpdateDate = c.Modify_time();
 				}
-				if(dataUpdateDate != null && c.getLastUpdateTime() != null && dataUpdateDate.before(c.getLastUpdateTime())){
-					dataUpdateDate = c.getLastUpdateTime();
+				if(dataUpdateDate != null && c.Modify_time() != null && dataUpdateDate.before(c.Modify_time())){
+					dataUpdateDate = c.Modify_time();
 				}
 				kaizhiActual+=c.getActualValues(user);
 			}
@@ -234,10 +235,10 @@ public class ProjectViewController extends BaseController{
 			for(CMCCZhuanZiPlan c:list2){
 //				zhuanZiPlan+=c.getPlanValues(user);
 				if(dataUpdateDate == null){
-					dataUpdateDate = c.getLastUpdateTime();
+					dataUpdateDate = c.Modify_time();
 				}
-				if(dataUpdateDate != null && c.getLastUpdateTime() != null && dataUpdateDate.before(c.getLastUpdateTime())){
-					dataUpdateDate = c.getLastUpdateTime();
+				if(dataUpdateDate != null && c.Modify_time() != null && dataUpdateDate.before(c.Modify_time())){
+					dataUpdateDate = c.Modify_time();
 				}
 				zhuanZiActual+=c.getActualValues(user);
 			}
@@ -248,10 +249,10 @@ public class ProjectViewController extends BaseController{
 			if(totalTouzi != null){
 				for(CMCCTouziZongE zonge : totalTouzi){
 					if(dataUpdateDate == null){
-						dataUpdateDate = zonge.getLastUpdateTime();
+						dataUpdateDate = zonge.Modify_time();
 					}
-					if(dataUpdateDate != null && zonge.getLastUpdateTime() != null && dataUpdateDate.before(zonge.getLastUpdateTime())){
-						dataUpdateDate = zonge.getLastUpdateTime();
+					if(dataUpdateDate != null && zonge.Modify_time() != null && dataUpdateDate.before(zonge.Modify_time())){
+						dataUpdateDate = zonge.Modify_time();
 					}
 					kaizhiTotal += TypeUtils.getNotNullDoubleValue(user, zonge, "num01");
 					zhuanZiTotal += TypeUtils.getNotNullDoubleValue(user, zonge, "num02");
