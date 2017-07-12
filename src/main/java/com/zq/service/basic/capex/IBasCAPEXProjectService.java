@@ -1,5 +1,8 @@
 package com.zq.service.basic.capex;
 
+import java.util.List;
+
+import com.zq.entity.basic.capex.BasCAPEXProject;
 
 /**
  *
@@ -7,6 +10,10 @@ package com.zq.service.basic.capex;
  *
  */
 public interface IBasCAPEXProjectService{
+
+	List<BasCAPEXProject> getALLCAPEXProject();
+
+	BasCAPEXProject getCAPEXProject();
 
 
 }
