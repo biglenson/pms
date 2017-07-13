@@ -28,7 +28,7 @@ public class BasCAPEXExpendplanImpl implements IBasCAPEXExpendplanService {
 
 	@Override
 	public double getActualByYearAndCAPEXProjCode(int year, String proj_code) {
-		BasCAPEXExpendplan capexPlan = iBasCAPEXExpendplanRepository.findByYearAndProjCode();
+		BasCAPEXExpendplan capexPlan = iBasCAPEXExpendplanRepository.findByYearAndProjCode(year,proj_code);
 		return Double.parseDouble(capexPlan.getJanActual()) + Double.parseDouble(capexPlan.getFebActual()) + Double.parseDouble(capexPlan.getMarActual())
 				+ Double.parseDouble(capexPlan.getAprActual()) + Double.parseDouble(capexPlan.getMayActual()) + Double.parseDouble(capexPlan.getJunActual())
 				+ Double.parseDouble(capexPlan.getJulActual()) + Double.parseDouble(capexPlan.getAugActual()) + Double.parseDouble(capexPlan.getSepActual())

@@ -9,7 +9,7 @@ public interface IBasCAPEXExpendplanRepository extends JpaRepository<BasCAPEXExp
 
 	List<BasCAPEXExpendplan> findByYear(int year);
 
-	BasCAPEXExpendplan findByYearAndProjCode();
+	BasCAPEXExpendplan findByYearAndProjCode(int year, String projCode);
 	
 
 }
