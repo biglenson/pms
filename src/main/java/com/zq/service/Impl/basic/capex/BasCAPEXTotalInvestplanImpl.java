@@ -1,9 +1,12 @@
 package com.zq.service.Impl.basic.capex;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zq.dao.basic.capex.IBasCAPEXTotalInvestplanRepository;
+import com.zq.entity.basic.capex.BasCAPEXTotalInvestplan;
 import com.zq.service.basic.capex.IBasCAPEXTotalInvestplanService;
 
 /**
@@ -16,6 +19,12 @@ public class BasCAPEXTotalInvestplanImpl implements IBasCAPEXTotalInvestplanServ
 
     @Autowired
     private IBasCAPEXTotalInvestplanRepository iBasCAPEXTotalInvestplanRepository;
+
+	@Override
+	public List<BasCAPEXTotalInvestplan> getAllCAPEXTotalInvestplanByYear(int year) {
+		
+		return iBasCAPEXTotalInvestplanRepository.findByYear(year);
+	}
     
    
 

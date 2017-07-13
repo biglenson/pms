@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 
 public interface IBasCAPEXInvestPlanRepository extends JpaRepository<BasCAPEXInvestPlan, Long> {
+
+	BasCAPEXInvestPlan findByYearAndBasCAPEXProject(int year, String proj_code);
 	
 
 }

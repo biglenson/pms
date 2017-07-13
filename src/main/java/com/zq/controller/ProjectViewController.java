@@ -1,5 +1,6 @@
 package com.zq.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,10 +18,19 @@ import com.zq.commons.result.HighChartData;
 import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
+import com.zq.entity.basic.capex.BasCAPEXAmountPool;
+import com.zq.entity.basic.capex.BasCAPEXExpendplan;
 import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
+import com.zq.entity.basic.capex.BasCAPEXTotalInvestplan;
+import com.zq.entity.basic.capex.BasCAPEXTransferplan;
 import com.zq.entity.system.User;
+import com.zq.service.basic.capex.IBasCAPEXAmountPoolService;
+import com.zq.service.basic.capex.IBasCAPEXExpendplanService;
+import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
 import com.zq.service.basic.capex.IBasCAPEXProjectService;
+import com.zq.service.basic.capex.IBasCAPEXTotalInvestplanService;
+import com.zq.service.basic.capex.IBasCAPEXTransferplanService;
 
 
 /** 
@@ -37,6 +47,21 @@ public class ProjectViewController extends BaseController{
 	@Autowired
 	private IBasCAPEXProjectService iBasCAPEXProjectService;
 	
+	@Autowired
+	private IBasCAPEXInvestPlanService iBasCAPEXInvestPlanService;
+	
+	@Autowired
+	private IBasCAPEXAmountPoolService iBasCAPEXAmountPoolService;
+	
+	@Autowired
+	private IBasCAPEXTransferplanService iBasCAPEXTransferplanService;
+	
+	@Autowired
+	private IBasCAPEXTotalInvestplanService iBasCAPEXTotalInvestplanService;
+	
+	@Autowired
+	private IBasCAPEXExpendplanService iBasCAPEXExpendplanService;
+	
 	private static Logger logger = Logger.getLogger(ProjectViewController.class);  
 	/**
 	* @Title: investmentSchedule
@@ -49,21 +74,14 @@ public class ProjectViewController extends BaseController{
 	* @throws
 	*/
 	@RequestMapping(value = "projectsummary", method = RequestMethod.POST)
-    public String investmentSchedule(HttpServletRequest request) {
-		
-		
+    public String projectSummary(HttpServletRequest request) {		
 		int index=TypeUtils.getIntFromString(request.getParameter("index"));
 		int year=TypeUtils.getIntFromString(request.getParameter("year"));
 		Date dataUpdateDate = null;
 		if(index==0){
-			PageInfo pageInfo=new PageInfo();
-			Properties ps=new Properties();
-			pageInfo.setConditions(ps);
-			ps.put("year", year);
-			cm.getCmProjectPageInfo(user, pageInfo);
 			double allValue=0d;
 			double yearValue=0d;
-			List<BasCAPEXProject> projectList=pageInfo.getItems();
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getAllCAPEXProjectByYear(year);
 			for(BasCAPEXProject capexproj:projectList){
 				if(dataUpdateDate == null){
 					dataUpdateDate = capexproj.getModify_time();
@@ -71,123 +89,96 @@ public class ProjectViewController extends BaseController{
 				if(dataUpdateDate != null && capexproj.getModify_time() != null && dataUpdateDate.before(capexproj.getModify_time())){
 					dataUpdateDate = capexproj.getModify_time();
 				}
-				BasCAPEXInvestPlan plan = capexproj.getYearTouziPlan(year);
-				String shuxing="";
+				BasCAPEXInvestPlan plan = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlanByYearAndBasCAPEXProject(year,capexproj.getProj_code());
+				String attribute="";
 				if(plan != null){
-					shuxing = TypeUtils.resoveFieldAsString(user, plan, "enum04", request);
+					attribute = "新建";  //后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
 				}
-				if("新建".equals(shuxing)){
-					allValue+=TypeUtils.getNotNullDoubleValue(user, c, "num09");
-					yearValue+=TypeUtils.getNotNullDoubleValue(user, c, "num01");
+				if("新建".equals(attribute)){
+					allValue+=TypeUtils.string2Double(capexproj.getProj_total_invest());
+					yearValue+=TypeUtils.string2Double(capexproj.getProj_setup__amount());
 				}
 			}
-			//System.out.println("allValue==="+TypeUtils.formatWanMoney(allValue));
-			//System.out.println("yearValue==="+TypeUtils.formatWanMoney(yearValue));
-			request.setAttribute(CMCCConstant.LASUPDATE, CMCCAction.getDataModifiedTimeStr(dataUpdateDate));
+			request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
 			request.setAttribute("allValue", allValue);
 			request.setAttribute("yearValue", yearValue);
-
-		}else if(index==1){
-			PageInfo pageInfo=new PageInfo();
-			Properties ps=new Properties();
-			pageInfo.setConditions(ps);
-			ps.put("year", year);
-//			cm.getZiJinPoolPageInfo(user, pageInfo);
-			List<CMCCZiJinPool> ziJinList=pageInfo.getItems();
+			
+		}else if(index==1){			
+			List<BasCAPEXAmountPool> capexAmountPoolList=iBasCAPEXAmountPoolService.getAllCAPEXAmountPoolByYear(year);
 			double allValue=0;  //自主资金池总金额
 			double projectValue=0d;//立项金额：当年新建项目中，投资计划项目集名称为“自主安排”的项目的“立项批复金额”进行累加
 			double yuZhuanValue=0d;//
-			for(CMCCZiJinPool p:ziJinList){
+			for(BasCAPEXAmountPool capexpool:capexAmountPoolList){
 				if(dataUpdateDate == null){
-					dataUpdateDate = p.Modify_time();
+					dataUpdateDate = capexpool.getModify_time();
 				}
-				if(dataUpdateDate != null && p.Modify_time() != null && dataUpdateDate.before(p.Modify_time())){
-					dataUpdateDate = p.Modify_time();
+				if(dataUpdateDate != null && capexpool.getModify_time() != null && dataUpdateDate.before(capexpool.getModify_time())){
+					dataUpdateDate = capexpool.getModify_time();
 				}
-				allValue+=TypeUtils.getNotNullDoubleValue(user, p, "num02");
+				allValue+=TypeUtils.string2Double(capexpool.getInitial_amount());
 			}
-			ps.put("isZiJinPool", true);
-			List<BasCAPEXProject> projectList=cm.getCmProjectPageInfo(user, pageInfo).getItems();
-			TypeUtils.prepareForFormList(user, projectList, request);
-			for(BasCAPEXProject p:projectList){
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getAllCAPEXProjectByYear(year);
+			for(BasCAPEXProject capexproj:projectList){
 				if(dataUpdateDate == null){
-					dataUpdateDate = p.getModify_time();
+					dataUpdateDate = capexproj.getModify_time();
 				}
-				if(dataUpdateDate != null && p.getModify_time() != null && dataUpdateDate.before(p.getModify_time())){
-					dataUpdateDate = p.getModify_time();
+				if(dataUpdateDate != null && capexproj.getModify_time() != null && dataUpdateDate.before(capexproj.getModify_time())){
+					dataUpdateDate = capexproj.getModify_time();
 				}
-				BasCAPEXInvestPlan plan =p.getYearTouziPlan(year);
+				BasCAPEXInvestPlan plan = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlanByYearAndBasCAPEXProject(year,capexproj.getProj_code());
 				if(plan==null){
 					continue;
 				}
-				String shuxing="";
+				String attribute="";
 				if(plan != null){
-					shuxing = TypeUtils.resoveFieldAsString(user, plan, "enum04", request);
+					attribute = "新建";  //后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
 				}
-				if("新建".equals(shuxing)){
-					projectValue+=TypeUtils.getNotNullDoubleValue(user, p, "num01");
-					yuZhuanValue+=TypeUtils.getNotNullDoubleValue(user, p, "num08")- TypeUtils.getNotNullDoubleValue(user, p, "num01");
+				if("新建".equals(attribute)){
+					projectValue+=TypeUtils.string2Double(capexproj.getProj_setup__amount());
+					yuZhuanValue+=TypeUtils.string2Double(capexproj.getPreoccupy_amount())- TypeUtils.string2Double(capexproj.getProj_setup__amount());
 				}
 			}
 			double leftValue=allValue-projectValue-yuZhuanValue;
-			request.setAttribute(CMCCConstant.LASUPDATE, CMCCAction.getDataModifiedTimeStr(dataUpdateDate));
+			request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
 			request.setAttribute("leftValue", leftValue);
 			request.setAttribute("projectValue", projectValue);
 			request.setAttribute("yuZhuanValue", yuZhuanValue);
 			request.setAttribute("allValue", allValue);
-		}else if(index==2){
 			
-			PageInfo pageInfo=new PageInfo();
-			Properties ps=new Properties();
-			pageInfo.setConditions(ps);
-			ps.put("year", year);
-			cm.getCmProjectPageInfo(user, pageInfo);
-			List<BasCAPEXProject> projectList=pageInfo.getItems();
-//			TypeUtils.prepareForFormList(user, projectList,"str32", request);
+		}else if(index==2){			
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getAllCAPEXProjectByYear(year);
 			int newValue=0;
 			int xuValue=0;
 			int allValue=0;
 			Map<String,HighChartData> dataMap=new HashMap();
 			HighChartData other=null;
-			List<HighChartData> dataList=new ArrayList();
-//			Map<Integer,TouziPlanAndCapex> touziAndCapexMap = new HashMap();
-//			PageInfo touziAndCapexPage = new PageInfo();
-//			List<TouziPlanAndCapex> touziAndCapexs = cm.getTouziPlanAndCapexPageInfo(user, touziAndCapexPage).getItems();
-//			for(TouziPlanAndCapex touziAndCapex : touziAndCapexs){
-//				touziAndCapexMap.put(TypeUtils.getIntFromString(touziAndCapex.getNum02()), touziAndCapex);
-//			}
-//			TypeUtils.prepareForFormList(user, touziAndCapexs, request);
-		
-			
-			for(BasCAPEXProject p:projectList){
+			List<HighChartData> dataList=new ArrayList();	
+			for(BasCAPEXProject capexproj:projectList){
 				if(dataUpdateDate == null){
-					dataUpdateDate = p.Modify_time();
+					dataUpdateDate = capexproj.getModify_time();
 				}
-				if(dataUpdateDate != null && p.Modify_time() != null && dataUpdateDate.before(p.Modify_time())){
-					dataUpdateDate = p.Modify_time();
+				if(dataUpdateDate != null && capexproj.getModify_time() != null && dataUpdateDate.before(capexproj.getModify_time())){
+					dataUpdateDate = capexproj.getModify_time();
 				}
-//				System.out.println(p.getYear()+" year===="+year+" pID="+p.getID()+" code="+p.getCode());
-//				TouziPlanAndCapex touziAndCapex = touziAndCapexMap.get(p.getId());
-				BasCAPEXInvestPlan plan = p.getYearTouziPlan(year);
+
+				BasCAPEXInvestPlan plan = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlanByYearAndBasCAPEXProject(year,capexproj.getProj_code());
 				
-				String shuxing="";
+				String attribute="";
 				if(plan != null){
-					shuxing = TypeUtils.resoveFieldAsString(user, plan, "enum04", request);
+					attribute = "新建";  //后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
 				}
-				if("新建".equals(shuxing)){
+				if("新建".equals(attribute)){
 					newValue++;
-				}else if("续建".equals(shuxing)){
+				}else if("续建".equals(attribute)){
 					xuValue++;
 				}
 				allValue++;
 				
-				String zhuanYe=plan!=null?TypeUtils.resoveFieldAsString(user, plan, "enum01", request):"";
+				String zhuanYe=plan!=null?"其他":"";
 				if(zhuanYe.equals("")){
 					zhuanYe="其他";
 				}
-				HighChartData data=dataMap.get(zhuanYe);
-				
-				
+				HighChartData data=dataMap.get(zhuanYe);		
 				if(data==null){
 					data=new HighChartData();
 					data.setName(zhuanYe);
@@ -204,68 +195,54 @@ public class ProjectViewController extends BaseController{
 				dataList.remove(other);
 				dataList.add(dataList.size(),other);
 			}
-			//request.setAttribute(CMCCConstant.LASUPDATE, CMCCAction.getDataModifiedTimeStr(dataUpdateDate));
 			request.setAttribute("allValue", allValue);
 			request.setAttribute("xuValue", xuValue);
 			request.setAttribute("newValue", newValue);
 			request.setAttribute("dataList", dataList);
 
 		}else if(index==3){
-			PageInfo pageInfo=new PageInfo();
-			Properties ps=new Properties();
-			pageInfo.setConditions(ps);
-			ps.put("year", year);
-			List<CMCCKaiZhiPlan> list1=cm.getKaiZhiPlanPageInfo(user, pageInfo).getItems();
-			List<CMCCZhuanZiPlan> list2=cm.getZhuanZiPlanPageInfo(user, pageInfo).getItems();
+			List<BasCAPEXExpendplan> capexExpendplanList=iBasCAPEXExpendplanService.getAllCAPEXExpendplanByYear(year);
+			List<BasCAPEXTransferplan> capexTransferplanList=iBasCAPEXTransferplanService.getAllBasCAPEXTransferplanByYear(year);
 			double kaizhiTotal=0;
 			double kaizhiActual=0;
-			for(CMCCKaiZhiPlan c:list1){
-//				kaizhiPlan+=c.getPlanValues(user);
+			for(BasCAPEXExpendplan capexExpPlan:capexExpendplanList){
 				if(dataUpdateDate == null){
-					dataUpdateDate = c.Modify_time();
+					dataUpdateDate = capexExpPlan.getModify_time();
 				}
-				if(dataUpdateDate != null && c.Modify_time() != null && dataUpdateDate.before(c.Modify_time())){
-					dataUpdateDate = c.Modify_time();
+				if(dataUpdateDate != null && capexExpPlan.getModify_time() != null && dataUpdateDate.before(capexExpPlan.getModify_time())){
+					dataUpdateDate = capexExpPlan.getModify_time();
 				}
-				kaizhiActual+=c.getActualValues(user);
-			}
-			
+				kaizhiActual+=iBasCAPEXExpendplanService.getActualByYearAndCAPEXProjCode(year,capexExpPlan.getProj_code());
+			}		
 			double zhuanZiTotal=0;
 			double zhuanZiActual=0;
-			for(CMCCZhuanZiPlan c:list2){
-//				zhuanZiPlan+=c.getPlanValues(user);
+			for(BasCAPEXTransferplan capexTransferplan:capexTransferplanList){
+
 				if(dataUpdateDate == null){
-					dataUpdateDate = c.Modify_time();
+					dataUpdateDate = capexTransferplan.getModify_time();
 				}
-				if(dataUpdateDate != null && c.Modify_time() != null && dataUpdateDate.before(c.Modify_time())){
-					dataUpdateDate = c.Modify_time();
+				if(dataUpdateDate != null && capexTransferplan.getModify_time() != null && dataUpdateDate.before(capexTransferplan.getModify_time())){
+					dataUpdateDate = capexTransferplan.getModify_time();
 				}
-				zhuanZiActual+=c.getActualValues(user);
-			}
-			
-			PageInfo zongePage = new PageInfo();
-			zongePage.getConditions().put("year", year);
-			List<CMCCTouziZongE> totalTouzi = cm.getCMCCTouziZongEPageInfo(user, zongePage).getItems();
+				zhuanZiActual+=iBasCAPEXTransferplanService.getActualByYearAndCAPEXProjCode(year,capexTransferplan.getProj_code());
+			}		
+			List<BasCAPEXTotalInvestplan> totalTouzi = iBasCAPEXTotalInvestplanService.getAllCAPEXTotalInvestplanByYear(year);
 			if(totalTouzi != null){
-				for(CMCCTouziZongE zonge : totalTouzi){
+				for(BasCAPEXTotalInvestplan zonge : totalTouzi){
 					if(dataUpdateDate == null){
-						dataUpdateDate = zonge.Modify_time();
+						dataUpdateDate = zonge.getModify_time();
 					}
-					if(dataUpdateDate != null && zonge.Modify_time() != null && dataUpdateDate.before(zonge.Modify_time())){
-						dataUpdateDate = zonge.Modify_time();
+					if(dataUpdateDate != null && zonge.getModify_time() != null && dataUpdateDate.before(zonge.getModify_time())){
+						dataUpdateDate = zonge.getModify_time();
 					}
-					kaizhiTotal += TypeUtils.getNotNullDoubleValue(user, zonge, "num01");
-					zhuanZiTotal += TypeUtils.getNotNullDoubleValue(user, zonge, "num02");
+					kaizhiTotal += TypeUtils.string2Double(zonge.getAnnual_capex_plan());
+					zhuanZiTotal += TypeUtils.string2Double(zonge.getAnnual_transfer_plan());
 				}
 			}
-			//request.setAttribute(CMCCConstant.LASUPDATE, CMCCAction.getDataModifiedTimeStr(dataUpdateDate));
 			request.setAttribute("kaizhiTotal", kaizhiTotal);
 			request.setAttribute("kaizhiActual", kaizhiActual);
-
 			request.setAttribute("zhuanZiTotal", zhuanZiTotal);
-			request.setAttribute("zhuanZiActual", zhuanZiActual);
-
-			
+			request.setAttribute("zhuanZiActual", zhuanZiActual);			
 		}
 		request.setAttribute("index", index);
 		return CMCCConstant.ProjectSummary;

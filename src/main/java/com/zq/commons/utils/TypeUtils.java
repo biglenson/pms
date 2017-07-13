@@ -388,7 +388,9 @@ public class TypeUtils {
 	    df.setMaximumFractionDigits(scale);
 	    return df.format(d);
 	  }
-
+	  
+	 
+	  
 	  public static String formatNumber(double d)
 	  {
 	    DecimalFormat df = new DecimalFormat(FORMAT_PATTERN_DEFAULT);
@@ -713,4 +715,38 @@ public class TypeUtils {
 			Double d=percent*100;
 			return TypeUtils.double2String(d)+"%";
 		}
+		
+		public static String getRelativeTime( Date date)
+		  {
+		    if (date == null) {
+		      return "";
+		    }
+		    long nowTime = new Date().getTime();
+		    long srcTime = date.getTime();
+		    long offValue = nowTime - srcTime;
+		    long mode = 0L;
+
+		    offValue = offValue / 1000L / 60L;
+		    if (offValue < 1L) {
+		      return "刚刚";
+		    }
+
+		    mode = offValue % 60L;
+		    offValue /= 60L;
+		    if (offValue < 1L) {
+		      return mode + "分钟前";
+		    }
+		    mode = offValue % 24L;
+		    offValue /= 24L;
+		    if (offValue < 1L) {
+		      return mode + "小时前";
+		    }
+		    mode = offValue % 7L;
+		    offValue /= 7L;
+		    if (offValue < 1L) {
+		      return mode + "天前";
+		    }
+		    return date2String(date, DEFAULT_DATE_FORMAT);
+		  }
+
 }

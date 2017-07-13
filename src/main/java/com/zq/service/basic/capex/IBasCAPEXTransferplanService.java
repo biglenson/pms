@@ -1,5 +1,8 @@
 package com.zq.service.basic.capex;
 
+import java.util.List;
+
+import com.zq.entity.basic.capex.BasCAPEXTransferplan;
 
 /**
  *
@@ -7,6 +10,10 @@ package com.zq.service.basic.capex;
  *
  */
 public interface IBasCAPEXTransferplanService{
+
+	List<BasCAPEXTransferplan> getAllBasCAPEXTransferplanByYear(int year);
+
+	double getActualByYearAndCAPEXProjCode(int year, String proj_code);
 
 
 }

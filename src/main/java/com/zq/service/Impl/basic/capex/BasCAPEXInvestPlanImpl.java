@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zq.dao.basic.capex.IBasCAPEXInvestPlanRepository;
+import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
 
 /**
@@ -16,6 +17,12 @@ public class BasCAPEXInvestPlanImpl implements IBasCAPEXInvestPlanService {
 
     @Autowired
     private IBasCAPEXInvestPlanRepository iBasCAPEXInvestPlanRepository;
+
+	@Override
+	public BasCAPEXInvestPlan getBasCAPEXInvestPlanByYearAndBasCAPEXProject(int year, String proj_code) {
+		
+		return iBasCAPEXInvestPlanRepository.findByYearAndBasCAPEXProject(year,proj_code);
+	}
     
    
 

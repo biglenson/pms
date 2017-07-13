@@ -1,5 +1,8 @@
 package com.zq.service.basic.capex;
 
+import java.util.List;
+
+import com.zq.entity.basic.capex.BasCAPEXExpendplan;
 
 /**
  *
@@ -7,6 +10,11 @@ package com.zq.service.basic.capex;
  *
  */
 public interface IBasCAPEXExpendplanService{
+
+	List<BasCAPEXExpendplan> getAllCAPEXExpendplanByYear(int year);
+
+	double getActualByYearAndCAPEXProjCode(int year, String proj_code);
+
 
 
 }

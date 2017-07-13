@@ -1,5 +1,8 @@
 package com.zq.service.basic.capex;
 
+import java.util.List;
+
+import com.zq.entity.basic.capex.BasCAPEXTotalInvestplan;
 
 /**
  *
@@ -7,6 +10,8 @@ package com.zq.service.basic.capex;
  *
  */
 public interface IBasCAPEXTotalInvestplanService{
+
+	List<BasCAPEXTotalInvestplan> getAllCAPEXTotalInvestplanByYear(int year);
 
 
 }

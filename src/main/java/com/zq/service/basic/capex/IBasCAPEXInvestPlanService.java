@@ -1,5 +1,6 @@
 package com.zq.service.basic.capex;
 
+import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 
 /**
  *
@@ -7,6 +8,8 @@ package com.zq.service.basic.capex;
  *
  */
 public interface IBasCAPEXInvestPlanService{
+
+	BasCAPEXInvestPlan getBasCAPEXInvestPlanByYearAndBasCAPEXProject(int year, String proj_code);
 
 
 }

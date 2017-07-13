@@ -110,7 +110,9 @@ public class CMCCConstant {
 	public static final String Department = "system/srcmt/Department"; 
 	public static final String User = "system/srcmt/User";   
 	public static final String Role = "system/srcmt/Role";   
-	public static final String Resource = "system/srcmt/Resource";	  
+	public static final String Resource = "system/srcmt/Resource";
+
+	public static final String LASUPDATE = "LASUPDATESTRING";	  
 	
 	
 }
