@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zq.commons.utils.CMCCConstant;
-import com.zq.entity.basic.BasCAPEXProject;
-import com.zq.service.basic.IBasCAPEXProjectService;
+import com.zq.entity.basic.capex.BasCAPEXProject;
+import com.zq.service.basic.capex.IBasCAPEXProjectService;
 
 /** 
 * @ClassName: ComprehensiveViewController 

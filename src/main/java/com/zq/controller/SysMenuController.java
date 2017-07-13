@@ -161,9 +161,9 @@ public class SysMenuController extends BaseController{
 	* @return String    返回类型 
 	* @throws 
 	*/
-	@RequestMapping(value = "sysconfig")
+	@RequestMapping(value = "systemconfig")
 	public String sysConfig() {
-		return "redirect:/sysconfig/syscode";
+		return "redirect:/systemconfig/syscode";
 	}
 	
 	/** 
