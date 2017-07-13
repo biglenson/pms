@@ -10,6 +10,6 @@ public interface IBasCAPEXTransferplanRepository extends JpaRepository<BasCAPEXT
 
 	List<BasCAPEXTransferplan> findByYear(int year);
 
-	BasCAPEXTransferplan findByYearAndProj_code();
+	BasCAPEXTransferplan findByYearAndProjCode();
 
 }

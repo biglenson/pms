@@ -29,10 +29,10 @@ public class BasCAPEXExpendplanImpl implements IBasCAPEXExpendplanService {
 	@Override
 	public double getActualByYearAndCAPEXProjCode(int year, String proj_code) {
 		BasCAPEXExpendplan capexPlan = iBasCAPEXExpendplanRepository.findByYearAndProjCode();
-		return Double.parseDouble(capexPlan.getJan_actual()) + Double.parseDouble(capexPlan.getFeb_actual()) + Double.parseDouble(capexPlan.getMar_actual())
-				+ Double.parseDouble(capexPlan.getApr_actual()) + Double.parseDouble(capexPlan.getMay_actual()) + Double.parseDouble(capexPlan.getJun_actual())
-				+ Double.parseDouble(capexPlan.getJul_actual()) + Double.parseDouble(capexPlan.getAug_actual()) + Double.parseDouble(capexPlan.getSep_actual())
-				+ Double.parseDouble(capexPlan.getOct_actual()) + Double.parseDouble(capexPlan.getNov_actual()) + Double.parseDouble(capexPlan.getDec_actual());
+		return Double.parseDouble(capexPlan.getJanActual()) + Double.parseDouble(capexPlan.getFebActual()) + Double.parseDouble(capexPlan.getMarActual())
+				+ Double.parseDouble(capexPlan.getAprActual()) + Double.parseDouble(capexPlan.getMayActual()) + Double.parseDouble(capexPlan.getJunActual())
+				+ Double.parseDouble(capexPlan.getJulActual()) + Double.parseDouble(capexPlan.getAugActual()) + Double.parseDouble(capexPlan.getSepActual())
+				+ Double.parseDouble(capexPlan.getOctActual()) + Double.parseDouble(capexPlan.getNovActual()) + Double.parseDouble(capexPlan.getDecActual());
 	}
 
 }
