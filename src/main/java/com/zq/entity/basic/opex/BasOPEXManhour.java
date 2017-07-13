@@ -38,34 +38,34 @@ public class BasOPEXManhour implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="create_by", nullable=true, length=50)	
-	private String create_by;
+	private String createBy;
 	
 	@Column(name="last_update_time", nullable=true)	
-	private java.sql.Timestamp last_update_time;
+	private java.sql.Timestamp lastUpdateTime;
 	
 	@Column(name="last_update_by", nullable=true, length=50)	
-	private String last_update_by;
+	private String lastUpdateBy;
 	
 	@Column(name="opex_proj_code", nullable=true, length=50)	
-	private String opex_proj_code;
+	private String opexProjCode;
 	
 	@Column(name="junior_man_day", nullable=true, length=50)	
-	private String junior_man_day;
+	private String juniorManDay;
 	
-	@Column(name="`middle _man_day`", nullable=true, length=50)	
-	private String middle__man_day;
+	@Column(name="middle_man_day", nullable=true, length=50)	
+	private String middleManDay;
 	
 	@Column(name="senior_man_day", nullable=true, length=50)	
-	private String senior_man_day;
+	private String seniorManDay;
 	
 	@Column(name="service_times", nullable=true, length=50)	
-	private String service_times;
+	private String serviceTimes;
 	
 	/**
 	 * ID
@@ -81,148 +81,148 @@ public class BasOPEXManhour implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
 	public Integer getCompany_id() {
-		return company_id;
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
 	 * 创建人
 	 */
-	public void setCreate_by(String value) {
-		this.create_by = value;
+	public void setCreateBy(String value) {
+		this.createBy = value;
 	}
 	
 	/**
 	 * 创建人
 	 */
-	public String getCreate_by() {
-		return create_by;
+	public String getCreateBy() {
+		return createBy;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public void setLast_update_time(java.sql.Timestamp value) {
-		this.last_update_time = value;
+	public void setLastUpdateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getLast_update_time() {
-		return last_update_time;
+	public java.sql.Timestamp getLastUpdateTime() {
+		return createTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_update_by(String value) {
-		this.last_update_by = value;
+	public void setLastUpdateBy(String value) {
+		this.lastUpdateBy = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_update_by() {
-		return last_update_by;
+	public String getLastUpdateBy() {
+		return lastUpdateBy;
 	}
 	
 	/**
 	 * OPEX项目编号 bas_opex_project中budget_sysproj_code
 	 */
-	public void setOpex_proj_code(String value) {
-		this.opex_proj_code = value;
+	public void setOpexProjCode(String value) {
+		this.opexProjCode = value;
 	}
 	
 	/**
 	 * OPEX项目编号 bas_opex_project中budget_sysproj_code
 	 */
-	public String getOpex_proj_code() {
-		return opex_proj_code;
+	public String getOpexProjCode() {
+		return opexProjCode;
 	}
 	
 	/**
 	 * 初级（人天） 
 	 */
-	public void setJunior_man_day(String value) {
-		this.junior_man_day = value;
+	public void setJuniorManDay(String value) {
+		this.juniorManDay = value;
 	}
 	
 	/**
 	 * 初级（人天） 
 	 */
-	public String getJunior_man_day() {
-		return junior_man_day;
+	public String getJuniorManDay() {
+		return juniorManDay;
 	}
 	
 	/**
 	 * 中级（人天） 
 	 */
-	public void setMiddle__man_day(String value) {
-		this.middle__man_day = value;
+	public void setMiddleManDay(String value) {
+		this.middleManDay = value;
 	}
 	
 	/**
 	 * 中级（人天） 
 	 */
-	public String getMiddle__man_day() {
-		return middle__man_day;
+	public String getMiddleManDay() {
+		return middleManDay;
 	}
 	
 	/**
 	 * 高级（人天） 
 	 */
-	public void setSenior_man_day(String value) {
-		this.senior_man_day = value;
+	public void setSeniorManDay(String value) {
+		this.seniorManDay = value;
 	}
 	
 	/**
 	 * 高级（人天） 
 	 */
-	public String getSenior_man_day() {
-		return senior_man_day;
+	public String getSeniorManDay() {
+		return seniorManDay;
 	}
 	
 	/**
 	 * 服务（次） 
 	 */
-	public void setService_times(String value) {
-		this.service_times = value;
+	public void setServiceTimes(String value) {
+		this.serviceTimes = value;
 	}
 	
 	/**
 	 * 服务（次） 
 	 */
-	public String getService_times() {
-		return service_times;
+	public String getServiceTimes() {
+		return serviceTimes;
 	}
 	
 	public String toString() {

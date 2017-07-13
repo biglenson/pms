@@ -38,79 +38,79 @@ public class BasFrameContract implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="dealer", nullable=true, length=50)	
 	private String dealer;
 	
 	@Column(name="expenditure_type", nullable=true, length=10)	
-	private Integer expenditure_type;
+	private Integer expenditureType;
 	
 	@Column(name="contract_name", nullable=true, length=255)	
-	private String contract_name;
+	private String contractName;
 	
 	@Column(name="contract_code", nullable=true, length=50)	
-	private String contract_code;
+	private String contractCode;
 	
 	@Column(name="start_time", nullable=true)	
-	private java.sql.Timestamp start_time;
+	private java.sql.Timestamp startTime;
 	
 	@Column(name="approval_time", nullable=true)	
-	private java.sql.Timestamp approval_time;
+	private java.sql.Timestamp approvalTime;
 	
 	@Column(name="paper_revise_time", nullable=true)	
-	private java.sql.Timestamp paper_revise_time;
+	private java.sql.Timestamp paperReviseTime;
 	
 	@Column(name="framework_contract_name", nullable=true, length=255)	
-	private String framework_contract_name;
+	private String frameworkContractName;
 	
 	@Column(name="purchasing_way", nullable=true, length=10)	
-	private Integer purchasing_way;
+	private Integer purchasingWay;
 	
 	@Column(name="sole_source_scene", nullable=true, length=50)	
-	private String sole_source_scene;
+	private String soleSourceScene;
 	
 	@Column(name="sss_notice_status", nullable=true, length=50)	
-	private String sss_notice_status;
+	private String sssNoticeStatus;
 	
 	@Column(name="frame_categories", nullable=true, length=10)	
-	private Integer frame_categories;
+	private Integer frameCategories;
 	
 	@Column(name="frame_contract_code", nullable=true, length=50)	
-	private String frame_contract_code;
+	private String frameContractCode;
 	
 	@Column(name="adversary", nullable=true, length=50)	
 	private String adversary;
 	
 	@Column(name="contract_in_tax", nullable=true, length=50)	
-	private String contract_in_tax;
+	private String contractInTax;
 	
 	@Column(name="contract_tax", nullable=true, length=50)	
-	private String contract_tax;
+	private String contractTax;
 	
 	@Column(name="contract_no_tax", nullable=true, length=50)	
-	private String contract_no_tax;
+	private String contractNoTax;
 	
 	@Column(name="typein_erp_status", nullable=true, length=10)	
-	private Integer typein_erp_status;
+	private Integer typeinErpStatus;
 	
 	@Column(name="erp_proj_code", nullable=true, length=50)	
-	private String erp_proj_code;
+	private String erpProjCode;
 	
 	@Column(name="proj_setup_name", nullable=true, length=50)	
-	private String proj_setup_name;
+	private String projSetupName;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
@@ -129,36 +129,36 @@ public class BasFrameContract implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -178,29 +178,29 @@ public class BasFrameContract implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
@@ -227,99 +227,99 @@ public class BasFrameContract implements Serializable {
 	/**
 	 * 开支类型 代码表：开支类型代码表
 	 */
-	public void setExpenditure_type(Integer value) {
-		this.expenditure_type = value;
+	public void setExpenditureType(Integer value) {
+		this.expenditureType = value;
 	}
 	
 	/**
 	 * 开支类型 代码表：开支类型代码表
 	 */
-	public Integer getExpenditure_type() {
-		return expenditure_type;
+	public Integer getExpenditureType() {
+		return expenditureType;
 	}
 	
 	/**
 	 * 订单/框架下合同名称 
 	 */
-	public void setContract_name(String value) {
-		this.contract_name = value;
+	public void setContractName(String value) {
+		this.contractName = value;
 	}
 	
 	/**
 	 * 订单/框架下合同名称 
 	 */
-	public String getContract_name() {
-		return contract_name;
+	public String getContractName() {
+		return contractName;
 	}
 	
 	/**
 	 * 订单/框架下合同编号 
 	 */
-	public void setContract_code(String value) {
-		this.contract_code = value;
+	public void setContractCode(String value) {
+		this.contractCode = value;
 	}
 	
 	/**
 	 * 订单/框架下合同编号 
 	 */
-	public String getContract_code() {
-		return contract_code;
+	public String getContractCode() {
+		return contractCode;
 	}
 	
 	/**
 	 * 启动时间 
 	 */
-	public void setStart_time(java.sql.Timestamp value) {
-		this.start_time = value;
+	public void setStartTime(java.sql.Timestamp value) {
+		this.startTime = value;
 	}
 	
 	/**
 	 * 启动时间 
 	 */
-	public java.sql.Timestamp getStart_time() {
-		return start_time;
+	public java.sql.Timestamp getStartTime() {
+		return startTime;
 	}
 	
 	/**
 	 * 领导审批时间 
 	 */
-	public void setApproval_time(java.sql.Timestamp value) {
-		this.approval_time = value;
+	public void setApprovalTime(java.sql.Timestamp value) {
+		this.approvalTime = value;
 	}
 	
 	/**
 	 * 领导审批时间 
 	 */
-	public java.sql.Timestamp getApproval_time() {
-		return approval_time;
+	public java.sql.Timestamp getApprovalTime() {
+		return approvalTime;
 	}
 	
 	/**
 	 * 完成纸质版签订时间 
 	 */
-	public void setPaper_revise_time(java.sql.Timestamp value) {
-		this.paper_revise_time = value;
+	public void setPaperReviseTime(java.sql.Timestamp value) {
+		this.paperReviseTime = value;
 	}
 	
 	/**
 	 * 完成纸质版签订时间 
 	 */
-	public java.sql.Timestamp getPaper_revise_time() {
-		return paper_revise_time;
+	public java.sql.Timestamp getPaperReviseTime() {
+		return paperReviseTime;
 	}
 	
 	/**
 	 * 框架合同名称 
 	 */
-	public void setFramework_contract_name(String value) {
-		this.framework_contract_name = value;
+	public void setFrameworkContractName(String value) {
+		this.frameworkContractName = value;
 	}
 	
 	/**
 	 * 框架合同名称 
 	 */
-	public String getFramework_contract_name() {
-		return framework_contract_name;
+	public String getFrameworkContractName() {
+		return frameworkContractName;
 	}
 	
 	/**
@@ -332,43 +332,43 @@ public class BasFrameContract implements Serializable {
 	/**
 	 * 框架采购方式 代码表：集采采购方式代码表
 	 */
-	public void setPurchasing_way(Integer value) {
-		this.purchasing_way = value;
+	public void setPurchasingWay(Integer value) {
+		this.purchasingWay = value;
 	}
 	
 	/**
 	 * 框架采购方式 代码表：集采采购方式代码表
 	 */
-	public Integer getPurchasing_way() {
-		return purchasing_way;
+	public Integer getPurchasingWay() {
+		return purchasingWay;
 	}
 	
 	/**
 	 * 单一来源场景 
 	 */
-	public void setSole_source_scene(String value) {
-		this.sole_source_scene = value;
+	public void setSoleSourceScene(String value) {
+		this.soleSourceScene = value;
 	}
 	
 	/**
 	 * 单一来源场景 
 	 */
-	public String getSole_source_scene() {
-		return sole_source_scene;
+	public String getSoleSourceScene() {
+		return soleSourceScene;
 	}
 	
 	/**
 	 * 单一来源是否发公告 
 	 */
-	public void setSss_notice_status(String value) {
-		this.sss_notice_status = value;
+	public void setSssNoticeStatus(String value) {
+		this.sssNoticeStatus = value;
 	}
 	
 	/**
 	 * 单一来源是否发公告 
 	 */
-	public String getSss_notice_status() {
-		return sss_notice_status;
+	public String getSssNoticeStatus() {
+		return sssNoticeStatus;
 	}
 	
 	/**
@@ -381,29 +381,29 @@ public class BasFrameContract implements Serializable {
 	/**
 	 * 框架品类 代码表：  采购品类代码表
 	 */
-	public void setFrame_categories(Integer value) {
-		this.frame_categories = value;
+	public void setFrameCategories(Integer value) {
+		this.frameCategories = value;
 	}
 	
 	/**
 	 * 框架品类 代码表：  采购品类代码表
 	 */
-	public Integer getFrame_categories() {
-		return frame_categories;
+	public Integer getFrameCategories() {
+		return frameCategories;
 	}
 	
 	/**
 	 * 框架合同编号 
 	 */
-	public void setFrame_contract_code(String value) {
-		this.frame_contract_code = value;
+	public void setFrameContractCode(String value) {
+		this.frameContractCode = value;
 	}
 	
 	/**
 	 * 框架合同编号 
 	 */
-	public String getFrame_contract_code() {
-		return frame_contract_code;
+	public String getFrameContractCode() {
+		return frameContractCode;
 	}
 	
 	/**
@@ -423,43 +423,43 @@ public class BasFrameContract implements Serializable {
 	/**
 	 * 订单/框架下合同含税金额 
 	 */
-	public void setContract_in_tax(String value) {
-		this.contract_in_tax = value;
+	public void setContractInTax(String value) {
+		this.contractInTax = value;
 	}
 	
 	/**
 	 * 订单/框架下合同含税金额 
 	 */
-	public String getContract_in_tax() {
-		return contract_in_tax;
+	public String getContractInTax() {
+		return contractInTax;
 	}
 	
 	/**
 	 * 订单/框架下合同税额 
 	 */
-	public void setContract_tax(String value) {
-		this.contract_tax = value;
+	public void setContractTax(String value) {
+		this.contractTax = value;
 	}
 	
 	/**
 	 * 订单/框架下合同税额 
 	 */
-	public String getContract_tax() {
-		return contract_tax;
+	public String getContractTax() {
+		return contractTax;
 	}
 	
 	/**
 	 * 订单/框架下合同不含税金额 
 	 */
-	public void setContract_no_tax(String value) {
-		this.contract_no_tax = value;
+	public void setContractNoTax(String value) {
+		this.contractNoTax = value;
 	}
 	
 	/**
 	 * 订单/框架下合同不含税金额 
 	 */
-	public String getContract_no_tax() {
-		return contract_no_tax;
+	public String getContractNoTax() {
+		return contractNoTax;
 	}
 	
 	/**
@@ -472,43 +472,43 @@ public class BasFrameContract implements Serializable {
 	/**
 	 * 是否需录入ERP系统 代码表：是否代码表
 	 */
-	public void setTypein_erp_status(Integer value) {
-		this.typein_erp_status = value;
+	public void setTypeinErpStatus(Integer value) {
+		this.typeinErpStatus = value;
 	}
 	
 	/**
 	 * 是否需录入ERP系统 代码表：是否代码表
 	 */
-	public Integer getTypein_erp_status() {
-		return typein_erp_status;
+	public Integer getTypeinErpStatus() {
+		return typeinErpStatus;
 	}
 	
 	/**
 	 * ERP项目编号 
 	 */
-	public void setErp_proj_code(String value) {
-		this.erp_proj_code = value;
+	public void setErpProjCode(String value) {
+		this.erpProjCode = value;
 	}
 	
 	/**
 	 * ERP项目编号 
 	 */
-	public String getErp_proj_code() {
-		return erp_proj_code;
+	public String getErpProjCode() {
+		return erpProjCode;
 	}
 	
 	/**
 	 * 项目立项名称 
 	 */
-	public void setProj_setup_name(String value) {
-		this.proj_setup_name = value;
+	public void setProjSetupName(String value) {
+		this.projSetupName = value;
 	}
 	
 	/**
 	 * 项目立项名称 
 	 */
-	public String getProj_setup_name() {
-		return proj_setup_name;
+	public String getProjSetupName() {
+		return projSetupName;
 	}
 	
 	/**

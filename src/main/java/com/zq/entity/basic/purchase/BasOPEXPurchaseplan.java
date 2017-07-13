@@ -38,22 +38,22 @@ public class BasOPEXPurchaseplan implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="Inplan_status", nullable=true, length=50)	
-	private String inplan_status;
+	private String inplanStatus;
 	
 	@Column(name="name", nullable=true, length=255)	
 	private String name;
@@ -62,61 +62,61 @@ public class BasOPEXPurchaseplan implements Serializable {
 	private String description;
 	
 	@Column(name="sub_proj_name", nullable=true, length=255)	
-	private String sub_proj_name;
+	private String subProjName;
 	
 	@Column(name="purchasing_content", nullable=true)	
-	private String purchasing_content;
+	private String purchasingContent;
 	
 	@Column(name="req_dept", nullable=true, length=10)	
-	private Integer req_dept;
+	private Integer reqDept;
 	
 	@Column(name="purchase_type", nullable=true, length=50)	
-	private String purchase_type;
+	private String purchaseType;
 	
 	@Column(name="budget_categories", nullable=true, length=50)	
-	private String budget_categories;
+	private String budgetCategories;
 	
 	@Column(name="budget_proj_name", nullable=true, length=255)	
-	private String budget_proj_name;
+	private String budgetProjName;
 	
 	@Column(name="budget_scale", nullable=true, length=50)	
-	private String budget_scale;
+	private String budgetScale;
 	
 	@Column(name="purchase_way", nullable=true, length=10)	
-	private Integer purchase_way;
+	private Integer purchaseWay;
 	
 	@Column(name="req_submit_time", nullable=true)	
-	private java.sql.Timestamp req_submit_time;
+	private java.sql.Timestamp reqSubmitTime;
 	
 	@Column(name="req_finish_time", nullable=true)	
-	private java.sql.Timestamp req_finish_time;
+	private java.sql.Timestamp reqFinishTime;
 	
 	@Column(name="req_principal", nullable=true, length=50)	
-	private String req_principal;
+	private String reqPrincipal;
 	
 	@Column(name="req_dept2", nullable=true, length=50)	
-	private String req_dept2;
+	private String reqDept2;
 	
 	@Column(name="req_type", nullable=true, length=50)	
-	private Integer req_type;
+	private Integer reqType;
 	
 	@Column(name="purchase_dealer", nullable=true, length=50)	
-	private String purchase_dealer;
+	private String purchaseDealer;
 	
 	@Column(name="req_submit_stauts", nullable=true, length=10)	
-	private Integer req_submit_stauts;
+	private Integer reqSubmitStauts;
 	
 	@Column(name="actual_req_submit_time", nullable=true)	
-	private java.sql.Timestamp actual_req_submit_time;
+	private java.sql.Timestamp actualReqSubmitTime;
 	
 	@Column(name="req_receipt_num", nullable=true, length=50)	
-	private String req_receipt_num;
+	private String reqReceiptNum;
 	
 	@Column(name="purchase_status", nullable=true, length=10)	
-	private Integer purchase_status;
+	private Integer purchaseStatus;
 	
 	@Column(name="proj_status", nullable=true, length=10)	
-	private Integer proj_status;
+	private Integer projStatus;
 	
 	/**
 	 * ID
@@ -132,36 +132,36 @@ public class BasOPEXPurchaseplan implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -181,43 +181,43 @@ public class BasOPEXPurchaseplan implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
 	 * 是否计划内项目 
 	 */
-	public void setInplan_status(String value) {
-		this.inplan_status = value;
+	public void setInplanStatus(String value) {
+		this.inplanStatus = value;
 	}
 	
 	/**
 	 * 是否计划内项目 
 	 */
-	public String getInplan_status() {
-		return inplan_status;
+	public String getInplanStatus() {
+		return inplanStatus;
 	}
 	
 	/**
@@ -251,29 +251,29 @@ public class BasOPEXPurchaseplan implements Serializable {
 	/**
 	 * 子项目名称 
 	 */
-	public void setSub_proj_name(String value) {
-		this.sub_proj_name = value;
+	public void setSubProjName(String value) {
+		this.subProjName = value;
 	}
 	
 	/**
 	 * 子项目名称 
 	 */
-	public String getSub_proj_name() {
-		return sub_proj_name;
+	public String getSubProjName() {
+		return subProjName;
 	}
 	
 	/**
 	 * 主要采购内容 
 	 */
-	public void setPurchasing_content(String value) {
-		this.purchasing_content = value;
+	public void setPurchasingContent(String value) {
+		this.purchasingContent = value;
 	}
 	
 	/**
 	 * 主要采购内容 
 	 */
-	public String getPurchasing_content() {
-		return purchasing_content;
+	public String getPurchasingContent() {
+		return purchasingContent;
 	}
 	
 	/**
@@ -286,71 +286,71 @@ public class BasOPEXPurchaseplan implements Serializable {
 	/**
 	 * 需求部门 
 	 */
-	public void setReq_dept(Integer value) {
-		this.req_dept = value;
+	public void setReqDept(Integer value) {
+		this.reqDept = value;
 	}
 	
 	/**
 	 * 需求部门 
 	 */
-	public Integer getReq_dept() {
-		return req_dept;
+	public Integer getReqDept() {
+		return reqDept;
 	}
 	
 	/**
 	 * 采购物资类型 
 	 */
-	public void setPurchase_type(String value) {
-		this.purchase_type = value;
+	public void setPurchaseType(String value) {
+		this.purchaseType = value;
 	}
 	
 	/**
 	 * 采购物资类型 
 	 */
-	public String getPurchase_type() {
-		return purchase_type;
+	public String getPurchaseType() {
+		return purchaseType;
 	}
 	
 	/**
 	 * 预算科目类别 
 	 */
-	public void setBudget_categories(String value) {
-		this.budget_categories = value;
+	public void setBudgetCategories(String value) {
+		this.budgetCategories = value;
 	}
 	
 	/**
 	 * 预算科目类别 
 	 */
-	public String getBudget_categories() {
-		return budget_categories;
+	public String getBudgetCategories() {
+		return budgetCategories;
 	}
 	
 	/**
 	 * 对应预算项目名称 
 	 */
-	public void setBudget_proj_name(String value) {
-		this.budget_proj_name = value;
+	public void setBudgetProjName(String value) {
+		this.budgetProjName = value;
 	}
 	
 	/**
 	 * 对应预算项目名称 
 	 */
-	public String getBudget_proj_name() {
-		return budget_proj_name;
+	public String getBudgetProjName() {
+		return budgetProjName;
 	}
 	
 	/**
 	 * 预算规模 
 	 */
-	public void setBudget_scale(String value) {
-		this.budget_scale = value;
+	public void setBudgetScale(String value) {
+		this.budgetScale = value;
 	}
 	
 	/**
 	 * 预算规模 
 	 */
-	public String getBudget_scale() {
-		return budget_scale;
+	public String getBudgetScale() {
+		return budgetScale;
 	}
 	
 	/**
@@ -363,197 +363,197 @@ public class BasOPEXPurchaseplan implements Serializable {
 	/**
 	 * 采购方式 代码表：采购计划采购方式代码表
 	 */
-	public void setPurchase_way(Integer value) {
-		this.purchase_way = value;
+	public void setPurchaseWay(Integer value) {
+		this.purchaseWay = value;
 	}
 	
 	/**
 	 * 采购方式 代码表：采购计划采购方式代码表
 	 */
-	public Integer getPurchase_way() {
-		return purchase_way;
+	public Integer getPurchaseWay() {
+		return purchaseWay;
 	}
 	
 	/**
 	 * 预算采购需求提交时间 
 	 */
-	public void setReq_submit_time(java.sql.Timestamp value) {
-		this.req_submit_time = value;
+	public void setReqSubmitTime(java.sql.Timestamp value) {
+		this.reqSubmitTime = value;
 	}
 	
 	/**
 	 * 预算采购需求提交时间 
 	 */
-	public java.sql.Timestamp getReq_submit_time() {
-		return req_submit_time;
+	public java.sql.Timestamp getReqSubmitTime() {
+		return reqSubmitTime;
 	}
 	
 	/**
 	 * 要求完成采购时间 
 	 */
-	public void setReq_finish_time(java.sql.Timestamp value) {
-		this.req_finish_time = value;
+	public void setReqFinishTime(java.sql.Timestamp value) {
+		this.reqFinishTime = value;
 	}
 	
 	/**
 	 * 要求完成采购时间 
 	 */
-	public java.sql.Timestamp getReq_finish_time() {
-		return req_finish_time;
+	public java.sql.Timestamp getReqFinishTime() {
+		return reqFinishTime;
 	}
 	
 	/**
 	 * 需求部门负责人 
 	 */
-	public void setReq_principal(String value) {
-		this.req_principal = value;
+	public void setReqPrincipal(String value) {
+		this.reqPrincipal = value;
 	}
 	
 	/**
 	 * 需求部门负责人 
 	 */
-	public String getReq_principal() {
-		return req_principal;
+	public String getReqPrincipal() {
+		return reqPrincipal;
 	}
 	
 	/**
 	 * 需求申报部门 
 	 */
-	public void setReq_dept2(String value) {
-		this.req_dept2 = value;
+	public void setReqDept2(String value) {
+		this.reqDept2 = value;
 	}
 	
 	/**
 	 * 需求申报部门 
 	 */
-	public String getReq_dept2() {
-		return req_dept2;
+	public String getReqDept2() {
+		return reqDept2;
 	}
 	
 	/**
 	 * 需求类型 代码表：采购计划需求类型代码表
 	 */
-	public void setReq_type(int value) {
-		setReq_type(new Integer(value));
+	public void setReqType(int value) {
+		setReqType(new Integer(value));
 	}
 	
 	/**
 	 * 需求类型 代码表：采购计划需求类型代码表
 	 */
-	public void setReq_type(Integer value) {
-		this.req_type = value;
+	public void setReqType(Integer value) {
+		this.reqType = value;
 	}
 	
 	/**
 	 * 需求类型 代码表：采购计划需求类型代码表
 	 */
-	public Integer getReq_type() {
-		return req_type;
+	public Integer getReqType() {
+		return reqType;
 	}
 	
 	/**
 	 * 采购负责人 
 	 */
-	public void setPurchase_dealer(String value) {
-		this.purchase_dealer = value;
+	public void setPurchaseDealer(String value) {
+		this.purchaseDealer = value;
 	}
 	
 	/**
 	 * 采购负责人 
 	 */
-	public String getPurchase_dealer() {
-		return purchase_dealer;
+	public String getPurchaseDealer() {
+		return purchaseDealer;
 	}
 	
 	/**
 	 * 是否提交需求 代码表：是否代码表
 	 */
-	public void setReq_submit_stauts(int value) {
-		setReq_submit_stauts(new Integer(value));
+	public void setReqSubmitStauts(int value) {
+		setReqSubmitStauts(new Integer(value));
 	}
 	
 	/**
 	 * 是否提交需求 代码表：是否代码表
 	 */
-	public void setReq_submit_stauts(Integer value) {
-		this.req_submit_stauts = value;
+	public void setReqSubmitStauts(Integer value) {
+		this.reqSubmitStauts = value;
 	}
 	
 	/**
 	 * 是否提交需求 代码表：是否代码表
 	 */
-	public Integer getReq_submit_stauts() {
-		return req_submit_stauts;
+	public Integer getReqSubmitStauts() {
+		return reqSubmitStauts;
 	}
 	
 	/**
 	 * 实际需求提交时间 
 	 */
-	public void setActual_req_submit_time(java.sql.Timestamp value) {
-		this.actual_req_submit_time = value;
+	public void setActualReqSubmitTime(java.sql.Timestamp value) {
+		this.actualReqSubmitTime = value;
 	}
 	
 	/**
 	 * 实际需求提交时间 
 	 */
-	public java.sql.Timestamp getActual_req_submit_time() {
-		return actual_req_submit_time;
+	public java.sql.Timestamp getActualReqSubmitTime() {
+		return actualReqSubmitTime;
 	}
 	
 	/**
 	 * 采购需求交接单文号 
 	 */
-	public void setReq_receipt_num(String value) {
-		this.req_receipt_num = value;
+	public void setReqReceiptNum(String value) {
+		this.reqReceiptNum = value;
 	}
 	
 	/**
 	 * 采购需求交接单文号 
 	 */
-	public String getReq_receipt_num() {
-		return req_receipt_num;
+	public String getReqReceiptNum() {
+		return reqReceiptNum;
 	}
 	
 	/**
 	 * 采购状态 代码表：采购状态代码表
 	 */
-	public void setPurchase_status(int value) {
-		setPurchase_status(new Integer(value));
+	public void setPurchaseStatus(int value) {
+		setPurchaseStatus(new Integer(value));
 	}
 	
 	/**
 	 * 采购状态 代码表：采购状态代码表
 	 */
-	public void setPurchase_status(Integer value) {
-		this.purchase_status = value;
+	public void setPurchaseStatus(Integer value) {
+		this.purchaseStatus = value;
 	}
 	
 	/**
 	 * 采购状态 代码表：采购状态代码表
 	 */
-	public Integer getPurchase_status() {
-		return purchase_status;
+	public Integer getPurchaseStatus() {
+		return purchaseStatus;
 	}
 	
 	/**
 	 * 项目是否取消 代码表：是否代码表
 	 */
-	public void setProj_status(int value) {
-		setProj_status(new Integer(value));
+	public void setProjStatus(int value) {
+		setProjStatus(new Integer(value));
 	}
 	
 	/**
 	 * 项目是否取消 代码表：是否代码表
 	 */
-	public void setProj_status(Integer value) {
-		this.proj_status = value;
+	public void setProjStatus(Integer value) {
+		this.projStatus = value;
 	}
 	
 	/**
 	 * 项目是否取消 代码表：是否代码表
 	 */
-	public Integer getProj_status() {
-		return proj_status;
+	public Integer getProjStatus() {
+		return projStatus;
 	}
 	
 	public String toString() {

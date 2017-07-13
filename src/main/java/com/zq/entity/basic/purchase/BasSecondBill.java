@@ -38,19 +38,19 @@ public class BasSecondBill implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="deptment", nullable=true, length=50)	
 	private String deptment;
@@ -59,140 +59,133 @@ public class BasSecondBill implements Serializable {
 	private String dealer;
 	
 	@Column(name="proj_name", nullable=true, length=50)	
-	private String proj_name;
+	private String projName;
 	
 	@Column(name="proj_setup_time", nullable=true)	
-	private java.sql.Timestamp proj_setup_time;
+	private java.sql.Timestamp projSetupTime;
 	
 	@Column(name="proj_setup_name", nullable=true, length=50)	
-	private String proj_setup_name;
+	private String projSetupName;
 	
 	@Column(name="req_collect_time", nullable=true)	
-	private java.sql.Timestamp req_collect_time;
+	private java.sql.Timestamp reqCollectTime;
 	
-	@Column(name="`req_ proposer`", nullable=true, length=50)	
-	private String req__proposer;
+	@Column(name="req_proposer", nullable=true, length=50)	
+	private String reqProposer;
 	
 	@Column(name="plan_decision_time", nullable=true)	
-	private java.sql.Timestamp plan_decision_time;
+	private java.sql.Timestamp planDecisionTime;
 	
 	@Column(name="begin_time", nullable=true)	
-	private java.sql.Timestamp begin_time;
+	private java.sql.Timestamp beginTime;
 	
 	@Column(name="plan_decisioner", nullable=true, length=10)	
-	private Integer plan_decisioner;
+	private Integer planDecisioner;
 	
 	@Column(name="plan_decision_amount", nullable=true, length=50)	
-	private String plan_decision_amount;
+	private String planDecisionAmount;
 	
 	@Column(name="expenditure_type", nullable=true, length=10)	
-	private Integer expenditure_type;
+	private Integer expenditureType;
 	
 	@Column(name="category", nullable=true, length=10)	
 	private Integer category;
 	
 	@Column(name="main_categories", nullable=true, length=50)	
-	private String main_categories;
+	private String mainCategories;
 	
 	@Column(name="secondary_categories", nullable=true, length=50)	
-	private String secondary_categories;
+	private String secondaryCategories;
 	
 	@Column(name="type", nullable=true, length=50)	
 	private Integer type;
 	
 	@Column(name="sole_source_scene", nullable=true, length=50)	
-	private String sole_source_scene;
+	private String soleSourceScene;
 	
 	@Column(name="special_scene_explain", nullable=true)	
-	private String special_scene_explain;
+	private String specialSceneExplain;
 	
 	@Column(name="sss_notice_status", nullable=true, length=50)	
-	private Integer sss_notice_status;
+	private Integer sssNoticeStatus;
 	
 	@Column(name="proj_es_code", nullable=true, length=10)	
-	private String proj_es_code;
+	private String projEsCode;
 	
 	@Column(name="type2", nullable=true, length=50)	
 	private Integer type2;
 	
-	@Column(name="proj_resetupr_status", nullable=true, length=50)	
-	private Integer proj_resetupr_status;
+	@Column(name="proRresetupr_status", nullable=true, length=50)	
+	private Integer projResetuprStatus;
 	
 	@Column(name="evaluated_bids_time", nullable=true)	
-	private java.sql.Timestamp evaluated_bids_time;
+	private java.sql.Timestamp evaluatedBidsTime;
 	
 	@Column(name="fail_bids_status", nullable=true, length=10)	
-	private Integer fail_bids_status;
+	private Integer failBidsStatus;
 	
 	@Column(name="fail_bids_cycle", nullable=true, length=50)	
-	private String fail_bids_cycle;
+	private String failBidsCycle;
 	
 	@Column(name="purchase_res_confirm_time", nullable=true)	
-	private java.sql.Timestamp purchase_res_confirm_time;
+	private java.sql.Timestamp purchaseResConfirmTime;
 	
 	@Column(name="purchase_res_confirm_level", nullable=true, length=10)	
-	private Integer purchase_res_confirm_level;
+	private Integer purchaseResConfirmLevel;
 	
 	@Column(name="purchase_res_confirm_amount", nullable=true, length=50)	
-	private String purchase_res_confirm_amount;
+	private String purchaseResConfirmAmount;
 	
 	@Column(name="contract_approve_time", nullable=true)	
-	private java.sql.Timestamp contract_approve_time;
+	private java.sql.Timestamp contractApproveTime;
 	
 	@Column(name="paper_revise_time", nullable=true)	
-	private java.sql.Timestamp paper_revise_time;
+	private java.sql.Timestamp paperReviseTime;
 	
 	@Column(name="frame_validatity_time", nullable=true, length=50)	
-	private String frame_validatity_time;
+	private String frameValidatityTime;
 	
 	@Column(name="supplier_name", nullable=true, length=50)	
-	private String supplier_name;
+	private String supplierName;
 	
 	@Column(name="supplier_contacter", nullable=true, length=50)	
-	private String supplier_contacter;
+	private String supplierContacter;
 	
 	@Column(name="supplier_contact_phone", nullable=true, length=50)	
-	private String supplier_contact_phone;
+	private String supplierContactPhone;
 	
 	@Column(name="doc_code", nullable=true, length=50)	
-	private String doc_code;
+	private String docCode;
 	
 	@Column(name="typein_erp_status", nullable=true, length=50)	
-	private String typein_erp_status;
+	private String typeinErpStatus;
 	
 	@Column(name="proj_code", nullable=true, length=50)	
-	private String proj_code;
+	private String projCode;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
 	
 	@Column(name="contract_amount", nullable=true, length=50)	
-	private String contract_amount;
+	private String contractAmount;
 	
 	@Column(name="contract_code", nullable=true, length=50)	
-	private String contract_code;
+	private String contractCode;
 	
 	@Column(name="contract_name", nullable=true, length=50)	
-	private String contract_name;
+	private String contractName;
 	
 	@Column(name="contract_frame_status", nullable=true, length=10)	
-	private Integer contract_frame_status;
+	private Integer contractFrameStatus;
 	
 	@Column(name="contract_in_tax", nullable=true, length=50)	
-	private String contract_in_tax;
+	private String contractInTax;
 	
 	@Column(name="contract_tax", nullable=true, length=50)	
-	private String contract_tax;
+	private String contractTax;
 	
 	@Column(name="contract_no_tax", nullable=true, length=50)	
-	private String contract_no_tax;
-	
-	/**
-	 * ID
-	 */
-	private void setId(int value) {
-		this.id = value;
-	}
+	private String contractNoTax;
 	
 	/**
 	 * ID
@@ -208,36 +201,36 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -257,29 +250,29 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
@@ -313,155 +306,155 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 采购项目名称 
 	 */
-	public void setProj_name(String value) {
-		this.proj_name = value;
+	public void setProjName(String value) {
+		this.projName = value;
 	}
 	
 	/**
 	 * 采购项目名称 
 	 */
-	public String getProj_name() {
-		return proj_name;
+	public String getProjName() {
+		return projName;
 	}
 	
 	/**
 	 * 项目立项时间 
 	 */
-	public void setProj_setup_time(java.sql.Timestamp value) {
-		this.proj_setup_time = value;
+	public void setProjSetupTime(java.sql.Timestamp value) {
+		this.projSetupTime = value;
 	}
 	
 	/**
 	 * 项目立项时间 
 	 */
-	public java.sql.Timestamp getProj_setup_time() {
-		return proj_setup_time;
+	public java.sql.Timestamp getProjSetupTime() {
+		return projSetupTime;
 	}
 	
 	/**
 	 * 项目立项名称 
 	 */
-	public void setProj_setup_name(String value) {
-		this.proj_setup_name = value;
+	public void setProjSetupName(String value) {
+		this.projSetupName = value;
 	}
 	
 	/**
 	 * 项目立项名称 
 	 */
-	public String getProj_setup_name() {
-		return proj_setup_name;
+	public String getProjSetupName() {
+		return projSetupName;
 	}
 	
 	/**
 	 * 需求收取时间 
 	 */
-	public void setReq_collect_time(java.sql.Timestamp value) {
-		this.req_collect_time = value;
+	public void setReqCollectTime(java.sql.Timestamp value) {
+		this.reqCollectTime = value;
 	}
 	
 	/**
 	 * 需求收取时间 
 	 */
-	public java.sql.Timestamp getReq_collect_time() {
-		return req_collect_time;
+	public java.sql.Timestamp getReqCollectTime() {
+		return reqCollectTime;
 	}
 	
 	/**
 	 * 需求人 
 	 */
-	public void setReq__proposer(String value) {
-		this.req__proposer = value;
+	public void setReqProposer(String value) {
+		this.reqProposer = value;
 	}
 	
 	/**
 	 * 需求人 
 	 */
-	public String getReq__proposer() {
-		return req__proposer;
+	public String getReqProposer() {
+		return reqProposer;
 	}
 	
 	/**
 	 * 采购方案决策时间 
 	 */
-	public void setPlan_decision_time(java.sql.Timestamp value) {
-		this.plan_decision_time = value;
+	public void setPlanDecisionTime(java.sql.Timestamp value) {
+		this.planDecisionTime = value;
 	}
 	
 	/**
 	 * 采购方案决策时间 
 	 */
-	public java.sql.Timestamp getPlan_decision_time() {
-		return plan_decision_time;
+	public java.sql.Timestamp getPlanDecisionTime() {
+		return planDecisionTime;
 	}
 	
 	/**
 	 * 采购启动时间 
 	 */
-	public void setBegin_time(java.sql.Timestamp value) {
-		this.begin_time = value;
+	public void setBeginTime(java.sql.Timestamp value) {
+		this.beginTime = value;
 	}
 	
 	/**
 	 * 采购启动时间 
 	 */
-	public java.sql.Timestamp getBegin_time() {
-		return begin_time;
+	public java.sql.Timestamp getBeginTime() {
+		return beginTime;
 	}
 	
 	/**
 	 * 采购方案决策层级 代码表：决策层级代码表
 	 */
-	public void setPlan_decisioner(int value) {
-		setPlan_decisioner(new Integer(value));
+	public void setPlanDecisioner(int value) {
+		setPlanDecisioner(new Integer(value));
 	}
 	
 	/**
 	 * 采购方案决策层级 代码表：决策层级代码表
 	 */
-	public void setPlan_decisioner(Integer value) {
-		this.plan_decisioner = value;
+	public void setPlanDecisioner(Integer value) {
+		this.planDecisioner = value;
 	}
 	
 	/**
 	 * 采购方案决策层级 代码表：决策层级代码表
 	 */
-	public Integer getPlan_decisioner() {
-		return plan_decisioner;
+	public Integer getPlanDecisioner() {
+		return planDecisioner;
 	}
 	
 	/**
 	 * 采购方案决策金额 
 	 */
-	public void setPlan_decision_amount(String value) {
-		this.plan_decision_amount = value;
+	public void setPlanDecisionAmount(String value) {
+		this.planDecisionAmount = value;
 	}
 	
 	/**
 	 * 采购方案决策金额 
 	 */
-	public String getPlan_decision_amount() {
-		return plan_decision_amount;
+	public String getPlanDecisionAmount() {
+		return planDecisionAmount;
 	}
 	
 	/**
 	 * 开支类型 代码表：开支类型代码表
 	 */
-	public void setExpenditure_type(int value) {
-		setExpenditure_type(new Integer(value));
+	public void setExpenditureType(int value) {
+		setExpenditureType(new Integer(value));
 	}
 	
 	/**
 	 * 开支类型 代码表：开支类型代码表
 	 */
-	public void setExpenditure_type(Integer value) {
-		this.expenditure_type = value;
+	public void setExpenditureType(Integer value) {
+		this.expenditureType = value;
 	}
 	
 	/**
 	 * 开支类型 代码表：开支类型代码表
 	 */
-	public Integer getExpenditure_type() {
-		return expenditure_type;
+	public Integer getExpenditureType() {
+		return expenditureType;
 	}
 	
 	/**
@@ -488,29 +481,29 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 大类 
 	 */
-	public void setMain_categories(String value) {
-		this.main_categories = value;
+	public void setMainCategories(String value) {
+		this.mainCategories = value;
 	}
 	
 	/**
 	 * 大类 
 	 */
-	public String getMain_categories() {
-		return main_categories;
+	public String getMainCategories() {
+		return mainCategories;
 	}
 	
 	/**
 	 * 中类 
 	 */
-	public void setSecondary_categories(String value) {
-		this.secondary_categories = value;
+	public void setSecondaryCategories(String value) {
+		this.secondaryCategories = value;
 	}
 	
 	/**
 	 * 中类 
 	 */
-	public String getSecondary_categories() {
-		return secondary_categories;
+	public String getSecondaryCategories() {
+		return secondaryCategories;
 	}
 	
 	/**
@@ -537,64 +530,64 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 单一来源场景 
 	 */
-	public void setSole_source_scene(String value) {
-		this.sole_source_scene = value;
+	public void setSoleSourceScene(String value) {
+		this.soleSourceScene = value;
 	}
 	
 	/**
 	 * 单一来源场景 
 	 */
-	public String getSole_source_scene() {
-		return sole_source_scene;
+	public String getSoleSourceScene() {
+		return soleSourceScene;
 	}
 	
 	/**
 	 * 特殊场景情况说明 
 	 */
-	public void setSpecial_scene_explain(String value) {
-		this.special_scene_explain = value;
+	public void setSpecialSceneExplain(String value) {
+		this.specialSceneExplain = value;
 	}
 	
 	/**
 	 * 特殊场景情况说明 
 	 */
-	public String getSpecial_scene_explain() {
-		return special_scene_explain;
+	public String getSpecialSceneExplain() {
+		return specialSceneExplain;
 	}
 	
 	/**
 	 * 单一来源是否发公告 代码表：是否
 	 */
-	public void setSss_notice_status(int value) {
-		setSss_notice_status(new Integer(value));
+	public void setSssNoticeStatus(int value) {
+		setSssNoticeStatus(new Integer(value));
 	}
 	
 	/**
 	 * 单一来源是否发公告 代码表：是否
 	 */
-	public void setSss_notice_status(Integer value) {
-		this.sss_notice_status = value;
+	public void setSssNoticeStatus(Integer value) {
+		this.sssNoticeStatus = value;
 	}
 	
 	/**
 	 * 单一来源是否发公告 代码表：是否
 	 */
-	public Integer getSss_notice_status() {
-		return sss_notice_status;
+	public Integer getSssNoticeStatus() {
+		return sssNoticeStatus;
 	}
 	
 	/**
 	 * 采购项目ES系统编号 代码表：采购类型代码表
 	 */
-	public void setProj_es_code(String value) {
-		this.proj_es_code = value;
+	public void setProjEsCode(String value) {
+		this.projEsCode = value;
 	}
 	
 	/**
 	 * 采购项目ES系统编号 代码表：采购类型代码表
 	 */
-	public String getProj_es_code() {
-		return proj_es_code;
+	public String getProjEsCode() {
+		return projEsCode;
 	}
 	
 	/**
@@ -621,246 +614,246 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 是否失败重建新项 代码表：是否
 	 */
-	public void setProj_resetupr_status(int value) {
-		setProj_resetupr_status(new Integer(value));
+	public void setProjResetuprStatus(int value) {
+		setProjResetuprStatus(new Integer(value));
 	}
 	
 	/**
 	 * 是否失败重建新项 代码表：是否
 	 */
-	public void setProj_resetupr_status(Integer value) {
-		this.proj_resetupr_status = value;
+	public void setProjResetuprStatus(Integer value) {
+		this.projResetuprStatus = value;
 	}
 	
 	/**
 	 * 是否失败重建新项 代码表：是否
 	 */
-	public Integer getProj_resetupr_status() {
-		return proj_resetupr_status;
+	public Integer getProjResetuprStatus() {
+		return projResetuprStatus;
 	}
 	
 	/**
 	 * 完成评标时间 
 	 */
-	public void setEvaluated_bids_time(java.sql.Timestamp value) {
-		this.evaluated_bids_time = value;
+	public void setEvaluatedBidsTime(java.sql.Timestamp value) {
+		this.evaluatedBidsTime = value;
 	}
 	
 	/**
 	 * 完成评标时间 
 	 */
-	public java.sql.Timestamp getEvaluated_bids_time() {
-		return evaluated_bids_time;
+	public java.sql.Timestamp getEvaluatedBidsTime() {
+		return evaluatedBidsTime;
 	}
 	
 	/**
 	 * 是否存在流标 代码表：是否代
 	 */
-	public void setFail_bids_status(int value) {
-		setFail_bids_status(new Integer(value));
+	public void setFailBidsStatus(int value) {
+		setFailBidsStatus(new Integer(value));
 	}
 	
 	/**
 	 * 是否存在流标 代码表：是否代
 	 */
-	public void setFail_bids_status(Integer value) {
-		this.fail_bids_status = value;
+	public void setFailBidsStatus(Integer value) {
+		this.failBidsStatus = value;
 	}
 	
 	/**
 	 * 是否存在流标 代码表：是否代
 	 */
-	public Integer getFail_bids_status() {
-		return fail_bids_status;
+	public Integer getFailBidsStatus() {
+		return failBidsStatus;
 	}
 	
 	/**
 	 * 流标耗时 
 	 */
-	public void setFail_bids_cycle(String value) {
-		this.fail_bids_cycle = value;
+	public void setFailBidsCycle(String value) {
+		this.failBidsCycle = value;
 	}
 	
 	/**
 	 * 流标耗时 
 	 */
-	public String getFail_bids_cycle() {
-		return fail_bids_cycle;
+	public String getFailBidsCycle() {
+		return failBidsCycle;
 	}
 	
 	/**
 	 * 采购结果确认时间 
 	 */
-	public void setPurchase_res_confirm_time(java.sql.Timestamp value) {
-		this.purchase_res_confirm_time = value;
+	public void setPurchaseResConfirmTime(java.sql.Timestamp value) {
+		this.purchaseResConfirmTime = value;
 	}
 	
 	/**
 	 * 采购结果确认时间 
 	 */
-	public java.sql.Timestamp getPurchase_res_confirm_time() {
-		return purchase_res_confirm_time;
+	public java.sql.Timestamp getPurchaseResConfirmTime() {
+		return purchaseResConfirmTime;
 	}
 	
 	/**
 	 * 采购结果确认层级 代码表：决策层级代码表
 	 */
-	public void setPurchase_res_confirm_level(int value) {
-		setPurchase_res_confirm_level(new Integer(value));
+	public void setPurchaseResConfirLlevel(int value) {
+		setPurchaseResConfirmLevel(new Integer(value));
 	}
 	
 	/**
 	 * 采购结果确认层级 代码表：决策层级代码表
 	 */
-	public void setPurchase_res_confirm_level(Integer value) {
-		this.purchase_res_confirm_level = value;
+	public void setPurchaseResConfirmLevel(Integer value) {
+		this.purchaseResConfirmLevel = value;
 	}
 	
 	/**
 	 * 采购结果确认层级 代码表：决策层级代码表
 	 */
-	public Integer getPurchase_res_confirm_level() {
-		return purchase_res_confirm_level;
+	public Integer getPurchaseResConfirmLevel() {
+		return purchaseResConfirmLevel;
 	}
 	
 	/**
 	 * 采购结果确认金额 
 	 */
-	public void setPurchase_res_confirm_amount(String value) {
-		this.purchase_res_confirm_amount = value;
+	public void setPurchaseResConfirmAmount(String value) {
+		this.purchaseResConfirmAmount = value;
 	}
 	
 	/**
 	 * 采购结果确认金额 
 	 */
-	public String getPurchase_res_confirm_amount() {
-		return purchase_res_confirm_amount;
+	public String getPurchaseResConfirmAmount() {
+		return purchaseResConfirmAmount;
 	}
 	
 	/**
 	 * 完成合同审批时间 
 	 */
-	public void setContract_approve_time(java.sql.Timestamp value) {
-		this.contract_approve_time = value;
+	public void setContractApproveTime(java.sql.Timestamp value) {
+		this.contractApproveTime = value;
 	}
 	
 	/**
 	 * 完成合同审批时间 
 	 */
-	public java.sql.Timestamp getContract_approve_time() {
-		return contract_approve_time;
+	public java.sql.Timestamp getContractApproveTime() {
+		return contractApproveTime;
 	}
 	
 	/**
 	 * 完成纸质版合同签订时间 
 	 */
-	public void setPaper_revise_time(java.sql.Timestamp value) {
-		this.paper_revise_time = value;
+	public void setPaperReviseTime(java.sql.Timestamp value) {
+		this.paperReviseTime = value;
 	}
 	
 	/**
 	 * 完成纸质版合同签订时间 
 	 */
-	public java.sql.Timestamp getPaper_revise_time() {
-		return paper_revise_time;
+	public java.sql.Timestamp getPaperReviseTime() {
+		return paperReviseTime;
 	}
 	
 	/**
 	 * 框架有效期 
 	 */
-	public void setFrame_validatity_time(String value) {
-		this.frame_validatity_time = value;
+	public void setFrameValidatityTime(String value) {
+		this.frameValidatityTime = value;
 	}
 	
 	/**
 	 * 框架有效期 
 	 */
-	public String getFrame_validatity_time() {
-		return frame_validatity_time;
+	public String getFrameValidatityTime() {
+		return frameValidatityTime;
 	}
 	
 	/**
 	 * 成交供应商名称 
 	 */
-	public void setSupplier_name(String value) {
-		this.supplier_name = value;
+	public void setSupplierName(String value) {
+		this.supplierName = value;
 	}
 	
 	/**
 	 * 成交供应商名称 
 	 */
-	public String getSupplier_name() {
-		return supplier_name;
+	public String getSupplierName() {
+		return supplierName;
 	}
 	
 	/**
 	 * 供应商联系人姓名 
 	 */
-	public void setSupplier_contacter(String value) {
-		this.supplier_contacter = value;
+	public void setSupplierContacter(String value) {
+		this.supplierContacter = value;
 	}
 	
 	/**
 	 * 供应商联系人姓名 
 	 */
-	public String getSupplier_contacter() {
-		return supplier_contacter;
+	public String getSupplierContacter() {
+		return supplierContacter;
 	}
 	
 	/**
 	 * 供应商联系人联系方式 
 	 */
-	public void setSupplier_contact_phone(String value) {
-		this.supplier_contact_phone = value;
+	public void setSupplierContactPhone(String value) {
+		this.supplierContactPhone = value;
 	}
 	
 	/**
 	 * 供应商联系人联系方式 
 	 */
-	public String getSupplier_contact_phone() {
-		return supplier_contact_phone;
+	public String getSupplierContactPhone() {
+		return supplierContactPhone;
 	}
 	
 	/**
 	 * 采购档案编号 
 	 */
-	public void setDoc_code(String value) {
-		this.doc_code = value;
+	public void setDocCode(String value) {
+		this.docCode = value;
 	}
 	
 	/**
 	 * 采购档案编号 
 	 */
-	public String getDoc_code() {
-		return doc_code;
+	public String getDocCode() {
+		return docCode;
 	}
 	
 	/**
 	 * 是否需录入ERP系统 代码表：是否代码
 	 */
-	public void setTypein_erp_status(String value) {
-		this.typein_erp_status = value;
+	public void setTypeinErpStatus(String value) {
+		this.typeinErpStatus = value;
 	}
 	
 	/**
 	 * 是否需录入ERP系统 代码表：是否代码
 	 */
-	public String getTypein_erp_status() {
-		return typein_erp_status;
+	public String getTypeinErpStatus() {
+		return typeinErpStatus;
 	}
 	
 	/**
 	 * 项目编号 
 	 */
-	public void setProj_code(String value) {
-		this.proj_code = value;
+	public void setProjCode(String value) {
+		this.projCode = value;
 	}
 	
 	/**
 	 * 项目编号 
 	 */
-	public String getProj_code() {
-		return proj_code;
+	public String getProjCode() {
+		return projCode;
 	}
 	
 	/**
@@ -880,106 +873,106 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 应签署合同总数 
 	 */
-	public void setContract_amount(String value) {
-		this.contract_amount = value;
+	public void setContractAmount(String value) {
+		this.contractAmount = value;
 	}
 	
 	/**
 	 * 应签署合同总数 
 	 */
-	public String getContract_amount() {
-		return contract_amount;
+	public String getContractAmount() {
+		return contractAmount;
 	}
 	
 	/**
 	 * 合同编号 
 	 */
-	public void setContract_code(String value) {
-		this.contract_code = value;
+	public void setContractCode(String value) {
+		this.contractCode = value;
 	}
 	
 	/**
 	 * 合同编号 
 	 */
-	public String getContract_code() {
-		return contract_code;
+	public String getContractCode() {
+		return contractCode;
 	}
 	
 	/**
 	 * 合同名称 
 	 */
-	public void setContract_name(String value) {
-		this.contract_name = value;
+	public void setContractName(String value) {
+		this.contractName = value;
 	}
 	
 	/**
 	 * 合同名称 
 	 */
-	public String getContract_name() {
-		return contract_name;
+	public String getContractName() {
+		return contractName;
 	}
 	
 	/**
 	 * 是否是框架 代码表：是否代码
 	 */
-	public void setContract_frame_status(int value) {
-		setContract_frame_status(new Integer(value));
+	public void setContractframeStatus(int value) {
+		setContractframeStatus(new Integer(value));
 	}
 	
 	/**
 	 * 是否是框架 代码表：是否代码
 	 */
-	public void setContract_frame_status(Integer value) {
-		this.contract_frame_status = value;
+	public void setContractFrameStatus(Integer value) {
+		this.contractFrameStatus = value;
 	}
 	
 	/**
 	 * 是否是框架 代码表：是否代码
 	 */
-	public Integer getContract_frame_status() {
-		return contract_frame_status;
+	public Integer getContractFrameStatus() {
+		return contractFrameStatus;
 	}
 	
 	/**
 	 * 合同含税金额 
 	 */
-	public void setContract_in_tax(String value) {
-		this.contract_in_tax = value;
+	public void setContractInTax(String value) {
+		this.contractInTax = value;
 	}
 	
 	/**
 	 * 合同含税金额 
 	 */
-	public String getContract_in_tax() {
-		return contract_in_tax;
+	public String getContractInTax() {
+		return contractInTax;
 	}
 	
 	/**
 	 * 合同税额 
 	 */
-	public void setContract_tax(String value) {
-		this.contract_tax = value;
+	public void setContractTax(String value) {
+		this.contractTax = value;
 	}
 	
 	/**
 	 * 合同税额 
 	 */
-	public String getContract_tax() {
-		return contract_tax;
+	public String getContractTax() {
+		return contractTax;
 	}
 	
 	/**
 	 * 合同不含税金额 
 	 */
-	public void setContract_no_tax(String value) {
-		this.contract_no_tax = value;
+	public void setContractNoTax(String value) {
+		this.contractNoTax = value;
 	}
 	
 	/**
 	 * 合同不含税金额 
 	 */
-	public String getContract_no_tax() {
-		return contract_no_tax;
+	public String getContractNoTax() {
+		return contractNoTax;
 	}
 	
 	public String toString() {

@@ -38,31 +38,31 @@ public class BasOpexBudgetpoolDetail implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="business_dept", nullable=true, length=10)	
-	private Integer business_dept;
+	private Integer businessDept;
 	
 	@Column(name="adjust_amount", nullable=true, length=50)	
-	private String adjust_amount;
+	private String adjustAmount;
 	
 	@Column(name="budget_account", nullable=true, length=50)	
-	private String budget_account;
+	private String budgetAccount;
 	
 	@Column(name="adjust_date", nullable=true)	
-	private java.sql.Timestamp adjust_date;
+	private java.sql.Timestamp adjustDate;
 	
 	/**
 	 * ID
@@ -78,36 +78,36 @@ public class BasOpexBudgetpoolDetail implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -127,29 +127,29 @@ public class BasOpexBudgetpoolDetail implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
@@ -162,57 +162,57 @@ public class BasOpexBudgetpoolDetail implements Serializable {
 	/**
 	 * 业务部门 
 	 */
-	public void setBusiness_dept(Integer value) {
-		this.business_dept = value;
+	public void setBusinessDept(Integer value) {
+		this.businessDept = value;
 	}
 	
 	/**
 	 * 业务部门 
 	 */
-	public Integer getBusiness_dept() {
-		return business_dept;
+	public Integer getBusinessDept() {
+		return businessDept;
 	}
 	
 	/**
 	 * 调整金额（元） 
 	 */
-	public void setAdjust_amount(String value) {
-		this.adjust_amount = value;
+	public void setAdjustAmount(String value) {
+		this.adjustAmount = value;
 	}
 	
 	/**
 	 * 调整金额（元） 
 	 */
-	public String getAdjust_amount() {
-		return adjust_amount;
+	public String getAdjustAmount() {
+		return adjustAmount;
 	}
 	
 	/**
 	 * 预算科目 bas_budget_account中bugdet_account _code
 	 */
-	public void setBudget_account(String value) {
-		this.budget_account = value;
+	public void setBudgetAccount(String value) {
+		this.budgetAccount = value;
 	}
 	
 	/**
 	 * 预算科目 bas_budget_account中bugdet_account _code
 	 */
-	public String getBudget_account() {
-		return budget_account;
+	public String getBudgetAccount() {
+		return budgetAccount;
 	}
 	
 	/**
 	 * 调整日期 
 	 */
-	public void setAdjust_date(java.sql.Timestamp value) {
-		this.adjust_date = value;
+	public void setAdjustDate(java.sql.Timestamp value) {
+		this.adjustDate = value;
 	}
 	
 	/**
 	 * 调整日期 
 	 */
-	public java.sql.Timestamp getAdjust_date() {
-		return adjust_date;
+	public java.sql.Timestamp getAdjustDate() {
+		return adjustDate;
 	}
 	
 	public String toString() {

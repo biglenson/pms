@@ -38,46 +38,46 @@ public class BasOPEXBudgetProject implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="budget_code", nullable=true, length=50)	
-	private String budget_code;
+	private String budgetCode;
 	
 	@Column(name="budget_account", nullable=true, length=50)	
-	private String budget_account;
+	private String budgetAccount;
 	
 	@Column(name="budget_proj_code", nullable=true, length=50)	
-	private String budget_proj_code;
+	private String budgetProjCode;
 	
 	@Column(name="budget_proj_name", nullable=true, length=255)	
-	private String budget_proj_name;
+	private String budgetProjName;
 	
 	@Column(name="proj_budget_amount", nullable=true, length=50)	
-	private String proj_budget_amount;
+	private String projBudgetAmount;
 	
 	@Column(name="proj_expectfinish_amount", nullable=true, length=50)	
-	private String proj_expectfinish_amount;
+	private String projExpectfinishAmount;
 	
 	@Column(name="proj_finished_amount", nullable=true, length=50)	
-	private String proj_finished_amount;
+	private String projFinishedAmount;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
 	
 	@Column(name="business_dept", nullable=true, length=10)	
-	private Integer business_dept;
+	private Integer businessDept;
 	
 	/**
 	 * ID
@@ -93,36 +93,36 @@ public class BasOPEXBudgetProject implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -142,127 +142,127 @@ public class BasOPEXBudgetProject implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
 	 * 预算编号
 	 */
-	public void setBudget_code(String value) {
-		this.budget_code = value;
+	public void setBudgetCode(String value) {
+		this.budgetCode = value;
 	}
 	
 	/**
 	 * 预算编号
 	 */
-	public String getBudget_code() {
-		return budget_code;
+	public String getBudgetCode() {
+		return budgetCode;
 	}
 	
 	/**
 	 * 预算科目bas_budget_account中bugdet_account _code
 	 */
-	public void setBudget_account(String value) {
-		this.budget_account = value;
+	public void setBudgetAccount(String value) {
+		this.budgetAccount = value;
 	}
 	
 	/**
 	 * 预算科目bas_budget_account中bugdet_account _code
 	 */
-	public String getBudget_account() {
-		return budget_account;
+	public String getBudgetAccount() {
+		return budgetAccount;
 	}
 	
 	/**
 	 * 预算项目编号 
 	 */
-	public void setBudget_proj_code(String value) {
-		this.budget_proj_code = value;
+	public void setBudgetProjCode(String value) {
+		this.budgetProjCode = value;
 	}
 	
 	/**
 	 * 预算项目编号 
 	 */
-	public String getBudget_proj_code() {
-		return budget_proj_code;
+	public String getBudgetProjCode() {
+		return budgetProjCode;
 	}
 	
 	/**
 	 * 预算项目名称 
 	 */
-	public void setBudget_proj_name(String value) {
-		this.budget_proj_name = value;
+	public void setBudgetProjName(String value) {
+		this.budgetProjName = value;
 	}
 	
 	/**
 	 * 预算项目名称 
 	 */
-	public String getBudget_proj_name() {
-		return budget_proj_name;
+	public String getBudgetProjName() {
+		return budgetProjName;
 	}
 	
 	/**
 	 * 项目预算金额（元） 
 	 */
-	public void setProj_budget_amount(String value) {
-		this.proj_budget_amount = value;
+	public void setProjBudgetAmount(String value) {
+		this.projBudgetAmount = value;
 	}
 	
 	/**
 	 * 项目预算金额（元） 
 	 */
-	public String getProj_budget_amount() {
-		return proj_budget_amount;
+	public String getProjBudgetAmount() {
+		return projBudgetAmount;
 	}
 	
 	/**
 	 * 项目预计完成值（元） 
 	 */
-	public void setProj_expectfinish_amount(String value) {
-		this.proj_expectfinish_amount = value;
+	public void setProjExpectfinishAmount(String value) {
+		this.projExpectfinishAmount = value;
 	}
 	
 	/**
 	 * 项目预计完成值（元） 
 	 */
-	public String getProj_expectfinish_amount() {
-		return proj_expectfinish_amount;
+	public String getProjExpectfinishAmount() {
+		return projExpectfinishAmount;
 	}
 	
 	/**
 	 * 项目完成额度（元） 
 	 */
-	public void setProj_finished_amount(String value) {
-		this.proj_finished_amount = value;
+	public void setProjFinishedAmount(String value) {
+		this.projFinishedAmount = value;
 	}
 	
 	/**
 	 * 项目完成额度（元） 
 	 */
-	public String getProj_finished_amount() {
-		return proj_finished_amount;
+	public String getProjFinishedAmount() {
+		return projFinishedAmount;
 	}
 	
 	/**
@@ -289,15 +289,15 @@ public class BasOPEXBudgetProject implements Serializable {
 	/**
 	 * 业务部门 
 	 */
-	public void setBusiness_dept(Integer value) {
-		this.business_dept = value;
+	public void setBusinessDept(Integer value) {
+		this.businessDept = value;
 	}
 	
 	/**
 	 * 业务部门 
 	 */
-	public Integer getBusiness_dept() {
-		return business_dept;
+	public Integer getBusinessDept() {
+		return businessDept;
 	}
 	
 	public String toString() {

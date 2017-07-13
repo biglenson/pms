@@ -38,88 +38,88 @@ public class BasFirstBill implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
 	private java.sql.Timestamp create_time;
 	
 	@Column(name="create_by", nullable=true, length=50)	
-	private String create_by;
+	private String createBy;
 	
 	@Column(name="last_update_time", nullable=true)	
-	private java.sql.Timestamp last_update_time;
+	private java.sql.Timestamp lastUpdateTime;
 	
 	@Column(name="last_update_by", nullable=true, length=50)	
-	private String last_update_by;
+	private String lastUpdateBy;
 	
 	@Column(name="purchasing_dept", nullable=true, length=50)	
-	private String purchasing_dept;
+	private String purchasingDept;
 	
 	@Column(name="purchasing_dealer", nullable=true, length=50)	
-	private String purchasing_dealer;
+	private String purchasingDealer;
 	
 	@Column(name="expenditure_type", nullable=true, length=10)	
-	private Integer expenditure_type;
+	private Integer expenditureType;
 	
 	@Column(name="category", nullable=true, length=10)	
 	private Integer category;
 	
 	@Column(name="main_categories", nullable=true, length=50)	
-	private String main_categories;
+	private String mainCategories;
 	
 	@Column(name="secondary_categories", nullable=true, length=50)	
-	private String secondary_categories;
+	private String secondaryCategories;
 	
 	@Column(name="purchasing_type", nullable=true, length=10)	
-	private Integer purchasing_type;
+	private Integer purchasingType;
 	
 	@Column(name="contract_approve_time", nullable=true)	
-	private java.sql.Timestamp contract_approve_time;
+	private java.sql.Timestamp contractApproveTime;
 	
 	@Column(name="paper_contract_revise_time", nullable=true)	
-	private java.sql.Timestamp paper_contract_revise_time;
+	private java.sql.Timestamp paperContractReviseTime;
 	
 	@Column(name="frame_validatity_time", nullable=true, length=50)	
-	private String frame_validatity_time;
+	private String frameValidatityTime;
 	
 	@Column(name="supplier_name", nullable=true, length=50)	
-	private String supplier_name;
+	private String supplierName;
 	
 	@Column(name="supplier_contacter", nullable=true, length=50)	
-	private String supplier_contacter;
+	private String supplierContacter;
 	
 	@Column(name="supplier_contact_phone", nullable=true, length=50)	
-	private String supplier_contact_phone;
+	private String supplierContactPhone;
 	
 	@Column(name="typein_erp_status", nullable=true, length=10)	
-	private Integer typein_erp_status;
+	private Integer typeinErpStatus;
 	
 	@Column(name="proj_code", nullable=true, length=50)	
-	private String proj_code;
+	private String projCode;
 	
 	@Column(name="proj_setup_name", nullable=true, length=255)	
-	private String proj_setup_name;
+	private String projSetupName;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
 	
 	@Column(name="contract_code", nullable=true, length=50)	
-	private String contract_code;
+	private String contractCode;
 	
 	@Column(name="contract_name", nullable=true, length=255)	
-	private String contract_name;
+	private String contractName;
 	
 	@Column(name="contract_frame_status", nullable=true, length=10)	
-	private Integer contract_frame_status;
+	private Integer contractFrameStatus;
 	
 	@Column(name="contract_in_tax", nullable=true, length=50)	
-	private String contract_in_tax;
+	private String contractInTax;
 	
 	@Column(name="contract_tax", nullable=true, length=50)	
-	private String contract_tax;
+	private String contractTax;
 	
 	@Column(name="contract_no_tax", nullable=true, length=50)	
-	private String contract_no_tax;
+	private String contractNoTax;
 	
 	/**
 	 * ID
@@ -135,22 +135,22 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
@@ -170,71 +170,71 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 创建人
 	 */
-	public void setCreate_by(String value) {
-		this.create_by = value;
+	public void setCreateBy(String value) {
+		this.createBy = value;
 	}
 	
 	/**
 	 * 创建人
 	 */
-	public String getCreate_by() {
-		return create_by;
+	public String getCreateBy() {
+		return createBy;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public void setLast_update_time(java.sql.Timestamp value) {
-		this.last_update_time = value;
+	public void setLastUpdateTime(java.sql.Timestamp value) {
+		this.lastUpdateTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getLast_update_time() {
-		return last_update_time;
+	public java.sql.Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_update_by(String value) {
-		this.last_update_by = value;
+	public void setLastUpdateBy(String value) {
+		this.lastUpdateBy = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_update_by() {
-		return last_update_by;
+	public String getLastUpdateBy() {
+		return lastUpdateBy;
 	}
 	
 	/**
 	 * 采购承办部门 
 	 */
-	public void setPurchasing_dept(String value) {
-		this.purchasing_dept = value;
+	public void setPurchasingDept(String value) {
+		this.purchasingDept = value;
 	}
 	
 	/**
 	 * 采购承办部门 
 	 */
-	public String getPurchasing_dept() {
-		return purchasing_dept;
+	public String getPurchasingDept() {
+		return purchasingDept;
 	}
 	
 	/**
 	 * 采购承办人 
 	 */
-	public void setPurchasing_dealer(String value) {
-		this.purchasing_dealer = value;
+	public void setPurchasingDealer(String value) {
+		this.purchasingDealer = value;
 	}
 	
 	/**
 	 * 采购承办人 
 	 */
-	public String getPurchasing_dealer() {
-		return purchasing_dealer;
+	public String getPurchasingDealer() {
+		return purchasingDealer;
 	}
 	
 	/**
@@ -247,15 +247,15 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 开支类型 代码表：开支类型代码表
 	 */
-	public void setExpenditure_type(Integer value) {
-		this.expenditure_type = value;
+	public void setExpenditureType(Integer value) {
+		this.expenditureType = value;
 	}
 	
 	/**
 	 * 开支类型 代码表：开支类型代码表
 	 */
-	public Integer getExpenditure_type() {
-		return expenditure_type;
+	public Integer getExpenditureType() {
+		return expenditureType;
 	}
 	
 	/**
@@ -282,29 +282,29 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 大类 
 	 */
-	public void setMain_categories(String value) {
-		this.main_categories = value;
+	public void setMainCategories(String value) {
+		this.mainCategories = value;
 	}
 	
 	/**
 	 * 大类 
 	 */
-	public String getMain_categories() {
-		return main_categories;
+	public String getMainCategories() {
+		return mainCategories;
 	}
 	
 	/**
 	 * 中类 
 	 */
-	public void setSecondary_categories(String value) {
-		this.secondary_categories = value;
+	public void setSecondaryCategories(String value) {
+		this.secondaryCategories = value;
 	}
 	
 	/**
 	 * 中类 
 	 */
-	public String getSecondary_categories() {
-		return secondary_categories;
+	public String getSecondaryCategories() {
+		return secondaryCategories;
 	}
 	
 	/**
@@ -317,99 +317,99 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 采购类型 代码表：采购类型代码表
 	 */
-	public void setPurchasing_type(Integer value) {
-		this.purchasing_type = value;
+	public void setPurchasingType(Integer value) {
+		this.purchasingType = value;
 	}
 	
 	/**
 	 * 采购类型 代码表：采购类型代码表
 	 */
-	public Integer getPurchasing_type() {
-		return purchasing_type;
+	public Integer getPurchasingType() {
+		return purchasingType;
 	}
 	
 	/**
 	 * 完成合同审批时间 
 	 */
-	public void setContract_approve_time(java.sql.Timestamp value) {
-		this.contract_approve_time = value;
+	public void setContractApproveTime(java.sql.Timestamp value) {
+		this.contractApproveTime = value;
 	}
 	
 	/**
 	 * 完成合同审批时间 
 	 */
-	public java.sql.Timestamp getContract_approve_time() {
-		return contract_approve_time;
+	public java.sql.Timestamp getContractApproveTime() {
+		return contractApproveTime;
 	}
 	
 	/**
 	 * 完成纸质版合同签订时间 
 	 */
-	public void setPaper_contract_revise_time(java.sql.Timestamp value) {
-		this.paper_contract_revise_time = value;
+	public void setPaperContractReviseTime(java.sql.Timestamp value) {
+		this.contractApproveTime = value;
 	}
 	
 	/**
 	 * 完成纸质版合同签订时间 
 	 */
-	public java.sql.Timestamp getPaper_contract_revise_time() {
-		return paper_contract_revise_time;
+	public java.sql.Timestamp getPaperContractReviseTime() {
+		return contractApproveTime;
 	}
 	
 	/**
 	 * 框架有效期 
 	 */
-	public void setFrame_validatity_time(String value) {
-		this.frame_validatity_time = value;
+	public void setFrameValidatityTime(String value) {
+		this.frameValidatityTime = value;
 	}
 	
 	/**
 	 * 框架有效期 
 	 */
-	public String getFrame_validatity_time() {
-		return frame_validatity_time;
+	public String getFrameValidatityTime() {
+		return frameValidatityTime;
 	}
 	
 	/**
 	 * 成交供应商名称 
 	 */
 	public void setSupplier_name(String value) {
-		this.supplier_name = value;
+		this.supplierName = value;
 	}
 	
 	/**
 	 * 成交供应商名称 
 	 */
 	public String getSupplier_name() {
-		return supplier_name;
+		return supplierName;
 	}
 	
 	/**
 	 * 供应商联系人姓名 
 	 */
-	public void setSupplier_contacter(String value) {
-		this.supplier_contacter = value;
+	public void setSupplierContacter(String value) {
+		this.supplierContacter = value;
 	}
 	
 	/**
 	 * 供应商联系人姓名 
 	 */
-	public String getSupplier_contacter() {
-		return supplier_contacter;
+	public String getSupplierContacter() {
+		return supplierContacter;
 	}
 	
 	/**
 	 * 供应商联系人联系方式 
 	 */
-	public void setSupplier_contact_phone(String value) {
-		this.supplier_contact_phone = value;
+	public void setSupplierContactPhone(String value) {
+		this.supplierContactPhone = value;
 	}
 	
 	/**
 	 * 供应商联系人联系方式 
 	 */
-	public String getSupplier_contact_phone() {
-		return supplier_contact_phone;
+	public String getSupplierContactPhone() {
+		return supplierContactPhone;
 	}
 	
 	/**
@@ -422,43 +422,43 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 是否需录入ERP系统 代码表：是否代码
 	 */
-	public void setTypein_erp_status(Integer value) {
-		this.typein_erp_status = value;
+	public void setTypeinErpStatus(Integer value) {
+		this.typeinErpStatus = value;
 	}
 	
 	/**
 	 * 是否需录入ERP系统 代码表：是否代码
 	 */
-	public Integer getTypein_erp_status() {
-		return typein_erp_status;
+	public Integer getTypeinErpStatus() {
+		return typeinErpStatus;
 	}
 	
 	/**
 	 * 项目编号 
 	 */
-	public void setProj_code(String value) {
-		this.proj_code = value;
+	public void setProjCode(String value) {
+		this.projCode = value;
 	}
 	
 	/**
 	 * 项目编号 
 	 */
-	public String getProj_code() {
-		return proj_code;
+	public String getProjCode() {
+		return projCode;
 	}
 	
 	/**
 	 * 项目立项名称 
 	 */
-	public void setProj_setup_name(String value) {
-		this.proj_setup_name = value;
+	public void setProjSetupName(String value) {
+		this.projSetupName = value;
 	}
 	
 	/**
 	 * 项目立项名称 
 	 */
-	public String getProj_setup_name() {
-		return proj_setup_name;
+	public String getProjSetupName() {
+		return projSetupName;
 	}
 	
 	/**
@@ -478,29 +478,29 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 合同编号 
 	 */
-	public void setContract_code(String value) {
-		this.contract_code = value;
+	public void setContractCode(String value) {
+		this.contractCode = value;
 	}
 	
 	/**
 	 * 合同编号 
 	 */
-	public String getContract_code() {
-		return contract_code;
+	public String getContractCode() {
+		return contractCode;
 	}
 	
 	/**
 	 * 合同名称 
 	 */
-	public void setContract_name(String value) {
-		this.contract_name = value;
+	public void setContractName(String value) {
+		this.contractName = value;
 	}
 	
 	/**
 	 * 合同名称 
 	 */
-	public String getContract_name() {
-		return contract_name;
+	public String getContractName() {
+		return contractName;
 	}
 	
 	/**
@@ -513,57 +513,57 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 是否是框架 代码表：是否
 	 */
-	public void setContract_frame_status(Integer value) {
-		this.contract_frame_status = value;
+	public void setContractFrameStatus(Integer value) {
+		this.contractFrameStatus = value;
 	}
 	
 	/**
 	 * 是否是框架 代码表：是否
 	 */
-	public Integer getContract_frame_status() {
-		return contract_frame_status;
+	public Integer getContractFrameStatus() {
+		return contractFrameStatus;
 	}
 	
 	/**
 	 * 合同含税金额 
 	 */
-	public void setContract_in_tax(String value) {
-		this.contract_in_tax = value;
+	public void setContractInTax(String value) {
+		this.contractInTax = value;
 	}
 	
 	/**
 	 * 合同含税金额 
 	 */
-	public String getContract_in_tax() {
-		return contract_in_tax;
+	public String getContractInTax() {
+		return contractInTax;
 	}
 	
 	/**
 	 * 合同税额 
 	 */
-	public void setContract_tax(String value) {
-		this.contract_tax = value;
+	public void setContractTax(String value) {
+		this.contractTax = value;
 	}
 	
 	/**
 	 * 合同税额 
 	 */
-	public String getContract_tax() {
-		return contract_tax;
+	public String getContractTax() {
+		return contractTax;
 	}
 	
 	/**
 	 * 合同不含税金额 
 	 */
-	public void setContract_no_tax(String value) {
-		this.contract_no_tax = value;
+	public void setContractNoTax(String value) {
+		this.contractNoTax = value;
 	}
 	
 	/**
 	 * 合同不含税金额 
 	 */
-	public String getContract_no_tax() {
-		return contract_no_tax;
+	public String getContractNoTax() {
+		return contractNoTax;
 	}
 	
 	public String toString() {

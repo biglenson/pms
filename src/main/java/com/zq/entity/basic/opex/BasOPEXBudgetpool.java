@@ -38,25 +38,25 @@ public class BasOPEXBudgetpool implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="dynabudpl_init_amount", nullable=true, length=50)	
-	private String dynabudpl_init_amount;
+	private String dynabudplInitAmount;
 	
-	@Column(name="`avail_dynabudpl_ amount`", nullable=true, length=50)	
-	private String avail_dynabudpl__amount;
+	@Column(name="avail_dynabudpl_amount", nullable=true, length=50)	
+	private String availDynabudplAmount;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
@@ -75,36 +75,36 @@ public class BasOPEXBudgetpool implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -124,57 +124,57 @@ public class BasOPEXBudgetpool implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
 	 * 动态预算池初始金额（元）
 	 */
-	public void setDynabudpl_init_amount(String value) {
-		this.dynabudpl_init_amount = value;
+	public void setDynabudplInitAmount(String value) {
+		this.dynabudplInitAmount = value;
 	}
 	
 	/**
 	 * 动态预算池初始金额（元）
 	 */
-	public String getDynabudpl_init_amount() {
-		return dynabudpl_init_amount;
+	public String getDynabudplInitAmount() {
+		return dynabudplInitAmount;
 	}
 	
 	/**
 	 * 可用动态预算池总金额（元）
 	 */
-	public void setAvail_dynabudpl__amount(String value) {
-		this.avail_dynabudpl__amount = value;
+	public void setAvailDynabudplAmount(String value) {
+		this.availDynabudplAmount = value;
 	}
 	
 	/**
 	 * 可用动态预算池总金额（元）
 	 */
-	public String getAvail_dynabudpl__amount() {
-		return avail_dynabudpl__amount;
+	public String getAvailDynabudplAmount() {
+		return availDynabudplAmount;
 	}
 	
 	/**

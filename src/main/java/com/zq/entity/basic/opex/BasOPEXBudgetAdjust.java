@@ -38,49 +38,49 @@ public class BasOPEXBudgetAdjust implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="out_dept", nullable=true, length=10)	
-	private Integer out_dept;
+	private Integer outDept;
 	
 	@Column(name="in_dept", nullable=true, length=10)	
-	private Integer in_dept;
+	private Integer inDept;
 	
 	@Column(name="out_opex_proj", nullable=true, length=50)	
-	private String out_opex_proj;
+	private String outOpexProj;
 	
 	@Column(name="in_opex_proj", nullable=true, length=50)	
-	private String in_opex_proj;
+	private String inOpexProj;
 	
 	@Column(name="adjust_amount", nullable=true, length=50)	
-	private String adjust_amount;
+	private String adjustAmount;
 	
-	@Column(name="adjust_time", nullable=true)	
-	private java.sql.Timestamp adjust_time;
+	@Column(name="adjustTime", nullable=true)	
+	private java.sql.Timestamp adjustTime;
 	
 	@Column(name="out_budgeted_amount", nullable=true, length=50)	
-	private String out_budgeted_amount;
+	private String outBudgetedAmount;
 	
 	@Column(name="in_budgeted_amount", nullable=true, length=50)	
-	private String in_budgeted_amount;
+	private String inBudgetedAmount;
 	
 	@Column(name="out_budget_account", nullable=true, length=50)	
-	private String out_budget_account;
+	private String outBudgetAccount;
 	
 	@Column(name="in_budget_account", nullable=true, length=50)	
-	private String in_budget_account;
+	private String inBudgetAccount;
 	
 	/**
 	 * ID
@@ -96,36 +96,36 @@ public class BasOPEXBudgetAdjust implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -145,29 +145,29 @@ public class BasOPEXBudgetAdjust implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
@@ -180,15 +180,15 @@ public class BasOPEXBudgetAdjust implements Serializable {
 	/**
 	 * 调出部门 
 	 */
-	public void setOut_dept(Integer value) {
-		this.out_dept = value;
+	public void setOutDept(Integer value) {
+		this.outDept = value;
 	}
 	
 	/**
 	 * 调出部门 
 	 */
-	public Integer getOut_dept() {
-		return out_dept;
+	public Integer getOutDept() {
+		return outDept;
 	}
 	
 	/**
@@ -201,127 +201,127 @@ public class BasOPEXBudgetAdjust implements Serializable {
 	/**
 	 * 调入部门 
 	 */
-	public void setIn_dept(Integer value) {
-		this.in_dept = value;
+	public void setInDept(Integer value) {
+		this.inDept = value;
 	}
 	
 	/**
 	 * 调入部门 
 	 */
-	public Integer getIn_dept() {
-		return in_dept;
+	public Integer getInDept() {
+		return inDept;
 	}
 	
 	/**
 	 * 调出OPEX项目 bas_opex_project中budsys_proj_code
 	 */
-	public void setOut_opex_proj(String value) {
-		this.out_opex_proj = value;
+	public void setOutOpexProj(String value) {
+		this.outOpexProj = value;
 	}
 	
 	/**
 	 * 调出OPEX项目 bas_opex_project中budsys_proj_code
 	 */
-	public String getOut_opex_proj() {
-		return out_opex_proj;
+	public String getOutOpexProj() {
+		return outOpexProj;
 	}
 	
 	/**
 	 * 调入OPEX项目 bas_opex_project中budsys_proj_code
 	 */
-	public void setIn_opex_proj(String value) {
-		this.in_opex_proj = value;
+	public void setInOpexProj(String value) {
+		this.inOpexProj = value;
 	}
 	
 	/**
 	 * 调入OPEX项目 bas_opex_project中budsys_proj_code
 	 */
-	public String getIn_opex_proj() {
-		return in_opex_proj;
+	public String getInOpexProj() {
+		return inOpexProj;
 	}
 	
 	/**
 	 * 调整金额（元） 
 	 */
-	public void setAdjust_amount(String value) {
-		this.adjust_amount = value;
+	public void setAdjustAmount(String value) {
+		this.adjustAmount = value;
 	}
 	
 	/**
 	 * 调整金额（元） 
 	 */
-	public String getAdjust_amount() {
-		return adjust_amount;
+	public String getAdjustAmount() {
+		return adjustAmount;
 	}
 	
 	/**
 	 * 调整时间 
 	 */
-	public void setAdjust_time(java.sql.Timestamp value) {
-		this.adjust_time = value;
+	public void setAdjustTime(java.sql.Timestamp value) {
+		this.adjustTime = value;
 	}
 	
 	/**
 	 * 调整时间 
 	 */
-	public java.sql.Timestamp getAdjust_time() {
-		return adjust_time;
+	public java.sql.Timestamp getAdjustTime() {
+		return adjustTime;
 	}
 	
 	/**
 	 * 调出项目调整后预算金额（元） 
 	 */
-	public void setOut_budgeted_amount(String value) {
-		this.out_budgeted_amount = value;
+	public void setOutBudgetedAmount(String value) {
+		this.outBudgetAccount = value;
 	}
 	
 	/**
 	 * 调出项目调整后预算金额（元） 
 	 */
-	public String getOut_budgeted_amount() {
-		return out_budgeted_amount;
+	public String getOutBudgetedAmount() {
+		return outBudgetAccount;
 	}
 	
 	/**
 	 * 调入项目调整后预算金额（元） 
 	 */
-	public void setIn_budgeted_amount(String value) {
-		this.in_budgeted_amount = value;
+	public void setInBudgetedAmount(String value) {
+		this.inBudgetedAmount = value;
 	}
 	
 	/**
 	 * 调入项目调整后预算金额（元） 
 	 */
-	public String getIn_budgeted_amount() {
-		return in_budgeted_amount;
+	public String getInBudgetedAmount() {
+		return inBudgetedAmount;
 	}
 	
 	/**
 	 * 调出预算科目 bas_budget_account中bugdet_account _code
 	 */
-	public void setOut_budget_account(String value) {
-		this.out_budget_account = value;
+	public void setOutBudgetAccount(String value) {
+		this.outBudgetAccount = value;
 	}
 	
 	/**
 	 * 调出预算科目 bas_budget_account中bugdet_account _code
 	 */
-	public String getOut_budget_account() {
-		return out_budget_account;
+	public String getOutBudgetAccount() {
+		return outBudgetAccount;
 	}
 	
 	/**
 	 * 调入预算科目 bas_budget_account中bugdet_account _code
 	 */
-	public void setIn_budget_account(String value) {
-		this.in_budget_account = value;
+	public void setInBudgetAccount(String value) {
+		this.inBudgetAccount = value;
 	}
 	
 	/**
 	 * 调入预算科目 bas_budget_account中bugdet_account _code
 	 */
-	public String getIn_budget_account() {
-		return in_budget_account;
+	public String getInBudgetAccount() {
+		return inBudgetAccount;
 	}
 	
 	public String toString() {

@@ -38,19 +38,19 @@ public class BasOtherContract implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
-	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	@Column(name="modifTtime", nullable=true)	
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="deptment", nullable=true, length=50)	
 	private String deptment;
@@ -59,37 +59,37 @@ public class BasOtherContract implements Serializable {
 	private String dealer;
 	
 	@Column(name="contract_code", nullable=true, length=50)	
-	private String contract_code;
+	private String contractCode;
 	
 	@Column(name="contract_name", nullable=true, length=255)	
-	private String contract_name;
+	private String contractName;
 	
 	@Column(name="supplier_name", nullable=true, length=50)	
-	private String supplier_name;
+	private String supplierName;
 	
 	@Column(name="contract_in_tax", nullable=true, length=50)	
-	private String contract_in_tax;
+	private String contractInTax;
 	
 	@Column(name="contract_tax", nullable=true, length=50)	
-	private String contract_tax;
+	private String contractTax;
 	
 	@Column(name="contract_no_tax", nullable=true, length=50)	
-	private String contract_no_tax;
+	private String contractNoTax;
 	
 	@Column(name="supplier_contacter", nullable=true, length=50)	
-	private String supplier_contacter;
+	private String supplierContacter;
 	
 	@Column(name="supplier_contact_phone", nullable=true, length=50)	
-	private String supplier_contact_phone;
+	private String supplierContactPhone;
 	
 	@Column(name="typein_erp_status", nullable=true, length=10)	
-	private Integer typein_erp_status;
+	private Integer typeinErpStatus;
 	
 	@Column(name="proj_code", nullable=true, length=50)	
-	private String proj_code;
+	private String projCode;
 	
 	@Column(name="proj_setup_name", nullable=true, length=50)	
-	private String proj_setup_name;
+	private String projSetupName;
 	
 	@Column(name="description", nullable=true)	
 	private String description;
@@ -108,36 +108,36 @@ public class BasOtherContract implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -157,29 +157,29 @@ public class BasOtherContract implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
@@ -213,113 +213,113 @@ public class BasOtherContract implements Serializable {
 	/**
 	 * 合同编号 
 	 */
-	public void setContract_code(String value) {
-		this.contract_code = value;
+	public void setContractCode(String value) {
+		this.contractCode = value;
 	}
 	
 	/**
 	 * 合同编号 
 	 */
-	public String getContract_code() {
-		return contract_code;
+	public String getContractCode() {
+		return contractCode;
 	}
 	
 	/**
 	 * 合同名称 
 	 */
-	public void setContract_name(String value) {
-		this.contract_name = value;
+	public void setContractName(String value) {
+		this.contractName = value;
 	}
 	
 	/**
 	 * 合同名称 
 	 */
-	public String getContract_name() {
-		return contract_name;
+	public String getContractName() {
+		return contractName;
 	}
 	
 	/**
 	 * 成交供应商名称 
 	 */
-	public void setSupplier_name(String value) {
-		this.supplier_name = value;
+	public void setSupplierName(String value) {
+		this.supplierName = value;
 	}
 	
 	/**
 	 * 成交供应商名称 
 	 */
-	public String getSupplier_name() {
-		return supplier_name;
+	public String getSupplierName() {
+		return supplierName;
 	}
 	
 	/**
 	 * 合同含税金额 
 	 */
-	public void setContract_in_tax(String value) {
-		this.contract_in_tax = value;
+	public void setContractInTax(String value) {
+		this.contractInTax = value;
 	}
 	
 	/**
 	 * 合同含税金额 
 	 */
-	public String getContract_in_tax() {
-		return contract_in_tax;
+	public String getContractInTax() {
+		return contractInTax;
 	}
 	
 	/**
 	 * 合同税额 
 	 */
-	public void setContract_tax(String value) {
-		this.contract_tax = value;
+	public void setContractTax(String value) {
+		this.contractTax = value;
 	}
 	
 	/**
 	 * 合同税额 
 	 */
-	public String getContract_tax() {
-		return contract_tax;
+	public String getContractTax() {
+		return contractTax;
 	}
 	
 	/**
 	 * 合同不含税金额 
 	 */
-	public void setContract_no_tax(String value) {
-		this.contract_no_tax = value;
+	public void setContractNoTax(String value) {
+		this.contractNoTax = value;
 	}
 	
 	/**
 	 * 合同不含税金额 
 	 */
-	public String getContract_no_tax() {
-		return contract_no_tax;
+	public String getContractNoTax() {
+		return contractNoTax;
 	}
 	
 	/**
 	 * 供应商联系人姓名 
 	 */
-	public void setSupplier_contacter(String value) {
-		this.supplier_contacter = value;
+	public void setSupplierContacter(String value) {
+		this.supplierContacter = value;
 	}
 	
 	/**
 	 * 供应商联系人姓名 
 	 */
-	public String getSupplier_contacter() {
-		return supplier_contacter;
+	public String getSupplierContacter() {
+		return supplierContacter;
 	}
 	
 	/**
 	 * 供应商联系人的联系方式 
 	 */
-	public void setSupplier_contact_phone(String value) {
-		this.supplier_contact_phone = value;
+	public void setSupplierContactPhone(String value) {
+		this.supplierContactPhone = value;
 	}
 	
 	/**
 	 * 供应商联系人的联系方式 
 	 */
-	public String getSupplier_contact_phone() {
-		return supplier_contact_phone;
+	public String getSupplierContactPhone() {
+		return supplierContactPhone;
 	}
 	
 	/**
@@ -332,43 +332,43 @@ public class BasOtherContract implements Serializable {
 	/**
 	 * 是否录入ERP系统 
 	 */
-	public void setTypein_erp_status(Integer value) {
-		this.typein_erp_status = value;
+	public void setTypeinErpStatus(Integer value) {
+		this.typeinErpStatus = value;
 	}
 	
 	/**
 	 * 是否录入ERP系统 
 	 */
-	public Integer getTypein_erp_status() {
-		return typein_erp_status;
+	public Integer getTypeinErpStatus() {
+		return typeinErpStatus;
 	}
 	
 	/**
 	 * 项目编号 
 	 */
-	public void setProj_code(String value) {
-		this.proj_code = value;
+	public void setProjCode(String value) {
+		this.projCode = value;
 	}
 	
 	/**
 	 * 项目编号 
 	 */
-	public String getProj_code() {
-		return proj_code;
+	public String getProjCode() {
+		return projCode;
 	}
 	
 	/**
 	 * 项目立项名称 
 	 */
-	public void setProj_setup_name(String value) {
-		this.proj_setup_name = value;
+	public void setProjSetupName(String value) {
+		this.projSetupName = value;
 	}
 	
 	/**
 	 * 项目立项名称 
 	 */
-	public String getProj_setup_name() {
-		return proj_setup_name;
+	public String getProjSetupName() {
+		return projSetupName;
 	}
 	
 	/**

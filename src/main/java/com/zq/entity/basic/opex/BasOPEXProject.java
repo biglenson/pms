@@ -38,103 +38,103 @@ public class BasOPEXProject implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="budget_proj_code", nullable=true, length=50)	
-	private String budget_proj_code;
+	private String budgetProjCode;
 	
 	@Column(name="req_code", nullable=true, length=50)	
-	private String req_code;
+	private String reqCode;
 	
 	@Column(name="proj_code", nullable=true, length=50)	
-	private String proj_code;
+	private String projCode;
 	
 	@Column(name="proj_name", nullable=true, length=255)	
-	private String proj_name;
+	private String projName;
 	
 	@Column(name="bel_proj", nullable=true, length=50)	
-	private String bel_proj;
+	private String belProj;
 	
 	@Column(name="proj_type", nullable=true, length=10)	
-	private Integer proj_type;
+	private Integer projType;
 	
 	@Column(name="budsys_proj_code", nullable=true, length=50)	
-	private String budsys_proj_code;
+	private String budsysProjCode;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
 	
 	@Column(name="proj_setup_time", nullable=true)	
-	private java.sql.Timestamp proj_setup_time;
+	private java.sql.Timestamp projSetupTime;
 	
 	@Column(name="proj_decision_time", nullable=true)	
-	private java.sql.Timestamp proj_decision_time;
+	private java.sql.Timestamp projDecisionTime;
 	
 	@Column(name="proj_decision_way", nullable=true, length=50)	
-	private String proj_decision_way;
+	private String projDecisionWay;
 	
 	@Column(name="proj_decision_base", nullable=true, length=50)	
-	private String proj_decision_base;
+	private String projDecisionBase;
 	
 	@Column(name="proj_decision_status", nullable=true, length=50)	
-	private Integer proj_decision_status;
+	private Integer projDecisionStatus;
 	
 	@Column(name="proj_setup_amount", nullable=true, length=50)	
-	private String proj_setup_amount;
+	private String projSetupAmount;
 	
 	@Column(name="reimbursement_amount", nullable=true, length=50)	
-	private String reimbursement_amount;
+	private String reimbursementAmount;
 	
 	@Column(name="recorded_amount", nullable=true, length=50)	
-	private String recorded_amount;
+	private String recordedAmount;
 	
 	@Column(name="jan_plan", nullable=true, length=50)	
-	private String jan_plan;
+	private String janPlan;
 	
 	@Column(name="feb_plan", nullable=true, length=50)	
-	private String feb_plan;
+	private String febPlan;
 	
 	@Column(name="mar_plan", nullable=true, length=50)	
-	private String mar_plan;
+	private String marPlan;
 	
 	@Column(name="apr_plan", nullable=true, length=50)	
-	private String apr_plan;
+	private String aprPlan;
 	
 	@Column(name="may_plan", nullable=true, length=50)	
-	private String may_plan;
+	private String mayPlan;
 	
 	@Column(name="jun_plan", nullable=true, length=50)	
-	private String jun_plan;
+	private String junPlan;
 	
 	@Column(name="jul_plan", nullable=true, length=50)	
-	private String jul_plan;
+	private String julPlan;
 	
 	@Column(name="aug_plan", nullable=true, length=50)	
-	private String aug_plan;
+	private String augPlan;
 	
 	@Column(name="sep_plan", nullable=true, length=50)	
-	private String sep_plan;
+	private String sepPlan;
 	
 	@Column(name="oct_plan", nullable=true, length=50)	
-	private String oct_plan;
+	private String octPlan;
 	
 	@Column(name="nov_plan", nullable=true, length=50)	
-	private String nov_plan;
+	private String novPlan;
 	
 	@Column(name="dec_plan", nullable=true, length=50)	
-	private String dec_plan;
+	private String decPlan;
 	
 	@Column(name="jan_actual", nullable=true, length=50)	
 	private String jan_actual;
@@ -189,36 +189,36 @@ public class BasOPEXProject implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyid(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -238,99 +238,99 @@ public class BasOPEXProject implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
 	 * 预算项目编号 bas_opex_budget_project中budget_proj_code
 	 */
-	public void setBudget_proj_code(String value) {
-		this.budget_proj_code = value;
+	public void setBudgetProjCode(String value) {
+		this.budgetProjCode = value;
 	}
 	
 	/**
 	 * 预算项目编号 bas_opex_budget_project中budget_proj_code
 	 */
-	public String getBudget_proj_code() {
-		return budget_proj_code;
+	public String getBudgetProjCode() {
+		return budgetProjCode;
 	}
 	
 	/**
 	 * 需求编号 bas_opex_requirment中req_code
 	 */
-	public void setReq_code(String value) {
-		this.req_code = value;
+	public void setReqCode(String value) {
+		this.reqCode = value;
 	}
 	
 	/**
 	 * 需求编号 bas_opex_requirment中req_code
 	 */
-	public String getReq_code() {
-		return req_code;
+	public String getReqCode() {
+		return reqCode;
 	}
 	
 	/**
 	 * 项目编号 
 	 */
-	public void setProj_code(String value) {
-		this.proj_code = value;
+	public void setProjCode(String value) {
+		this.projCode = value;
 	}
 	
 	/**
 	 * 项目编号 
 	 */
-	public String getProj_code() {
-		return proj_code;
+	public String getProjCode() {
+		return projCode;
 	}
 	
 	/**
 	 * 项目名称 
 	 */
-	public void setProj_name(String value) {
-		this.proj_name = value;
+	public void setProjName(String value) {
+		this.projName = value;
 	}
 	
 	/**
 	 * 项目名称 
 	 */
-	public String getProj_name() {
-		return proj_name;
+	public String getProjName() {
+		return projName;
 	}
 	
 	/**
 	 * 所属产品/项目 
 	 */
-	public void setBel_proj(String value) {
-		this.bel_proj = value;
+	public void setBelProj(String value) {
+		this.belProj = value;
 	}
 	
 	/**
 	 * 所属产品/项目 
 	 */
-	public String getBel_proj() {
-		return bel_proj;
+	public String getBelProj() {
+		return belProj;
 	}
 	
 	/**
@@ -343,29 +343,29 @@ public class BasOPEXProject implements Serializable {
 	/**
 	 * 项目类型 代码表：OPEX项目类型代码表
 	 */
-	public void setProj_type(Integer value) {
-		this.proj_type = value;
+	public void setProjType(Integer value) {
+		this.projType = value;
 	}
 	
 	/**
 	 * 项目类型 代码表：OPEX项目类型代码表
 	 */
-	public Integer getProj_type() {
-		return proj_type;
+	public Integer getProjType() {
+		return projType;
 	}
 	
 	/**
 	 * 预算系统项目编码 
 	 */
-	public void setBudsys_proj_code(String value) {
-		this.budsys_proj_code = value;
+	public void setBudsysProjCode(String value) {
+		this.budsysProjCode = value;
 	}
 	
 	/**
 	 * 预算系统项目编码 
 	 */
-	public String getBudsys_proj_code() {
-		return budsys_proj_code;
+	public String getBudsysProjCode() {
+		return budsysProjCode;
 	}
 	
 	/**
@@ -385,57 +385,57 @@ public class BasOPEXProject implements Serializable {
 	/**
 	 * 计划立项时间 
 	 */
-	public void setProj_setup_time(java.sql.Timestamp value) {
-		this.proj_setup_time = value;
+	public void setProjSetupTime(java.sql.Timestamp value) {
+		this.projSetupTime = value;
 	}
 	
 	/**
 	 * 计划立项时间 
 	 */
-	public java.sql.Timestamp getProj_setup_time() {
-		return proj_setup_time;
+	public java.sql.Timestamp getProjSetupTime() {
+		return projSetupTime;
 	}
 	
 	/**
 	 * 立项决策时间 
 	 */
-	public void setProj_decision_time(java.sql.Timestamp value) {
-		this.proj_decision_time = value;
+	public void setProjDecisionTime(java.sql.Timestamp value) {
+		this.projDecisionTime = value;
 	}
 	
 	/**
 	 * 立项决策时间 
 	 */
-	public java.sql.Timestamp getProj_decision_time() {
-		return proj_decision_time;
+	public java.sql.Timestamp getProjDecisionTime() {
+		return projDecisionTime;
 	}
 	
 	/**
 	 * 立项决策方式 
 	 */
-	public void setProj_decision_way(String value) {
-		this.proj_decision_way = value;
+	public void setProjDecisionWay(String value) {
+		this.projDecisionWay = value;
 	}
 	
 	/**
 	 * 立项决策方式 
 	 */
-	public String getProj_decision_way() {
-		return proj_decision_way;
+	public String getProjDecisionWay() {
+		return projDecisionWay;
 	}
 	
 	/**
 	 * 立项决策依据 
 	 */
-	public void setProj_decision_base(String value) {
-		this.proj_decision_base = value;
+	public void setProjDecisionBase(String value) {
+		this.projDecisionBase = value;
 	}
 	
 	/**
 	 * 立项决策依据 
 	 */
-	public String getProj_decision_base() {
-		return proj_decision_base;
+	public String getProjDecisionBase() {
+		return projDecisionBase;
 	}
 	
 	/**
@@ -448,225 +448,225 @@ public class BasOPEXProject implements Serializable {
 	/**
 	 * 立项决策状态  代码表：立项决策状态代码表
 	 */
-	public void setProj_decision_status(Integer value) {
-		this.proj_decision_status = value;
+	public void setProjDecisionStatus(Integer value) {
+		this.projDecisionStatus = value;
 	}
 	
 	/**
 	 * 立项决策状态  代码表：立项决策状态代码表
 	 */
-	public Integer getProj_decision_status() {
-		return proj_decision_status;
+	public Integer getProjDecisionStatus() {
+		return projDecisionStatus;
 	}
 	
 	/**
 	 * 立项金额（元） 
 	 */
-	public void setProj_setup_amount(String value) {
-		this.proj_setup_amount = value;
+	public void setProjSetupAmount(String value) {
+		this.projSetupAmount = value;
 	}
 	
 	/**
 	 * 立项金额（元） 
 	 */
-	public String getProj_setup_amount() {
-		return proj_setup_amount;
+	public String getProjSetupAmount() {
+		return projSetupAmount;
 	}
 	
 	/**
 	 * 报账金额（元） 
 	 */
-	public void setReimbursement_amount(String value) {
-		this.reimbursement_amount = value;
+	public void setReimbursementAmount(String value) {
+		this.reimbursementAmount = value;
 	}
 	
 	/**
 	 * 报账金额（元） 
 	 */
-	public String getReimbursement_amount() {
-		return reimbursement_amount;
+	public String getReimbursementAmount() {
+		return reimbursementAmount;
 	}
 	
 	/**
 	 * 入账金额（元） 
 	 */
-	public void setRecorded_amount(String value) {
-		this.recorded_amount = value;
+	public void setRecordedAmount(String value) {
+		this.recordedAmount = value;
 	}
 	
 	/**
 	 * 入账金额（元） 
 	 */
-	public String getRecorded_amount() {
-		return recorded_amount;
+	public String getRecordedAmount() {
+		return recordedAmount;
 	}
 	
 	/**
 	 * 1月计划（元） 
 	 */
-	public void setJan_plan(String value) {
-		this.jan_plan = value;
+	public void setJanPlan(String value) {
+		this.janPlan = value;
 	}
 	
 	/**
 	 * 1月计划（元） 
 	 */
-	public String getJan_plan() {
-		return jan_plan;
+	public String getJanPlan() {
+		return janPlan;
 	}
 	
 	/**
 	 * 2月计划（元） 
 	 */
-	public void setFeb_plan(String value) {
-		this.feb_plan = value;
+	public void setFebPlan(String value) {
+		this.febPlan = value;
 	}
 	
 	/**
 	 * 2月计划（元） 
 	 */
-	public String getFeb_plan() {
-		return feb_plan;
+	public String getFebPlan() {
+		return febPlan;
 	}
 	
 	/**
 	 * 3月计划（元） 
 	 */
-	public void setMar_plan(String value) {
-		this.mar_plan = value;
+	public void setMarPlan(String value) {
+		this.marPlan = value;
 	}
 	
 	/**
 	 * 3月计划（元） 
 	 */
-	public String getMar_plan() {
-		return mar_plan;
+	public String getMarPlan() {
+		return marPlan;
 	}
 	
 	/**
 	 * 4月计划（元） 
 	 */
-	public void setApr_plan(String value) {
-		this.apr_plan = value;
+	public void setAprPlan(String value) {
+		this.aprPlan = value;
 	}
 	
 	/**
 	 * 4月计划（元） 
 	 */
-	public String getApr_plan() {
-		return apr_plan;
+	public String getAprPlan() {
+		return aprPlan;
 	}
 	
 	/**
 	 * 5月计划（元） 
 	 */
-	public void setMay_plan(String value) {
-		this.may_plan = value;
+	public void setMayPlan(String value) {
+		this.mayPlan = value;
 	}
 	
 	/**
 	 * 5月计划（元） 
 	 */
-	public String getMay_plan() {
-		return may_plan;
+	public String getMayPlan() {
+		return mayPlan;
 	}
 	
 	/**
 	 * 6月计划（元） 
 	 */
-	public void setJun_plan(String value) {
-		this.jun_plan = value;
+	public void setJunPlan(String value) {
+		this.junPlan = value;
 	}
 	
 	/**
 	 * 6月计划（元） 
 	 */
-	public String getJun_plan() {
-		return jun_plan;
+	public String getJunPlan() {
+		return junPlan;
 	}
 	
 	/**
 	 * 7月计划（元） 
 	 */
-	public void setJul_plan(String value) {
-		this.jul_plan = value;
+	public void setJulPlan(String value) {
+		this.julPlan = value;
 	}
 	
 	/**
 	 * 7月计划（元） 
 	 */
-	public String getJul_plan() {
-		return jul_plan;
+	public String getJulPlan() {
+		return julPlan;
 	}
 	
 	/**
 	 * 8月计划（元） 
 	 */
-	public void setAug_plan(String value) {
-		this.aug_plan = value;
+	public void setAugPlan(String value) {
+		this.augPlan = value;
 	}
 	
 	/**
 	 * 8月计划（元） 
 	 */
-	public String getAug_plan() {
-		return aug_plan;
+	public String getAugPlan() {
+		return augPlan;
 	}
 	
 	/**
 	 * 9月计划（元） 
 	 */
-	public void setSep_plan(String value) {
-		this.sep_plan = value;
+	public void setSepPlan(String value) {
+		this.sepPlan = value;
 	}
 	
 	/**
 	 * 9月计划（元） 
 	 */
-	public String getSep_plan() {
-		return sep_plan;
+	public String getSepPlan() {
+		return sepPlan;
 	}
 	
 	/**
 	 * 10月计划（元） 
 	 */
-	public void setOct_plan(String value) {
-		this.oct_plan = value;
+	public void setOctPlan(String value) {
+		this.octPlan = value;
 	}
 	
 	/**
 	 * 10月计划（元） 
 	 */
-	public String getOct_plan() {
-		return oct_plan;
+	public String getOctPlan() {
+		return octPlan;
 	}
 	
 	/**
 	 * 11月计划（元） 
 	 */
-	public void setNov_plan(String value) {
-		this.nov_plan = value;
+	public void setNovPlan(String value) {
+		this.novPlan = value;
 	}
 	
 	/**
 	 * 11月计划（元） 
 	 */
-	public String getNov_plan() {
-		return nov_plan;
+	public String getNovPlan() {
+		return novPlan;
 	}
 	
 	/**
 	 * 12月计划（元） 
 	 */
-	public void setDec_plan(String value) {
-		this.dec_plan = value;
+	public void setDecPlan(String value) {
+		this.decPlan = value;
 	}
 	
 	/**
 	 * 12月计划（元） 
 	 */
-	public String getDec_plan() {
-		return dec_plan;
+	public String getDecPlan() {
+		return decPlan;
 	}
 	
 	/**

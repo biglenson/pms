@@ -38,46 +38,46 @@ public class BasOPEXRequirment implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="req_code", nullable=true, length=50)	
-	private String req_code;
+	private String reqCode;
 	
 	@Column(name="req_name", nullable=true, length=50)	
-	private String req_name;
+	private String reqName;
 	
 	@Column(name="audit_state", nullable=true, length=10)	
-	private Integer audit_state;
+	private Integer auditState;
 	
 	@Column(name="business_dep", nullable=true, length=10)	
-	private Integer business_dep;
+	private Integer businessDep;
 	
 	@Column(name="budget_proj_code", nullable=true, length=50)	
-	private String budget_proj_code;
+	private String budgetProjCode;
 	
 	@Column(name="req_confirm_time", nullable=true)	
-	private java.sql.Timestamp req_confirm_time;
+	private java.sql.Timestamp reqConfirmTime;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
 	
 	@Column(name="req_declare_amount", nullable=true, length=50)	
-	private String req_declare_amount;
+	private String reqDeclareAmount;
 	
 	@Column(name="fund_source", nullable=true, length=10)	
-	private Integer fund_source;
+	private Integer fundSource;
 	
 	@Column(name="description", nullable=true)	
 	private String description;
@@ -96,36 +96,36 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -145,57 +145,57 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
 	 * 需求编号 
 	 */
-	public void setReq_code(String value) {
-		this.req_code = value;
+	public void setReqCode(String value) {
+		this.reqCode = value;
 	}
 	
 	/**
 	 * 需求编号 
 	 */
-	public String getReq_code() {
-		return req_code;
+	public String getReqCode() {
+		return reqCode;
 	}
 	
 	/**
 	 * 需求名称 
 	 */
-	public void setReq_name(String value) {
-		this.req_name = value;
+	public void setReqName(String value) {
+		this.reqName = value;
 	}
 	
 	/**
 	 * 需求名称 
 	 */
-	public String getReq_name() {
-		return req_name;
+	public String getReqName() {
+		return reqName;
 	}
 	
 	/**
@@ -208,15 +208,15 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 审批状态 
 	 */
-	public void setAudit_state(Integer value) {
-		this.audit_state = value;
+	public void setAuditState(Integer value) {
+		this.auditState = value;
 	}
 	
 	/**
 	 * 审批状态 
 	 */
-	public Integer getAudit_state() {
-		return audit_state;
+	public Integer getAuditState() {
+		return auditState;
 	}
 	
 	/**
@@ -229,43 +229,43 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 业务部门 
 	 */
-	public void setBusiness_dep(Integer value) {
-		this.business_dep = value;
+	public void setBusinessDep(Integer value) {
+		this.businessDep = value;
 	}
 	
 	/**
 	 * 业务部门 
 	 */
-	public Integer getBusiness_dep() {
-		return business_dep;
+	public Integer getBusinessDep() {
+		return businessDep;
 	}
 	
 	/**
 	 * 预算项目编号 bas_opex_budget_project中budget_proj_code
 	 */
-	public void setBudget_proj_code(String value) {
-		this.budget_proj_code = value;
+	public void setBudgetProjCode(String value) {
+		this.budgetProjCode = value;
 	}
 	
 	/**
 	 * 预算项目编号 bas_opex_budget_project中budget_proj_code
 	 */
-	public String getBudget_proj_code() {
-		return budget_proj_code;
+	public String getBudgetProjCode() {
+		return budgetProjCode;
 	}
 	
 	/**
 	 * 需求确认时间 
 	 */
-	public void setReq_confirm_time(java.sql.Timestamp value) {
-		this.req_confirm_time = value;
+	public void setReqConfirmTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 需求确认时间 
 	 */
-	public java.sql.Timestamp getReq_confirm_time() {
-		return req_confirm_time;
+	public java.sql.Timestamp getReqConfirmTime() {
+		return createTime;
 	}
 	
 	/**
@@ -285,15 +285,15 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 需求申报金额（元） 
 	 */
-	public void setReq_declare_amount(String value) {
-		this.req_declare_amount = value;
+	public void setReqDeclareAmount(String value) {
+		this.reqDeclareAmount = value;
 	}
 	
 	/**
 	 * 需求申报金额（元） 
 	 */
-	public String getReq_declare_amount() {
-		return req_declare_amount;
+	public String getReqDeclareAmount() {
+		return reqDeclareAmount;
 	}
 	
 	/**
@@ -306,15 +306,15 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 资金来源  代码表：OPEX预算来源代码表
 	 */
-	public void setFund_source(Integer value) {
-		this.fund_source = value;
+	public void setFundSource(Integer value) {
+		this.fundSource = value;
 	}
 	
 	/**
 	 * 资金来源  代码表：OPEX预算来源代码表
 	 */
-	public Integer getFund_source() {
-		return fund_source;
+	public Integer getFundSource() {
+		return fundSource;
 	}
 	
 	/**
