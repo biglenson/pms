@@ -38,19 +38,19 @@ public class BasCAPEXTotalInvestplan implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="annual", nullable=true, length=10)	
 	private Integer annual;
@@ -59,10 +59,10 @@ public class BasCAPEXTotalInvestplan implements Serializable {
 	private Integer version;
 	
 	@Column(name="annual_capex_plan", nullable=true, length=50)	
-	private String annual_capex_plan;
+	private String annualCapexPlan;
 	
 	@Column(name="annual_transfer_plan", nullable=true, length=50)	
-	private String annual_transfer_plan;
+	private String annualTransferPlan;
 	
 	/**
 	 * ID
@@ -78,36 +78,36 @@ public class BasCAPEXTotalInvestplan implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -127,29 +127,29 @@ public class BasCAPEXTotalInvestplan implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
@@ -197,29 +197,29 @@ public class BasCAPEXTotalInvestplan implements Serializable {
 	/**
 	 * 年度资本开支计划
 	 */
-	public void setAnnual_capex_plan(String value) {
-		this.annual_capex_plan = value;
+	public void setAnnualCapexPlan(String value) {
+		this.annualCapexPlan = value;
 	}
 	
 	/**
 	 * 年度资本开支计划
 	 */
-	public String getAnnual_capex_plan() {
-		return annual_capex_plan;
+	public String getAnnualCapexPlan() {
+		return annualCapexPlan;
 	}
 	
 	/**
 	 * 年度转资额计划
 	 */
-	public void setAnnual_transfer_plan(String value) {
-		this.annual_transfer_plan = value;
+	public void setAnnualTransferPlan(String value) {
+		this.annualTransferPlan = value;
 	}
 	
 	/**
 	 * 年度转资额计划
 	 */
-	public String getAnnual_transfer_plan() {
-		return annual_transfer_plan;
+	public String getAnnualTransferPlan() {
+		return annualTransferPlan;
 	}
 	
 	public String toString() {

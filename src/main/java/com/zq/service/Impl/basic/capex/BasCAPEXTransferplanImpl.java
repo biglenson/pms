@@ -28,7 +28,7 @@ public class BasCAPEXTransferplanImpl implements IBasCAPEXTransferplanService {
 
 	@Override
 	public double getActualByYearAndCAPEXProjCode(int year, String proj_code) {
-		BasCAPEXTransferplan capexPlan = iBasCAPEXTransferplanRepository.findByYearAndProjCode();
+		BasCAPEXTransferplan capexPlan = iBasCAPEXTransferplanRepository.findByYearAndProj_code();
 		return Double.parseDouble(capexPlan.getJan_actual()) + Double.parseDouble(capexPlan.getFeb_actual()) + Double.parseDouble(capexPlan.getMar_actual())
 				+ Double.parseDouble(capexPlan.getApr_actual()) + Double.parseDouble(capexPlan.getMay_actual()) + Double.parseDouble(capexPlan.getJun_actual())
 				+ Double.parseDouble(capexPlan.getJul_actual()) + Double.parseDouble(capexPlan.getAug_actual()) + Double.parseDouble(capexPlan.getSep_actual())

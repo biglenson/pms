@@ -13,7 +13,7 @@ public interface IBasCAPEXExpendplanService{
 
 	List<BasCAPEXExpendplan> getAllCAPEXExpendplanByYear(int year);
 
-	double getActualByYearAndCAPEXProjCode(int year, String proj_code);
+	double getActualByYearAndCAPEXProjCode(int year, String projCode);
 
 
 

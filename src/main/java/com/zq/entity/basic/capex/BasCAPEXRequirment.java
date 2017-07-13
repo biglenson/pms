@@ -38,46 +38,46 @@ public class BasCAPEXRequirment implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="invest_plan_code", nullable=true, length=255)	
-	private String invest_plan_code;
+	private String investPlanCode;
 	
 	@Column(name="req_code", nullable=true, length=255)	
-	private String req_code;
+	private String reqCode;
 	
 	@Column(name="req_name", nullable=true, length=255)	
-	private String req_name;
+	private String reqName;
 	
 	@Column(name="req_department", nullable=true, length=255)	
-	private String req_department;
+	private String reqDepartment;
 	
 	@Column(name="plan_req_submit_time", nullable=true)	
-	private java.sql.Timestamp plan_req_submit_time;
+	private java.sql.Timestamp planReqSubmitTime;
 	
 	@Column(name="req_submit_time", nullable=true)	
-	private java.sql.Timestamp req_submit_time;
+	private java.sql.Timestamp reqSubmitTime;
 	
 	@Column(name="req_submit_status", nullable=true, length=10)	
-	private Integer req_submit_status;
+	private Integer reqSubmitStatus;
 	
 	@Column(name="req_audit_status", nullable=true, length=10)	
-	private Integer req_audit_status;
+	private Integer reqAuditStatus;
 	
 	@Column(name="req_confirm_time", nullable=true)	
-	private java.sql.Timestamp req_confirm_time;
+	private java.sql.Timestamp reqConfirmTime;
 	
 	/**
 	 * ID
@@ -93,36 +93,36 @@ public class BasCAPEXRequirment implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -142,163 +142,163 @@ public class BasCAPEXRequirment implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
-	public void setInvest_plan_code(String value) {
-		this.invest_plan_code = value;
+	public void setInvestPlanCode(String value) {
+		this.investPlanCode = value;
 	}
 	
-	public String getInvest_plan_code() {
-		return invest_plan_code;
-	}
-	
-	/**
-	 * 需求编号 
-	 */
-	public void setReq_code(String value) {
-		this.req_code = value;
+	public String getInvestPlanCode() {
+		return investPlanCode;
 	}
 	
 	/**
 	 * 需求编号 
 	 */
-	public String getReq_code() {
-		return req_code;
+	public void setReqCode(String value) {
+		this.reqCode = value;
+	}
+	
+	/**
+	 * 需求编号 
+	 */
+	public String getReqCode() {
+		return reqCode;
 	}
 	
 	/**
 	 * 需求名称 
 	 */
-	public void setReq_name(String value) {
-		this.req_name = value;
+	public void setReqName(String value) {
+		this.reqName = value;
 	}
 	
 	/**
 	 * 需求名称 
 	 */
-	public String getReq_name() {
-		return req_name;
+	public String getReqName() {
+		return reqName;
 	}
 	
 	/**
 	 * 需求部门 
 	 */
-	public void setReq_department(String value) {
-		this.req_department = value;
+	public void setReqDepartment(String value) {
+		this.reqDepartment = value;
 	}
 	
 	/**
 	 * 需求部门 
 	 */
-	public String getReq_department() {
-		return req_department;
+	public String getReqDepartment() {
+		return reqDepartment;
 	}
 	
 	/**
 	 * 计划需求提交时间 
 	 */
-	public void setPlan_req_submit_time(java.sql.Timestamp value) {
-		this.plan_req_submit_time = value;
+	public void setPlanReqSubmitTime(java.sql.Timestamp value) {
+		this.planReqSubmitTime = value;
 	}
 	
 	/**
 	 * 计划需求提交时间 
 	 */
-	public java.sql.Timestamp getPlan_req_submit_time() {
-		return plan_req_submit_time;
+	public java.sql.Timestamp getPlanReqSubmitTime() {
+		return planReqSubmitTime;
 	}
 	
 	/**
 	 * 需求提交时间 
 	 */
-	public void setReq_submit_time(java.sql.Timestamp value) {
-		this.req_submit_time = value;
+	public void setReqSubmitTime(java.sql.Timestamp value) {
+		this.reqSubmitTime = value;
 	}
 	
 	/**
 	 * 需求提交时间 
 	 */
-	public java.sql.Timestamp getReq_submit_time() {
-		return req_submit_time;
+	public java.sql.Timestamp getReqSubmitTime() {
+		return reqSubmitTime;
 	}
 	
 	/**
 	 * 需求是否已提交 代码表：是否代
 	 */
-	public void setReq_submit_status(int value) {
-		setReq_submit_status(new Integer(value));
+	public void setReqSubmitStatus(int value) {
+		setReqSubmitStatus(new Integer(value));
 	}
 	
 	/**
 	 * 需求是否已提交 代码表：是否代
 	 */
-	public void setReq_submit_status(Integer value) {
-		this.req_submit_status = value;
+	public void setReqSubmitStatus(Integer value) {
+		this.reqSubmitStatus = value;
 	}
 	
 	/**
 	 * 需求是否已提交 代码表：是否代
 	 */
-	public Integer getReq_submit_status() {
-		return req_submit_status;
+	public Integer getReqSubmitStatus() {
+		return reqSubmitStatus;
 	}
 	
 	/**
 	 * 需求审核状态 1-通过；2-不
 	 */
-	public void setReq_audit_status(int value) {
-		setReq_audit_status(new Integer(value));
+	public void setReqAuditStatus(int value) {
+		setReqAuditStatus(new Integer(value));
 	}
 	
 	/**
 	 * 需求审核状态 1-通过；2-不
 	 */
-	public void setReq_audit_status(Integer value) {
-		this.req_audit_status = value;
+	public void setReqAuditStatus(Integer value) {
+		this.reqAuditStatus = value;
 	}
 	
 	/**
 	 * 需求审核状态 1-通过；2-不
 	 */
-	public Integer getReq_audit_status() {
-		return req_audit_status;
+	public Integer getReqAuditStatus() {
+		return reqAuditStatus;
 	}
 	
 	/**
 	 * 需求确认时间 
 	 */
-	public void setReq_confirm_time(java.sql.Timestamp value) {
-		this.req_confirm_time = value;
+	public void setReqConfirmTime(java.sql.Timestamp value) {
+		this.reqConfirmTime = value;
 	}
 	
 	/**
 	 * 需求确认时间 
 	 */
-	public java.sql.Timestamp getReq_confirm_time() {
-		return req_confirm_time;
+	public java.sql.Timestamp getReqConfirmTime() {
+		return reqConfirmTime;
 	}
 	
 	public String toString() {

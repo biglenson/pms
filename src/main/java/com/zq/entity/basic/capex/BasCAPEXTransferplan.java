@@ -38,103 +38,103 @@ public class BasCAPEXTransferplan implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="proj_code", nullable=true, length=255)	
-	private String proj_code;
+	private String projCode;
 	
 	@Column(name="current_transfer_amount", nullable=true, length=50)	
-	private String current_transfer_amount;
+	private String currentTransferAmount;
 	
 	@Column(name="total_transfer_amount", nullable=true, length=50)	
-	private String total_transfer_amount;
+	private String totalTransferAmount;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
 	
 	@Column(name="jan_plan", nullable=true, length=50)	
-	private String jan_plan;
+	private String janPlan;
 	
 	@Column(name="feb_plan", nullable=true, length=50)	
-	private String feb_plan;
+	private String febPlan;
 	
 	@Column(name="mar_plan", nullable=true, length=50)	
-	private String mar_plan;
+	private String marPlan;
 	
 	@Column(name="apr_plan", nullable=true, length=50)	
-	private String apr_plan;
+	private String aprPlan;
 	
 	@Column(name="may_plan", nullable=true, length=50)	
-	private String may_plan;
+	private String mayPlan;
 	
 	@Column(name="jun_plan", nullable=true, length=50)	
-	private String jun_plan;
+	private String junPlan;
 	
 	@Column(name="jul_plan", nullable=true, length=50)	
-	private String jul_plan;
+	private String julPlan;
 	
 	@Column(name="aug_plan", nullable=true, length=50)	
-	private String aug_plan;
+	private String augPlan;
 	
 	@Column(name="sep_plan", nullable=true, length=50)	
-	private String sep_plan;
+	private String sepPlan;
 	
 	@Column(name="oct_plan", nullable=true, length=50)	
-	private String oct_plan;
+	private String octPlan;
 	
 	@Column(name="nov_plan", nullable=true, length=50)	
-	private String nov_plan;
+	private String novPlan;
 	
 	@Column(name="dec_plan", nullable=true, length=50)	
-	private String dec_plan;
+	private String decPlan;
 	
 	@Column(name="jan_actual", nullable=true, length=50)	
-	private String jan_actual;
+	private String janActual;
 	
 	@Column(name="feb_actual", nullable=true, length=50)	
-	private String feb_actual;
+	private String febActual;
 	
 	@Column(name="mar_actual", nullable=true, length=50)	
-	private String mar_actual;
+	private String marActual;
 	
 	@Column(name="apr_actual", nullable=true, length=50)	
-	private String apr_actual;
+	private String aprActual;
 	
 	@Column(name="may_actual", nullable=true, length=50)	
-	private String may_actual;
+	private String mayActual;
 	
 	@Column(name="jun_actual", nullable=true, length=50)	
-	private String jun_actual;
+	private String junActual;
 	
 	@Column(name="jul_actual", nullable=true, length=50)	
-	private String jul_actual;
+	private String julActual;
 	
 	@Column(name="aug_actual", nullable=true, length=50)	
-	private String aug_actual;
+	private String augActual;
 	
 	@Column(name="sep_actual", nullable=true, length=50)	
-	private String sep_actual;
+	private String sepActual;
 	
 	@Column(name="oct_actual", nullable=true, length=50)	
-	private String oct_actual;
+	private String octActual;
 	
 	@Column(name="nov_actual", nullable=true, length=50)	
-	private String nov_actual;
+	private String novActual;
 	
 	@Column(name="dec_actual", nullable=true, length=50)	
-	private String dec_actual;
+	private String decActual;
 	
 	/**
 	 * ID
@@ -150,36 +150,36 @@ public class BasCAPEXTransferplan implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -199,65 +199,65 @@ public class BasCAPEXTransferplan implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
-	public void setProj_code(String value) {
-		this.proj_code = value;
+	public void setProjCode(String value) {
+		this.projCode = value;
 	}
 	
-	public String getProj_code() {
-		return proj_code;
-	}
-	
-	/**
-	 * 当年转资完成金额（元） 
-	 */
-	public void setCurrent_transfer_amount(String value) {
-		this.current_transfer_amount = value;
+	public String getProjCode() {
+		return projCode;
 	}
 	
 	/**
 	 * 当年转资完成金额（元） 
 	 */
-	public String getCurrent_transfer_amount() {
-		return current_transfer_amount;
+	public void setCurrentTransferAmount(String value) {
+		this.currentTransferAmount = value;
+	}
+	
+	/**
+	 * 当年转资完成金额（元） 
+	 */
+	public String getCurrentTransferAmount() {
+		return currentTransferAmount;
 	}
 	
 	/**
 	 * 累计转资完成金额（元） 
 	 */
-	public void setTotal_transfer_amount(String value) {
-		this.total_transfer_amount = value;
+	public void setTotalTransferAmount(String value) {
+		this.totalTransferAmount = value;
 	}
 	
 	/**
 	 * 累计转资完成金额（元） 
 	 */
-	public String getTotal_transfer_amount() {
-		return total_transfer_amount;
+	public String getTotalTransferAmount() {
+		return totalTransferAmount;
 	}
 	
 	/**
@@ -278,336 +278,336 @@ public class BasCAPEXTransferplan implements Serializable {
 	 * 1月计划（元） 
 	 */
 	public void setJan_plan(String value) {
-		this.jan_plan = value;
+		this.janPlan = value;
 	}
 	
 	/**
 	 * 1月计划（元） 
 	 */
-	public String getJan_plan() {
-		return jan_plan;
+	public String getJanPlan() {
+		return janPlan;
 	}
 	
 	/**
 	 * 2月计划（元） 
 	 */
-	public void setFeb_plan(String value) {
-		this.feb_plan = value;
+	public void setFebPlan(String value) {
+		this.febPlan = value;
 	}
 	
 	/**
 	 * 2月计划（元） 
 	 */
-	public String getFeb_plan() {
-		return feb_plan;
+	public String getFebPlan() {
+		return febPlan;
 	}
 	
 	/**
 	 * 3月计划（元） 
 	 */
-	public void setMar_plan(String value) {
-		this.mar_plan = value;
+	public void setMarPlan(String value) {
+		this.marPlan = value;
 	}
 	
 	/**
 	 * 3月计划（元） 
 	 */
-	public String getMar_plan() {
-		return mar_plan;
+	public String getMarPlan() {
+		return marPlan;
 	}
 	
 	/**
 	 * 4月计划（元） 
 	 */
-	public void setApr_plan(String value) {
-		this.apr_plan = value;
+	public void setAprPlan(String value) {
+		this.aprPlan = value;
 	}
 	
 	/**
 	 * 4月计划（元） 
 	 */
-	public String getApr_plan() {
-		return apr_plan;
+	public String getAprPlan() {
+		return aprPlan;
 	}
 	
 	/**
 	 * 5月计划（元） 
 	 */
-	public void setMay_plan(String value) {
-		this.may_plan = value;
+	public void setMayPlan(String value) {
+		this.mayPlan = value;
 	}
 	
 	/**
 	 * 5月计划（元） 
 	 */
-	public String getMay_plan() {
-		return may_plan;
+	public String getMayPlan() {
+		return mayPlan;
 	}
 	
 	/**
 	 * 6月计划（元） 
 	 */
-	public void setJun_plan(String value) {
-		this.jun_plan = value;
+	public void setJunPlan(String value) {
+		this.junPlan = value;
 	}
 	
 	/**
 	 * 6月计划（元） 
 	 */
-	public String getJun_plan() {
-		return jun_plan;
+	public String getJunPlan() {
+		return junPlan;
 	}
 	
 	/**
 	 * 7月计划（元） 
 	 */
-	public void setJul_plan(String value) {
-		this.jul_plan = value;
+	public void setJulPlan(String value) {
+		this.julPlan = value;
 	}
 	
 	/**
 	 * 7月计划（元） 
 	 */
-	public String getJul_plan() {
-		return jul_plan;
+	public String getJulPlan() {
+		return julPlan;
 	}
 	
 	/**
 	 * 8月计划（元） 
 	 */
-	public void setAug_plan(String value) {
-		this.aug_plan = value;
+	public void setAugPlan(String value) {
+		this.augPlan = value;
 	}
 	
 	/**
 	 * 8月计划（元） 
 	 */
-	public String getAug_plan() {
-		return aug_plan;
+	public String getAugPlan() {
+		return augPlan;
 	}
 	
 	/**
 	 * 9月计划（元） 
 	 */
-	public void setSep_plan(String value) {
-		this.sep_plan = value;
+	public void setSepPlan(String value) {
+		this.sepPlan = value;
 	}
 	
 	/**
 	 * 9月计划（元） 
 	 */
-	public String getSep_plan() {
-		return sep_plan;
+	public String getSepPlan() {
+		return sepPlan;
 	}
 	
 	/**
 	 * 10月计划（元） 
 	 */
-	public void setOct_plan(String value) {
-		this.oct_plan = value;
+	public void setOctPlan(String value) {
+		this.octPlan = value;
 	}
 	
 	/**
 	 * 10月计划（元） 
 	 */
-	public String getOct_plan() {
-		return oct_plan;
+	public String getOctPlan() {
+		return octPlan;
 	}
 	
 	/**
 	 * 11月计划（元） 
 	 */
-	public void setNov_plan(String value) {
-		this.nov_plan = value;
+	public void setNovPlan(String value) {
+		this.novPlan = value;
 	}
 	
 	/**
 	 * 11月计划（元） 
 	 */
-	public String getNov_plan() {
-		return nov_plan;
+	public String getNovPlan() {
+		return novPlan;
 	}
 	
 	/**
 	 * 12月计划（元） 
 	 */
-	public void setDec_plan(String value) {
-		this.dec_plan = value;
+	public void setDecPlan(String value) {
+		this.decPlan = value;
 	}
 	
 	/**
 	 * 12月计划（元） 
 	 */
-	public String getDec_plan() {
-		return dec_plan;
+	public String getDecPlan() {
+		return decPlan;
 	}
 	
 	/**
 	 * 1月实际（元） 
 	 */
-	public void setJan_actual(String value) {
-		this.jan_actual = value;
+	public void setJanActual(String value) {
+		this.janActual = value;
 	}
 	
 	/**
 	 * 1月实际（元） 
 	 */
-	public String getJan_actual() {
-		return jan_actual;
+	public String getJanActual() {
+		return janActual;
 	}
 	
 	/**
 	 * 2月实际（元） 
 	 */
-	public void setFeb_actual(String value) {
-		this.feb_actual = value;
+	public void setFebActual(String value) {
+		this.febActual = value;
 	}
 	
 	/**
 	 * 2月实际（元） 
 	 */
-	public String getFeb_actual() {
-		return feb_actual;
+	public String getFebActual() {
+		return febActual;
 	}
 	
 	/**
 	 * 3月实际（元） 
 	 */
-	public void setMar_actual(String value) {
-		this.mar_actual = value;
+	public void setMarActual(String value) {
+		this.marActual = value;
 	}
 	
 	/**
 	 * 3月实际（元） 
 	 */
-	public String getMar_actual() {
-		return mar_actual;
+	public String getMarActual() {
+		return marActual;
 	}
 	
 	/**
 	 * 4月实际（元） 
 	 */
-	public void setApr_actual(String value) {
-		this.apr_actual = value;
+	public void setAprActual(String value) {
+		this.aprActual = value;
 	}
 	
 	/**
 	 * 4月实际（元） 
 	 */
-	public String getApr_actual() {
-		return apr_actual;
+	public String getAprActual() {
+		return aprActual;
 	}
 	
 	/**
 	 * 5月实际（元） 
 	 */
-	public void setMay_actual(String value) {
-		this.may_actual = value;
+	public void setMayActual(String value) {
+		this.mayActual = value;
 	}
 	
 	/**
 	 * 5月实际（元） 
 	 */
-	public String getMay_actual() {
-		return may_actual;
+	public String getMayActual() {
+		return mayActual;
 	}
 	
 	/**
 	 * 6月实际（元） 
 	 */
-	public void setJun_actual(String value) {
-		this.jun_actual = value;
+	public void setJunActual(String value) {
+		this.junActual = value;
 	}
 	
 	/**
 	 * 6月实际（元） 
 	 */
-	public String getJun_actual() {
-		return jun_actual;
+	public String getJunActual() {
+		return junActual;
 	}
 	
 	/**
 	 * 7月实际（元） 
 	 */
-	public void setJul_actual(String value) {
-		this.jul_actual = value;
+	public void setJulActual(String value) {
+		this.julActual = value;
 	}
 	
 	/**
 	 * 7月实际（元） 
 	 */
-	public String getJul_actual() {
-		return jul_actual;
+	public String getJulActual() {
+		return julActual;
 	}
 	
 	/**
 	 * 8月实际（元） 
 	 */
-	public void setAug_actual(String value) {
-		this.aug_actual = value;
+	public void setAugActual(String value) {
+		this.augActual = value;
 	}
 	
 	/**
 	 * 8月实际（元） 
 	 */
-	public String getAug_actual() {
-		return aug_actual;
+	public String getAugActual() {
+		return augActual;
 	}
 	
 	/**
 	 * 9月实际（元） 
 	 */
-	public void setSep_actual(String value) {
-		this.sep_actual = value;
+	public void setSepActual(String value) {
+		this.sepActual = value;
 	}
 	
 	/**
 	 * 9月实际（元） 
 	 */
-	public String getSep_actual() {
-		return sep_actual;
+	public String getSepActual() {
+		return sepActual;
 	}
 	
 	/**
 	 * 10月实际（元） 
 	 */
-	public void setOct_actual(String value) {
-		this.oct_actual = value;
+	public void setOctActual(String value) {
+		this.octActual = value;
 	}
 	
 	/**
 	 * 10月实际（元） 
 	 */
-	public String getOct_actual() {
-		return oct_actual;
+	public String getOctActual() {
+		return octActual;
 	}
 	
 	/**
 	 * 11月实际（元） 
 	 */
-	public void setNov_actual(String value) {
-		this.nov_actual = value;
+	public void setNovActual(String value) {
+		this.novActual = value;
 	}
 	
 	/**
 	 * 11月实际（元） 
 	 */
-	public String getNov_actual() {
-		return nov_actual;
+	public String getNovActual() {
+		return novActual;
 	}
 	
 	/**
 	 * 12月实际（元） 
 	 */
-	public void setDec_actual(String value) {
-		this.dec_actual = value;
+	public void setDecActual(String value) {
+		this.decActual = value;
 	}
 	
 	/**
 	 * 12月实际（元） 
 	 */
-	public String getDec_actual() {
-		return dec_actual;
+	public String getDecActual() {
+		return decActual;
 	}
 	
 	public String toString() {

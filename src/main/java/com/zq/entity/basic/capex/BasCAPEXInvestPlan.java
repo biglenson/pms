@@ -38,22 +38,22 @@ public class BasCAPEXInvestPlan implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="invest_plan_code", nullable=true, length=255)	
-	private String invest_plan_code;
+	private String investPlanCode;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
@@ -62,43 +62,43 @@ public class BasCAPEXInvestPlan implements Serializable {
 	private Integer version;
 	
 	@Column(name="first_domain", nullable=true, length=10)	
-	private Integer first_domain;
+	private Integer firstDomain;
 	
 	@Column(name="secend_domain", nullable=true, length=255)	
-	private String secend_domain;
+	private String secendDomain;
 	
 	@Column(name="third_domain", nullable=true, length=255)	
-	private String third_domain;
+	private String thirdDomain;
 	
 	@Column(name="fourth_domain", nullable=true, length=255)	
-	private String fourth_domain;
+	private String fourthDomain;
 	
 	@Column(name="attribute", nullable=true, length=10)	
 	private Integer attribute;
 	
 	@Column(name="proj_name", nullable=true, length=255)	
-	private String proj_name;
+	private String projName;
 	
 	@Column(name="proj_code", nullable=true, length=50)	
-	private String proj_code;
+	private String projCode;
 	
 	@Column(name="department", nullable=true, length=1)	
 	private Integer department;
 	
-	@Column(name="total_invest", nullable=true, length=50)	
-	private String total_invest;
+	@Column(name="tnnualCapex", nullable=true, length=50)	
+	private String totalInvest;
 	
 	@Column(name="annual_capex", nullable=true, length=50)	
-	private String annual_capex;
+	private String annualCapex;
 	
 	@Column(name="last_finish_capex", nullable=true, length=50)	
-	private String last_finish_capex;
+	private String lastFinishCapex;
 	
 	@Column(name="transfer_capex", nullable=true, length=50)	
-	private String transfer_capex;
+	private String transferCapex;
 	
 	@Column(name="construct_content", nullable=true, length=255)	
-	private String construct_content;
+	private String constructContent;
 	
 	/**
 	 * id
@@ -114,36 +114,36 @@ public class BasCAPEXInvestPlan implements Serializable {
 	/**
 	 * 公司id
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司id
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司id
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -163,43 +163,43 @@ public class BasCAPEXInvestPlan implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
 	 * 投资计划编号
 	 */
-	public void setInvest_plan_code(String value) {
-		this.invest_plan_code = value;
+	public void setInvestPlanCode(String value) {
+		this.investPlanCode = value;
 	}
 	
 	/**
 	 * 投资计划编号
 	 */
-	public String getInvest_plan_code() {
-		return invest_plan_code;
+	public String getInvestPlanCode() {
+		return investPlanCode;
 	}
 	
 	/**
@@ -240,64 +240,64 @@ public class BasCAPEXInvestPlan implements Serializable {
 	/**
 	 * 一级专业 代码表：投资专业代码表
 	 */
-	public void setFirst_domain(int value) {
-		setFirst_domain(new Integer(value));
+	public void setFirstDomain(int value) {
+		setFirstDomain(new Integer(value));
 	}
 	
 	/**
 	 * 一级专业 代码表：投资专业代码表
 	 */
-	public void setFirst_domain(Integer value) {
-		this.first_domain = value;
+	public void setFirstDomain(Integer value) {
+		this.firstDomain = value;
 	}
 	
 	/**
 	 * 一级专业 代码表：投资专业代码表
 	 */
-	public Integer getFirst_domain() {
-		return first_domain;
+	public Integer getFirstDomain() {
+		return firstDomain;
 	}
 	
 	/**
 	 * 二级专业
 	 */
-	public void setSecend_domain(String value) {
-		this.secend_domain = value;
+	public void setSecendDomain(String value) {
+		this.secendDomain = value;
 	}
 	
 	/**
 	 * 二级专业
 	 */
-	public String getSecend_domain() {
-		return secend_domain;
+	public String getSecendDomain() {
+		return secendDomain;
 	}
 	
 	/**
 	 * 三级专业
 	 */
-	public void setThird_domain(String value) {
-		this.third_domain = value;
+	public void setThirdDomain(String value) {
+		this.thirdDomain = value;
 	}
 	
 	/**
 	 * 三级专业
 	 */
-	public String getThird_domain() {
-		return third_domain;
+	public String getThirdDomain() {
+		return thirdDomain;
 	}
 	
 	/**
 	 * 四级专业
 	 */
-	public void setFourth_domain(String value) {
-		this.fourth_domain = value;
+	public void setFourthDomain(String value) {
+		this.fourthDomain = value;
 	}
 	
 	/**
 	 * 四级专业
 	 */
-	public String getFourth_domain() {
-		return fourth_domain;
+	public String getFourthDomain() {
+		return fourthDomain;
 	}
 	
 	/**
@@ -324,29 +324,29 @@ public class BasCAPEXInvestPlan implements Serializable {
 	/**
 	 * 投资项目集/项目名称
 	 */
-	public void setProj_name(String value) {
-		this.proj_name = value;
+	public void setProjName(String value) {
+		this.projName = value;
 	}
 	
 	/**
 	 * 投资项目集/项目名称
 	 */
-	public String getProj_name() {
-		return proj_name;
+	public String getProjName() {
+		return projName;
 	}
 	
 	/**
 	 * 投资项目集/项目编码
 	 */
-	public void setProj_code(String value) {
-		this.proj_code = value;
+	public void setProjCode(String value) {
+		this.projCode = value;
 	}
 	
 	/**
 	 * 投资项目集/项目编码
 	 */
-	public String getProj_code() {
-		return proj_code;
+	public String getProjCode() {
+		return projCode;
 	}
 	
 	/**
@@ -373,71 +373,71 @@ public class BasCAPEXInvestPlan implements Serializable {
 	/**
 	 * 项目集总投资(元)
 	 */
-	public void setTotal_invest(String value) {
-		this.total_invest = value;
+	public void setTotalInvest(String value) {
+		this.totalInvest = value;
 	}
 	
 	/**
 	 * 项目集总投资(元)
 	 */
-	public String getTotal_invest() {
-		return total_invest;
+	public String getTotalInvest() {
+		return totalInvest;
 	}
 	
 	/**
 	 * 项目集当年资本开支计划(元)
 	 */
-	public void setAnnual_capex(String value) {
-		this.annual_capex = value;
+	public void setAnnualCapex(String value) {
+		this.annualCapex = value;
 	}
 	
 	/**
 	 * 项目集当年资本开支计划(元)
 	 */
-	public String getAnnual_capex() {
-		return annual_capex;
+	public String getAnnualCapex() {
+		return annualCapex;
 	}
 	
 	/**
 	 * 上年累计已完成资本开支(元)
 	 */
-	public void setLast_finish_capex(String value) {
-		this.last_finish_capex = value;
+	public void setLastFinishCapex(String value) {
+		this.lastFinishCapex = value;
 	}
 	
 	/**
 	 * 上年累计已完成资本开支(元)
 	 */
-	public String getLast_finish_capex() {
-		return last_finish_capex;
+	public String getLastFinishCapex() {
+		return lastFinishCapex;
 	}
 	
 	/**
 	 * 项目集结转资本开支(元)
 	 */
-	public void setTransfer_capex(String value) {
-		this.transfer_capex = value;
+	public void setTransferCapex(String value) {
+		this.transferCapex = value;
 	}
 	
 	/**
 	 * 项目集结转资本开支(元)
 	 */
-	public String getTransfer_capex() {
-		return transfer_capex;
+	public String getTransferCapex() {
+		return transferCapex;
 	}
 	
 	/**
 	 * 项目主要建设内容 
 	 */
-	public void setConstruct_content(String value) {
-		this.construct_content = value;
+	public void setConstructContent(String value) {
+		this.constructContent = value;
 	}
 	
 	/**
 	 * 项目主要建设内容 
 	 */
-	public String getConstruct_content() {
-		return construct_content;
+	public String getConstructContent() {
+		return constructContent;
 	}
 	
 	public String toString() {

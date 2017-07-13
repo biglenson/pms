@@ -38,25 +38,25 @@ public class BasCAPEXProjInvestplan implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="proj_code", nullable=true, length=255)	
-	private String proj_code;
+	private String projCode;
 	
 	@Column(name="invest_plan_code", nullable=true, length=255)	
-	private String invest_plan_code;
+	private String investPlanCode;
 	
 	/**
 	 * ID
@@ -72,36 +72,36 @@ public class BasCAPEXProjInvestplan implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -121,45 +121,45 @@ public class BasCAPEXProjInvestplan implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
-	public void setProj_code(String value) {
-		this.proj_code = value;
+	public void setProjCode(String value) {
+		this.projCode = value;
 	}
 	
-	public String getProj_code() {
-		return proj_code;
+	public String getProjCode() {
+		return projCode;
 	}
 	
-	public void setInvest_plan_code(String value) {
-		this.invest_plan_code = value;
+	public void setInvestPlanCode(String value) {
+		this.investPlanCode = value;
 	}
 	
-	public String getInvest_plan_code() {
-		return invest_plan_code;
+	public String getInvestPlanCode() {
+		return investPlanCode;
 	}
 	
 	public String toString() {

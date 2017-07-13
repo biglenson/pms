@@ -38,136 +38,136 @@ public class BasCAPEXProject implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="pms_proj_code", nullable=true, length=255)	
-	private String pms_proj_code;
+	private String pmsProjCode;
 	
 	@Column(name="req_code", nullable=true, length=255)	
-	private String req_code;
+	private String reqCode;
 	
 	@Column(name="proj_name", nullable=true, length=255)	
-	private String proj_name;
+	private String projName;
 	
 	@Column(name="proj_code", nullable=true, length=255)	
-	private String proj_code;
+	private String projCode;
 	
 	@Column(name="proj_type", nullable=true, length=10)	
-	private Integer proj_type;
+	private Integer projType;
 	
 	@Column(name="proj_start_year", nullable=true, length=255)	
-	private String proj_start_year;
+	private String projStartYear;
 	
 	@Column(name="belong_proj", nullable=true, length=255)	
-	private String belong_proj;
+	private String belongProj;
 	
 	@Column(name="proj_status", nullable=true, length=10)	
-	private Integer proj_status;
+	private Integer projStatus;
 	
 	@Column(name="proj_total_invest", nullable=true, length=50)	
-	private String proj_total_invest;
+	private String projTotalInvest;
 	
 	@Column(name="anual_capex_plan", nullable=true, length=50)	
-	private String anual_capex_plan;
+	private String anualCapexPlan;
 	
 	@Column(name="anual_truncap_plan", nullable=true, length=50)	
-	private String anual_truncap_plan;
+	private String anualTruncapPlan;
 	
 	@Column(name="plan_setup_time", nullable=true)	
-	private java.sql.Timestamp plan_setup_time;
+	private java.sql.Timestamp planSetupTime;
 	
 	@Column(name="plan_approval_time", nullable=true)	
-	private java.sql.Timestamp plan_approval_time;
+	private java.sql.Timestamp planApprovalTime;
 	
 	@Column(name="plan_construct_time", nullable=true)	
-	private java.sql.Timestamp plan_construct_time;
+	private java.sql.Timestamp planConstructTime;
 	
 	@Column(name="plan_online_time", nullable=true)	
-	private java.sql.Timestamp plan_online_time;
+	private java.sql.Timestamp planOnlineTime;
 	
 	@Column(name="pinit_approval_time", nullable=true)	
-	private java.sql.Timestamp pinit_approval_time;
+	private java.sql.Timestamp pinitApprovalTime;
 	
 	@Column(name="pfinal_approval_time", nullable=true)	
-	private java.sql.Timestamp pfinal_approval_time;
+	private java.sql.Timestamp pfinalApprovalTime;
 	
 	@Column(name="plan_pm", nullable=true, length=255)	
-	private String plan_pm;
+	private String planPm;
 	
 	@Column(name="purchase_pm", nullable=true, length=255)	
-	private String purchase_pm;
+	private String purchasePm;
 	
 	@Column(name="proj_pm_dept", nullable=true, length=255)	
-	private String proj_pm_dept;
+	private String projPmDept;
 	
 	@Column(name="construct_pm", nullable=true, length=255)	
-	private String construct_pm;
+	private String constructPm;
 	
 	@Column(name="preoccupy_amount", nullable=true, length=50)	
-	private String preoccupy_amount;
+	private String preoccupyAmount;
 	
 	@Column(name="proj_setup_mode", nullable=true, length=10)	
-	private Integer proj_setup_mode;
+	private Integer projSetupMode;
 	
-	@Column(name="`proj_setup _state`", nullable=true, length=10)	
-	private Integer proj_setup__state;
+	@Column(name="proj_setup_state", nullable=true, length=10)	
+	private Integer projSetupState;
 	
-	@Column(name="`proj_setup _time`", nullable=true)	
-	private java.sql.Timestamp proj_setup__time;
+	@Column(name="proj_setup_time", nullable=true)	
+	private java.sql.Timestamp projSetupTime;
 	
-	@Column(name="`proj_setup _amount`", nullable=true, length=50)	
-	private String proj_setup__amount;
+	@Column(name="proj_setup_amount", nullable=true, length=50)	
+	private String projSetupAmount;
 	
 	@Column(name="decision_basis", nullable=true, length=255)	
-	private String decision_basis;
+	private String decisionBasis;
 	
 	@Column(name="available_approval_time", nullable=true)	
-	private java.sql.Timestamp available_approval_time;
+	private java.sql.Timestamp availableApprovalTime;
 	
 	@Column(name="available_approval_amount", nullable=true, length=50)	
-	private String available_approval_amount;
+	private String availableApprovalAmount;
 	
 	@Column(name="design_approval_time", nullable=true)	
-	private java.sql.Timestamp design_approval_time;
+	private java.sql.Timestamp designApprovalTime;
 	
 	@Column(name="design_approval_amount", nullable=true, length=50)	
-	private String design_approval_amount;
+	private String designApprovalAmount;
 	
 	@Column(name="final_account", nullable=true, length=50)	
-	private String final_account;
+	private String finalAccount;
 	
 	@Column(name="construct_time", nullable=true)	
-	private java.sql.Timestamp construct_time;
+	private java.sql.Timestamp constructTime;
 	
 	@Column(name="online_time", nullable=true)	
-	private java.sql.Timestamp online_time;
+	private java.sql.Timestamp onlineTime;
 	
-	@Column(name="init_approval_time", nullable=true)	
-	private java.sql.Timestamp init_approval_time;
+	@Column(name="initApprovalTime", nullable=true)	
+	private java.sql.Timestamp initApprovalTime;
 	
 	@Column(name="final_approval_time", nullable=true)	
-	private java.sql.Timestamp final_approval_time;
+	private java.sql.Timestamp finalApprovalTime;
 	
 	@Column(name="arrival_time", nullable=true)	
-	private java.sql.Timestamp arrival_time;
+	private java.sql.Timestamp arrivalTime;
 	
 	@Column(name="capex_plan_status", nullable=true, length=10)	
-	private Integer capex_plan_status;
+	private Integer capexPlanStatus;
 	
 	@Column(name="truncap_plan_status", nullable=true, length=10)	
-	private Integer truncap_plan_status;
+	private Integer truncapPlanStatus;
 	
 	/**
 	 * ID
@@ -183,36 +183,36 @@ public class BasCAPEXProject implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -232,617 +232,617 @@ public class BasCAPEXProject implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
 	 * 全流程项目编号 
 	 */
-	public void setPms_proj_code(String value) {
-		this.pms_proj_code = value;
+	public void setPmsProjCode(String value) {
+		this.pmsProjCode = value;
 	}
 	
 	/**
 	 * 全流程项目编号 
 	 */
-	public String getPms_proj_code() {
-		return pms_proj_code;
+	public String getPmsProjCode() {
+		return pmsProjCode;
 	}
 	
 	/**
 	 * 需求编号 
 	 */
-	public void setReq_code(String value) {
-		this.req_code = value;
+	public void setReqCode(String value) {
+		this.reqCode = value;
 	}
 	
 	/**
 	 * 需求编号 
 	 */
-	public String getReq_code() {
-		return req_code;
+	public String getReqCode() {
+		return reqCode;
 	}
 	
 	/**
 	 * 项目名称 
 	 */
-	public void setProj_name(String value) {
-		this.proj_name = value;
+	public void setProjName(String value) {
+		this.projName = value;
 	}
 	
 	/**
 	 * 项目名称 
 	 */
-	public String getProj_name() {
-		return proj_name;
+	public String getProjName() {
+		return projName;
 	}
 	
 	/**
 	 * 项目编码 
 	 */
-	public void setProj_code(String value) {
-		this.proj_code = value;
+	public void setProjCode(String value) {
+		this.projCode = value;
 	}
 	
 	/**
 	 * 项目编码 
 	 */
-	public String getProj_code() {
-		return proj_code;
+	public String getProjCode() {
+		return projCode;
 	}
 	
 	/**
 	 * 项目类型  代码表：capex项目类型代码表
 	 */
-	public void setProj_type(int value) {
-		setProj_type(new Integer(value));
+	public void setProjType(int value) {
+		setProjType(new Integer(value));
 	}
 	
 	/**
 	 * 项目类型  代码表：capex项目类型代码表
 	 */
-	public void setProj_type(Integer value) {
-		this.proj_type = value;
+	public void setProjType(Integer value) {
+		this.projType = value;
 	}
 	
 	/**
 	 * 项目类型  代码表：capex项目类型代码表
 	 */
-	public Integer getProj_type() {
-		return proj_type;
+	public Integer getProjType() {
+		return projType;
 	}
 	
 	/**
 	 * 项目起始年份 
 	 */
-	public void setProj_start_year(String value) {
-		this.proj_start_year = value;
+	public void setProjStartYear(String value) {
+		this.projStartYear = value;
 	}
 	
 	/**
 	 * 项目起始年份 
 	 */
-	public String getProj_start_year() {
-		return proj_start_year;
+	public String getProjStartYear() {
+		return projStartYear;
 	}
 	
 	/**
 	 * 所属项目/产品 
 	 */
-	public void setBelong_proj(String value) {
-		this.belong_proj = value;
+	public void setBelongProj(String value) {
+		this.belongProj = value;
 	}
 	
 	/**
 	 * 所属项目/产品 
 	 */
-	public String getBelong_proj() {
-		return belong_proj;
+	public String getBelongProj() {
+		return belongProj;
 	}
 	
 	/**
 	 * 当前工程状态 代码表：CAPEX当前工程状态代码 
 	 */
-	public void setProj_status(int value) {
-		setProj_status(new Integer(value));
+	public void setProjStatus(int value) {
+		setProjStatus(new Integer(value));
 	}
 	
 	/**
 	 * 当前工程状态 代码表：CAPEX当前工程状态代码 
 	 */
-	public void setProj_status(Integer value) {
-		this.proj_status = value;
+	public void setProjStatus(Integer value) {
+		this.projStatus = value;
 	}
 	
 	/**
 	 * 当前工程状态 代码表：CAPEX当前工程状态代码 
 	 */
-	public Integer getProj_status() {
-		return proj_status;
+	public Integer getProjStatus() {
+		return projStatus;
 	}
 	
 	/**
 	 * 项目总投资（元） 
 	 */
-	public void setProj_total_invest(String value) {
-		this.proj_total_invest = value;
+	public void setProjTotalInvest(String value) {
+		this.projTotalInvest = value;
 	}
 	
 	/**
 	 * 项目总投资（元） 
 	 */
-	public String getProj_total_invest() {
-		return proj_total_invest;
+	public String getProjTotalInvest() {
+		return projTotalInvest;
 	}
 	
 	/**
 	 * 当年资本开支计划（元） 
 	 */
-	public void setAnual_capex_plan(String value) {
-		this.anual_capex_plan = value;
+	public void setAnualCapexPlan(String value) {
+		this.anualCapexPlan = value;
 	}
 	
 	/**
 	 * 当年资本开支计划（元） 
 	 */
-	public String getAnual_capex_plan() {
-		return anual_capex_plan;
+	public String getAnualCapexPlan() {
+		return anualCapexPlan;
 	}
 	
 	/**
 	 * 当年转资计划（元） 
 	 */
-	public void setAnual_truncap_plan(String value) {
-		this.anual_truncap_plan = value;
+	public void setAnualTruncapPlan(String value) {
+		this.anualTruncapPlan = value;
 	}
 	
 	/**
 	 * 当年转资计划（元） 
 	 */
-	public String getAnual_truncap_plan() {
-		return anual_truncap_plan;
+	public String getAnualTruncapPlan() {
+		return anualTruncapPlan;
 	}
 	
 	/**
 	 * 计划立项时间 
 	 */
-	public void setPlan_setup_time(java.sql.Timestamp value) {
-		this.plan_setup_time = value;
+	public void setPlanSetupTime(java.sql.Timestamp value) {
+		this.planSetupTime = value;
 	}
 	
 	/**
 	 * 计划立项时间 
 	 */
-	public java.sql.Timestamp getPlan_setup_time() {
-		return plan_setup_time;
+	public java.sql.Timestamp getPlanSetupTime() {
+		return planSetupTime;
 	}
 	
 	/**
 	 * 计划设计批复时间 
 	 */
-	public void setPlan_approval_time(java.sql.Timestamp value) {
-		this.plan_approval_time = value;
+	public void setPlanApprovalTime(java.sql.Timestamp value) {
+		this.planApprovalTime = value;
 	}
 	
 	/**
 	 * 计划设计批复时间 
 	 */
-	public java.sql.Timestamp getPlan_approval_time() {
-		return plan_approval_time;
+	public java.sql.Timestamp getPlanApprovalTime() {
+		return planApprovalTime;
 	}
 	
 	/**
 	 * 计划开工时间 
 	 */
-	public void setPlan_construct_time(java.sql.Timestamp value) {
-		this.plan_construct_time = value;
+	public void setPlanConstructTime(java.sql.Timestamp value) {
+		this.planConstructTime = value;
 	}
 	
 	/**
 	 * 计划开工时间 
 	 */
-	public java.sql.Timestamp getPlan_construct_time() {
-		return plan_construct_time;
+	public java.sql.Timestamp getPlanConstructTime() {
+		return planConstructTime;
 	}
 	
 	/**
 	 * 计划上线运行时间 
 	 */
-	public void setPlan_online_time(java.sql.Timestamp value) {
-		this.plan_online_time = value;
+	public void setPlanOnlineTime(java.sql.Timestamp value) {
+		this.planOnlineTime = value;
 	}
 	
 	/**
 	 * 计划上线运行时间 
 	 */
-	public java.sql.Timestamp getPlan_online_time() {
-		return plan_online_time;
+	public java.sql.Timestamp getPlanOnlineTime() {
+		return planOnlineTime;
 	}
 	
 	/**
 	 * 计划初验批复时间 
 	 */
-	public void setPinit_approval_time(java.sql.Timestamp value) {
-		this.pinit_approval_time = value;
+	public void setPinitApprovalTime(java.sql.Timestamp value) {
+		this.pinitApprovalTime = value;
 	}
 	
 	/**
 	 * 计划初验批复时间 
 	 */
-	public java.sql.Timestamp getPinit_approval_time() {
-		return pinit_approval_time;
+	public java.sql.Timestamp getPinitApprovalTime() {
+		return pinitApprovalTime;
 	}
 	
 	/**
 	 * 计划终验批复时间 
 	 */
-	public void setPfinal_approval_time(java.sql.Timestamp value) {
-		this.pfinal_approval_time = value;
+	public void setPfinalApprovalTime(java.sql.Timestamp value) {
+		this.pfinalApprovalTime = value;
 	}
 	
 	/**
 	 * 计划终验批复时间 
 	 */
-	public java.sql.Timestamp getPfinal_approval_time() {
-		return pfinal_approval_time;
+	public java.sql.Timestamp getPfinalApprovalTime() {
+		return pfinalApprovalTime;
 	}
 	
 	/**
 	 * 计划项目经理 
 	 */
-	public void setPlan_pm(String value) {
-		this.plan_pm = value;
+	public void setPlanPm(String value) {
+		this.planPm = value;
 	}
 	
 	/**
 	 * 计划项目经理 
 	 */
-	public String getPlan_pm() {
-		return plan_pm;
+	public String getPlanPm() {
+		return planPm;
 	}
 	
 	/**
 	 * 采购项目经理 
 	 */
-	public void setPurchase_pm(String value) {
-		this.purchase_pm = value;
+	public void setPurchasePm(String value) {
+		this.purchasePm = value;
 	}
 	
 	/**
 	 * 采购项目经理 
 	 */
-	public String getPurchase_pm() {
-		return purchase_pm;
+	public String getPurchasePm() {
+		return purchasePm;
 	}
 	
 	/**
 	 * 工程管理部门 
 	 */
-	public void setProj_pm_dept(String value) {
-		this.proj_pm_dept = value;
+	public void setProjPmDept(String value) {
+		this.projPmDept = value;
 	}
 	
 	/**
 	 * 工程管理部门 
 	 */
-	public String getProj_pm_dept() {
-		return proj_pm_dept;
+	public String getProjPmDept() {
+		return projPmDept;
 	}
 	
 	/**
 	 * 工建项目经理 
 	 */
-	public void setConstruct_pm(String value) {
-		this.construct_pm = value;
+	public void setConstructPm(String value) {
+		this.constructPm = value;
 	}
 	
 	/**
 	 * 工建项目经理 
 	 */
-	public String getConstruct_pm() {
-		return construct_pm;
+	public String getConstructPm() {
+		return constructPm;
 	}
 	
 	/**
 	 * 预占金额 
 	 */
-	public void setPreoccupy_amount(String value) {
-		this.preoccupy_amount = value;
+	public void setPreoccupyAmount(String value) {
+		this.preoccupyAmount = value;
 	}
 	
 	/**
 	 * 预占金额 
 	 */
-	public String getPreoccupy_amount() {
-		return preoccupy_amount;
+	public String getPreoccupyAmount() {
+		return preoccupyAmount;
 	}
 	
 	/**
 	 * 立项决策方式  1-会议；2-呈批
 	 */
-	public void setProj_setup_mode(int value) {
-		setProj_setup_mode(new Integer(value));
+	public void setProjSetupMode(int value) {
+		setProjSetupMode(new Integer(value));
 	}
 	
 	/**
 	 * 立项决策方式  1-会议；2-呈批
 	 */
-	public void setProj_setup_mode(Integer value) {
-		this.proj_setup_mode = value;
+	public void setProjSetupMode(Integer value) {
+		this.projSetupMode = value;
 	}
 	
 	/**
 	 * 立项决策方式  1-会议；2-呈批
 	 */
-	public Integer getProj_setup_mode() {
-		return proj_setup_mode;
+	public Integer getProjSetupMode() {
+		return projSetupMode;
 	}
 	
 	/**
 	 * 立项决策状态  1-通过；2-有条件通过；3-未通过
 	 */
-	public void setProj_setup__state(int value) {
-		setProj_setup__state(new Integer(value));
+	public void setProjSetupState(int value) {
+		setProjSetupState(new Integer(value));
 	}
 	
 	/**
 	 * 立项决策状态  1-通过；2-有条件通过；3-未通过
 	 */
-	public void setProj_setup__state(Integer value) {
-		this.proj_setup__state = value;
+	public void setProjSetupState(Integer value) {
+		this.projSetupState = value;
 	}
 	
 	/**
 	 * 立项决策状态  1-通过；2-有条件通过；3-未通过
 	 */
-	public Integer getProj_setup__state() {
-		return proj_setup__state;
+	public Integer getProjSetupState() {
+		return projSetupState;
 	}
 	
 	/**
 	 * 立项决策时间 
 	 */
-	public void setProj_setup__time(java.sql.Timestamp value) {
-		this.proj_setup__time = value;
+	public void setProjSetupTime(java.sql.Timestamp value) {
+		this.projSetupTime = value;
 	}
 	
 	/**
 	 * 立项决策时间 
 	 */
-	public java.sql.Timestamp getProj_setup__time() {
-		return proj_setup__time;
+	public java.sql.Timestamp getProjSetupTime() {
+		return projSetupTime;
 	}
 	
 	/**
 	 * 立项决策金额（元） 
 	 */
-	public void setProj_setup__amount(String value) {
-		this.proj_setup__amount = value;
+	public void setProjSetupAmount(String value) {
+		this.projSetupAmount = value;
 	}
 	
 	/**
 	 * 立项决策金额（元） 
 	 */
-	public String getProj_setup__amount() {
-		return proj_setup__amount;
+	public String getProjSetupAmount() {
+		return projSetupAmount;
 	}
 	
 	/**
 	 * 决策依据 
 	 */
-	public void setDecision_basis(String value) {
-		this.decision_basis = value;
+	public void setDecisionBasis(String value) {
+		this.decisionBasis = value;
 	}
 	
 	/**
 	 * 决策依据 
 	 */
-	public String getDecision_basis() {
-		return decision_basis;
+	public String getDecisionBasis() {
+		return decisionBasis;
 	}
 	
 	/**
 	 * 可研批复时间 
 	 */
-	public void setAvailable_approval_time(java.sql.Timestamp value) {
-		this.available_approval_time = value;
+	public void setAvailableApprovalTime(java.sql.Timestamp value) {
+		this.availableApprovalTime = value;
 	}
 	
 	/**
 	 * 可研批复时间 
 	 */
-	public java.sql.Timestamp getAvailable_approval_time() {
-		return available_approval_time;
+	public java.sql.Timestamp getAvailableApprovalTime() {
+		return availableApprovalTime;
 	}
 	
 	/**
 	 * 可研批复金额（元） 
 	 */
-	public void setAvailable_approval_amount(String value) {
-		this.available_approval_amount = value;
+	public void setAvailableApprovalAmount(String value) {
+		this.availableApprovalAmount = value;
 	}
 	
 	/**
 	 * 可研批复金额（元） 
 	 */
-	public String getAvailable_approval_amount() {
-		return available_approval_amount;
+	public String getAvailableApprovalAmount() {
+		return availableApprovalAmount;
 	}
 	
 	/**
 	 * 设计批复时间 
 	 */
-	public void setDesign_approval_time(java.sql.Timestamp value) {
-		this.design_approval_time = value;
+	public void setDesignApprovalTime(java.sql.Timestamp value) {
+		this.designApprovalTime = value;
 	}
 	
 	/**
 	 * 设计批复时间 
 	 */
-	public java.sql.Timestamp getDesign_approval_time() {
-		return design_approval_time;
+	public java.sql.Timestamp getDesignApprovalTime() {
+		return designApprovalTime;
 	}
 	
 	/**
 	 * 项目设计批复金额（元） 
 	 */
-	public void setDesign_approval_amount(String value) {
-		this.design_approval_amount = value;
+	public void setDesignApprovalAmount(String value) {
+		this.designApprovalAmount = value;
 	}
 	
 	/**
 	 * 项目设计批复金额（元） 
 	 */
-	public String getDesign_approval_amount() {
-		return design_approval_amount;
+	public String getDesignApprovalAmount() {
+		return designApprovalAmount;
 	}
 	
 	/**
 	 * 已完成决算项目的决算金额（元） 
 	 */
-	public void setFinal_account(String value) {
-		this.final_account = value;
+	public void setFinalAccount(String value) {
+		this.finalAccount = value;
 	}
 	
 	/**
 	 * 已完成决算项目的决算金额（元） 
 	 */
-	public String getFinal_account() {
-		return final_account;
+	public String getFinalAccount() {
+		return finalAccount;
 	}
 	
 	/**
 	 * 开工时间 
 	 */
-	public void setConstruct_time(java.sql.Timestamp value) {
-		this.construct_time = value;
+	public void setConstructTime(java.sql.Timestamp value) {
+		this.constructTime = value;
 	}
 	
 	/**
 	 * 开工时间 
 	 */
-	public java.sql.Timestamp getConstruct_time() {
-		return construct_time;
+	public java.sql.Timestamp getConstructTime() {
+		return constructTime;
 	}
 	
 	/**
 	 * 上线时间 
 	 */
-	public void setOnline_time(java.sql.Timestamp value) {
-		this.online_time = value;
+	public void setOnlineTime(java.sql.Timestamp value) {
+		this.onlineTime = value;
 	}
 	
 	/**
 	 * 上线时间 
 	 */
-	public java.sql.Timestamp getOnline_time() {
-		return online_time;
+	public java.sql.Timestamp getOnlineTime() {
+		return onlineTime;
 	}
 	
 	/**
 	 * 初验批复时间 
 	 */
-	public void setInit_approval_time(java.sql.Timestamp value) {
-		this.init_approval_time = value;
+	public void setInitApprovalTime(java.sql.Timestamp value) {
+		this.initApprovalTime = value;
 	}
 	
 	/**
 	 * 初验批复时间 
 	 */
-	public java.sql.Timestamp getInit_approval_time() {
-		return init_approval_time;
+	public java.sql.Timestamp getInitApprovalTime() {
+		return initApprovalTime;
 	}
 	
 	/**
 	 * 终验批复时间 
 	 */
-	public void setFinal_approval_time(java.sql.Timestamp value) {
-		this.final_approval_time = value;
+	public void setFinalApprovalTime(java.sql.Timestamp value) {
+		this.finalApprovalTime = value;
 	}
 	
 	/**
 	 * 终验批复时间 
 	 */
-	public java.sql.Timestamp getFinal_approval_time() {
-		return final_approval_time;
+	public java.sql.Timestamp getFinalApprovalTime() {
+		return finalApprovalTime;
 	}
 	
 	/**
 	 * 到货接收时间 
 	 */
-	public void setArrival_time(java.sql.Timestamp value) {
-		this.arrival_time = value;
+	public void setArrivalTime(java.sql.Timestamp value) {
+		this.arrivalTime = value;
 	}
 	
 	/**
 	 * 到货接收时间 
 	 */
-	public java.sql.Timestamp getArrival_time() {
-		return arrival_time;
+	public java.sql.Timestamp getArrivalTime() {
+		return arrivalTime;
 	}
 	
 	/**
 	 * 开支计划是否已完成 
 	 */
-	public void setCapex_plan_status(int value) {
-		setCapex_plan_status(new Integer(value));
+	public void setCapexPlanStatus(int value) {
+		setCapexPlanStatus(new Integer(value));
 	}
 	
 	/**
 	 * 开支计划是否已完成 
 	 */
-	public void setCapex_plan_status(Integer value) {
-		this.capex_plan_status = value;
+	public void setCapexPlanStatus(Integer value) {
+		this.capexPlanStatus = value;
 	}
 	
 	/**
 	 * 开支计划是否已完成 
 	 */
-	public Integer getCapex_plan_status() {
-		return capex_plan_status;
+	public Integer getCapexPlanStatus() {
+		return capexPlanStatus;
 	}
 	
 	/**
 	 * 转资计划是否已完成 
 	 */
-	public void setTruncap_plan_status(int value) {
-		setTruncap_plan_status(new Integer(value));
+	public void setTruncapPlanStatus(int value) {
+		setTruncapPlanStatus(new Integer(value));
 	}
 	
 	/**
 	 * 转资计划是否已完成 
 	 */
-	public void setTruncap_plan_status(Integer value) {
-		this.truncap_plan_status = value;
+	public void setTruncapPlanStatus(Integer value) {
+		this.truncapPlanStatus = value;
 	}
 	
 	/**
 	 * 转资计划是否已完成 
 	 */
-	public Integer getTruncap_plan_status() {
-		return truncap_plan_status;
+	public Integer getTruncapPlanStatus() {
+		return truncapPlanStatus;
 	}
 	
 	public String toString() {

@@ -38,31 +38,31 @@ public class BasCAPEXAmountPool implements Serializable {
 	private int id;
 	
 	@Column(name="company_id", nullable=true, length=10)	
-	private Integer company_id;
+	private Integer companyId;
 	
 	@Column(name="create_time", nullable=true)	
-	private java.sql.Timestamp create_time;
+	private java.sql.Timestamp createTime;
 	
 	@Column(name="creator", nullable=true, length=50)	
 	private String creator;
 	
 	@Column(name="modify_time", nullable=true)	
-	private java.sql.Timestamp modify_time;
+	private java.sql.Timestamp modifyTime;
 	
 	@Column(name="last_reviser", nullable=true, length=50)	
-	private String last_reviser;
+	private String lastReviser;
 	
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
 	
 	@Column(name="initial_amount", nullable=true, length=50)	
-	private String initial_amount;
+	private String initialAmount;
 	
 	@Column(name="preoccupy_amount", nullable=true, length=50)	
-	private String preoccupy_amount;
+	private String preoccupyAmount;
 	
 	@Column(name="now_invest_amount", nullable=true, length=50)	
-	private String now_invest_amount;
+	private String nowinvestAmount;
 	
 	/**
 	 * id
@@ -78,36 +78,36 @@ public class BasCAPEXAmountPool implements Serializable {
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(int value) {
-		setCompany_id(new Integer(value));
+	public void setCompanyId(int value) {
+		setCompanyId(new Integer(value));
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public void setCompany_id(Integer value) {
-		this.company_id = value;
+	public void setCompanyId(Integer value) {
+		this.companyId = value;
 	}
 	
 	/**
 	 * 公司ID
 	 */
-	public Integer getCompany_id() {
-		return company_id;
+	public Integer getCompanyId() {
+		return companyId;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public void setCreate_time(java.sql.Timestamp value) {
-		this.create_time = value;
+	public void setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
 	}
 	
 	/**
 	 * 创建时间
 	 */
-	public java.sql.Timestamp getCreate_time() {
-		return create_time;
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
 	}
 	
 	/**
@@ -127,29 +127,29 @@ public class BasCAPEXAmountPool implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setModify_time(java.sql.Timestamp value) {
-		this.modify_time = value;
+	public void setModifyTime(java.sql.Timestamp value) {
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getModify_time() {
-		return modify_time;
+	public java.sql.Timestamp getModifyTime() {
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public void setLast_reviser(String value) {
-		this.last_reviser = value;
+	public void setLastReviser(String value) {
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
-	public String getLast_reviser() {
-		return last_reviser;
+	public String getLastReviser() {
+		return lastReviser;
 	}
 	
 	/**
@@ -169,43 +169,43 @@ public class BasCAPEXAmountPool implements Serializable {
 	/**
 	 * 初始金额
 	 */
-	public void setInitial_amount(String value) {
-		this.initial_amount = value;
+	public void setInitialAmount(String value) {
+		this.initialAmount = value;
 	}
 	
 	/**
 	 * 初始金额
 	 */
-	public String getInitial_amount() {
-		return initial_amount;
+	public String getInitialAmount() {
+		return initialAmount;
 	}
 	
 	/**
 	 * 预占金额
 	 */
-	public void setPreoccupy_amount(String value) {
-		this.preoccupy_amount = value;
+	public void setPreoccupyAmount(String value) {
+		this.preoccupyAmount = value;
 	}
 	
 	/**
 	 * 预占金额
 	 */
-	public String getPreoccupy_amount() {
-		return preoccupy_amount;
+	public String getPreoccupyAmount() {
+		return preoccupyAmount;
 	}
 	
 	/**
 	 * 目前可用投资金额
 	 */
-	public void setNow_invest_amount(String value) {
-		this.now_invest_amount = value;
+	public void setNowinvestAmount(String value) {
+		this.nowinvestAmount = value;
 	}
 	
 	/**
 	 * 目前可用投资金额
 	 */
-	public String getNow_invest_amount() {
-		return now_invest_amount;
+	public String getNowinvestAmount() {
+		return nowinvestAmount;
 	}
 	
 	public String toString() {
