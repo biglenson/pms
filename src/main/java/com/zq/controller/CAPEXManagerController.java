@@ -23,7 +23,7 @@ public class CAPEXManagerController extends BaseController{
 	private static Logger logger = Logger.getLogger(CAPEXManagerController.class);  
 	
 	/** 
-	* @Title: BasCAPEXInvestplan 
+	* @Title: basCAPEXInvestplan 
 	* @Description: TODO(CAPEX投资计划) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:41:34 
@@ -39,7 +39,7 @@ public class CAPEXManagerController extends BaseController{
 		return CMCCConstant.BasCAPEXInvestplan;	
 	}
 	/** 
-	* @Title: BasCAPEXAmountPool 
+	* @Title: basCAPEXAmountPool 
 	* @Description: TODO(CAPEX自主资金池) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:42:17 
@@ -56,7 +56,7 @@ public class CAPEXManagerController extends BaseController{
 	}
 
 	/** 
-	* @Title: BasCAPEXRequirment 
+	* @Title: basCAPEXRequirment 
 	* @Description: TODO(CAPEX需求) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:42:40 
@@ -72,7 +72,7 @@ public class CAPEXManagerController extends BaseController{
 		return CMCCConstant.BasCAPEXRequirment;	
 	}
 	/** 
-	* @Title: BasCAPEXProject 
+	* @Title: basCAPEXProject 
 	* @Description: TODO(CAPEX项) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:04:59 
@@ -89,7 +89,7 @@ public class CAPEXManagerController extends BaseController{
 	}
 
 	/** 
-	* @Title: BasCAPEXProjInvestplan 
+	* @Title: basCAPEXProjInvestplan 
 	* @Description: TODO(CAPEX项与投资计划) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午5:00:07 
@@ -105,7 +105,7 @@ public class CAPEXManagerController extends BaseController{
 		return CMCCConstant.BasCAPEXProjInvestplan;	
 	}
 	/** 
-	* @Title: BasCAPEXExpendplan 
+	* @Title: basCAPEXExpendplan 
 	* @Description: TODO(CAPEX资本开支计划) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:42:53 
@@ -122,7 +122,7 @@ public class CAPEXManagerController extends BaseController{
 	}
 	
 	/** 
-	* @Title: BasCAPEXTransferplan 
+	* @Title: basCAPEXTransferplan 
 	* @Description: TODO(CAPEX转资计划) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:43:10 
@@ -139,7 +139,7 @@ public class CAPEXManagerController extends BaseController{
 	}
 	
 	/** 
-	* @Title: BasCAPEXTotalInvestplan 
+	* @Title: basCAPEXTotalInvestplan 
 	* @Description: TODO(投资计划总额信息管理) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:43:30 

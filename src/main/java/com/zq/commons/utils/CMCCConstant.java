@@ -100,7 +100,7 @@ public class CMCCConstant {
 	* @date 2017年7月9日 下午9:33:51 
 	*/
 	public static final String SysCode = "system/sysconfig/SysCode";
-	
+	public static final String StandardTimeScale = "system/sysconfig/StandardTimeScale";
 	
 	/** 
 	* <p>Title: 权限管理JSP</p> 

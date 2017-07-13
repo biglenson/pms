@@ -35,7 +35,26 @@ public class SystemConfigController extends BaseController{
 	*/
 	@RequestMapping(value = "syscode")
     public String syscode(HttpServletRequest request) {
+		
+		request = setLeftMenu(request,"/systemconfig/syscode");
 		return CMCCConstant.SysCode;	
+	}
+	
+	/** 
+	* @Title: standardTimeScale 
+	* @Description: TODO(标准时限对照表) 
+	* @author shujukuss 
+	* @date 2017年7月9日 下午2:57:43 
+	* @param @param request
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "standardtimescale")
+    public String standardTimeScale(HttpServletRequest request) {
+		
+		request = setLeftMenu(request,"/systemconfig/standardtimescale");
+		return CMCCConstant.StandardTimeScale;	
 	}
 
 }

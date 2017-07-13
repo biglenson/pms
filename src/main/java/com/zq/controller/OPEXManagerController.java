@@ -23,7 +23,7 @@ public class OPEXManagerController extends BaseController{
 	private static Logger logger = Logger.getLogger(OPEXManagerController.class);  
 	
 	/** 
-	* @Title: BasOPEXBudgetpool 
+	* @Title: basOPEXBudgetpool 
 	* @Description: TODO(OPEX动态预算池) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:41:34 
@@ -39,7 +39,7 @@ public class OPEXManagerController extends BaseController{
 		return CMCCConstant.BasOPEXBudgetpool;	
 	}
 	/** 
-	* @Title: BasOpexBudgetpoolDetail 
+	* @Title: basOpexBudgetpoolDetail 
 	* @Description: TODO(OPEX动态预算池明细) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:42:17 
@@ -56,7 +56,7 @@ public class OPEXManagerController extends BaseController{
 	}
 
 	/** 
-	* @Title: BasOPEXBudgetAdjust 
+	* @Title: basOPEXBudgetAdjust 
 	* @Description: TODO(OPEX部门间预算调剂) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:42:40 
@@ -72,7 +72,7 @@ public class OPEXManagerController extends BaseController{
 		return CMCCConstant.BasOPEXBudgetAdjust;	
 	}
 	/** 
-	* @Title: BasOPEXBudgetProject 
+	* @Title: basOPEXBudgetProject 
 	* @Description: TODO(OPEX预算项目) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:04:59 
@@ -89,7 +89,7 @@ public class OPEXManagerController extends BaseController{
 	}
 
 	/** 
-	* @Title: BasOPEXRequirment 
+	* @Title: basOPEXRequirment 
 	* @Description: TODO(OPEX需求) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午5:00:07 
@@ -105,7 +105,7 @@ public class OPEXManagerController extends BaseController{
 		return CMCCConstant.BasOPEXRequirment;	
 	}
 	/** 
-	* @Title: BasOPEXProject 
+	* @Title: basOPEXProject 
 	* @Description: TODO(OPEX项) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:42:53 
@@ -122,7 +122,7 @@ public class OPEXManagerController extends BaseController{
 	}
 	
 	/** 
-	* @Title: BasOPEXManhour 
+	* @Title: basOPEXManhour 
 	* @Description: TODO(OPEX工时管理) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:43:10 
