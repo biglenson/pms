@@ -97,8 +97,8 @@ public class BasSecondBill implements Serializable {
 	@Column(name="secondary_categories", nullable=true, length=50)	
 	private String secondaryCategories;
 	
-	@Column(name="type", nullable=true, length=50)	
-	private Integer type;
+	@Column(name="purchasing_method", nullable=true, length=50)	
+	private Integer purchasingMethod;
 	
 	@Column(name="sole_source_scene", nullable=true, length=50)	
 	private String soleSourceScene;
@@ -112,8 +112,8 @@ public class BasSecondBill implements Serializable {
 	@Column(name="proj_es_code", nullable=true, length=10)	
 	private String projEsCode;
 	
-	@Column(name="type2", nullable=true, length=50)	
-	private Integer type2;
+	@Column(name="purchasing_type", nullable=true, length=50)	
+	private Integer purchasingType;
 	
 	@Column(name="proRresetupr_status", nullable=true, length=50)	
 	private Integer projResetuprStatus;
@@ -509,22 +509,22 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 采购方式 代码表：集采采购方式代码表
 	 */
-	public void setType(int value) {
-		setType(new Integer(value));
+	public void setPurchasingMethod(int value) {
+		setPurchasingMethod(new Integer(value));
 	}
 	
 	/**
 	 * 采购方式 代码表：集采采购方式代码表
 	 */
-	public void setType(Integer value) {
-		this.type = value;
+	public void setPurchasingMethod(Integer value) {
+		this.purchasingMethod = value;
 	}
 	
 	/**
 	 * 采购方式 代码表：集采采购方式代码表
 	 */
-	public Integer getType() {
-		return type;
+	public Integer getPurchasingMethod() {
+		return purchasingMethod;
 	}
 	
 	/**
@@ -593,22 +593,22 @@ public class BasSecondBill implements Serializable {
 	/**
 	 * 采购类型 
 	 */
-	public void setType2(int value) {
-		setType2(new Integer(value));
+	public void setPurchasingType(int value) {
+		setPurchasingType(new Integer(value));
 	}
 	
 	/**
 	 * 采购类型 
 	 */
-	public void setType2(Integer value) {
-		this.type2 = value;
+	public void setPurchasingType(Integer value) {
+		this.purchasingType = value;
 	}
 	
 	/**
 	 * 采购类型 
 	 */
-	public Integer getType2() {
-		return type2;
+	public Integer getPurchasingType() {
+		return purchasingType;
 	}
 	
 	/**

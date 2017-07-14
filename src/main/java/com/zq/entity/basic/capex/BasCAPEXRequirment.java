@@ -61,8 +61,8 @@ public class BasCAPEXRequirment implements Serializable {
 	@Column(name="req_name", nullable=true, length=255)	
 	private String reqName;
 	
-	@Column(name="req_department", nullable=true, length=255)	
-	private String reqDepartment;
+	@Column(name="req_dept", nullable=true, length=255)	
+	private String reqDept;
 	
 	@Column(name="plan_req_submit_time", nullable=true)	
 	private java.sql.Timestamp planReqSubmitTime;
@@ -206,15 +206,15 @@ public class BasCAPEXRequirment implements Serializable {
 	/**
 	 * 需求部门 
 	 */
-	public void setReqDepartment(String value) {
-		this.reqDepartment = value;
+	public void setReqDept(String value) {
+		this.reqDept = value;
 	}
 	
 	/**
 	 * 需求部门 
 	 */
-	public String getReqDepartment() {
-		return reqDepartment;
+	public String getReqDept() {
+		return reqDept;
 	}
 	
 	/**

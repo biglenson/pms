@@ -94,8 +94,8 @@ public class BasOPEXPurchaseplan implements Serializable {
 	@Column(name="req_principal", nullable=true, length=50)	
 	private String reqPrincipal;
 	
-	@Column(name="req_dept2", nullable=true, length=50)	
-	private String reqDept2;
+	@Column(name="req_declare_dept", nullable=true, length=50)	
+	private String reqDeclareDept;
 	
 	@Column(name="req_type", nullable=true, length=50)	
 	private Integer reqType;
@@ -419,15 +419,15 @@ public class BasOPEXPurchaseplan implements Serializable {
 	/**
 	 * 需求申报部门 
 	 */
-	public void setReqDept2(String value) {
-		this.reqDept2 = value;
+	public void setReqDeclareDept(String value) {
+		this.reqDeclareDept = value;
 	}
 	
 	/**
 	 * 需求申报部门 
 	 */
-	public String getReqDept2() {
-		return reqDept2;
+	public String getReqDeclareDept() {
+		return reqDeclareDept;
 	}
 	
 	/**
