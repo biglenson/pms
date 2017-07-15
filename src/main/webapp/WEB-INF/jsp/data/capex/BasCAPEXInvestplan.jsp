@@ -1,10 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import= "com.zq.commons.utils.UIUtils" %>
+<%@ page import= "com.zq.commons.result.PageInfo" %>
 <%
 	String pageTitle = (String)request.getAttribute("pageTitle");
 	Integer appid = (Integer)request.getAttribute("appid");
 	Long pid = (Long)request.getAttribute("pid");
 	String url = (String)request.getAttribute("url");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 %>
 <%-- 输出Head2模块 --%>
 <jsp:include page="../../common/Head1.jsp" />
@@ -17,31 +20,19 @@
 </jsp:include>
 <!-- 内容主体 -->
 <div class="content-main">
-	<form name="frm" id="capexSelfFundsPool" action="/capex/capexSelfFundsPool" method="post">
+	<form name="frm" id="bascapexinvestplan" action="${action}" method="post">
+	<input type="hidden" name="page" value="${pageInfo.currentPage}">
 	<!-- 工具栏 -->
 		<div class="toolbar" id="toolbarDIV">
 			<table class="toolbarTable">
 				<tbody>
 					<tr>
-						<td id="ET_ToolbarButton" class="toolbarEnable" align="center" nowrap="">
-							<div class="ET_ToolbarButtonContainer " onclick="showMenu(this);">
-								<span class="ET_ToolbarButtonImg">
-									<img src="/static/images/newui/search.png">
-								</span> 
-								<span id="ET_ToolbarButtonLabel" class=" labelSearch ">查询全部</span>
-							</div>
-						</td>
-						<td id="ET_ToolbarButton" class="toolbarEnable" align="center" nowrap="">
-							<div class="ET_ToolbarButtonContainer " onclick="javascript:newFun();">
-								<span id="ET_ToolbarButtonLabel" class=" labelNoImg ">添加</span>
-							</div>
-						</td>
-						<td width="100%"></td>
-						<td id="ET_ToolbarButton" class="toolbarEnable" align="center" nowrap="">
-							<div class="ET_ToolbarButtonContainer " onclick="javascript:showMore(this);">
-								<span id="ET_ToolbarButtonLabel" class=" labelNoImg ">更多...</span>
-							</div>
-						</td>
+						<%=UIUtils.searchToolButton("showMenu(this);", "查询全部", request)%>
+						<%=UIUtils.toolbarButton(true ,"newFun();", "添加", null, false, false,request)%>
+						<%=UIUtils.toolbarButton(true, "saveAsVersionLine();", "保存基线",null, false, false, request)%>
+						<%=UIUtils.toolbarButton(true,"compareVersionFun(this);", "基线比较",null, true, true, request)%>
+						<td width='100%'></td>
+						<%=UIUtils.toolbarButton(true , "showMore(this);", "更多...",null, false, false ,request)%>	
 					</tr>
 				</tbody>
 			</table>
@@ -59,27 +50,27 @@
 							<img src="/static/images/16x16/action_open.gif" title="快捷操作">
 						</div>
 					</th>
-					<c:forEach items="${titlelist}" var="list">
+					<c:forEach items="${formListTitle}" var="list">
 						<th>
-							<div style="width: 100px;">${list}</div>
+							<div style="${list.style}">${list.name}</div>
 						</th>
 					</c:forEach>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${recordlist}" var="record">
+				<c:forEach items="${pageData}" var="record">
 					<tr class="listTableTR">
 						<td align="center"><img name="action-open" id="actionImg" src="/static/images/16x16/action_open.gif" title="快捷操作" style="cursor: pointer" onclick="javascript:showFormActionMenu(this, '285855');">
 						</td>
-						<td style="cursor: pointer" align="center" onclick="">${record.year}</td>
-						<td style="cursor: pointer" align="center" onclick="">${record.initfunds}</td>
-						<td style="cursor: pointer" align="center" onclick="">${record.avifunds}</td>
+						<c:forEach items="${formListTitle}" var="list">
+							<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;cursor: pointer" align="center" onclick="" title="${record[list.attribute]}">${record[list.attribute]}</td>
+						</c:forEach>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<!-- 以上为表单 -->
-		
+		<%=UIUtils.pageToolbar(pageInfo, request)%>
 	</form>
 </div>
 <%-- 输出公共BodyEnd模块 --%>

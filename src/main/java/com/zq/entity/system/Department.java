@@ -10,6 +10,8 @@ import java.util.Date;
  * 
  */
 @Entity
+@org.hibernate.annotations.Proxy(lazy=false)
+@Table(name="sys_department")
 public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 

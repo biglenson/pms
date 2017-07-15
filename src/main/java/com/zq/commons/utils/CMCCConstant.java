@@ -112,7 +112,9 @@ public class CMCCConstant {
 	public static final String Role = "system/srcmt/Role";   
 	public static final String Resource = "system/srcmt/Resource";
 
-	public static final String LASUPDATE = "LASUPDATESTRING";	  
+	public static final String LASUPDATE = "LASUPDATESTRING";
+
+	public static final int PAGE_SIZE = 15;	  
 	
 	
 }

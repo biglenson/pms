@@ -10,6 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
+@org.hibernate.annotations.Proxy(lazy=false)
+@Table(name="sys_role")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 

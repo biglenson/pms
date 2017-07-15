@@ -11,6 +11,8 @@ import java.util.List;
  * 
  */
 @Entity
+@org.hibernate.annotations.Proxy(lazy=false)
+@Table(name="sys_user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
