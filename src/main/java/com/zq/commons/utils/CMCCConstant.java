@@ -82,6 +82,21 @@ public class CMCCConstant {
 	public static final String BasFrameContract = "data/purchase/BasFrameContract";
 	public static final String BasOtherContract = "data/purchase/BasOtherContract";
 	public static final String BasOPEXPurchaseplan = "data/purchase/BasOPEXPurchaseplan";
+	
+	public static final String BasCustomer = "data/datamap/BasCustomer";
+	public static final String BasItemset = "data/datamap/BasItemset";
+	public static final String BasProduct = "data/datamap/BasProduct";
+	public static final String BasItemProdCust = "data/datamap/BasItemProdCust";
+	public static final String BasProjCapex = "data/datamap/BasProjCapex";
+	public static final String BasProductIncome = "data/datamap/BasProductIncome";
+	public static final String BasIncomeByprod = "data/datamap/BasIncomeByprod";
+	public static final String BasIncometargBytype = "data/datamap/BasIncometargBytype";
+	public static final String BasIncometargByprod = "data/datamap/BasIncometargByprod";
+	public static final String BasIncometargBydept = "data/datamap/BasIncometargBydept";
+	public static final String BasBudgetSubject = "data/datamap/BasBudgetSubject";
+	public static final String BasAccountSubject = "data/datamap/BasAccountSubject";
+	public static final String BasAssetDetail = "data/datamap/BasAssetDetail";
+	public static final String BasExpenseDetail = "data/datamap/BasExpenseDetail";
 
 
 	/** 
