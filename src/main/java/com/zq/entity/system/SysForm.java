@@ -28,6 +28,12 @@ public class SysForm implements Serializable {
 	private int seqno;
 
 	private String style;
+	
+	private String fieldType;
+	
+	private int editFlag;
+	
+	private int editWidth;
 
 	public SysForm() {
 	}
@@ -94,6 +100,30 @@ public class SysForm implements Serializable {
 	
 	public String getClassName() {
 		return this.getClass().getName();
+	}
+
+	public String getFieldType() {
+		return fieldType;
+	}
+
+	public void setFieldType(String fieldType) {
+		this.fieldType = fieldType;
+	}
+
+	public int getEditFlag() {
+		return editFlag;
+	}
+
+	public void setEditFlag(int editFlag) {
+		this.editFlag = editFlag;
+	}
+
+	public int getEditWidth() {
+		return editWidth;
+	}
+
+	public void setEditWidth(int editWidth) {
+		this.editWidth = editWidth;
 	}
 
 }

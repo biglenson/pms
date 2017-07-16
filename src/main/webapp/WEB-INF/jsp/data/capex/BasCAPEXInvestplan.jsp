@@ -3,6 +3,7 @@
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
 <%@ page import= "com.zq.commons.result.PageInfo" %>
 <%
+	String path = request.getContextPath();
 	String pageTitle = (String)request.getAttribute("pageTitle");
 	Integer appid = (Integer)request.getAttribute("appid");
 	Long pid = (Long)request.getAttribute("pid");
@@ -19,8 +20,28 @@
 	<jsp:param name="url" value="<%= url %>" />
 </jsp:include>
 <!-- 内容主体 -->
+<script type="text/javascript">
+function showMenu(obj) {
+	popupMenu(obj, listMenu, "");
+}
+
+function newFun() {
+
+		var arg = new Array();
+		arg.src = "<%=path%>${action}/add";
+		arg.title = "<%= pageTitle %>";
+		arg.width = 840;
+		arg.height = document.body.clientHeight - 20;
+		parent.ET.showNewWindow(arg, function (ret) { 
+			if(ret != null){
+				document.frm.submit();
+			}
+		});	
+}
+
+</script>
 <div class="content-main">
-	<form name="frm" id="bascapexinvestplan" action="${action}" method="post">
+	<form name="frm" id="${action}" action="${action}" method="post">
 	<input type="hidden" name="page" value="${pageInfo.currentPage}">
 	<!-- 工具栏 -->
 		<div class="toolbar" id="toolbarDIV">

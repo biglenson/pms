@@ -1,11 +1,16 @@
 package com.zq.commons.utils;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.zq.commons.result.PageInfo;
+import com.zq.entity.system.SysForm;
+import com.zq.entity.system.User;
 
 /** 
 * @ClassName: UIUtils 
@@ -272,7 +277,7 @@ public class UIUtils {
 		    sb.append(TypeUtils.xmlEncoderForIE("条"));
 		    sb.append("</div>");
 		    return sb.toString();
-		 }
+	  }
 	  public static String pageTotal(int rowCount, HttpServletRequest request) {
 		    StringBuffer sb = new StringBuffer();
 		    sb.append("<div id=\"pageTotalDIV\" class='tableFooter'>");
@@ -283,5 +288,24 @@ public class UIUtils {
 		    sb.append(TypeUtils.xmlEncoderForIE("条"));
 		    sb.append("</div>");
 		    return sb.toString();
-		  }
+	 }
+	  public static String outFormHeadRow() {
+		    return "<tr><td  class='label white_background-color'  ></td><td class='content white_background-color' ></td><td  class='seperator'></td><td  class='label white_background-color'></td><td  class='content white_background-color' ></td></tr>";
+	}
+	  public static String outFormTitleRow(String title)
+	  {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("<td colspan='5' >");
+	    sb.append("<div class=\"formTitleRow\" onclick=\"javascript:ET.toggleFormTitlePanel(this);\" > ");
+	    sb.append("<div class=\"togglePanelHeader\"> <table style='width:100%'  ><tbody><tr>");
+
+	    sb.append("<td><div class='toogleFormImg'></div> </td>");
+	    sb.append("<td nowrap=\"nowrap\">");
+	    sb.append(title).append("</td><td style=\"width:100%\"><div class=\" togglePanelHeaderLine\"></div></td>");
+
+	    sb.append("</tr></tbody></table></div>");
+	    sb.append("</div>");
+	    sb.append("</td>");
+	    return sb.toString();
+	  }	 
 }

@@ -47,11 +47,11 @@ public class CAPEXManagerController extends BaseController{
         int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasCAPEXInvestPlan> pageData = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlan(page, pageSize);	        
         request.setAttribute("pageData", pageData.getContent());
-/*      System.out.println("总记录数"+pageData.getTotalElements());  
-        System.out.println("当前第几页"+pageData.getNumber()+1);  
-        System.out.println("总页数"+pageData.getTotalPages());  
-        System.out.println("当前页面的List"+pageData.getContent());  
-        System.out.println("当前页面的记录数"+pageData.getNumberOfElements());  */
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
         PageInfo pageInfo = new PageInfo();
         pageInfo.setTotalRows((int)pageData.getTotalElements());
         pageInfo.setPageCount(pageData.getTotalPages());
@@ -62,6 +62,11 @@ public class CAPEXManagerController extends BaseController{
 		request.setAttribute("action", "/capex/bascapexinvestplan");
 		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasCAPEXInvestplan;	
+	}
+	@RequestMapping(value = "bascapexinvestplan/add")
+    public String add(HttpServletRequest request) {
+
+		return CMCCConstant.AddCAPEXInvestplan;	
 	}
 	/** 
 	* @Title: basCAPEXAmountPool 

@@ -60,6 +60,7 @@ public class CMCCConstant {
 	* @date 2017年6月29日 上午11:22:46 
 	*/
 	public static final String BasCAPEXInvestplan = "data/capex/BasCAPEXInvestplan"; 
+	public static final String AddCAPEXInvestplan = "data/capex/AddCAPEXInvestplan"; 
 	public static final String BasCAPEXAmountPool = "data/capex/BasCAPEXAmountPool";	
 	public static final String BasCAPEXRequirment = "data/capex/BasCAPEXRequirment"; 
 	public static final String BasCAPEXProject = "data/capex/BasCAPEXProject"; 
@@ -111,10 +112,19 @@ public class CMCCConstant {
 	public static final String User = "system/srcmt/User";   
 	public static final String Role = "system/srcmt/Role";   
 	public static final String Resource = "system/srcmt/Resource";
+	
+	/** 
+	* <p>Title: 表单JSP</p> 
+	* <p>Description: </p> 
+	* @date 2017年7月15日 下午6:17:50 
+	*/
+	public static final String AddSimpleForm = "common/addSimpleForm";
 
 	public static final String LASUPDATE = "LASUPDATESTRING";
 
-	public static final int PAGE_SIZE = 15;	  
+	public static final int PAGE_SIZE = 15;
+
+	  
 	
 	
 }

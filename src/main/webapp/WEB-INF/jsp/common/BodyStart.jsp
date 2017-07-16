@@ -13,14 +13,14 @@
 		<jsp:param name="url" value="<%= url %>" />
 		<jsp:param name="pid" value="<%= pid %>" />
 	</jsp:include>
-	<div class="container" id="bodyStart_container">
+	<div class="container" id="bodyStart__container">
 	<%-- 输出侧边栏菜单--%>
 	<jsp:include page="../common/LeftMenu.jsp" >	
 		<jsp:param name="appid" value="<%= appid %>" />
 		<jsp:param name="pid" value="<%= pid %>" />
 		<jsp:param name="url" value="<%= url %>" />
 	</jsp:include>	
-		<div class="content-wrap" id="bodyStart_content_Wrap">
+		<div class="content-wrap" id="bodyStart__content_Wrap">
 			<div class="content-empty"></div>
 			<div class="newTitleDIV"><%= pageTitle %>
 <style type="text/css">
