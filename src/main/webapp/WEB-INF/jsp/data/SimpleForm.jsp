@@ -11,9 +11,9 @@
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 %>
 <%-- 输出Head2模块 --%>
-<jsp:include page="../../common/Head1.jsp" />
+<jsp:include page="../common/Head1.jsp" />
 <%-- 输出公共BodyStart模块 --%>
-<jsp:include page="../../common/BodyStart.jsp">
+<jsp:include page="../common/BodyStart.jsp">
 	<jsp:param name="pageTitle" value="<%= pageTitle %>" />
 	<jsp:param name="appid" value="<%= appid %>" />
 	<jsp:param name="pid" value="<%= pid %>" />
@@ -95,5 +95,5 @@ function newFun() {
 	</form>
 </div>
 <%-- 输出公共BodyEnd模块 --%>
-<jsp:include page="../../common/BodyEnd.jsp" />
+<jsp:include page="../common/BodyEnd.jsp" />
 			

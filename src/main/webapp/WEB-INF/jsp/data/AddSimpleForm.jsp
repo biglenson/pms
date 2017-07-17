@@ -5,7 +5,7 @@
 	String path = request.getContextPath();
 %>
 <%-- 输出Head模块 --%>
-<jsp:include page="../../common/Head.jsp" />
+<jsp:include page="../common/Head.jsp" />
 <form name="frm" action="<%=path%>/SimpleFormAction.do" method="post">
 <div class="toolbar" id="toolbarDIV" >
 	<table class="toolbarTable" style="margin-left:30px;">

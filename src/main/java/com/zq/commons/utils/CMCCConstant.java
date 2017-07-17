@@ -59,44 +59,44 @@ public class CMCCConstant {
 	* <p>Description: </p> 
 	* @date 2017年6月29日 上午11:22:46 
 	*/
-	public static final String BasCAPEXInvestplan = "data/capex/BasCAPEXInvestplan"; 
-	public static final String AddCAPEXInvestplan = "data/capex/AddCAPEXInvestplan"; 
-	public static final String BasCAPEXAmountPool = "data/capex/BasCAPEXAmountPool";	
-	public static final String BasCAPEXRequirment = "data/capex/BasCAPEXRequirment"; 
-	public static final String BasCAPEXProject = "data/capex/BasCAPEXProject"; 
-	public static final String BasCAPEXProjInvestplan = "data/capex/BasCAPEXProjInvestplan"; 
-	public static final String BasCAPEXExpendplan = "data/capex/BasCAPEXExpendplan"; 
-	public static final String BasCAPEXTransferplan = "data/capex/BasCAPEXTransferplan"; 
-	public static final String BasCAPEXTotalInvestplan = "data/capex/BasCAPEXTotalInvestplan"; 
+	public static final String BasCAPEXInvestplan = "data/SimpleForm"; 
+	public static final String AddCAPEXInvestplan = "data/AddSimpleForm"; 
+	public static final String BasCAPEXAmountPool = "data/SimpleForm";	
+	public static final String BasCAPEXRequirment = "data/SimpleForm"; 
+	public static final String BasCAPEXProject = "data/SimpleForm"; 
+	public static final String BasCAPEXProjInvestplan = "data/SimpleForm"; 
+	public static final String BasCAPEXExpendplan = "data/SimpleForm"; 
+	public static final String BasCAPEXTransferplan = "data/SimpleForm"; 
+	public static final String BasCAPEXTotalInvestplan = "data/SimpleForm"; 
 	
-	public static final String BasOPEXBudgetpool = "data/opex/BasOPEXBudgetpool";
-	public static final String BasOpexBudgetpoolDetail = "data/opex/BasOpexBudgetpoolDetail";
-	public static final String BasOPEXBudgetAdjust = "data/opex/BasOPEXBudgetAdjust";
-	public static final String BasOPEXBudgetProject = "data/opex/BasOPEXBudgetProject";
-	public static final String BasOPEXRequirment = "data/opex/BasOPEXRequirment";
-	public static final String BasOPEXProject = "data/opex/BasOPEXProject";
-	public static final String BasOPEXManhour = "data/opex/BasOPEXManhour";
+	public static final String BasOPEXBudgetpool = "data/SimpleForm";
+	public static final String BasOpexBudgetpoolDetail = "data/SimpleForm";
+	public static final String BasOPEXBudgetAdjust = "data/SimpleForm";
+	public static final String BasOPEXBudgetProject = "data/SimpleForm";
+	public static final String BasOPEXRequirment = "data/SimpleForm";
+	public static final String BasOPEXProject = "data/SimpleForm";
+	public static final String BasOPEXManhour = "data/SimpleForm";
 	
-	public static final String BasFirstBill = "data/purchase/BasFirstBill";
-	public static final String BasSecondBill = "data/purchase/BasSecondBill";
-	public static final String BasFrameContract = "data/purchase/BasFrameContract";
-	public static final String BasOtherContract = "data/purchase/BasOtherContract";
-	public static final String BasOPEXPurchaseplan = "data/purchase/BasOPEXPurchaseplan";
+	public static final String BasFirstBill = "data/SimpleForm";
+	public static final String BasSecondBill = "data/SimpleForm";
+	public static final String BasFrameContract = "data/SimpleForm";
+	public static final String BasOtherContract = "data/SimpleForm";
+	public static final String BasOPEXPurchaseplan = "data/SimpleForm";
 	
-	public static final String BasCustomer = "data/datamap/BasCustomer";
-	public static final String BasItemset = "data/datamap/BasItemset";
-	public static final String BasProduct = "data/datamap/BasProduct";
-	public static final String BasItemProdCust = "data/datamap/BasItemProdCust";
-	public static final String BasProjCapex = "data/datamap/BasProjCapex";
-	public static final String BasProductIncome = "data/datamap/BasProductIncome";
-	public static final String BasIncomeByprod = "data/datamap/BasIncomeByprod";
-	public static final String BasIncometargBytype = "data/datamap/BasIncometargBytype";
-	public static final String BasIncometargByprod = "data/datamap/BasIncometargByprod";
-	public static final String BasIncometargBydept = "data/datamap/BasIncometargBydept";
-	public static final String BasBudgetSubject = "data/datamap/BasBudgetSubject";
-	public static final String BasAccountSubject = "data/datamap/BasAccountSubject";
-	public static final String BasAssetDetail = "data/datamap/BasAssetDetail";
-	public static final String BasExpenseDetail = "data/datamap/BasExpenseDetail";
+	public static final String BasCustomer = "data/SimpleForm";
+	public static final String BasItemset = "data/SimpleForm";
+	public static final String BasProduct = "data/SimpleForm";
+	public static final String BasItemProdCust = "data/SimpleForm";
+	public static final String BasProjCapex = "data/SimpleForm";
+	public static final String BasProductIncome = "data/SimpleForm";
+	public static final String BasIncomeByprod = "data/SimpleForm";
+	public static final String BasIncometargBytype = "data/SimpleForm";
+	public static final String BasIncometargByprod = "data/SimpleForm";
+	public static final String BasIncometargBydept = "data/SimpleForm";
+	public static final String BasBudgetSubject = "data/SimpleForm";
+	public static final String BasAccountSubject = "data/SimpleForm";
+	public static final String BasAssetDetail = "data/SimpleForm";
+	public static final String BasExpenseDetail = "data/SimpleForm";
 
 
 	/** 
