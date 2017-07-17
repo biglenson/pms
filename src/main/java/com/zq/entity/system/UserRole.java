@@ -1,8 +1,11 @@
 package com.zq.entity.system;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigInteger;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 /**
@@ -10,7 +13,7 @@ import java.math.BigInteger;
  * 
  */
 @Entity
-@Table(name="user_role")
+@Table(name="sys_user_sys_role")
 public class UserRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 

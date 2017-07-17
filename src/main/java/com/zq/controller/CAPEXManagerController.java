@@ -4,9 +4,16 @@ package com.zq.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.CMCCConstant;
+import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
+import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
 
 
 /** 
@@ -19,6 +26,9 @@ import com.zq.commons.utils.CMCCConstant;
 @Controller
 @RequestMapping("/capex/")
 public class CAPEXManagerController extends BaseController{
+	
+	@Autowired
+	private IBasCAPEXInvestPlanService iBasCAPEXInvestPlanService;
 	
 	private static Logger logger = Logger.getLogger(CAPEXManagerController.class);  
 	
@@ -33,10 +43,30 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexinvestplan")
-    public String BasCAPEXInvestplan(HttpServletRequest request) {
-		
+    public String BasCAPEXInvestplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCAPEXInvestPlan> pageData = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlan(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCAPEXInvestPlan");
 		request = setLeftMenu(request,"/capex/bascapexinvestplan");
+		request.setAttribute("action", "/capex/bascapexinvestplan");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasCAPEXInvestplan;	
+	}
+	@RequestMapping(value = "bascapexinvestplan/add")
+    public String add(HttpServletRequest request) {
+
+		return CMCCConstant.AddCAPEXInvestplan;	
 	}
 	/** 
 	* @Title: basCAPEXAmountPool 

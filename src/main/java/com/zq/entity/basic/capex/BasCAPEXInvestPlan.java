@@ -85,7 +85,7 @@ public class BasCAPEXInvestPlan implements Serializable {
 	@Column(name="department", nullable=true, length=1)	
 	private Integer department;
 	
-	@Column(name="tnnualCapex", nullable=true, length=50)	
+	@Column(name="total_invest", nullable=true, length=50)	
 	private String totalInvest;
 	
 	@Column(name="annual_capex", nullable=true, length=50)	

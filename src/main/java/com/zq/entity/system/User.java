@@ -11,6 +11,8 @@ import java.util.List;
  * 
  */
 @Entity
+@org.hibernate.annotations.Proxy(lazy=false)
+@Table(name="sys_user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,8 +31,8 @@ public class User implements Serializable {
 
 	private String name;
 
-	@Column(name="organization_id")
-	private Integer organizationId;
+	@Column(name="department_code")
+	private String departmentCode;
 
 	private String password;
 
@@ -93,12 +95,12 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public Integer getOrganizationId() {
-		return this.organizationId;
+	public String getDepartmentCode() {
+		return departmentCode;
 	}
 
-	public void setOrganizationId(Integer organizationId) {
-		this.organizationId = organizationId;
+	public void setDepartmentCode(String departmentCode) {
+		this.departmentCode = departmentCode;
 	}
 
 	public String getPassword() {

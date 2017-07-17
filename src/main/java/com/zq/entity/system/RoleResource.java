@@ -2,7 +2,6 @@ package com.zq.entity.system;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigInteger;
 
 
 /**
@@ -10,7 +9,7 @@ import java.math.BigInteger;
  * 
  */
 @Entity
-@Table(name="role_resource")
+@Table(name="sys_role_sys_resource")
 public class RoleResource implements Serializable {
 	private static final long serialVersionUID = 1L;
 

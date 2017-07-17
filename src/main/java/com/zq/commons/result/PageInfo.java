@@ -1,138 +1,169 @@
 package com.zq.commons.result;
 
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Properties;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+public class PageInfo implements Serializable {
+	private static final long serialVersionUID = 6267193571245317064L;
+	public static String ResourceApply = "resource_apply";
+	private String id;
+	private boolean paged = false;
 
-/**
- * @description：分页实体类 (结合jqery easyui)
- * @author：Wangzhixuan
- * @date：2015年4月23日 上午1:41:46
- */
-@SuppressWarnings("rawtypes")
-public class PageInfo {
+	private int pageSize = 0;
 
-    private final static int PAGESIZE = 10; //默认显示的记录数 
+	private int pageCount = 1;
 
-    private int total; // 总记录 
-    private List rows; //显示的记录  
+	private int currentPage = 1;
 
-    @JsonIgnore
-    private int from;
-    @JsonIgnore
-    private int size;
-    @JsonIgnore
-    private int nowpage; // 当前页 
-    @JsonIgnore
-    private int pagesize; // 每页显示的记录数 
-    @JsonIgnore
-    private Map<String, Object> condition; //查询条件
+	private int totalRows = 0;
 
-    @JsonIgnore
-    private String sort = "seq";// 排序字段
-    @JsonIgnore
-    private String order = "asc";// asc，desc mybatis Order 关键字
+	private int rowCount = 0;
 
-    public PageInfo() {}
+	private int columnCount = 0;
 
-    //构造方法
-    public PageInfo(int nowpage, int pagesize) {
-        //计算当前页  
-        if (nowpage < 0) {
-            this.nowpage = 1;
-        } else {
-            //当前页
-            this.nowpage = nowpage;
-        }
-        //记录每页显示的记录数  
-        if (pagesize < 0) {
-            this.pagesize = PAGESIZE;
-        } else {
-            this.pagesize = pagesize;
-        }
-        //计算开始的记录和结束的记录  
-        this.from = (this.nowpage - 1) * this.pagesize;
-        this.size = this.pagesize;
-    }
+	private Properties conditions = new Properties();
 
-    // 构造方法
-    public PageInfo(int nowpage, int pagesize, String sort, String order) {
-        this(nowpage, pagesize) ;
-        // 排序字段，正序还是反序
-        this.sort = sort;
-        this.order = order;
-    }
+	private HashMap filters = new HashMap();
 
-    public int getTotal() {
-        return total;
-    }
+	private boolean ordered = false;
 
-    public void setTotal(int total) {
-        this.total = total;
-    }
+	private String orderType = "";
 
-    public List getRows() {
-        return rows;
-    }
+	private String orderBy = "";
+	private List items;
 
-    public void setRows(List rows) {
-        this.rows = rows;
-    }
+	public PageInfo() {
+	}
 
-    public int getFrom() {
-        return from;
-    }
+	public PageInfo(String id, int currentPage, String orderType, String orderBy, Properties conditions) {
+		this.id = id;
+		this.currentPage = currentPage;
+		this.conditions = conditions;
+		this.orderType = orderType;
+		this.orderBy = orderBy;
+	}
 
-    public void setFrom(int from) {
-        this.from = from;
-    }
+	public String getOrderBySQL() {
+		if ((this.orderBy != null) && (this.orderBy.length() > 0)) {
+			return " order by " + this.orderBy + " " + this.orderType;
+		}
+		return "";
+	}
 
-    public int getSize() {
-        return size;
-    }
+	public String getId() {
+		return this.id;
+	}
 
-    public void setSize(int size) {
-        this.size = size;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public int getNowpage() {
-        return nowpage;
-    }
+	public boolean isPaged() {
+		return this.paged;
+	}
 
-    public void setNowpage(int nowpage) {
-        this.nowpage = nowpage;
-    }
+	public void setPaged(boolean paged) {
+		this.paged = paged;
+	}
 
-    public int getPagesize() {
-        return pagesize;
-    }
+	public boolean isOrdered() {
+		return this.ordered;
+	}
 
-    public void setPagesize(int pagesize) {
-        this.pagesize = pagesize;
-    }
+	public void setOrdered(boolean ordered) {
+		this.ordered = ordered;
+	}
 
-    public Map<String, Object> getCondition() {
-        return condition;
-    }
+	public int getPageSize() {
+		return this.pageSize;
+	}
 
-    public void setCondition(Map<String, Object> condition) {
-        this.condition = condition;
-    }
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
 
-    public String getSort() {
-        return sort;
-    }
+	public int getPageCount() {
+		return this.pageCount;
+	}
 
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
 
-    public String getOrder() {
-        return order;
-    }
+	public int getCurrentPage() {
+		return this.currentPage;
+	}
 
-    public void setOrder(String order) {
-        this.order = order;
-    }
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public int getTotalRows() {
+		return this.totalRows;
+	}
+
+	public void setTotalRows(int totalRows) {
+		this.totalRows = totalRows;
+	}
+
+	public int getRowCount() {
+		return this.rowCount;
+	}
+
+	public void setRowCount(int rowCount) {
+		this.rowCount = rowCount;
+	}
+
+	public int getColumnCount() {
+		return this.columnCount;
+	}
+
+	public void setColumnCount(int columnCount) {
+		this.columnCount = columnCount;
+	}
+
+	public Properties getConditions() {
+		return this.conditions;
+	}
+
+	public void setConditions(Properties conditions) {
+		this.conditions = conditions;
+	}
+
+	public HashMap getFilters() {
+		return this.filters;
+	}
+
+	public void setFilters(HashMap filters) {
+		this.filters = filters;
+	}
+
+	public String getOrderType() {
+		return this.orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		if (("desc".equalsIgnoreCase(orderType)) || ("asc".equalsIgnoreCase(orderType)))
+			this.orderType = orderType;
+		else
+			this.orderType = "";
+	}
+
+	public String getOrderBy() {
+		return this.orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+
+	public List getItems() {
+		return this.items;
+	}
+
+	public void setItems(List items) {
+		this.items = items;
+	}
 }

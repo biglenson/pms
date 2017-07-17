@@ -3,6 +3,7 @@ package com.zq.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import com.zq.commons.shiro.ShiroUser;
 import com.zq.commons.utils.StringEscapeEditor;
 import com.zq.entity.system.Resource;
+import com.zq.entity.system.SysForm;
 import com.zq.service.system.IResourceService;
+import com.zq.service.system.ISysFormService;
 
 
 /** 
@@ -32,6 +35,9 @@ public abstract class BaseController {
 
     @Autowired
     private IResourceService iResourceService;
+    @Autowired
+    private ISysFormService iSysFormService;
+    
 	@InitBinder
     public void initBinder(ServletRequestDataBinder binder) {
         /**
@@ -89,4 +95,24 @@ public abstract class BaseController {
 		return request;
     	
     }
+    
+    /** 
+    * @Title: setForm 
+    * @Description: TODO(设置表单标题) 
+    * @author shujukuss 
+    * @date 2017年7月14日 上午11:02:50 
+    * @param @param request
+    * @param @param form
+    * @param @return    设定文件 
+    * @return HttpServletRequest    返回类型 
+    * @throws 
+    */
+    public HttpServletRequest setForm(HttpServletRequest request,String form){    	
+    	List<SysForm> sysForm = iSysFormService.findByForm(form);
+    	request.setAttribute("formListTitle",sysForm);
+    	logger.info(form + "表单赋值完成");
+		return request;
+    	
+    }
+    
 }
