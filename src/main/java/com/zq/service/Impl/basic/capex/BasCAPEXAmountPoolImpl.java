@@ -21,7 +21,7 @@ public class BasCAPEXAmountPoolImpl implements IBasCAPEXAmountPoolService {
     private IBasCAPEXAmountPoolRepository iBasCAPEXAmountPoolRepository;
 
 	@Override
-	public List<BasCAPEXAmountPool> getAllCAPEXAmountPoolByYear(int year) {
+	public List<BasCAPEXAmountPool> getAllCAPEXAmountPoolByYear(String year) {
 		
 		return iBasCAPEXAmountPoolRepository.findByYear(year);
 	}

@@ -158,9 +158,9 @@ Integer index=(Integer)request.getAttribute("index");
 	
 	</script>
 <%}else if(index==2){
-	double allValue=(Double)request.getAttribute("allValue");
-	double newValue=(Double)request.getAttribute("newValue");
-	double xuValue=(Double)request.getAttribute("xuValue");
+	Integer allValue=(Integer)request.getAttribute("allValue");
+	Integer newValue=(Integer)request.getAttribute("newValue");
+	Integer xuValue=(Integer)request.getAttribute("xuValue");
 	List<HighChartData> dataList=(List<HighChartData>)request.getAttribute("dataList");
 %>
 <div style='width: 100%; height: 100%;' id="summaryProjectChart">

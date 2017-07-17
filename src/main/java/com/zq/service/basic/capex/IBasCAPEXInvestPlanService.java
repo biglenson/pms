@@ -11,7 +11,7 @@ import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
  */
 public interface IBasCAPEXInvestPlanService{
 
-	BasCAPEXInvestPlan getBasCAPEXInvestPlanByYearAndBasCAPEXProject(int year, String proj_code);
+	BasCAPEXInvestPlan getBasCAPEXInvestPlanByYearAndBasCAPEXProject(String year, String proj_code);
 
 	Page<BasCAPEXInvestPlan> getBasCAPEXInvestPlan(int pageNumber, int pageSize);
 

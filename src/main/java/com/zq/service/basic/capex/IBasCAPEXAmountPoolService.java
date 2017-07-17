@@ -11,7 +11,7 @@ import com.zq.entity.basic.capex.BasCAPEXAmountPool;
  */
 public interface IBasCAPEXAmountPoolService{
 
-	List<BasCAPEXAmountPool> getAllCAPEXAmountPoolByYear(int year);
+	List<BasCAPEXAmountPool> getAllCAPEXAmountPoolByYear(String year);
 
 
 }
