@@ -96,7 +96,7 @@
 				}else{
 					bodyHeight=document.body.clientHeight;
 				}
-				var bodyStart_container=document.getElementById('bodyStart_container');
+				var bodyStart_container=document.getElementById('bodyStart__container');
 				var height=bodyHeight-bodyStart_container.getBoundingClientRect().top+2;
 				if(height<0){
 					height=0;

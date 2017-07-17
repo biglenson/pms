@@ -97,7 +97,7 @@
 				}else{
 					bodyHeight=document.body.clientHeight;
 				}
-				var bodyStart_container=document.getElementById('bodyStart_container');
+				var bodyStart_container=document.getElementById('bodyStart__container');
 				var height=bodyHeight-bodyStart_container.getBoundingClientRect().top+2;
 				if(height<0){
 					height=0;
@@ -316,7 +316,7 @@
 		if(simpleMenuDIV==null){
 			className="closeContainerNoMenu";
 		}
-		var bodyStart_container=document.getElementById('bodyStart_container');
+		var bodyStart_container=document.getElementById('bodyStart__container');
 		var open=ET.Utils.hasClass(bodyStart_container, className);
 		var bodyLeftAllDIV=jQuery("#bodyLeftAllDIV");
 		var bodyStart_dragDIV=jQuery("#bodyStart_dragDIV");
