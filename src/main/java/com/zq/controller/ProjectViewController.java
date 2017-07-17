@@ -77,7 +77,7 @@ public class ProjectViewController extends BaseController{
 		if(index==0){
 			double allValue=0d;
 			double yearValue=0d;
-			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getALLCAPEXProject();
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getBasCAPEXProjectByYear(year);
 			for(BasCAPEXProject capexproj:projectList){
 				if(dataUpdateDate == null){
 					dataUpdateDate = capexproj.getModifyTime();
@@ -101,7 +101,7 @@ public class ProjectViewController extends BaseController{
 			
 		}else if(index==1){			
 			List<BasCAPEXAmountPool> capexAmountPoolList=iBasCAPEXAmountPoolService.getAllCAPEXAmountPoolByYear(year);
-			double allValue=0;  //自主资金池总金额
+			double allValue=0d;  //自主资金池总金额
 			double projectValue=0d;//立项金额：当年新建项目中，投资计划项目集名称为“自主安排”的项目的“立项批复金额”进行累加
 			double yuZhuanValue=0d;//
 			for(BasCAPEXAmountPool capexpool:capexAmountPoolList){
@@ -113,7 +113,7 @@ public class ProjectViewController extends BaseController{
 				}
 				allValue+=TypeUtils.string2Double(capexpool.getInitialAmount());
 			}
-			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getALLCAPEXProject();
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getBasCAPEXProjectByYear(year);
 			for(BasCAPEXProject capexproj:projectList){
 				if(dataUpdateDate == null){
 					dataUpdateDate = capexproj.getModifyTime();
@@ -142,7 +142,7 @@ public class ProjectViewController extends BaseController{
 			request.setAttribute("allValue", allValue);
 			
 		}else if(index==2){			
-			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getALLCAPEXProject();
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getBasCAPEXProjectByYear(year);
 			int newValue=0;
 			int xuValue=0;
 			int allValue=0;
@@ -197,10 +197,10 @@ public class ProjectViewController extends BaseController{
 			request.setAttribute("dataList", dataList);
 
 		}else if(index==3){
-			List<BasCAPEXExpendplan> capexExpendplanList=iBasCAPEXExpendplanService.getAllCAPEXExpendplan();
-			List<BasCAPEXTransferplan> capexTransferplanList=iBasCAPEXTransferplanService.getAllBasCAPEXTransferplan();
-			double kaizhiTotal=0;
-			double kaizhiActual=0;
+			List<BasCAPEXExpendplan> capexExpendplanList=iBasCAPEXExpendplanService.getAllCAPEXExpendplanByYear(year);
+			List<BasCAPEXTransferplan> capexTransferplanList=iBasCAPEXTransferplanService.getAllBasCAPEXTransferplanByYear(year);
+			double kaizhiTotal=0d;
+			double kaizhiActual=0d;
 			for(BasCAPEXExpendplan capexExpPlan:capexExpendplanList){
 				if(dataUpdateDate == null){
 					dataUpdateDate = capexExpPlan.getModifyTime();
@@ -210,8 +210,8 @@ public class ProjectViewController extends BaseController{
 				}
 				kaizhiActual+=iBasCAPEXExpendplanService.getActualByYearAndCAPEXProjCode(year,capexExpPlan.getProjCode());
 			}		
-			double zhuanZiTotal=0;
-			double zhuanZiActual=0;
+			double zhuanZiTotal=0d;
+			double zhuanZiActual=0d;
 			for(BasCAPEXTransferplan capexTransferplan:capexTransferplanList){
 
 				if(dataUpdateDate == null){

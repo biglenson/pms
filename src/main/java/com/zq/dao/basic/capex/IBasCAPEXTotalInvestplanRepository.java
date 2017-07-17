@@ -8,6 +8,6 @@ import com.zq.entity.basic.capex.BasCAPEXTotalInvestplan;
 
 public interface IBasCAPEXTotalInvestplanRepository extends JpaRepository<BasCAPEXTotalInvestplan, Long>{
 
-	List<BasCAPEXTotalInvestplan> findByAnnual(String year);
+	List<BasCAPEXTotalInvestplan> findByAnnual(int year);
 
 }

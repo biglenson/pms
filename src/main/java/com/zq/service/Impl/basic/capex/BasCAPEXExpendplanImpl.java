@@ -30,10 +30,19 @@ public class BasCAPEXExpendplanImpl implements IBasCAPEXExpendplanService {
 	@Override
 	public double getActualByYearAndCAPEXProjCode(String year, String proj_code) {
 		BasCAPEXExpendplan capexPlan = iBasCAPEXExpendplanRepository.findByYearAndProjCode(year,proj_code);
-		return TypeUtils.string2Double(capexPlan.getJanActual()) + TypeUtils.string2Double(capexPlan.getFebActual()) + TypeUtils.string2Double(capexPlan.getMarActual())
-				+ TypeUtils.string2Double(capexPlan.getAprActual()) + TypeUtils.string2Double(capexPlan.getMayActual()) + TypeUtils.string2Double(capexPlan.getJunActual())
-				+ TypeUtils.string2Double(capexPlan.getJulActual()) + TypeUtils.string2Double(capexPlan.getAugActual()) + TypeUtils.string2Double(capexPlan.getSepActual())
-				+ TypeUtils.string2Double(capexPlan.getOctActual()) + TypeUtils.string2Double(capexPlan.getNovActual()) + TypeUtils.string2Double(capexPlan.getDecActual());
+		double a =TypeUtils.string2Double(capexPlan.getJanActual());
+		double b=TypeUtils.string2Double(capexPlan.getFebActual());
+		double c=TypeUtils.string2Double(capexPlan.getMarActual());
+		double d=TypeUtils.string2Double(capexPlan.getAprActual());
+		double e=TypeUtils.string2Double(capexPlan.getMayActual());
+		double f=TypeUtils.string2Double(capexPlan.getJunActual());
+		double g=TypeUtils.string2Double(capexPlan.getJulActual());
+		double h=TypeUtils.string2Double(capexPlan.getAugActual());
+		double i=TypeUtils.string2Double(capexPlan.getSepActual());
+		double j=TypeUtils.string2Double(capexPlan.getOctActual());
+		double k=TypeUtils.string2Double(capexPlan.getNovActual());
+		double l=TypeUtils.string2Double(capexPlan.getDecActual());
+		return  a+b+c+d+e+f+g+h+i+j+k+l;
 	}
 
 	@Override

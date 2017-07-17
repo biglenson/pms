@@ -230,7 +230,7 @@ Integer index=(Integer)request.getAttribute("index");
 	            data: <%if(allValue!=0){%>
 	             <%=JSONArray.fromObject(dataList)%> 
 	             <%}else{%>
-	             [{name:'本 年 暂 无 相 关 数 据!',y:1,color:'#D8D8D8'}]
+	             [{name:'本 年 暂 无 相 关 数 据!',y:1,color:'<%=HighChartData.COLOR_GRAY%>'}]
 	             <%}%>
 	             
 	        }]

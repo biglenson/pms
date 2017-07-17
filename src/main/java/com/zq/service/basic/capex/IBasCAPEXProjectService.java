@@ -14,4 +14,6 @@ public interface IBasCAPEXProjectService{
 	List<BasCAPEXProject> getALLCAPEXProject();
 
 	BasCAPEXProject getCAPEXProject();
+
+	List<BasCAPEXProject> getBasCAPEXProjectByYear(String year);
 }

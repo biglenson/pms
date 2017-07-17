@@ -30,6 +30,12 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
 	public BasCAPEXProject getCAPEXProject() {
 		
 		return null;
+	}
+
+	@Override
+	public List<BasCAPEXProject> getBasCAPEXProjectByYear(String year) {
+		
+		return iBasCAPEXProjectRepository.findByProjStartYear(year);
 	}   
 
 }

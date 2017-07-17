@@ -64,7 +64,7 @@ public class BasCAPEXExpendplan implements Serializable {
 	@Column(name="year", nullable=true, length=50)	
 	private String year;
 	
-	@Column(name="jeb_plan", nullable=true, length=50)	
+	@Column(name="jan_plan", nullable=true, length=50)	
 	private String janPlan;
 	
 	@Column(name="feb_plan", nullable=true, length=50)	
