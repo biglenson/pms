@@ -80,16 +80,16 @@
 			<version>1.2</version>
 		</dependency>
 		<!-- activiti需要的jar包 -->
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-engine</artifactId>
-			<version>5.17.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring</artifactId>
-			<version>5.17.0</version>
-		</dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>5.22.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+            <version>5.22.0</version>
+        </dependency>
 		<!-- mysql需要的jar包 -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -161,6 +161,19 @@
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
 		</dependency>
+        <!-- activit begin -->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>5.16.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+            <version>5.16.3</version>
+        </dependency>
+        <!-- activit end -->
+
 	</dependencies>
 	<build>
 		<finalName>pms</finalName>
@@ -171,6 +184,9 @@
 			</resource>
 			<resource>
 				<directory>src/main/conf/${profiles.active}</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources/activiti-bpmn</directory>
 			</resource>
 		</resources>
 		<plugins>
