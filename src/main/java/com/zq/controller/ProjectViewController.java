@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zq.commons.result.HighChartData;
-import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
 import com.zq.entity.basic.capex.BasCAPEXAmountPool;
@@ -24,7 +21,6 @@ import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
 import com.zq.entity.basic.capex.BasCAPEXTotalInvestplan;
 import com.zq.entity.basic.capex.BasCAPEXTransferplan;
-import com.zq.entity.system.User;
 import com.zq.service.basic.capex.IBasCAPEXAmountPoolService;
 import com.zq.service.basic.capex.IBasCAPEXExpendplanService;
 import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
@@ -64,8 +60,8 @@ public class ProjectViewController extends BaseController{
 	
 	private static Logger logger = Logger.getLogger(ProjectViewController.class);  
 	/**
-	* @Title: investmentSchedule
-	* @Description: TODO(投资使用进度)
+	* @Title: projectsummary
+	* @Description: TODO(项目总览)
 	* @author BigCoin
 	* @date 2017年7月5日 下午4:22:50
 	* @param @param request
@@ -76,12 +72,12 @@ public class ProjectViewController extends BaseController{
 	@RequestMapping(value = "projectsummary", method = RequestMethod.POST)
     public String projectSummary(HttpServletRequest request) {		
 		int index=TypeUtils.getIntFromString(request.getParameter("index"));
-		int year=TypeUtils.getIntFromString(request.getParameter("year"));
+		String year=request.getParameter("year");
 		Date dataUpdateDate = null;
 		if(index==0){
 			double allValue=0d;
 			double yearValue=0d;
-			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getAllCAPEXProjectByYear(year);
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getALLCAPEXProject();
 			for(BasCAPEXProject capexproj:projectList){
 				if(dataUpdateDate == null){
 					dataUpdateDate = capexproj.getModifyTime();
@@ -117,7 +113,7 @@ public class ProjectViewController extends BaseController{
 				}
 				allValue+=TypeUtils.string2Double(capexpool.getInitialAmount());
 			}
-			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getAllCAPEXProjectByYear(year);
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getALLCAPEXProject();
 			for(BasCAPEXProject capexproj:projectList){
 				if(dataUpdateDate == null){
 					dataUpdateDate = capexproj.getModifyTime();
@@ -146,7 +142,7 @@ public class ProjectViewController extends BaseController{
 			request.setAttribute("allValue", allValue);
 			
 		}else if(index==2){			
-			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getAllCAPEXProjectByYear(year);
+			List<BasCAPEXProject> projectList=iBasCAPEXProjectService.getALLCAPEXProject();
 			int newValue=0;
 			int xuValue=0;
 			int allValue=0;
@@ -201,8 +197,8 @@ public class ProjectViewController extends BaseController{
 			request.setAttribute("dataList", dataList);
 
 		}else if(index==3){
-			List<BasCAPEXExpendplan> capexExpendplanList=iBasCAPEXExpendplanService.getAllCAPEXExpendplanByYear(year);
-			List<BasCAPEXTransferplan> capexTransferplanList=iBasCAPEXTransferplanService.getAllBasCAPEXTransferplanByYear(year);
+			List<BasCAPEXExpendplan> capexExpendplanList=iBasCAPEXExpendplanService.getAllCAPEXExpendplan();
+			List<BasCAPEXTransferplan> capexTransferplanList=iBasCAPEXTransferplanService.getAllBasCAPEXTransferplan();
 			double kaizhiTotal=0;
 			double kaizhiActual=0;
 			for(BasCAPEXExpendplan capexExpPlan:capexExpendplanList){

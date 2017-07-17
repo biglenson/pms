@@ -19,7 +19,7 @@ public class BasCAPEXInvestPlanImpl implements IBasCAPEXInvestPlanService {
     private IBasCAPEXInvestPlanRepository iBasCAPEXInvestPlanRepository;
 
 	@Override
-	public BasCAPEXInvestPlan getBasCAPEXInvestPlanByYearAndBasCAPEXProject(int year, String proj_code) {
+	public BasCAPEXInvestPlan getBasCAPEXInvestPlanByYearAndBasCAPEXProject(String year, String proj_code) {
 		
 		return iBasCAPEXInvestPlanRepository.findByYearAndProjCode(year,proj_code);
 	}

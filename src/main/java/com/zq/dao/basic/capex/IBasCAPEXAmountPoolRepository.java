@@ -8,6 +8,6 @@ import com.zq.entity.basic.capex.BasCAPEXAmountPool;
 
 public interface IBasCAPEXAmountPoolRepository extends JpaRepository<BasCAPEXAmountPool, Long>{
 
-	List<BasCAPEXAmountPool> findByYear(int year);
+	List<BasCAPEXAmountPool> findByYear(String year);
 
 }

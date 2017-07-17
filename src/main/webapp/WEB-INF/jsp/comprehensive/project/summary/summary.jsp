@@ -99,7 +99,7 @@ String path = request.getContextPath();
 jQuery(document).ready(function(){
 	var doAjax=function(index,select){
 		$.ajax({
-			url:"<%=path%>/projectview/investmentSchedule",
+			url:"<%=path%>/projectview/projectsummary",
 			method:"POST",
 			data:{
 				year:document.frm.year.value<%-- 

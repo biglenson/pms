@@ -11,7 +11,7 @@ import com.zq.entity.basic.capex.BasCAPEXTotalInvestplan;
  */
 public interface IBasCAPEXTotalInvestplanService{
 
-	List<BasCAPEXTotalInvestplan> getAllCAPEXTotalInvestplanByYear(int year);
+	List<BasCAPEXTotalInvestplan> getAllCAPEXTotalInvestplanByYear(String year);
 
 
 }

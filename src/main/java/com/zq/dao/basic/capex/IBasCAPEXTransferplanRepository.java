@@ -8,8 +8,8 @@ import com.zq.entity.basic.capex.BasCAPEXTransferplan;
 
 public interface IBasCAPEXTransferplanRepository extends JpaRepository<BasCAPEXTransferplan, Long>{
 
-	List<BasCAPEXTransferplan> findByYear(int year);
+	List<BasCAPEXTransferplan> findByYear(String year);
 
-	BasCAPEXTransferplan findByYearAndProjCode(int year, String projCode);
+	BasCAPEXTransferplan findByYearAndProjCode(String year, String projCode);
 
 }

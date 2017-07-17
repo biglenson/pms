@@ -21,7 +21,7 @@ public class BasCAPEXTotalInvestplanImpl implements IBasCAPEXTotalInvestplanServ
     private IBasCAPEXTotalInvestplanRepository iBasCAPEXTotalInvestplanRepository;
 
 	@Override
-	public List<BasCAPEXTotalInvestplan> getAllCAPEXTotalInvestplanByYear(int year) {
+	public List<BasCAPEXTotalInvestplan> getAllCAPEXTotalInvestplanByYear(String year) {
 		
 		return iBasCAPEXTotalInvestplanRepository.findByAnnual(year);
 	}

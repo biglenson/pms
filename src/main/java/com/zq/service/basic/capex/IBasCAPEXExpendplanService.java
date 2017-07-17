@@ -11,9 +11,11 @@ import com.zq.entity.basic.capex.BasCAPEXExpendplan;
  */
 public interface IBasCAPEXExpendplanService{
 
-	List<BasCAPEXExpendplan> getAllCAPEXExpendplanByYear(int year);
+	List<BasCAPEXExpendplan> getAllCAPEXExpendplanByYear(String year);
 
-	double getActualByYearAndCAPEXProjCode(int year, String projCode);
+	double getActualByYearAndCAPEXProjCode(String year, String projCode);
+
+	List<BasCAPEXExpendplan> getAllCAPEXExpendplan();
 
 
 

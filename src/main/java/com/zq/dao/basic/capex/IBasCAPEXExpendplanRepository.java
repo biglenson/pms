@@ -7,9 +7,9 @@ import com.zq.entity.basic.capex.BasCAPEXExpendplan;
 
 public interface IBasCAPEXExpendplanRepository extends JpaRepository<BasCAPEXExpendplan, Long> {
 
-	List<BasCAPEXExpendplan> findByYear(int year);
+	List<BasCAPEXExpendplan> findByYear(String year);
 
-	BasCAPEXExpendplan findByYearAndProjCode(int year, String projCode);
+	BasCAPEXExpendplan findByYearAndProjCode(String year, String projCode);
 	
 
 }
