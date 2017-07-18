@@ -83,7 +83,7 @@ public class OPEXManagerController extends BaseController{
 		request = setForm(request, "BasOPEXBudgetpool");
 		request = setLeftMenu(request,"/opex/basopexbudgetpool");
 		request.setAttribute("action", "/opex/basopexbudgetpool");
-		request = setLeftMenu(request,"/opex/basopexbudgetpool");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOPEXBudgetpool;	
 	}
 	/** 
@@ -114,7 +114,7 @@ public class OPEXManagerController extends BaseController{
 		request = setForm(request, "BasOpexBudgetpoolDetail");
 		request = setLeftMenu(request,"/opex/basopexbudgetpooldetail");
 		request.setAttribute("action", "/opex/basopexbudgetpooldetail");
-		request = setLeftMenu(request,"/opex/basopexbudgetpooldetail");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOpexBudgetpoolDetail;	
 	}
 
@@ -146,7 +146,7 @@ public class OPEXManagerController extends BaseController{
 		request = setForm(request, "BasOPEXBudgetAdjust");
 		request = setLeftMenu(request,"/opex/basopexbudgetadjust");
 		request.setAttribute("action", "/opex/basopexbudgetadjust");
-		request = setLeftMenu(request,"/opex/basopexbudgetadjust");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOPEXBudgetAdjust;	
 	}
 	/** 
@@ -177,7 +177,7 @@ public class OPEXManagerController extends BaseController{
 		request = setForm(request, "BasOPEXBudgetProject");
 		request = setLeftMenu(request,"/opex/basopexbudgetproject");
 		request.setAttribute("action", "/opex/basopexbudgetproject");
-		request = setLeftMenu(request,"/opex/basopexbudgetproject");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOPEXBudgetProject;	
 	}
 
@@ -209,7 +209,7 @@ public class OPEXManagerController extends BaseController{
 		request = setForm(request, "BasOPEXRequirment");
 		request = setLeftMenu(request,"/opex/basopexrequirment");
 		request.setAttribute("action", "/opex/basopexrequirment");
-		request = setLeftMenu(request,"/opex/basopexrequirment");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOPEXRequirment;	
 	}
 	/** 
@@ -240,7 +240,7 @@ public class OPEXManagerController extends BaseController{
 		request = setForm(request, "BasOPEXProject");
 		request = setLeftMenu(request,"/opex/basopexproject");
 		request.setAttribute("action", "/opex/basopexproject");
-		request = setLeftMenu(request,"/opex/basopexproject");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOPEXProject;	
 	}
 	
@@ -272,7 +272,7 @@ public class OPEXManagerController extends BaseController{
 		request = setForm(request, "BasOPEXManhour");
 		request = setLeftMenu(request,"/opex/basopexmanhour");
 		request.setAttribute("action", "/opex/basopexmanhour");
-		request = setLeftMenu(request,"/opex/basopexmanhour");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOPEXManhour;	
 	}
 

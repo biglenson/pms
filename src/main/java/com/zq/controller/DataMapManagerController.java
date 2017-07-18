@@ -26,7 +26,6 @@ import com.zq.entity.basic.datamap.BasItemset;
 import com.zq.entity.basic.datamap.BasProduct;
 import com.zq.entity.basic.datamap.BasProductIncome;
 import com.zq.entity.basic.datamap.BasProjCapex;
-import com.zq.entity.basic.purchase.BasFirstBill;
 import com.zq.service.basic.datamap.IBasAccountSubjectService;
 import com.zq.service.basic.datamap.IBasAssetDetailService;
 import com.zq.service.basic.datamap.IBasBudgetSubjectService;
@@ -41,7 +40,6 @@ import com.zq.service.basic.datamap.IBasItemsetService;
 import com.zq.service.basic.datamap.IBasProductIncomeService;
 import com.zq.service.basic.datamap.IBasProductService;
 import com.zq.service.basic.datamap.IBasProjCapexService;
-import com.zq.service.basic.purchase.IBasFirstBillService;
 
 
 /** 
@@ -82,6 +80,7 @@ public class DataMapManagerController extends BaseController{
 	private IBasAssetDetailService iBasAssetDetailService;
 	@Autowired
 	private IBasExpenseDetailService iBasExpenseDetailService;
+	
 	private static Logger logger = Logger.getLogger(DataMapManagerController.class);  
 	
 	/** 
@@ -112,7 +111,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasCustomer");
 		request = setLeftMenu(request,"/datamap/bascustomer");
 		request.setAttribute("action", "/datamap/bascustomer");
-		request = setLeftMenu(request,"/datamap/bascustomer");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasCustomer;	
 	}
 	/** 
@@ -143,7 +142,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasItemset");
 		request = setLeftMenu(request,"/datamap/basitemset");
 		request.setAttribute("action", "/datamap/basitemset");
-		request = setLeftMenu(request,"/datamap/basitemset");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasItemset;	
 	}
 
@@ -175,7 +174,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasProduct");
 		request = setLeftMenu(request,"/datamap/basproduct");
 		request.setAttribute("action", "/datamap/basproduct");
-		request = setLeftMenu(request,"/datamap/basproduct");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasProduct;	
 	}
 	/** 
@@ -206,7 +205,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasItemProdCust");
 		request = setLeftMenu(request,"/datamap/basitemprodcust");
 		request.setAttribute("action", "/datamap/basitemprodcust");
-		request = setLeftMenu(request,"/datamap/basitemprodcust");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasItemProdCust;	
 	}
 
@@ -238,7 +237,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasProjCapex");
 		request = setLeftMenu(request,"/datamap/basprojcapex");
 		request.setAttribute("action", "/datamap/basprojcapex");
-		request = setLeftMenu(request,"/datamap/basprojcapex");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasProjCapex;	
 	}
 	
@@ -270,7 +269,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasProductIncome");
 		request = setLeftMenu(request,"/datamap/basproductincome");
 		request.setAttribute("action", "/datamap/basproductincome");
-		request = setLeftMenu(request,"/datamap/basproductincome");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasProductIncome;	
 	}
 	
@@ -302,7 +301,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasIncomeByprod");
 		request = setLeftMenu(request,"/datamap/basincomebyprod");
 		request.setAttribute("action", "/datamap/basincomebyprod");
-		request = setLeftMenu(request,"/datamap/basincomebyprod");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasIncomeByprod;	
 	}
 	
@@ -334,7 +333,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasIncometargBytype");
 		request = setLeftMenu(request,"/datamap/basincometargbytype");
 		request.setAttribute("action", "/datamap/basincometargbytype");
-		request = setLeftMenu(request,"/datamap/basincometargbytype");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasIncometargBytype;	
 	}
 	/** 
@@ -365,7 +364,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasIncometargByprod");
 		request = setLeftMenu(request,"/datamap/basincometargbyprod");
 		request.setAttribute("action", "/datamap/basincometargbyprod");
-		request = setLeftMenu(request,"/datamap/basincometargbyprod");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasIncometargByprod;	
 	}
 	/** 
@@ -396,7 +395,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasIncometargBydept");
 		request = setLeftMenu(request,"/datamap/basincometargbydept");
 		request.setAttribute("action", "/datamap/basincometargbydept");
-		request = setLeftMenu(request,"/datamap/basincometargbydept");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasIncometargBydept;	
 	}
 	/** 
@@ -427,7 +426,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasBudgetSubject");
 		request = setLeftMenu(request,"/datamap/basbudgetsubject");
 		request.setAttribute("action", "/datamap/basbudgetsubject");
-		request = setLeftMenu(request,"/datamap/basbudgetsubject");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasBudgetSubject;	
 	}
 	/** 
@@ -458,7 +457,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasAccountSubject");
 		request = setLeftMenu(request,"/datamap/basaccountsubject");
 		request.setAttribute("action", "/datamap/basaccountsubject");
-		request = setLeftMenu(request,"/datamap/basaccountsubject");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasAccountSubject;	
 	}
 
@@ -490,7 +489,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasAssetDetail");
 		request = setLeftMenu(request,"/datamap/basassetdetail");
 		request.setAttribute("action", "/datamap/basassetdetail");
-		request = setLeftMenu(request,"/datamap/basassetdetail");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasAssetDetail;	
 	}
 	/** 
@@ -521,7 +520,7 @@ public class DataMapManagerController extends BaseController{
 		request = setForm(request, "BasExpenseDetail");
 		request = setLeftMenu(request,"/datamap/basexpensedetail");
 		request.setAttribute("action", "/datamap/basexpensedetail");
-		request = setLeftMenu(request,"/datamap/basexpensedetail");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasExpenseDetail;	
 	}
 	

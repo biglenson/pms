@@ -75,7 +75,7 @@ public class PurchaseManagerController extends BaseController{
 		request = setForm(request, "BasFirstBill");
 		request = setLeftMenu(request,"/purchase/basfirstbill");
 		request.setAttribute("action", "/purchase/basfirstbill");
-		request = setLeftMenu(request,"/purchase/basfirstbill");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasFirstBill;	
 	}
 	/** 
@@ -106,7 +106,7 @@ public class PurchaseManagerController extends BaseController{
 		request = setForm(request, "BasSecondBill");
 		request = setLeftMenu(request,"/purchase/bassecondbill");
 		request.setAttribute("action", "/purchase/bassecondbill");
-		request = setLeftMenu(request,"/purchase/bassecondbill");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasSecondBill;	
 	}
 
@@ -138,7 +138,7 @@ public class PurchaseManagerController extends BaseController{
 		request = setForm(request, "BasFrameContract");
 		request = setLeftMenu(request,"/purchase/basframecontract");
 		request.setAttribute("action", "/purchase/basframecontract");
-		request = setLeftMenu(request,"/purchase/basframecontract");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasFrameContract;	
 	}
 	/** 
@@ -169,7 +169,7 @@ public class PurchaseManagerController extends BaseController{
 		request = setForm(request, "BasOtherContract");
 		request = setLeftMenu(request,"/purchase/basothercontract");
 		request.setAttribute("action", "/purchase/basothercontract");
-		request = setLeftMenu(request,"/purchase/basothercontract");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOtherContract;	
 	}
 
@@ -201,7 +201,7 @@ public class PurchaseManagerController extends BaseController{
 		request = setForm(request, "BasOPEXPurchaseplan");
 		request = setLeftMenu(request,"/purchase/basopexpurchaseplan");
 		request.setAttribute("action", "/purchase/basopexpurchaseplan");
-		request = setLeftMenu(request,"/purchase/basopexpurchaseplan");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasOPEXPurchaseplan;	
 	}
 	
