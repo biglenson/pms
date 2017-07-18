@@ -7,6 +7,8 @@ import com.zq.entity.basic.capex.BasCAPEXProject;
 
 public interface IBasCAPEXProjectRepository extends JpaRepository<BasCAPEXProject, Long> {
 
-	List<BasCAPEXProject> findByProjStartYear(String year);	
+	List<BasCAPEXProject> findByProjStartYear(String year);
+
+	double findByProjCode(String projCode);	
 
 }

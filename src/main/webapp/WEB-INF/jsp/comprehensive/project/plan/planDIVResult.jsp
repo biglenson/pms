@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
-<%@ page import="com.zq.entity.basic.BasCAPEXProject"%>
+<%@ page import="com.zq.entity.basic.capex.BasCAPEXProject"%>
 <%
 String path = request.getContextPath();
 List<BasCAPEXProject> project=(List<BasCAPEXProject>)request.getAttribute("project");

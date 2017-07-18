@@ -1,5 +1,6 @@
 package com.zq.service.basic.purchase;
 
+import java.util.List;
 
 /**
  *
@@ -7,6 +8,8 @@ package com.zq.service.basic.purchase;
  *
  */
 public interface IBasSecondBillService{
+
+	List getSecondBillByYear(String year);
 
 
 }

@@ -256,10 +256,190 @@ public class ProjectViewController extends BaseController{
 	*/
 	@RequestMapping(value = "planresult", method = RequestMethod.POST)
     public String planResult(HttpServletRequest request) {		
-		Integer index = 1;
-		List<BasCAPEXProject> project = iBasCAPEXProjectService.getALLCAPEXProject();		
-		request.setAttribute("project", project);
-		request.setAttribute("index", index);	
+		Date dataUpdateDate = null;
+		int index=TypeUtils.getIntFromString(request.getParameter("index"));
+		String year=request.getParameter("year");
+		double kaizhiTotal = 0;
+		double zhuanZiTotal = 0;
+		PageInfo zongePage = new PageInfo();
+		zongePage.getConditions().put("year", year);
+		List<CMCCTouziZongE> totalTouzi = cm.getCMCCTouziZongEPageInfo(user, zongePage).getItems();
+		if(totalTouzi != null){
+			for(CMCCTouziZongE zonge : totalTouzi){
+				if(dataUpdateDate == null){
+					dataUpdateDate = zonge.getLastUpdateTime();
+				}
+				if(dataUpdateDate != null && zonge.getLastUpdateTime() != null && dataUpdateDate.before(zonge.getLastUpdateTime())){
+					dataUpdateDate = zonge.getLastUpdateTime();
+				}
+				kaizhiTotal += FormBaseResove.getNotNullDoubleValue(user, zonge, "num01");
+				zhuanZiTotal += FormBaseResove.getNotNullDoubleValue(user, zonge, "num02");
+			}
+		}
+		if(index==0){//投资计划
+			ZongheAction action=new ZongheAction();
+			action.touziDetailCapex(user, request);
+		}else if(index==1){ //开支计划
+			Calendar cal=Calendar.getInstance();
+			int currentYear=cal.get(Calendar.YEAR);
+			int month=cal.get(Calendar.MONTH);
+//			System.out.println("year="+year+"month="+month);
+			PageInfo pageInfo=new PageInfo();
+			Properties ps=new Properties();
+			pageInfo.setConditions(ps);
+			ps.put("year", year);
+			cm.getKaiZhiPlanPageInfo(user, pageInfo);
+			List<CMCCKaiZhiPlan> list=pageInfo.getItems();
+			Double[] plan=new Double[12];
+//			Double allPlan=0d;
+			Double[] actual=new Double[12];
+			for(int i=0,j=plan.length;i<j;i++){
+				plan[i]=0d;
+				actual[i]=0d;
+			}
+			Double allActual=0d;
+			Double monthPlan=0d;
+			Double monthActual=0d;
+			String[] planFields=CMCCKaiZhiPlan.PLAN_STOREFIELD;
+			String[] actualFields=CMCCKaiZhiPlan.ACTUAL_STOREFIELD;
+			for(CMCCKaiZhiPlan c:list){
+				if(dataUpdateDate == null){
+					dataUpdateDate = c.getLastUpdateTime();
+				}
+				if(dataUpdateDate != null && c.getLastUpdateTime() != null && dataUpdateDate.before(c.getLastUpdateTime())){
+					dataUpdateDate = c.getLastUpdateTime();
+				}
+				int c_year=c.getYear();
+				for(int i=0;i<12;i++){
+					double tempPlan=FormBaseResove.getNotNullDoubleValue(user, c, planFields[i]);
+					double tempActual=FormBaseResove.getNotNullDoubleValue(user, c, actualFields[i]);
+//					allPlan+=tempPlan;
+					allActual+=tempActual;
+					Double p1=plan[i];
+					
+					p1+=tempPlan;
+					plan[i]=p1;
+					Double p2=actual[i];
+					p2+=tempActual;
+					actual[i]=p2;
+					if(c_year<currentYear||(c_year==year&&i<=month)){
+						monthPlan+=tempPlan;
+						monthActual+=tempActual;
+					}
+				}
+				
+			}
+			for(int i=plan.length-1;i>0;i--){
+				for(int j=i-1;j>=0;j--){
+					plan[i]+=plan[j];
+				}
+			}
+			
+			for(int i=actual.length-1;i>0;i--){
+				for(int j=i-1;j>=0;j--){
+					actual[i]+=actual[j];
+				}
+			}
+			double wan=10000;
+			for(int i=0,j=plan.length;i<j;i++){
+				plan[i]/=wan;
+			}
+			
+			for(int i=0,j=actual.length;i<j;i++){
+				actual[i]/=wan;
+			}
+			monthPlan/=wan;
+			monthActual/=wan;
+			kaizhiTotal/=wan;
+			allActual/=wan;
+			request.setAttribute("plan", plan);
+			request.setAttribute("actual", actual);
+			request.setAttribute("monthPlan", monthPlan);
+			request.setAttribute("monthActual", monthActual);
+			request.setAttribute("allPlan", kaizhiTotal);
+			request.setAttribute("allActual", allActual);
+			request.setAttribute("year", year);	
+		}else if(index==2){//转资计划
+			Calendar cal=Calendar.getInstance();
+			int currentYear=cal.get(Calendar.YEAR);
+			int month=cal.get(Calendar.MONTH);
+//			System.out.println("year="+year+"month="+month);
+			PageInfo pageInfo=new PageInfo();
+			Properties ps=new Properties();
+			pageInfo.setConditions(ps);
+			ps.put("year", year);
+			cm.getZhuanZiPlanPageInfo(user, pageInfo);
+			List<CMCCZhuanZiPlan> list=pageInfo.getItems();
+			Double[] plan=new Double[12];
+//			Double allPlan=0d;
+			Double[] actual=new Double[12];
+			for(int i=0,j=plan.length;i<j;i++){
+				plan[i]=0d;
+				actual[i]=0d;
+			}
+			Double allActual=0d;
+			Double monthPlan=0d;
+			Double monthActual=0d;
+			String[] planFields=CMCCZhuanZiPlan.PLAN_STOREFIELD;
+			String[] actualFields=CMCCZhuanZiPlan.ACTUAL_STOREFIELD;
+			for(CMCCZhuanZiPlan c:list){
+				if(dataUpdateDate == null){
+					dataUpdateDate = c.getLastUpdateTime();
+				}
+				if(dataUpdateDate != null && c.getLastUpdateTime() != null && dataUpdateDate.before(c.getLastUpdateTime())){
+					dataUpdateDate = c.getLastUpdateTime();
+				}
+				int c_year=c.getYear();
+				for(int i=0;i<12;i++){
+					double tempPlan=FormBaseResove.getNotNullDoubleValue(user, c, planFields[i]);
+					double tempActual=FormBaseResove.getNotNullDoubleValue(user, c, actualFields[i]);
+//					allPlan+=tempPlan;
+					allActual+=tempActual;
+					Double p1=plan[i];
+					p1+=tempPlan;
+					plan[i]=p1;
+					Double p2=actual[i];
+					p2+=tempActual;
+					actual[i]=p2;
+					if(c_year<currentYear||(c_year==year&&i<=month)){
+						monthPlan+=tempPlan;
+						monthActual+=tempActual;
+					}
+				}
+			}
+			for(int i=plan.length-1;i>0;i--){
+				for(int j=i-1;j>=0;j--){
+					plan[i]+=plan[j];
+				}
+			}
+			
+			for(int i=actual.length-1;i>0;i--){
+				for(int j=i-1;j>=0;j--){
+					actual[i]+=actual[j];
+				}
+			}
+			double wan=10000;
+			for(int i=0,j=plan.length;i<j;i++){
+				plan[i]/=wan;
+			}
+			
+			for(int i=0,j=actual.length;i<j;i++){
+				actual[i]/=wan;
+			}
+			monthPlan/=wan;
+			monthActual/=wan;
+			zhuanZiTotal/=wan;
+			allActual/=wan;
+			request.setAttribute("plan", plan);
+			request.setAttribute("actual", actual);
+			request.setAttribute("monthPlan", monthPlan);
+			request.setAttribute("monthActual", monthActual);
+			request.setAttribute("allPlan", zhuanZiTotal);
+			request.setAttribute("allActual", allActual);
+			request.setAttribute("year", year);
+		}
+		request.setAttribute(CMCCConstant.LASUPDATE, CMCCAction.getDataModifiedTimeStr(dataUpdateDate));
+		request.setAttribute("index", index);
 		return CMCCConstant.PlanResult;
 	}
 }
