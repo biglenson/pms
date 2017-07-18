@@ -1,5 +1,7 @@
 package com.zq.service.Impl.basic.purchase;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,9 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 	public Page<BasSecondBill> getBasSecondBill(Integer pageNumber, int pageSize) {
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
 		return iBasSecondBillRepository.findAll(request);
+	}
+	public List getSecondBillByYear(String year) {		
+		return iBasSecondBillRepository.findByYear(year);
 	}
     
    

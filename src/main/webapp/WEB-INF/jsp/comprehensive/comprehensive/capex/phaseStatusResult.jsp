@@ -1,8 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import="com.zq.entity.basic.capex.BasCAPEXProject"%>
 <%
 String path = request.getContextPath();
-String[] phaseName=CAPEXProject.PHASENAMES;
+String[] phaseName=(String[])request.getAttribute("phaseName");
 /* Role department=(Role)request.getAttribute("department"); */
 int[] allCount=(int[])request.getAttribute("allCount");
 int[] newCount=(int[])request.getAttribute("newCount");
@@ -17,7 +18,7 @@ int newTotalCount=(Integer)request.getAttribute("newTotalCount");
 					style="font-weight: bold;">CAPEX项目流程:</div></td>
 			<td>
 				<div style="padding-bottom: 20px;">
-					<img src="<%=path %>/images/cmcc/liucheng.png">
+					<img src="<%=path %>/static/images/cmcc/liucheng.png">
 				</div>
 			</td>
 		</tr>
@@ -86,12 +87,12 @@ int newTotalCount=(Integer)request.getAttribute("newTotalCount");
 			<td style="height: 10px;"></td>
 		</tr>
 	</table>
-<%-- 	<%
+<%-- <%
 String showCapexView=request.getParameter("showCapexView");
 if(!"false".equals(showCapexView)){
 	if(department.getId()==Role.ROOT_DEPARTMENT_ID){ %>
 	<span class="openViewButton" onclick="openGongCheng();">CAPEX年度视图</span>
-	<%}}%> --%>
+	<%}}%>  --%>
 </div>
 <jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 	<jsp:param name="lastUpdateDIV" value="capex_phaseStatusDIVTimeDIV" />

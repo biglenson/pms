@@ -1,5 +1,7 @@
 package com.zq.service.Impl.basic.purchase;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,9 @@ public class BasFirstBillImpl implements IBasFirstBillService {
 	public Page<BasFirstBill> getBasFirstBill(Integer pageNumber, int pageSize) {
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
 		return iBasFirstBillRepository.findAll(request);
+	}
+	public List getFirstBillByYear(String year) {		
+		return iBasFirstBillRepository.findByYear(year);
 	}
     
    

@@ -19,5 +19,7 @@ public interface IBasCAPEXProjectService{
 
 	List<BasCAPEXProject> getBasCAPEXProjectByYear(String year);
 
+	public int getCurrentPhase(BasCAPEXProject capexProject) throws Exception;
+
 	Page<BasCAPEXProject> getBasCAPEXProject(Integer page, int pageSize);
 }
