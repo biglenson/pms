@@ -67,7 +67,7 @@ public class BasIncomeByprod implements Serializable {
 	@Column(name="amount", nullable=true, length=50)	
 	private String amount;
 	
-	@Column(name="`date`", nullable=true)	
+	@Column(name="date", nullable=true)	
 	private java.sql.Timestamp date;
 	
 	@Column(name="industry", nullable=true, length=10)	

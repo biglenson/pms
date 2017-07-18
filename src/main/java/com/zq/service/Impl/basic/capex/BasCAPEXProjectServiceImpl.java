@@ -3,6 +3,8 @@ package com.zq.service.Impl.basic.capex;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.zq.dao.basic.capex.IBasCAPEXProjectRepository;
@@ -36,6 +38,12 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
 	public List<BasCAPEXProject> getBasCAPEXProjectByYear(String year) {
 		
 		return iBasCAPEXProjectRepository.findByProjStartYear(year);
+	}
+
+	@Override
+	public Page<BasCAPEXProject> getBasCAPEXProject(Integer pageNumber, int pageSize) {
+		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
+		return iBasCAPEXProjectRepository.findAll(request);
 	}   
 
 }

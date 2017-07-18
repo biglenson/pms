@@ -2,6 +2,8 @@ package com.zq.service.basic.capex;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.zq.entity.basic.capex.BasCAPEXProject;
 
 /**
@@ -16,4 +18,6 @@ public interface IBasCAPEXProjectService{
 	BasCAPEXProject getCAPEXProject();
 
 	List<BasCAPEXProject> getBasCAPEXProjectByYear(String year);
+
+	Page<BasCAPEXProject> getBasCAPEXProject(Integer page, int pageSize);
 }

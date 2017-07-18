@@ -12,8 +12,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.CMCCConstant;
+import com.zq.entity.basic.capex.BasCAPEXAmountPool;
+import com.zq.entity.basic.capex.BasCAPEXExpendplan;
 import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
+import com.zq.entity.basic.capex.BasCAPEXProjInvestplan;
+import com.zq.entity.basic.capex.BasCAPEXProject;
+import com.zq.entity.basic.capex.BasCAPEXRequirment;
+import com.zq.entity.basic.capex.BasCAPEXTotalInvestplan;
+import com.zq.entity.basic.capex.BasCAPEXTransferplan;
+import com.zq.service.basic.capex.IBasCAPEXAmountPoolService;
+import com.zq.service.basic.capex.IBasCAPEXExpendplanService;
 import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
+import com.zq.service.basic.capex.IBasCAPEXProjInvestplanService;
+import com.zq.service.basic.capex.IBasCAPEXProjectService;
+import com.zq.service.basic.capex.IBasCAPEXRequirmentService;
+import com.zq.service.basic.capex.IBasCAPEXTotalInvestplanService;
+import com.zq.service.basic.capex.IBasCAPEXTransferplanService;
 
 
 /** 
@@ -29,6 +43,20 @@ public class CAPEXManagerController extends BaseController{
 	
 	@Autowired
 	private IBasCAPEXInvestPlanService iBasCAPEXInvestPlanService;
+	@Autowired
+	private IBasCAPEXAmountPoolService iBasCAPEXAmountPoolService;
+	@Autowired
+	private IBasCAPEXRequirmentService iBasCAPEXRequirmentService;
+	@Autowired
+	private IBasCAPEXProjectService iBasCAPEXProjectService;
+	@Autowired
+	private IBasCAPEXProjInvestplanService iBasCAPEXProjInvestplanService;
+	@Autowired
+	private IBasCAPEXExpendplanService iBasCAPEXExpendplanService;
+	@Autowired
+	private IBasCAPEXTransferplanService iBasCAPEXTransferplanService;
+	@Autowired
+	private IBasCAPEXTotalInvestplanService iBasCAPEXTotalInvestplanService;
 	
 	private static Logger logger = Logger.getLogger(CAPEXManagerController.class);  
 	
@@ -79,8 +107,24 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexamountpool")
-    public String basCAPEXAmountPool(HttpServletRequest request) {
-		
+    public String basCAPEXAmountPool(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCAPEXAmountPool> pageData = iBasCAPEXAmountPoolService.getBasCAPEXAmountPool(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCAPEXAmountPool");
+		request = setLeftMenu(request,"/capex/bascapexamountpool");
+		request.setAttribute("action", "/capex/bascapexamountpool");
+		request.setAttribute("pageInfo", pageInfo);
 		request = setLeftMenu(request,"/capex/bascapexamountpool");
 		return CMCCConstant.BasCAPEXAmountPool;	
 	}
@@ -96,8 +140,24 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexrequirment")
-    public String basCAPEXRequirment(HttpServletRequest request) {
-		
+    public String basCAPEXRequirment(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCAPEXRequirment> pageData = iBasCAPEXRequirmentService.getBasCAPEXRequirment(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCAPEXRequirment");
+		request = setLeftMenu(request,"/capex/bascapexrequirment");
+		request.setAttribute("action", "/capex/bascapexrequirment");
+		request.setAttribute("pageInfo", pageInfo);
 		request = setLeftMenu(request,"/capex/bascapexrequirment");
 		return CMCCConstant.BasCAPEXRequirment;	
 	}
@@ -112,8 +172,24 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexproject")
-    public String basCAPEXProject(HttpServletRequest request) {
-		
+    public String basCAPEXProject(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCAPEXProject> pageData = iBasCAPEXProjectService.getBasCAPEXProject(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCAPEXProject");
+		request = setLeftMenu(request,"/capex/bascapexproject");
+		request.setAttribute("action", "/capex/bascapexproject");
+		request.setAttribute("pageInfo", pageInfo);
 		request = setLeftMenu(request,"/capex/bascapexproject");
 		return CMCCConstant.BasCAPEXProject;	
 	}
@@ -129,8 +205,24 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexprojinvestplan")
-    public String basCAPEXProjInvestplan(HttpServletRequest request) {
-		
+    public String basCAPEXProjInvestplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCAPEXProjInvestplan> pageData = iBasCAPEXProjInvestplanService.getBasCAPEXProjInvestplan(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCAPEXProjInvestplan");
+		request = setLeftMenu(request,"/capex/bascapexinvestplan");
+		request.setAttribute("action", "/capex/bascapexprojinvestplan");
+		request.setAttribute("pageInfo", pageInfo);
 		request = setLeftMenu(request,"/capex/bascapexprojinvestplan");
 		return CMCCConstant.BasCAPEXProjInvestplan;	
 	}
@@ -145,8 +237,24 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapexexpendplan")
-    public String basCAPEXExpendplan(HttpServletRequest request) {
-		
+    public String basCAPEXExpendplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCAPEXExpendplan> pageData = iBasCAPEXExpendplanService.getBasCAPEXExpendplan(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCAPEXExpendplan");
+		request = setLeftMenu(request,"/capex/bascapexexpendplan");
+		request.setAttribute("action", "/capex/bascapexexpendplan");
+		request.setAttribute("pageInfo", pageInfo);
 		request = setLeftMenu(request,"/capex/bascapexexpendplan");
 		return CMCCConstant.BasCAPEXExpendplan;	
 	}
@@ -162,8 +270,24 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapextransferplan")
-    public String basCAPEXTransferplan(HttpServletRequest request) {
-		
+    public String basCAPEXTransferplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCAPEXTransferplan> pageData = iBasCAPEXTransferplanService.getBasCAPEXTransferplan(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCAPEXTransferplan");
+		request = setLeftMenu(request,"/capex/bascapextransferplan");
+		request.setAttribute("action", "/capex/bascapextransferplan");
+		request.setAttribute("pageInfo", pageInfo);
 		request = setLeftMenu(request,"/capex/bascapextransferplan");
 		return CMCCConstant.BasCAPEXTransferplan;	
 	}
@@ -179,8 +303,24 @@ public class CAPEXManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascapextotalinvestplan")
-    public String basCAPEXTotalInvestplan(HttpServletRequest request) {
-		
+    public String basCAPEXTotalInvestplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCAPEXTotalInvestplan> pageData = iBasCAPEXTotalInvestplanService.getBasCAPEXTotalInvestplan(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCAPEXTotalInvestplan");
+		request = setLeftMenu(request,"/capex/bascapextotalinvestplan");
+		request.setAttribute("action", "/capex/bascapextotalinvestplan");
+		request.setAttribute("pageInfo", pageInfo);
 		request = setLeftMenu(request,"/capex/bascapextotalinvestplan");
 		return CMCCConstant.BasCAPEXTotalInvestplan;	
 	}
