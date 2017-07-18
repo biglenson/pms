@@ -274,14 +274,7 @@ public class BasOPEXPurchaseplan implements Serializable {
 	 */
 	public String getPurchasingContent() {
 		return purchasingContent;
-	}
-	
-	/**
-	 * 需求部门 
-	 */
-	public void setReq_dept(int value) {
-		setReq_dept(new Integer(value));
-	}
+	}	
 	
 	/**
 	 * 需求部门 

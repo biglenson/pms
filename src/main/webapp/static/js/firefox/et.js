@@ -11470,7 +11470,7 @@ function checkboxIMG_clickFun(obj,event){
 ET.Utils.addEvent(window,'load',function(){
 	var div=document.createElement("div");
 	div.style.display="none";
-	div.innerHTML="<img  src=\"images/16x16/empty.png\"  id=\"checkbox_img_clonenode\"  onclick=\"checkboxIMG_clickFun(this,event)\" onmouseover=\"checkboxIMG_onmouseover(this)\" onmouseout=\"checkboxIMG_onmouseout(this)\"/>";
+	div.innerHTML="<img  src=\"/static/images/16x16/empty.png\"  id=\"checkbox_img_clonenode\"  onclick=\"checkboxIMG_clickFun(this,event)\" onmouseover=\"checkboxIMG_onmouseover(this)\" onmouseout=\"checkboxIMG_onmouseout(this)\"/>";
 	document.body.appendChild(div);
 	checkbox_bindIMG();
 });

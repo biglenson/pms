@@ -2,6 +2,8 @@ package com.zq.service.basic.capex;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.zq.entity.basic.capex.BasCAPEXProject;
 
 /**
@@ -19,4 +21,5 @@ public interface IBasCAPEXProjectService{
 
 	public int getCurrentPhase(BasCAPEXProject capexProject) throws Exception;
 
+	Page<BasCAPEXProject> getBasCAPEXProject(Integer page, int pageSize);
 }

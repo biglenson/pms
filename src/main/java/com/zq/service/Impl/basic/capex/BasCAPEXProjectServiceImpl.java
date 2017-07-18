@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.zq.dao.basic.capex.IBasCAPEXProjectRepository;
@@ -69,5 +71,9 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
 		return 0;
 	}
 
+	public Page<BasCAPEXProject> getBasCAPEXProject(Integer pageNumber, int pageSize) {
+		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
+		return iBasCAPEXProjectRepository.findAll(request);
+	}   
 
 }

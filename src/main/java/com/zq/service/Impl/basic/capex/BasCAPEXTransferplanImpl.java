@@ -3,6 +3,8 @@ package com.zq.service.Impl.basic.capex;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.zq.commons.utils.TypeUtils;
@@ -40,6 +42,12 @@ public class BasCAPEXTransferplanImpl implements IBasCAPEXTransferplanService {
 	public List<BasCAPEXTransferplan> getAllBasCAPEXTransferplan() {
 		
 		return iBasCAPEXTransferplanRepository.findAll();
+	}
+
+	@Override
+	public Page<BasCAPEXTransferplan> getBasCAPEXTransferplan(Integer pageNumber, int pageSize) {
+		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
+		return iBasCAPEXTransferplanRepository.findAll(request);
 	}
     
    
