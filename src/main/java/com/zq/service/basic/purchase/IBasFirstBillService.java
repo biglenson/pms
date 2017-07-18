@@ -1,5 +1,8 @@
 package com.zq.service.basic.purchase;
 
+import org.springframework.data.domain.Page;
+
+import com.zq.entity.basic.purchase.BasFirstBill;
 
 /**
  *
@@ -7,6 +10,8 @@ package com.zq.service.basic.purchase;
  *
  */
 public interface IBasFirstBillService{
+
+	Page<BasFirstBill> getBasFirstBill(Integer page, int pageSize);
 
 
 }

@@ -1,5 +1,8 @@
 package com.zq.service.basic.purchase;
 
+import org.springframework.data.domain.Page;
+
+import com.zq.entity.basic.purchase.BasFrameContract;
 
 /**
  *
@@ -7,6 +10,8 @@ package com.zq.service.basic.purchase;
  *
  */
 public interface IBasFrameContractService{
+
+	Page<BasFrameContract> getBasFrameContract(Integer page, int pageSize);
 
 
 }
