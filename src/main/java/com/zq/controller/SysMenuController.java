@@ -1,11 +1,14 @@
 package com.zq.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zq.commons.utils.CMCCConstant;
+import com.zq.commons.utils.TypeUtils;
 
 
 /** 
@@ -66,7 +69,11 @@ public class SysMenuController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "projectview")
-	public String projectView() {
+	public String projectView(HttpServletRequest request) {
+		int year = TypeUtils.getIntFromString(request.getParameter("year"));
+		if(year!=0){
+			request.getSession().setAttribute("year", year);
+		}
 		return CMCCConstant.PJVDashBoard;
 	}
 	/** 

@@ -18,7 +18,7 @@
 			style="left: 0px;">
 			<div class="content-empty"></div>
 			<div class="content-main">
-				<form name="frm" action="/pm/CMCCAction.do" method="post">
+				<form name="frm" action="/projectview" method="post">
 					<input type="hidden" name="operation" value="gongcheng"> <input
 						type="hidden" name="year" value="2017"> <input
 						type="hidden" name="isDialog" value="false"> <input

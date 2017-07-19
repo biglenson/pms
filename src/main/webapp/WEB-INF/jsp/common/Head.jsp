@@ -134,13 +134,13 @@ if(!Array.indexOf){
 	}
 }
 function changeyear(year){
-	CMCCAction.checkDepart({
+	checkDepart({
 		year:year
 	    ,deparmentID:document.frm.departmentID.value
 	},function(ret){
 		if(ret){
 			document.frm.year.value=year;
-			document.frm.action="/ZongheAction.do";
+			document.frm.action="/projectview";
 			document.frm.submit();
 		}else{
 			alert("此部门是历史部门,在"+year+"年不存在");

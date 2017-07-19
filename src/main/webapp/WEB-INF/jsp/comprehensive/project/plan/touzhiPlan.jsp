@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%
 String path = request.getContextPath();
@@ -74,4 +74,4 @@ Map<Integer,Double> shiYongValueMap=(Map<Integer,Double>)request.getAttribute("s
 	window.touziDetialCapexDepartDIVTableObj=new EasyTrack.DataTable("touziDetialCapexDepartDIVTable",{
 		autoHeight:false
 	})
-</script> --%>
+</script> 

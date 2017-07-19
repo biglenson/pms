@@ -1,6 +1,7 @@
 package com.zq.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -259,21 +260,19 @@ public class ProjectViewController extends BaseController{
 		Date dataUpdateDate = null;
 		int index=TypeUtils.getIntFromString(request.getParameter("index"));
 		String year=request.getParameter("year");
-		double kaizhiTotal = 0;
-		double zhuanZiTotal = 0;
-		PageInfo zongePage = new PageInfo();
-		zongePage.getConditions().put("year", year);
-		List<CMCCTouziZongE> totalTouzi = cm.getCMCCTouziZongEPageInfo(user, zongePage).getItems();
+		double kaizhiTotal = 0d;
+		double zhuanZiTotal = 0d;
+		List<BasCAPEXTotalInvestplan> totalTouzi = iBasCAPEXTotalInvestplanService.getAllCAPEXTotalInvestplanByYear(year);
 		if(totalTouzi != null){
-			for(CMCCTouziZongE zonge : totalTouzi){
+			for(BasCAPEXTotalInvestplan total : totalTouzi){
 				if(dataUpdateDate == null){
-					dataUpdateDate = zonge.getLastUpdateTime();
+					dataUpdateDate = total.getModifyTime();
 				}
-				if(dataUpdateDate != null && zonge.getLastUpdateTime() != null && dataUpdateDate.before(zonge.getLastUpdateTime())){
-					dataUpdateDate = zonge.getLastUpdateTime();
+				if(dataUpdateDate != null && total.getModifyTime() != null && dataUpdateDate.before(total.getModifyTime())){
+					dataUpdateDate = total.getModifyTime();
 				}
-				kaizhiTotal += FormBaseResove.getNotNullDoubleValue(user, zonge, "num01");
-				zhuanZiTotal += FormBaseResove.getNotNullDoubleValue(user, zonge, "num02");
+				kaizhiTotal += TypeUtils.string2Double(total.getAnnualCapexPlan());
+				zhuanZiTotal += TypeUtils.string2Double(total.getAnnualTransferPlan());
 			}
 		}
 		if(index==0){//投资计划
@@ -311,8 +310,8 @@ public class ProjectViewController extends BaseController{
 				}
 				int c_year=c.getYear();
 				for(int i=0;i<12;i++){
-					double tempPlan=FormBaseResove.getNotNullDoubleValue(user, c, planFields[i]);
-					double tempActual=FormBaseResove.getNotNullDoubleValue(user, c, actualFields[i]);
+					double tempPlan=TypeUtils.getNotNullDoubleValue(user, c, planFields[i]);
+					double tempActual=TypeUtils.getNotNullDoubleValue(user, c, actualFields[i]);
 //					allPlan+=tempPlan;
 					allActual+=tempActual;
 					Double p1=plan[i];
@@ -391,8 +390,8 @@ public class ProjectViewController extends BaseController{
 				}
 				int c_year=c.getYear();
 				for(int i=0;i<12;i++){
-					double tempPlan=FormBaseResove.getNotNullDoubleValue(user, c, planFields[i]);
-					double tempActual=FormBaseResove.getNotNullDoubleValue(user, c, actualFields[i]);
+					double tempPlan=TypeUtils.getNotNullDoubleValue(user, c, planFields[i]);
+					double tempActual=TypeUtils.getNotNullDoubleValue(user, c, actualFields[i]);
 //					allPlan+=tempPlan;
 					allActual+=tempActual;
 					Double p1=plan[i];
