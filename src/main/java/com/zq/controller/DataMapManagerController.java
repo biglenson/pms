@@ -4,9 +4,42 @@ package com.zq.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.CMCCConstant;
+import com.zq.entity.basic.datamap.BasAccountSubject;
+import com.zq.entity.basic.datamap.BasAssetDetail;
+import com.zq.entity.basic.datamap.BasBudgetSubject;
+import com.zq.entity.basic.datamap.BasCustomer;
+import com.zq.entity.basic.datamap.BasExpenseDetail;
+import com.zq.entity.basic.datamap.BasIncomeByprod;
+import com.zq.entity.basic.datamap.BasIncometargBydept;
+import com.zq.entity.basic.datamap.BasIncometargByprod;
+import com.zq.entity.basic.datamap.BasIncometargBytype;
+import com.zq.entity.basic.datamap.BasItemProdCust;
+import com.zq.entity.basic.datamap.BasItemset;
+import com.zq.entity.basic.datamap.BasProduct;
+import com.zq.entity.basic.datamap.BasProductIncome;
+import com.zq.entity.basic.datamap.BasProjCapex;
+import com.zq.service.basic.datamap.IBasAccountSubjectService;
+import com.zq.service.basic.datamap.IBasAssetDetailService;
+import com.zq.service.basic.datamap.IBasBudgetSubjectService;
+import com.zq.service.basic.datamap.IBasCustomerService;
+import com.zq.service.basic.datamap.IBasExpenseDetailService;
+import com.zq.service.basic.datamap.IBasIncomeByprodService;
+import com.zq.service.basic.datamap.IBasIncometargBydeptService;
+import com.zq.service.basic.datamap.IBasIncometargByprodService;
+import com.zq.service.basic.datamap.IBasIncometargBytypeService;
+import com.zq.service.basic.datamap.IBasItemProdCustService;
+import com.zq.service.basic.datamap.IBasItemsetService;
+import com.zq.service.basic.datamap.IBasProductIncomeService;
+import com.zq.service.basic.datamap.IBasProductService;
+import com.zq.service.basic.datamap.IBasProjCapexService;
 
 
 /** 
@@ -19,12 +52,40 @@ import com.zq.commons.utils.CMCCConstant;
 @Controller
 @RequestMapping("/datamap/")
 public class DataMapManagerController extends BaseController{
+	@Autowired
+	private IBasCustomerService iBasCustomerService;
+	@Autowired
+	private IBasItemsetService iBasItemsetService;
+	@Autowired
+	private IBasProductService iBasProductService;
+	@Autowired
+	private IBasItemProdCustService iBasItemProdCustService;
+	@Autowired
+	private IBasProjCapexService iBasProjCapexService;
+	@Autowired
+	private IBasProductIncomeService iBasProductIncomeService;
+	@Autowired
+	private IBasIncomeByprodService iBasIncomeByprodService;
+	@Autowired
+	private IBasIncometargBytypeService iBasIncometargBytypeService;
+	@Autowired
+	private IBasIncometargByprodService iBasIncometargByprodService;
+	@Autowired
+	private IBasIncometargBydeptService iBasIncometargBydeptService;
+	@Autowired
+	private IBasBudgetSubjectService iBasBudgetSubjectService;
+	@Autowired
+	private IBasAccountSubjectService iBasAccountSubjectService;
+	@Autowired
+	private IBasAssetDetailService iBasAssetDetailService;
+	@Autowired
+	private IBasExpenseDetailService iBasExpenseDetailService;
 	
 	private static Logger logger = Logger.getLogger(DataMapManagerController.class);  
 	
 	/** 
 	* @Title: basCustomer 
-	* @Description: TODO(一级集采台账) 
+	* @Description: TODO(客户) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:41:34 
 	* @param @param request
@@ -33,13 +94,28 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "bascustomer")
-    public String basCustomer(HttpServletRequest request) {
-		
+    public String basCustomer(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasCustomer> pageData = iBasCustomerService.getBasCustomer(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasCustomer");
 		request = setLeftMenu(request,"/datamap/bascustomer");
+		request.setAttribute("action", "/datamap/bascustomer");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasCustomer;	
 	}
 	/** 
-	* @Title: basdatamapAmountPool 
+	* @Title: basItemset 
 	* @Description: TODO(项目) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:42:17 
@@ -49,9 +125,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basitemset")
-    public String basItemset(HttpServletRequest request) {
-		
+    public String basItemset(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasItemset> pageData = iBasItemsetService.getBasItemset(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasItemset");
 		request = setLeftMenu(request,"/datamap/basitemset");
+		request.setAttribute("action", "/datamap/basitemset");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasItemset;	
 	}
 
@@ -66,9 +157,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basproduct")
-    public String basProduct(HttpServletRequest request) {
-		
+    public String basProduct(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasProduct> pageData = iBasProductService.getBasProduct(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasProduct");
 		request = setLeftMenu(request,"/datamap/basproduct");
+		request.setAttribute("action", "/datamap/basproduct");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasProduct;	
 	}
 	/** 
@@ -82,9 +188,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basitemprodcust")
-    public String basItemProdCust(HttpServletRequest request) {
-		
+    public String basItemProdCust(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasItemProdCust> pageData = iBasItemProdCustService.getBasItemProdCust(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasItemProdCust");
 		request = setLeftMenu(request,"/datamap/basitemprodcust");
+		request.setAttribute("action", "/datamap/basitemprodcust");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasItemProdCust;	
 	}
 
@@ -99,9 +220,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basprojcapex")
-    public String basProjCapex(HttpServletRequest request) {
-		
+    public String basProjCapex(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasProjCapex> pageData = iBasProjCapexService.getBasProjCapex(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasProjCapex");
 		request = setLeftMenu(request,"/datamap/basprojcapex");
+		request.setAttribute("action", "/datamap/basprojcapex");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasProjCapex;	
 	}
 	
@@ -116,9 +252,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basproductincome")
-    public String basProductIncome(HttpServletRequest request) {
-		
+    public String basProductIncome(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasProductIncome> pageData = iBasProductIncomeService.getBasProductIncome(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasProductIncome");
 		request = setLeftMenu(request,"/datamap/basproductincome");
+		request.setAttribute("action", "/datamap/basproductincome");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasProductIncome;	
 	}
 	
@@ -133,9 +284,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basincomebyprod")
-    public String basIncomeByprod(HttpServletRequest request) {
-		
+    public String basIncomeByprod(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasIncomeByprod> pageData = iBasIncomeByprodService.getBasIncomeByprod(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasIncomeByprod");
 		request = setLeftMenu(request,"/datamap/basincomebyprod");
+		request.setAttribute("action", "/datamap/basincomebyprod");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasIncomeByprod;	
 	}
 	
@@ -150,9 +316,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basincometargbytype")
-    public String basIncometargBytype(HttpServletRequest request) {
-		
+    public String basIncometargBytype(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasIncometargBytype> pageData = iBasIncometargBytypeService.getBasIncometargBytype(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasIncometargBytype");
 		request = setLeftMenu(request,"/datamap/basincometargbytype");
+		request.setAttribute("action", "/datamap/basincometargbytype");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasIncometargBytype;	
 	}
 	/** 
@@ -166,9 +347,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basincometargbyprod")
-    public String basIncometargByprod(HttpServletRequest request) {
-		
+    public String basIncometargByprod(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasIncometargByprod> pageData = iBasIncometargByprodService.getBasIncometargByprod(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasIncometargByprod");
 		request = setLeftMenu(request,"/datamap/basincometargbyprod");
+		request.setAttribute("action", "/datamap/basincometargbyprod");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasIncometargByprod;	
 	}
 	/** 
@@ -182,9 +378,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basincometargbydept")
-    public String basIncometargBydept(HttpServletRequest request) {
-		
+    public String basIncometargBydept(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasIncometargBydept> pageData = iBasIncometargBydeptService.getBasIncometargBydept(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasIncometargBydept");
 		request = setLeftMenu(request,"/datamap/basincometargbydept");
+		request.setAttribute("action", "/datamap/basincometargbydept");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasIncometargBydept;	
 	}
 	/** 
@@ -198,9 +409,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basbudgetsubject")
-    public String basBudgetSubject(HttpServletRequest request) {
-		
+    public String basBudgetSubject(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasBudgetSubject> pageData = iBasBudgetSubjectService.getBasBudgetSubject(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasBudgetSubject");
 		request = setLeftMenu(request,"/datamap/basbudgetsubject");
+		request.setAttribute("action", "/datamap/basbudgetsubject");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasBudgetSubject;	
 	}
 	/** 
@@ -214,9 +440,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basaccountsubject")
-    public String basAccountSubject(HttpServletRequest request) {
-		
+    public String basAccountSubject(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasAccountSubject> pageData = iBasAccountSubjectService.getBasAccountSubject(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasAccountSubject");
 		request = setLeftMenu(request,"/datamap/basaccountsubject");
+		request.setAttribute("action", "/datamap/basaccountsubject");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasAccountSubject;	
 	}
 
@@ -231,9 +472,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basassetdetail")
-    public String basAssetDetail(HttpServletRequest request) {
-		
+    public String basAssetDetail(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasAssetDetail> pageData = iBasAssetDetailService.getBasAssetDetail(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasAssetDetail");
 		request = setLeftMenu(request,"/datamap/basassetdetail");
+		request.setAttribute("action", "/datamap/basassetdetail");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasAssetDetail;	
 	}
 	/** 
@@ -247,9 +503,24 @@ public class DataMapManagerController extends BaseController{
 	* @throws 
 	*/
 	@RequestMapping(value = "basexpensedetail")
-    public String basExpenseDetail(HttpServletRequest request) {
-		
+    public String basExpenseDetail(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasExpenseDetail> pageData = iBasExpenseDetailService.getBasExpenseDetail(page, pageSize);	        
+        request.setAttribute("pageData", pageData.getContent());
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasExpenseDetail");
 		request = setLeftMenu(request,"/datamap/basexpensedetail");
+		request.setAttribute("action", "/datamap/basexpensedetail");
+		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasExpenseDetail;	
 	}
 	

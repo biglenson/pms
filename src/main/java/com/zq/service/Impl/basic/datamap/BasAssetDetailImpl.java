@@ -1,7 +1,12 @@
 package com.zq.service.Impl.basic.datamap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.zq.dao.basic.datamap.IBasAssetDetailRepository;
+import com.zq.entity.basic.datamap.BasAssetDetail;
 import com.zq.service.basic.datamap.IBasAssetDetailService;
 
 /**
@@ -11,5 +16,13 @@ import com.zq.service.basic.datamap.IBasAssetDetailService;
  */
 @Service
 public class BasAssetDetailImpl implements IBasAssetDetailService {
+
+	@Autowired
+	IBasAssetDetailRepository iBasAssetDetailRepository;
+	@Override
+	public Page<BasAssetDetail> getBasAssetDetail(Integer pageNumber, int pageSize) {
+		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
+		return iBasAssetDetailRepository.findAll(request);
+	}
 
 }

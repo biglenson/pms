@@ -1,5 +1,8 @@
 package com.zq.service.basic.opex;
 
+import org.springframework.data.domain.Page;
+
+import com.zq.entity.basic.opex.BasOPEXBudgetProject;
 
 /**
  *
@@ -7,6 +10,8 @@ package com.zq.service.basic.opex;
  *
  */
 public interface IBasOPEXBudgetProjectService{
+
+	Page<BasOPEXBudgetProject> getBasOPEXBudgetProject(Integer page, int pageSize);
 
 
 }

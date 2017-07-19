@@ -1,5 +1,8 @@
 package com.zq.service.basic.opex;
 
+import org.springframework.data.domain.Page;
+
+import com.zq.entity.basic.opex.BasOPEXBudgetAdjust;
 
 /**
  *
@@ -7,6 +10,8 @@ package com.zq.service.basic.opex;
  *
  */
 public interface IBasOPEXBudgetAdjustService{
+
+	Page<BasOPEXBudgetAdjust> getBasOPEXBudgetAdjust(Integer page, int pageSize);
 
 
 }

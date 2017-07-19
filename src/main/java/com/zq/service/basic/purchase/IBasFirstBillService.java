@@ -1,5 +1,9 @@
 package com.zq.service.basic.purchase;
 
+import org.springframework.data.domain.Page;
+
+import com.zq.entity.basic.purchase.BasFirstBill;
+
 import java.util.List;
 
 /**
@@ -8,6 +12,9 @@ import java.util.List;
  *
  */
 public interface IBasFirstBillService{
+
+
+	Page<BasFirstBill> getBasFirstBill(Integer page, int pageSize);
 
 	List getFirstBillByYear(String year);
 

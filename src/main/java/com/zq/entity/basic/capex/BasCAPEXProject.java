@@ -168,7 +168,12 @@ public class BasCAPEXProject implements Serializable {
 	
 	@Column(name="truncap_plan_status", nullable=true, length=10)	
 	private Integer truncapPlanStatus;
+
+	@Column(name="req_freeze_time", nullable=true)	
+	private java.sql.Timestamp reqFreezeTime;
 	
+	@Column(name="paper_contract_time", nullable=true)	
+	private java.sql.Timestamp paperContractTime;
 	/**
 	 * ID
 	 */
@@ -843,6 +848,26 @@ public class BasCAPEXProject implements Serializable {
 	 */
 	public Integer getTruncapPlanStatus() {
 		return truncapPlanStatus;
+	}
+	/**
+	 * 需求冻结时间date20
+	 */
+	public java.sql.Timestamp getReqFreezeTime() {
+		return reqFreezeTime;
+	}
+
+	public void setReqFreezeTime(java.sql.Timestamp reqFreezeTime) {
+		this.reqFreezeTime = reqFreezeTime;
+	}
+	/**
+	 * 纸制合同签订时间date21
+	 */
+	public java.sql.Timestamp getPaperContractTime() {
+		return paperContractTime;
+	}
+
+	public void setPaperContractTime(java.sql.Timestamp paperContractTime) {
+		this.paperContractTime = paperContractTime;
 	}
 	
 	public String toString() {
