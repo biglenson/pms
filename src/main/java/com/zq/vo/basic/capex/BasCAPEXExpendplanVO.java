@@ -18,6 +18,8 @@ public class BasCAPEXExpendplanVO{
 		
 	private String projCode;
 	
+	private String projName;
+	
 	private String currentCapexAmount;
 	
 	private String totalCapexAmount;
@@ -71,6 +73,10 @@ public class BasCAPEXExpendplanVO{
 	private String novActual;
 		
 	private String decActual;
+	
+	private String anualCapexPlan;
+	
+	private String capexPlanStatus;
 	
 	/**
 	 * ID
@@ -549,6 +555,48 @@ public class BasCAPEXExpendplanVO{
 	
 	public String toString() {
 		return String.valueOf(getId());
+	}
+
+	/**
+	 * 项目名称
+	 */
+	public String getProjName() {
+		return projName;
+	}
+
+	/**
+	 * 项目名称
+	 */
+	public void setProjName(String projName) {
+		this.projName = projName;
+	}
+
+	/**
+	 * 当年资本开支计划
+	 */
+	public String getAnualCapexPlan() {
+		return anualCapexPlan;
+	}
+
+	/**
+	 * 当年资本开支计划
+	 */
+	public void setAnualCapexPlan(String anualCapexPlan) {
+		this.anualCapexPlan = anualCapexPlan;
+	}
+
+	/**
+	 * 开支计划是否已完成
+	 */
+	public String getCapexPlanStatus() {
+		return capexPlanStatus;
+	}
+
+	/**
+	 * 开支计划是否已完成
+	 */
+	public void setCapexPlanStatus(String capexPlanStatus) {
+		this.capexPlanStatus = capexPlanStatus;
 	}
 	
 }

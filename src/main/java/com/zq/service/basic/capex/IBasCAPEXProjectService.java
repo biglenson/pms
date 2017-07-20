@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.zq.entity.basic.capex.BasCAPEXProject;
+import com.zq.vo.basic.capex.BasCAPEXProjectVO;
 
 /**
  *
@@ -22,4 +23,6 @@ public interface IBasCAPEXProjectService{
 	public int getCurrentPhase(BasCAPEXProject capexProject) throws Exception;
 
 	Page<BasCAPEXProject> getBasCAPEXProject(Integer page, int pageSize);
+
+	List<BasCAPEXProjectVO> getBasCAPEXProjectVOList(List<BasCAPEXProject> content);
 }

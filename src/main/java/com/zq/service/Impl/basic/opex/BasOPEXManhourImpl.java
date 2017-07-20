@@ -57,8 +57,7 @@ public class BasOPEXManhourImpl implements IBasOPEXManhourService {
 			voList.add(vo);
 		}
 		return voList;
-	}
-    
+	} 
    
 
 }

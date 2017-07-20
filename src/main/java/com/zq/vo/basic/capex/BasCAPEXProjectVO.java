@@ -22,6 +22,10 @@ public class BasCAPEXProjectVO {
 	
 	private String reqCode;
 	
+	private String reqName;
+	
+	private String reqDept;
+	
 	private String projName;
 	
 	private String projCode;
@@ -99,6 +103,8 @@ public class BasCAPEXProjectVO {
 	private java.sql.Timestamp reqFreezeTime;
 	
 	private java.sql.Timestamp paperContractTime;
+	
+	private String investPlanProjName;
 	/**
 	 * ID
 	 */
@@ -792,6 +798,44 @@ public class BasCAPEXProjectVO {
 	
 	public String toString() {
 		return String.valueOf(getId());
+	}
+	/**
+	 * 需求名称
+	 */
+	public String getReqName() {
+		return reqName;
+	}
+	/**
+	 * 需求名称
+	 */
+	public void setReqName(String reqName) {
+		this.reqName = reqName;
+	}
+	
+	/**
+	 * 需求部门
+	 */
+	public String getReqDept() {
+		return reqDept;
+	}
+	
+	/**
+	 * 需求部门
+	 */
+	public void setReqDept(String reqDept) {
+		this.reqDept = reqDept;
+	}
+	/**
+	 * 投资项目集/项目名称
+	 */
+	public String getInvestPlanProjName() {
+		return investPlanProjName;
+	}
+	/**
+	 * 投资项目集/项目名称
+	 */
+	public void setInvestPlanProjName(String investPlanProjName) {
+		this.investPlanProjName = investPlanProjName;
 	}
 	
 }

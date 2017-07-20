@@ -9,6 +9,8 @@ public interface IBasCAPEXProjectRepository extends JpaRepository<BasCAPEXProjec
 
 	List<BasCAPEXProject> findByProjStartYear(String year);
 
-	double findByProjCode(String projCode);	
+	double findByProjCode(String projCode);
+
+	BasCAPEXProject findById(int parseInt);	
 
 }

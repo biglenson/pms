@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.zq.dao.basic.capex.IBasCAPEXAmountPoolRepository;
 import com.zq.entity.basic.capex.BasCAPEXAmountPool;
-import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.service.basic.capex.IBasCAPEXAmountPoolService;
 
 /**

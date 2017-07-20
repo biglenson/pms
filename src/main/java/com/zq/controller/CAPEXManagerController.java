@@ -1,6 +1,8 @@
 
 package com.zq.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -28,6 +30,12 @@ import com.zq.service.basic.capex.IBasCAPEXProjectService;
 import com.zq.service.basic.capex.IBasCAPEXRequirmentService;
 import com.zq.service.basic.capex.IBasCAPEXTotalInvestplanService;
 import com.zq.service.basic.capex.IBasCAPEXTransferplanService;
+import com.zq.vo.basic.capex.BasCAPEXExpendplanVO;
+import com.zq.vo.basic.capex.BasCAPEXInvestPlanVO;
+import com.zq.vo.basic.capex.BasCAPEXProjInvestplanVO;
+import com.zq.vo.basic.capex.BasCAPEXProjectVO;
+import com.zq.vo.basic.capex.BasCAPEXTransferplanVO;
+import com.zq.vo.basic.opex.BasOPEXManhourVO;
 
 
 /** 
@@ -74,7 +82,8 @@ public class CAPEXManagerController extends BaseController{
     public String BasCAPEXInvestplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasCAPEXInvestPlan> pageData = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlan(page, pageSize);
-        request.setAttribute("pageData", pageData.getContent());
+        List<BasCAPEXInvestPlanVO> pageList = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlanVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
@@ -175,7 +184,8 @@ public class CAPEXManagerController extends BaseController{
     public String basCAPEXProject(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasCAPEXProject> pageData = iBasCAPEXProjectService.getBasCAPEXProject(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        List<BasCAPEXProjectVO> pageList = iBasCAPEXProjectService.getBasCAPEXProjectVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
@@ -208,7 +218,8 @@ public class CAPEXManagerController extends BaseController{
     public String basCAPEXProjInvestplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasCAPEXProjInvestplan> pageData = iBasCAPEXProjInvestplanService.getBasCAPEXProjInvestplan(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        List<BasCAPEXProjInvestplanVO> pageList = iBasCAPEXProjInvestplanService.getBasCAPEXProjInvestplanVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
@@ -240,7 +251,8 @@ public class CAPEXManagerController extends BaseController{
     public String basCAPEXExpendplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasCAPEXExpendplan> pageData = iBasCAPEXExpendplanService.getBasCAPEXExpendplan(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        List<BasCAPEXExpendplanVO> pageList = iBasCAPEXExpendplanService.getBasCAPEXExpendplanVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
@@ -272,8 +284,9 @@ public class CAPEXManagerController extends BaseController{
 	@RequestMapping(value = "bascapextransferplan")
     public String basCAPEXTransferplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         int pageSize = CMCCConstant.PAGE_SIZE;
-        Page<BasCAPEXTransferplan> pageData = iBasCAPEXTransferplanService.getBasCAPEXTransferplan(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        Page<BasCAPEXTransferplan> pageData = iBasCAPEXTransferplanService.getBasCAPEXTransferplan(page, pageSize);	    
+        List<BasCAPEXTransferplanVO> pageList = iBasCAPEXTransferplanService.getBasCAPEXTransferplanVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  

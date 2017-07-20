@@ -20,7 +20,17 @@ public class BasCAPEXProjInvestplanVO{
 		
 	private String projCode;
 	
+	private String projName;
+	
 	private String investPlanCode;
+	
+	private String investPlanProjName;
+	
+	private String year;
+	
+	private String firstDomain;
+	
+	private String attribute;
 	
 	/**
 	 * ID
@@ -105,25 +115,93 @@ public class BasCAPEXProjInvestplanVO{
 	public String getLastReviser() {
 		return lastReviser;
 	}
-	
+	/**
+	 * CAPEX项目编号
+	 */
 	public void setProjCode(String value) {
 		this.projCode = value;
 	}
-	
+	/**
+	 * CAPEX项目编号
+	 */
 	public String getProjCode() {
 		return projCode;
 	}
-	
+	/**
+	 * 投资计划编号
+	 */
 	public void setInvestPlanCode(String value) {
 		this.investPlanCode = value;
 	}
-	
+	/**
+	 * 投资计划编号
+	 */
 	public String getInvestPlanCode() {
 		return investPlanCode;
 	}
 	
 	public String toString() {
 		return String.valueOf(getId());
+	}
+	/**
+	 * CAPEX项目名称
+	 */
+	public String getProjName() {
+		return projName;
+	}
+	/**
+	 * CAPEX项目名称
+	 */
+	public void setProjName(String projName) {
+		this.projName = projName;
+	}
+	/**
+	 * 投资项目集/项目名称
+	 */
+	public String getInvestPlanProjName() {
+		return investPlanProjName;
+	}
+	/**
+	 *投资项目集/项目名称
+	 */
+	public void setInvestPlanProjName(String investPlanProjName) {
+		this.investPlanProjName = investPlanProjName;
+	}
+	/**
+	 * 年份
+	 */
+	public String getYear() {
+		return year;
+	}
+	/**
+	 * 年份
+	 */
+	public void setYear(String year) {
+		this.year = year;
+	}
+	/**
+	 * 专业
+	 */
+	public String getFirstDomain() {
+		return firstDomain;
+	}
+	/**
+	 * 专业
+	 */
+	public void setFirstDomain(String firstDomain) {
+		this.firstDomain = firstDomain;
+	}
+	/**
+	 * 属性
+	 */
+	public String getAttribute() {
+		return attribute;
+	}	
+	/**
+	 * 属性
+	 */
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
 	}
 	
 }
