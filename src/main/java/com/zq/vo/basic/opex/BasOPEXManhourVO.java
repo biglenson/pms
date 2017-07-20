@@ -1,70 +1,33 @@
-package com.zq.entity.basic.opex;
-/**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
- * you generate persistence class.
- * 
- * Modifying its content may cause the program not work, or your work may lost.
- */
+package com.zq.vo.basic.opex;
 
-/**
- * Licensee: 
- * License Type: Evaluation
- */
-import java.io.Serializable;
-import javax.persistence.*;
 /**
  * OPEX工时管理
  */
-@Entity
-@org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="bas_opex_manhour")
-public class BasOPEXManhour implements Serializable {
-	/** 
-	* <p>Title: </p> 
-	* <p>Description: </p> 
-	* @date 2017年7月12日 上午9:49:33 
-	*/
-	private static final long serialVersionUID = -2697550875297611913L;
 
-	public BasOPEXManhour() {
-	}
+public class BasOPEXManhourVO {
 	
-	@Column(name="id", nullable=false, length=10)	
-	@Id	
-	@GeneratedValue(generator="BAS_OPEX_MANHOUR_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="BAS_OPEX_MANHOUR_ID_GENERATOR", strategy="native")	
 	private int id;
-	
-	@Column(name="company_id", nullable=true, length=10)	
+		
 	private Integer companyId;
 	
-	@Column(name="create_time", nullable=true)	
 	private java.sql.Timestamp createTime;
 	
-	@Column(name="create_by", nullable=true, length=50)	
 	private String createBy;
 	
-	@Column(name="last_update_time", nullable=true)	
 	private java.sql.Timestamp lastUpdateTime;
-	
-	@Column(name="last_update_by", nullable=true, length=50)	
+		
 	private String lastUpdateBy;
-	
-	@Column(name="opex_proj_code", nullable=true, length=50)	
+		
 	private String opexProjCode;
 	
-	@Column(name="junior_man_day", nullable=true, length=50)	
+	private String opexProjName;
+		
 	private String juniorManDay;
-	
-	@Column(name="middle_man_day", nullable=true, length=50)	
+		
 	private String middleManDay;
-	
-	@Column(name="senior_man_day", nullable=true, length=50)	
+		
 	private String seniorManDay;
 	
-	@Column(name="service_times", nullable=true, length=50)	
 	private String serviceTimes;
 	
 	/**
@@ -72,10 +35,6 @@ public class BasOPEXManhour implements Serializable {
 	 */
 	public int getId() {
 		return id;
-	}
-	
-	public int getORMID() {
-		return getId();
 	}
 	
 	/**
@@ -227,6 +186,18 @@ public class BasOPEXManhour implements Serializable {
 	
 	public String toString() {
 		return String.valueOf(getId());
+	}
+	/**
+	 * OPEX项目名称
+	 */
+	public String getOpexProjName() {
+		return opexProjName;
+	}
+	/**
+	 * OPEX项目名称） 
+	 */
+	public void setOpexProjName(String opexProjName) {
+		this.opexProjName = opexProjName;
 	}
 	
 }

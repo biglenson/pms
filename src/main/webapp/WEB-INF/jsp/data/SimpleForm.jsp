@@ -84,7 +84,7 @@ function newFun() {
 						<td align="center"><img name="action-open" id="actionImg" src="/static/images/16x16/action_open.gif" title="快捷操作" style="cursor: pointer" onclick="javascript:showFormActionMenu(this, '285855');">
 						</td>
 						<c:forEach items="${formListTitle}" var="list">
-							<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;cursor: pointer" align="center" onclick="" title="${record[list.attribute]}">${record[list.attribute]}</td>
+							<td style="text-align:left;cursor:pointer" align="center" onclick="" title="${record[list.attribute]}">${record[list.attribute]}</td>
 						</c:forEach>
 					</tr>
 				</c:forEach>

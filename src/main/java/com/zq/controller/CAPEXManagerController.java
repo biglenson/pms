@@ -73,7 +73,7 @@ public class CAPEXManagerController extends BaseController{
 	@RequestMapping(value = "bascapexinvestplan")
     public String BasCAPEXInvestplan(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         int pageSize = CMCCConstant.PAGE_SIZE;
-        Page<BasCAPEXInvestPlan> pageData = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlan(page, pageSize);	        
+        Page<BasCAPEXInvestPlan> pageData = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlan(page, pageSize);
         request.setAttribute("pageData", pageData.getContent());
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  

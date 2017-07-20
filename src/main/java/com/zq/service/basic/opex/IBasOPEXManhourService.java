@@ -1,8 +1,11 @@
 package com.zq.service.basic.opex;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.zq.entity.basic.opex.BasOPEXManhour;
+import com.zq.vo.basic.opex.BasOPEXManhourVO;
 
 /**
  *
@@ -12,6 +15,8 @@ import com.zq.entity.basic.opex.BasOPEXManhour;
 public interface IBasOPEXManhourService{
 
 	Page<BasOPEXManhour> getBasOPEXManhour(Integer page, int pageSize);
+
+	List<BasOPEXManhourVO> getBasOPEXManhourVOList(List<BasOPEXManhour> content);
 
 
 }
