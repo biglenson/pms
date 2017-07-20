@@ -12,11 +12,11 @@ public class BasFirstBillVO {
 	
 	private java.sql.Timestamp create_time;
 	
-	private String createBy;
+	private String creator;
 	
-	private java.sql.Timestamp lastUpdateTime;
+	private java.sql.Timestamp modifyTime;
 		
-	private String lastUpdateBy;
+	private String lastReviser;
 	
 	private String purchasingDept;
 	
@@ -110,42 +110,42 @@ public class BasFirstBillVO {
 	 * 创建人
 	 */
 	public void setCreateBy(String value) {
-		this.createBy = value;
+		this.creator = value;
 	}
 	
 	/**
 	 * 创建人
 	 */
 	public String getCreateBy() {
-		return createBy;
+		return creator;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
 	public void setLastUpdateTime(java.sql.Timestamp value) {
-		this.lastUpdateTime = value;
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
 	public java.sql.Timestamp getLastUpdateTime() {
-		return lastUpdateTime;
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
 	public void setLastUpdateBy(String value) {
-		this.lastUpdateBy = value;
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
 	public String getLastUpdateBy() {
-		return lastUpdateBy;
+		return lastReviser;
 	}
 	
 	/**

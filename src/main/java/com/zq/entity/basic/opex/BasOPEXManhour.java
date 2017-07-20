@@ -43,14 +43,14 @@ public class BasOPEXManhour implements Serializable {
 	@Column(name="create_time", nullable=true)	
 	private java.sql.Timestamp createTime;
 	
-	@Column(name="create_by", nullable=true, length=50)	
-	private String createBy;
+	@Column(name="creator", nullable=true, length=50)	
+	private String creator;
 	
-	@Column(name="last_update_time", nullable=true)	
-	private java.sql.Timestamp lastUpdateTime;
+	@Column(name="modify_time", nullable=true)	
+	private java.sql.Timestamp modifyTime;
 	
-	@Column(name="last_update_by", nullable=true, length=50)	
-	private String lastUpdateBy;
+	@Column(name="last_reviser", nullable=true, length=50)	
+	private String lastReviser;
 	
 	@Column(name="opex_proj_code", nullable=true, length=50)	
 	private String opexProjCode;
@@ -117,42 +117,42 @@ public class BasOPEXManhour implements Serializable {
 	 * 创建人
 	 */
 	public void setCreateBy(String value) {
-		this.createBy = value;
+		this.creator = value;
 	}
 	
 	/**
 	 * 创建人
 	 */
 	public String getCreateBy() {
-		return createBy;
+		return creator;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
 	public void setLastUpdateTime(java.sql.Timestamp value) {
-		this.lastUpdateTime = value;
+		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
 	public java.sql.Timestamp getLastUpdateTime() {
-		return lastUpdateTime;
+		return modifyTime;
 	}
 	
 	/**
 	 * 修改人
 	 */
 	public void setLastUpdateBy(String value) {
-		this.lastUpdateBy = value;
+		this.lastReviser = value;
 	}
 	
 	/**
 	 * 修改人
 	 */
 	public String getLastUpdateBy() {
-		return lastUpdateBy;
+		return lastReviser;
 	}
 	
 	/**
