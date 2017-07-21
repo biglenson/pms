@@ -21,7 +21,7 @@
 <div class="Toolbar-spacing"></div>
 <!-- 横线 -->
 <div class="barListSplitLine"></div>
-	<iframe src="/druid/login.html" width="100%" height="600"></iframe>	
+	<iframe src="/druid/login.html" width="98%" height="600"></iframe>	
 </div>
 <%-- 输出公共BodyEnd模块 --%>
 <jsp:include page="../../common/BodyEnd.jsp" />
