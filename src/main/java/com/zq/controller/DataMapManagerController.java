@@ -1,6 +1,8 @@
 
 package com.zq.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -40,6 +42,11 @@ import com.zq.service.basic.datamap.IBasItemsetService;
 import com.zq.service.basic.datamap.IBasProductIncomeService;
 import com.zq.service.basic.datamap.IBasProductService;
 import com.zq.service.basic.datamap.IBasProjCapexService;
+import com.zq.vo.basic.datamap.BasAccountSubjectVO;
+import com.zq.vo.basic.datamap.BasAssetDetailVO;
+import com.zq.vo.basic.datamap.BasBudgetSubjectVO;
+import com.zq.vo.basic.datamap.BasExpenseDetailVO;
+import com.zq.vo.basic.datamap.BasProjCapexVO;
 
 
 /** 
@@ -223,7 +230,8 @@ public class DataMapManagerController extends BaseController{
     public String basProjCapex(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
 	    int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasProjCapex> pageData = iBasProjCapexService.getBasProjCapex(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        List<BasProjCapexVO> pageList = iBasProjCapexService.getBasProjCapexVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
@@ -412,7 +420,8 @@ public class DataMapManagerController extends BaseController{
     public String basBudgetSubject(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
 	    int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasBudgetSubject> pageData = iBasBudgetSubjectService.getBasBudgetSubject(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        List<BasBudgetSubjectVO> pageList = iBasBudgetSubjectService.getBasBudgetSubjectVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
@@ -443,7 +452,8 @@ public class DataMapManagerController extends BaseController{
     public String basAccountSubject(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
 	    int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasAccountSubject> pageData = iBasAccountSubjectService.getBasAccountSubject(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        List<BasAccountSubjectVO> pageList = iBasAccountSubjectService.getBasAccountSubjectVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
@@ -460,41 +470,10 @@ public class DataMapManagerController extends BaseController{
 		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasAccountSubject;	
 	}
-
-	/** 
-	* @Title: basAssetDetail 
-	* @Description: TODO(费用明细) 
-	* @author shujukuss 
-	* @date 2017年7月11日 下午4:42:40 
-	* @param @param request
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws 
-	*/
-	@RequestMapping(value = "basassetdetail")
-    public String basAssetDetail(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
-	    int pageSize = CMCCConstant.PAGE_SIZE;
-        Page<BasAssetDetail> pageData = iBasAssetDetailService.getBasAssetDetail(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
-        logger.info("总记录数"+pageData.getTotalElements());  
-        logger.info("当前第几页"+pageData.getNumber()+1);  
-        logger.info("总页数"+pageData.getTotalPages());  
-        logger.info("当前页面的List"+pageData.getContent());  
-        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
-        PageInfo pageInfo = new PageInfo();
-        pageInfo.setTotalRows((int)pageData.getTotalElements());
-        pageInfo.setPageCount(pageData.getTotalPages());
-        pageInfo.setPageSize(pageData.getNumberOfElements());
-        pageInfo.setCurrentPage(page);
-		request = setForm(request, "BasAssetDetail");
-		request = setLeftMenu(request,"/datamap/basassetdetail");
-		request.setAttribute("action", "/datamap/basassetdetail");
-		request.setAttribute("pageInfo", pageInfo);
-		return CMCCConstant.BasAssetDetail;	
-	}
+	
 	/** 
 	* @Title: basExpenseDetail 
-	* @Description: TODO(资产明细) 
+	* @Description: TODO(费用明细) 
 	* @author shujukuss 
 	* @date 2017年7月11日 下午4:04:59 
 	* @param @param request
@@ -506,7 +485,8 @@ public class DataMapManagerController extends BaseController{
     public String basExpenseDetail(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
 	    int pageSize = CMCCConstant.PAGE_SIZE;
         Page<BasExpenseDetail> pageData = iBasExpenseDetailService.getBasExpenseDetail(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        List<BasExpenseDetailVO> pageList = iBasExpenseDetailService.getBasExpenseDetailVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
@@ -522,6 +502,39 @@ public class DataMapManagerController extends BaseController{
 		request.setAttribute("action", "/datamap/basexpensedetail");
 		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasExpenseDetail;	
+	}
+	
+	/** 
+	* @Title: basAssetDetail 
+	* @Description: TODO(资产明细) 
+	* @author shujukuss 
+	* @date 2017年7月11日 下午4:42:40 
+	* @param @param request
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "basassetdetail")
+    public String basAssetDetail(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+	    int pageSize = CMCCConstant.PAGE_SIZE;
+        Page<BasAssetDetail> pageData = iBasAssetDetailService.getBasAssetDetail(page, pageSize);	        
+        List<BasAssetDetailVO> pageList = iBasAssetDetailService.getBasAssetDetailVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
+        logger.info("总记录数"+pageData.getTotalElements());  
+        logger.info("当前第几页"+pageData.getNumber()+1);  
+        logger.info("总页数"+pageData.getTotalPages());  
+        logger.info("当前页面的List"+pageData.getContent());  
+        logger.info("当前页面的记录数"+pageData.getNumberOfElements());
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalRows((int)pageData.getTotalElements());
+        pageInfo.setPageCount(pageData.getTotalPages());
+        pageInfo.setPageSize(pageData.getNumberOfElements());
+        pageInfo.setCurrentPage(page);
+		request = setForm(request, "BasAssetDetail");
+		request = setLeftMenu(request,"/datamap/basassetdetail");
+		request.setAttribute("action", "/datamap/basassetdetail");
+		request.setAttribute("pageInfo", pageInfo);
+		return CMCCConstant.BasAssetDetail;	
 	}
 	
 }

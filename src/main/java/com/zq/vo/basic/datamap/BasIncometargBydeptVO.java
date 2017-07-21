@@ -1,7 +1,4 @@
 package com.zq.vo.basic.datamap;
-
-import java.io.Serializable;
-import javax.persistence.*;
 /**
  * 收入目标-按部门
  */

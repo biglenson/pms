@@ -1,7 +1,4 @@
 package com.zq.vo.basic.datamap;
-
-import java.io.Serializable;
-import javax.persistence.*;
 /**
  * 会计科目
  */
@@ -29,6 +26,8 @@ public class BasAccountSubjectVO {
 	private String expenseSubjectName;
 	
 	private String budgetSubject;
+	
+	private String bugdetName;
 	
 	private Integer expenseType;
 	
@@ -209,6 +208,18 @@ public class BasAccountSubjectVO {
 	
 	public String toString() {
 		return String.valueOf(getId());
+	}
+	/**
+	 * 预算科目名称
+	 */
+	public String getBugdetName() {
+		return bugdetName;
+	}
+	/**
+	 * 预算科目名称
+	 */
+	public void setBugdetName(String bugdetName) {
+		this.bugdetName = bugdetName;
 	}
 	
 }

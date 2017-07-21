@@ -23,6 +23,8 @@ public class BasBudgetSubjectVO {
 	private String bugdetName;
 	
 	private String supBugdetSubjectCode;
+	
+	private String supBugdetSubjectName;
 		
 	private Integer relevantDept;
 	
@@ -220,6 +222,18 @@ public class BasBudgetSubjectVO {
 	
 	public String toString() {
 		return String.valueOf(getId());
+	}
+	/**
+	 * 上级预算科目名称
+	 */
+	public String getSupBugdetSubjectName() {
+		return supBugdetSubjectName;
+	}
+	/**
+	 * 上级预算科目名称
+	 */
+	public void setSupBugdetSubjectName(String supBugdetSubjectName) {
+		this.supBugdetSubjectName = supBugdetSubjectName;
 	}
 	
 }

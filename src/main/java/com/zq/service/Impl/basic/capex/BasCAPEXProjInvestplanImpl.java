@@ -12,12 +12,10 @@ import org.springframework.stereotype.Service;
 import com.zq.dao.basic.capex.IBasCAPEXInvestPlanRepository;
 import com.zq.dao.basic.capex.IBasCAPEXProjInvestplanRepository;
 import com.zq.dao.basic.capex.IBasCAPEXProjectRepository;
-import com.zq.entity.basic.capex.BasCAPEXExpendplan;
 import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProjInvestplan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
 import com.zq.service.basic.capex.IBasCAPEXProjInvestplanService;
-import com.zq.vo.basic.capex.BasCAPEXExpendplanVO;
 import com.zq.vo.basic.capex.BasCAPEXProjInvestplanVO;
 
 /**

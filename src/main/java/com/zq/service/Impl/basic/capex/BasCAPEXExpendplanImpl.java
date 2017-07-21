@@ -13,12 +13,9 @@ import com.zq.commons.utils.TypeUtils;
 import com.zq.dao.basic.capex.IBasCAPEXExpendplanRepository;
 import com.zq.dao.basic.capex.IBasCAPEXProjectRepository;
 import com.zq.entity.basic.capex.BasCAPEXExpendplan;
-import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
-import com.zq.entity.basic.capex.BasCAPEXProjInvestplan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
 import com.zq.service.basic.capex.IBasCAPEXExpendplanService;
 import com.zq.vo.basic.capex.BasCAPEXExpendplanVO;
-import com.zq.vo.basic.capex.BasCAPEXProjInvestplanVO;
 
 /**
  *

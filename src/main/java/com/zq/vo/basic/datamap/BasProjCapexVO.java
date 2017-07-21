@@ -19,7 +19,11 @@ public class BasProjCapexVO {
 	
 	private String productCode;
 	
+	private String productName;
+	
 	private String projectCode;
+	
+	private String projName;
 	
 	private String allocationRatio;
 	
@@ -151,6 +155,31 @@ public class BasProjCapexVO {
 	
 	public String toString() {
 		return String.valueOf(getId());
+	}
+
+	/**
+	 * 产品名称
+	 */
+	public String getProductName() {
+		return productName;
+	}
+	/**
+	 * 产品名称
+	 */
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	/**
+	 * 项目名称
+	 */
+	public String getProjName() {
+		return projName;
+	}
+	/**
+	 * 项目名称
+	 */
+	public void setProjName(String projName) {
+		this.projName = projName;
 	}
 	
 }

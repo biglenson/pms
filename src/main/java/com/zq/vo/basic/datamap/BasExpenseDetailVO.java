@@ -28,6 +28,8 @@ public class BasExpenseDetailVO {
 	
 	private String prodCode;
 	
+	private String prodName;
+	
 	private String supplierCode;
 	
 	private String supplierName;
@@ -422,6 +424,18 @@ public class BasExpenseDetailVO {
 	
 	public String toString() {
 		return String.valueOf(getId());
+	}
+	/**
+	 * 产品名称 
+	 */
+	public String getProdName() {
+		return prodName;
+	}
+	/**
+	 * 产品名称
+	 */
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
 	}
 	
 }
