@@ -21,8 +21,15 @@
 <div class="Toolbar-spacing"></div>
 <!-- 横线 -->
 <div class="barListSplitLine"></div>
-	<iframe src="/druid/login.html" width="98%" height="600"></iframe>	
+	<iframe name="iframe" src="/druid/index.html" width="98%" height="600"></iframe>	
 </div>
+<!-- <form id="loginForm" target="iframe" method="post" action="/druid/submitLogin">
+    <input type="hidden" name="loginUsername" value="druid"/>
+    <input type="hidden" name="loginPassword" value="dream"/>
+</form>
+<script type="text/javascript">
+    document.getElementById('loginForm').submit();
+</script> -->
 <%-- 输出公共BodyEnd模块 --%>
 <jsp:include page="../../common/BodyEnd.jsp" />
 			
