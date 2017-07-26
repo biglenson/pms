@@ -1,6 +1,9 @@
 
 package com.zq.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -26,6 +29,7 @@ import com.zq.service.basic.opex.IBasOPEXManhourService;
 import com.zq.service.basic.opex.IBasOPEXProjectService;
 import com.zq.service.basic.opex.IBasOPEXRequirmentService;
 import com.zq.service.basic.opex.IBasOpexBudgetpoolDetailService;
+import com.zq.vo.basic.opex.BasOPEXManhourVO;
 
 
 /** 
@@ -257,8 +261,9 @@ public class OPEXManagerController extends BaseController{
 	@RequestMapping(value = "basopexmanhour")
     public String basOPEXManhour(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
 	    int pageSize = CMCCConstant.PAGE_SIZE;
-        Page<BasOPEXManhour> pageData = iBasOPEXManhourService.getBasOPEXManhour(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        Page<BasOPEXManhour> pageData = iBasOPEXManhourService.getBasOPEXManhour(page, pageSize);
+        List<BasOPEXManhourVO> pageList = iBasOPEXManhourService.getBasOPEXManhourVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  

@@ -161,19 +161,6 @@
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
 		</dependency>
-        <!-- activit begin -->
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-engine</artifactId>
-            <version>5.16.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-spring</artifactId>
-            <version>5.16.3</version>
-        </dependency>
-        <!-- activit end -->
-
 	</dependencies>
 	<build>
 		<finalName>pms</finalName>

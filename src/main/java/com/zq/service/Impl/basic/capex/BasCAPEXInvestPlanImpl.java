@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProjInvestplan;
 import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
 import com.zq.service.basic.capex.IBasCAPEXProjInvestplanService;
+import com.zq.vo.basic.capex.BasCAPEXInvestPlanVO;
 
 /**
  *
@@ -93,6 +95,11 @@ public class BasCAPEXInvestPlanImpl implements IBasCAPEXInvestPlanService {
 
 
 
+	@Override
+	public List<BasCAPEXInvestPlanVO> getBasCAPEXInvestPlanVOList(List<BasCAPEXInvestPlan> content) {
+		return null;
+
+	}
     
    
 

@@ -1,11 +1,13 @@
 package com.zq.service.basic.capex;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 
 import com.zq.commons.result.PageInfo;
 import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
+import com.zq.vo.basic.capex.BasCAPEXInvestPlanVO;
 
 /**
  *
@@ -24,7 +26,7 @@ public interface IBasCAPEXInvestPlanService{
 
 	BasCAPEXInvestPlan getBasCAPEXInvestPlanById(int id);
 
-
+	List<BasCAPEXInvestPlanVO> getBasCAPEXInvestPlanVOList(List<BasCAPEXInvestPlan> content);
 
 
 }

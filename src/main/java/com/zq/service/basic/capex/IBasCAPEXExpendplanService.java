@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.zq.entity.basic.capex.BasCAPEXExpendplan;
+import com.zq.vo.basic.capex.BasCAPEXExpendplanVO;
 
 /**
  *
@@ -20,6 +21,8 @@ public interface IBasCAPEXExpendplanService{
 	List<BasCAPEXExpendplan> getAllCAPEXExpendplan();
 
 	Page<BasCAPEXExpendplan> getBasCAPEXExpendplan(Integer page, int pageSize);
+
+	List<BasCAPEXExpendplanVO> getBasCAPEXExpendplanVOList(List<BasCAPEXExpendplan> content);
 
 
 

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 
 import com.zq.commons.result.PageInfo;
 import com.zq.entity.basic.capex.BasCAPEXProject;
+import com.zq.vo.basic.capex.BasCAPEXProjectVO;
 
 /**
  *
@@ -40,4 +41,6 @@ public interface IBasCAPEXProjectService{
 	HttpServletRequest getBasCAPEXInvestPlanUsage(String year, HttpServletRequest request);
 
 	HttpServletRequest getCAPEXProjectAsPage(PageInfo pageInfo, HttpServletRequest request);
+
+	List<BasCAPEXProjectVO> getBasCAPEXProjectVOList(List<BasCAPEXProject> content);
 }

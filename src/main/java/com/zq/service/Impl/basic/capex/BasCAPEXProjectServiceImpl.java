@@ -13,7 +13,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.beanutils.PropertyUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,17 +23,23 @@ import org.springframework.stereotype.Service;
 import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
+
+import com.zq.dao.basic.capex.IBasCAPEXInvestPlanRepository;
 import com.zq.dao.basic.capex.IBasCAPEXProjectRepository;
+import com.zq.dao.basic.capex.IBasCAPEXRequirmentRepository;
+
 import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
 import com.zq.entity.basic.capex.BasCAPEXTransferplan;
 import com.zq.entity.system.Department;
 import com.zq.entity.system.Role;
 import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
+import com.zq.entity.basic.capex.BasCAPEXRequirment;
 import com.zq.service.basic.capex.IBasCAPEXProjectService;
 import com.zq.service.basic.capex.IBasCAPEXTransferplanService;
 import com.zq.service.system.IDepartmentService;
 import com.zq.service.system.IRoleService;
+import com.zq.vo.basic.capex.BasCAPEXProjectVO;
 
 /**
  *
@@ -47,6 +53,7 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
     private IBasCAPEXProjectRepository iBasCAPEXProjectRepository;
     
     @Autowired
+
     private IBasCAPEXInvestPlanService iBasCAPEXInvestPlanService;
     
     @Autowired
@@ -58,6 +65,11 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
     @Autowired
     private IBasCAPEXTransferplanService iBasCAPEXTransferplanService;
 
+    private IBasCAPEXRequirmentRepository iBasCAPEXRequirmentRepository;
+    
+    @Autowired
+    private IBasCAPEXInvestPlanRepository iBasCAPEXInvestPlanRepository;
+    
 	@Override
 	public List<BasCAPEXProject> getALLCAPEXProject() {
 		
@@ -272,6 +284,41 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
 	private Page<BasCAPEXProject> getBasCAPEXProjectByPageAndYear(Integer pageNumber, int pageSize,String year) {
 		Pageable request = new PageRequest(pageNumber - 1, pageSize, null);
 		return iBasCAPEXProjectRepository.findByProjStartYear(year,request);
+	}
+		
+	public List<BasCAPEXProjectVO> getBasCAPEXProjectVOList(List<BasCAPEXProject> content) {
+		List<BasCAPEXProjectVO> voList = new ArrayList<>();		
+		for(BasCAPEXProject po:content){
+			BasCAPEXProjectVO vo = new BasCAPEXProjectVO();
+			BeanUtils.copyProperties(po, vo);			
+			BasCAPEXRequirment req = iBasCAPEXRequirmentRepository.findById(Integer.parseInt(po.getReqCode()));
+			String reqName = req.getReqName();
+			String reqDept = req.getReqDept();
+			String investPlanCode = req.getInvestPlanCode();
+			if(reqName==null||reqName.equals("")){
+				vo.setReqName("未录入名称");
+			}else{
+				vo.setReqName(reqName);
+			}
+			if(reqDept==null||reqDept.equals("")){
+				vo.setReqDept("未录入部门");
+			}else{
+				vo.setReqDept(reqName);
+			}
+			if(investPlanCode==null||investPlanCode.equals("")){
+				vo.setReqDept("未关联投资计划");
+			}else{
+				BasCAPEXInvestPlan inspl = iBasCAPEXInvestPlanRepository.findById(Integer.parseInt(investPlanCode));
+				String investPlanProjName = inspl.getProjName();
+				if(reqDept==null||reqDept.equals("")){
+					vo.setInvestPlanProjName("未录入名称");
+				}else{
+					vo.setInvestPlanProjName(investPlanProjName);
+				}
+			}
+			voList.add(vo);
+		}
+		return voList;
 	}   
 
 }

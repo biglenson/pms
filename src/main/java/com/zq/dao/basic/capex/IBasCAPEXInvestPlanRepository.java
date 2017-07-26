@@ -11,6 +11,7 @@ import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 
 public interface IBasCAPEXInvestPlanRepository extends JpaRepository<BasCAPEXInvestPlan, Long> {
 
+
 	BasCAPEXInvestPlan findByYearAndProjCode(String year, String projCode);
 
 	BasCAPEXInvestPlan findByProjCode(String projCode);
@@ -20,6 +21,8 @@ public interface IBasCAPEXInvestPlanRepository extends JpaRepository<BasCAPEXInv
 	List<BasCAPEXInvestPlan> findByYear(String year);
 
 	BasCAPEXInvestPlan findById(long longValue);
+
+	BasCAPEXInvestPlan findById(int i);
 	
 
 }

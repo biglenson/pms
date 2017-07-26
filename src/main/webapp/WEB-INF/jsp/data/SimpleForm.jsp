@@ -62,9 +62,9 @@ function newFun() {
 		<div class="Toolbar-spacing"></div>
 		<!-- 横线 -->
 		<div class="barListSplitLine"></div>
-		
+		<div id = "formListTable_upDiv" style="overflow:auto">
 		<!-- 以下为表单 -->
-		<table class="listTable dataTable" id="formListTable">
+		<table class="listTable dataTable" id="formListTable" style="table-layout: fixed;">
 			<thead>
 				<tr>
 					<th><div style="width: 20px;">
@@ -84,16 +84,30 @@ function newFun() {
 						<td align="center"><img name="action-open" id="actionImg" src="/static/images/16x16/action_open.gif" title="快捷操作" style="cursor: pointer" onclick="javascript:showFormActionMenu(this, '285855');">
 						</td>
 						<c:forEach items="${formListTitle}" var="list">
-							<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;cursor: pointer" align="center" onclick="" title="${record[list.attribute]}">${record[list.attribute]}</td>
+							<td><div style="${list.style};white-space: nowrap;text-overflow: ellipsis;overflow: hidden;text-align:left;cursor:pointer" align="center" onclick="" title="${record[list.attribute]}">${record[list.attribute]}</div></td>
 						</c:forEach>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+	</div>
 		<!-- 以上为表单 -->
 		<%=UIUtils.pageToolbar(pageInfo, request)%>
 	</form>
 </div>
+<script type="text/javascript">
+
+	function findDimensions() //函数：获取尺寸
+	{
+		var winHeight = document.body.scrollHeight - 200; // 取窗口高度
+		if (winHeight <= 0)
+			winHeight = 640; // 初始高度并不总能取出，设默认值
+		document.getElementById("formListTable_upDiv").style.height = winHeight	+ 'px'; // 设置宽度
+	}
+	findDimensions();
+	//调用函数，获取数值
+	window.onresize = findDimensions;
+</script>
 <%-- 输出公共BodyEnd模块 --%>
 <jsp:include page="../common/BodyEnd.jsp" />
 			

@@ -6,5 +6,7 @@ import com.zq.entity.basic.datamap.BasProduct;
 
 public interface IBasProductRepository extends JpaRepository<BasProduct, Long>{
 
+	BasProduct findById(int parseInt);
+
 
 }

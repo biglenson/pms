@@ -124,7 +124,7 @@ public class LoginController extends BaseController{
 			model.addAttribute("message", msg);
 			logger.warn(msg);
 		} catch (ExcessiveAttemptsException e) {
-			msg = "登录失败次数过多";
+			msg = "登录失败次数过多,锁定半小时";
 			model.addAttribute("message", msg);
 			logger.warn(msg);
 		} catch (LockedAccountException e) {

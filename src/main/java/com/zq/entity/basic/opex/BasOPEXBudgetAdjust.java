@@ -272,14 +272,14 @@ public class BasOPEXBudgetAdjust implements Serializable {
 	 * 调出项目调整后预算金额（元） 
 	 */
 	public void setOutBudgetedAmount(String value) {
-		this.outBudgetAccount = value;
+		this.outBudgetedAmount = value;
 	}
 	
 	/**
 	 * 调出项目调整后预算金额（元） 
 	 */
 	public String getOutBudgetedAmount() {
-		return outBudgetAccount;
+		return outBudgetedAmount;
 	}
 	
 	/**

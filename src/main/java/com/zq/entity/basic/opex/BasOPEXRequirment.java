@@ -201,8 +201,8 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 审批状态 
 	 */
-	public void setAudit_state(int value) {
-		setAudit_state(new Integer(value));
+	public void setAuditState(int value) {
+		setAuditState(new Integer(value));
 	}
 	
 	/**
@@ -222,8 +222,8 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 业务部门 
 	 */
-	public void setBusiness_dep(int value) {
-		setBusiness_dep(new Integer(value));
+	public void setBusinessDep(int value) {
+		setBusinessDep(new Integer(value));
 	}
 	
 	/**
@@ -258,14 +258,14 @@ public class BasOPEXRequirment implements Serializable {
 	 * 需求确认时间 
 	 */
 	public void setReqConfirmTime(java.sql.Timestamp value) {
-		this.createTime = value;
+		this.reqConfirmTime = value;
 	}
 	
 	/**
 	 * 需求确认时间 
 	 */
 	public java.sql.Timestamp getReqConfirmTime() {
-		return createTime;
+		return reqConfirmTime;
 	}
 	
 	/**
@@ -299,8 +299,8 @@ public class BasOPEXRequirment implements Serializable {
 	/**
 	 * 资金来源  代码表：OPEX预算来源代码表
 	 */
-	public void setFund_source(int value) {
-		setFund_source(new Integer(value));
+	public void setFundSource(int value) {
+		setFundSource(new Integer(value));
 	}
 	
 	/**
