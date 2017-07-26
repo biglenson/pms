@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.zq.commons.result.PageInfo;
+import com.zq.entity.system.Role;
 
 
 /**
@@ -23,5 +24,7 @@ public interface IRoleService{
     void updateRoleResource(Long id, String resourceIds);
 
     Map<String, Set<String>> selectResourceMapByUserId(Long userId);
+
+	Role getRoleById(int depMnt);
 
 }

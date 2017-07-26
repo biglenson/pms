@@ -1,10 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import= "com.zq.entity.basic.capex.BasCAPEXProject" %>
+<%@ page import= "com.zq.entity.basic.capex.BasCAPEXInvestPlan" %>
+<%@ page import= "com.zq.commons.utils.UIUtils" %>
+<%@ page import= "com.zq.commons.result.PageInfo" %>
+
 <%  
 	String path=request.getContextPath();
-/* 	List<CAPEXProject> dataList = pageInfo.getItems();
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+ 	List<BasCAPEXProject> dataList = pageInfo.getItems();
 	Map<String,String> projectZhunziMoney = (Map<String,String>)request.getAttribute("projectZhunziMoney");
-	Map<String,CMCCTouziPlan> projectTouziMap = (Map<String,CMCCTouziPlan>)request.getAttribute("projectTouziMap"); */
+	Map<String,BasCAPEXInvestPlan> projectTouziMap = (Map<String,BasCAPEXInvestPlan>)request.getAttribute("touziPlan"); 
 %>
 <% request.setAttribute("selectedTab", 2); %>
 <%@include file="capexListTab.jsp"%>
@@ -25,29 +31,26 @@
 		</thead>
 		<tbody>
 			<%
-			    TypeUtils.prepareForFormList(user, dataList, request);
-				int year=TypeUtils.getIntFromString(request.getParameter("year"));
+			    //TypeUtils.prepareForFormList(user, dataList, request);
+				//int year=TypeUtils.getIntFromString(request.getParameter("year"));
 				for(int i=0,j=dataList.size();i<j;i++){
-					CAPEXProject capexProject = dataList.get(i);
-					String zhuanziMoney = projectZhunziMoney.get(capexProject.getCode());
-					CMCCTouziPlan touziPlan = capexProject.getYearTouziPlan(year);
+					BasCAPEXProject capexProject = dataList.get(i);
+					String zhuanziMoney = projectZhunziMoney.get(capexProject.getProjCode());
+					BasCAPEXInvestPlan touziPlan = projectTouziMap.get(capexProject.getProjCode());
 			%>
 			<tr class='listTableTR'>
 				<td align="center" class='linkURL'
 					onclick='openCAPEXMain(<%=capexProject.getId()%>)'><div
-						style='text-align: center;'><%=TypeUtils.htmlEncoder(capexProject.getTitle())%></div></td>
-				<td align="center"><div><%=TypeUtils.xmlEncoderForIE(touziPlan==null?"":TypeUtils.resoveFieldAsString(user, touziPlan, "enum04", request))%></div></td>
-				<td align="center"><div><%=TypeUtils.xmlEncoderForIE(touziPlan==null?"":TypeUtils.resoveFieldAsString(user, touziPlan, "enum01", request))%></div></td>
-				<td align="center"><div><%=TypeUtils.xmlEncoderForIE(TypeUtils.resoveFieldAsString(user, capexProject, "str25.sys01",request))%></div></td>
-				<td align="center"><div><%=TypeUtils.xmlEncoderForIE(TypeUtils.resoveFieldAsString(user, capexProject, "str25.date04", request))%></div></td>
+						style='text-align: center;'><%=TypeUtils.htmlEncoder(capexProject.getProjName())%></div></td>
+				<td align="center"><div><%=TypeUtils.xmlEncoderForIE(touziPlan==null?"":String.valueOf(touziPlan.getAttribute()))%></div></td>
+				<td align="center"><div><%=TypeUtils.xmlEncoderForIE(touziPlan==null?"":String.valueOf(touziPlan.getFirstDomain()))%></div></td>
+				<td align="center"><div><%=TypeUtils.xmlEncoderForIE(String.valueOf(touziPlan.getDepartment()))%></div></td>
+				<td align="center"><div><%=TypeUtils.xmlEncoderForIE(TypeUtils.date2String(capexProject.getReqFreezeTime()))%></div></td>
 				<td align="center"><div>
-						<% double approvalM=TypeUtils.getNotNullDoubleValue(user, capexProject, "num01");
-						Double zhuanZi=TypeUtils.string2Double(zhuanziMoney);
-					%>
-						<%=TypeUtils.formatWanMoney(approvalM) %>
+						<%TypeUtils.string2Double(capexProject.getProjSetupAmount());%>
 					</div></td>
-				<td align="center"><div style='width: 102px;'><%=TypeUtils.formatWanMoney(zhuanZi)%></div></td>
-				<td align="center"><div style='width: 103px;'><%=TypeUtils.getEnumValueName(user, capexProject, "enum06")%></div></td>
+				<td align="center"><div style='width: 102px;'><%=TypeUtils.string2Double(zhuanziMoney)%></div></td>
+				<td align="center"><div style='width: 103px;'><%=capexProject.getProjStatus()%></div></td>
 			</tr>
 			<%
 				}
@@ -64,6 +67,6 @@
 			%>
 		</tbody>
 	</table>
-	<%=UIUtils_NEW.pageFunctionToolbar("changeCapexProjectPage",pageInfo, request, response)%>
+	<%=UIUtils.pageFunctionToolbar("changeCapexProjectPage",pageInfo, request)%>
 	<div style="height: 10px;"></div>
 </div>

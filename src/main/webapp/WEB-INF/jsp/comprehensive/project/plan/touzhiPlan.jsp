@@ -1,12 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import="com.zq.entity.system.Department"%>
 <%
 String path = request.getContextPath();
 double capexValue=(Double)request.getAttribute("capexValue");
 double shiYongValue=(Double)request.getAttribute("shiYongValue");
 double ziJinValue=(Double)request.getAttribute("ziJinValue");
 double ziJinShiYongValue=(Double)request.getAttribute("ziJinShiYongValue");
-/* List<Hierarchyable>roleList=(List<Hierarchyable>)request.getAttribute("roleList"); */
+List<Department>depMntList=(List<Department>)request.getAttribute("depMntList");
 Map<Integer,Double> capexValueMap=(Map<Integer,Double>)request.getAttribute("capexValueMap");
 Map<Integer,Double> shiYongValueMap=(Map<Integer,Double>)request.getAttribute("shiYongValueMap");
 
@@ -44,15 +45,15 @@ Map<Integer,Double> shiYongValueMap=(Map<Integer,Double>)request.getAttribute("s
 				</tr>
 			</thead>
 			<tbody>
-				<%for(Hierarchyable a:roleList){ 
-				Role role=(Role) a;
-				if("公司统筹".equals(role.getName())){
+				<%for(Department a:depMntList){ 
+				Department role=(Department) a;
+				/* if("公司统筹".equals(role.getName())){
 					continue;
 				}
 				boolean contains=capexValueMap.containsKey(role.getId())||shiYongValueMap.containsKey(role.getId());
 				if(!contains){
 					continue;
-				}
+				} */
 				Double capexV=capexValueMap.get(role.getId());
 				Double capexV2=shiYongValueMap.get(role.getId());
 				Double per=capexV!=null&&capexV!=0? (capexV2==null?0:capexV2)/capexV*100:null;

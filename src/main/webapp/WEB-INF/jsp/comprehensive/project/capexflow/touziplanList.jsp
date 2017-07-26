@@ -1,9 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import= "com.zq.commons.utils.UIUtils" %>
+<%@ page import= "com.zq.commons.result.PageInfo" %>
+<%@ page import= "com.zq.entity.basic.capex.BasCAPEXInvestPlan" %>
 <%  
 	String path=request.getContextPath();
     PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	List<CMCCTouziPlan> dataList = pageInfo.getItems();
+	List<BasCAPEXInvestPlan> dataList = pageInfo.getItems();
 %>
 <% request.setAttribute("selectedTab", 1); %>
 <%@include file="capexListTab.jsp"%>
@@ -24,17 +27,17 @@
 		<tbody>
 			<%
 				for(int i=0,j=dataList.size();i<j;i++){
-					CMCCTouziPlan touziPlan = dataList.get(i);
-					CMCCTouziPlan p=touziPlan;
-					Double zongValue=TypeUtils.getDoubleValue(user, p, "num02");
-					Double lastValue=TypeUtils.getDoubleValue(user, p, "num06");
-					Double lastValue2=TypeUtils.getDoubleValue(user,p, "num04");
+					BasCAPEXInvestPlan touziPlan = dataList.get(i);
+					BasCAPEXInvestPlan p=touziPlan;
+					Double zongValue=TypeUtils.string2Double(p.getTotalInvest());
+					Double lastValue=TypeUtils.string2Double(p.getLastFinishCapex());
+					Double lastValue2=TypeUtils.string2Double(p.getTransferCapex());
 			%>
 			<tr class='listTableTR'>
-				<td align="center"><%=TypeUtils.xmlEncoderForIE(touziPlan.getStr18()) %></td>
-				<td align="center"><%=TypeUtils.xmlEncoderForIE(touziPlan.getStr01()) %></td>
-				<td align="center"><%=TypeUtils.xmlEncoderForIE(TypeUtils.resoveFieldAsString(user, p, "enum01", request)) %></td>
-				<td align="center"><%=TypeUtils.xmlEncoderForIE(TypeUtils.resoveFieldAsString(user, p, "enum04", request)) %></td>
+				<td align="center"><%=TypeUtils.xmlEncoderForIE(touziPlan.getProjName()) %></td>
+				<td align="center"><%=TypeUtils.xmlEncoderForIE(touziPlan.getProjCode()) %></td>
+				<td align="center"><%=TypeUtils.xmlEncoderForIE(String.valueOf(p.getFirstDomain())) %></td>
+				<td align="center"><%=TypeUtils.xmlEncoderForIE(String.valueOf(p.getAttribute())) %></td>
 				<td align="center"><%=TypeUtils.formatWanMoney(zongValue) %></td>
 				<td align="center"><%=TypeUtils.formatWanMoney(lastValue) %></td>
 				<td align="center"><%=TypeUtils.formatWanMoney(lastValue2) %></td>
@@ -54,6 +57,6 @@
 			%>
 		</tbody>
 	</table>
-	<%=UIUtils_NEW.pageFunctionToolbar("changeTouziplanPage",pageInfo, request, response)%>
+	<%=UIUtils.pageFunctionToolbar("changeTouziplanPage",pageInfo, request)%>
 	<div style="height: 10px;"></div>
 </div>

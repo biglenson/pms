@@ -19,14 +19,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
+import com.zq.entity.basic.capex.BasCAPEXAmountPool;
 import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
 import com.zq.entity.basic.purchase.BasFirstBill;
 import com.zq.entity.basic.purchase.BasSecondBill;
+import com.zq.entity.system.Role;
+import com.zq.service.basic.capex.IBasCAPEXAmountPoolService;
 import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
 import com.zq.service.basic.capex.IBasCAPEXProjectService;
 import com.zq.service.basic.purchase.IBasFirstBillService;
 import com.zq.service.basic.purchase.IBasSecondBillService;
+import com.zq.service.system.IRoleService;
 
 /**
  * @ClassName: ComprehensiveViewController
@@ -50,6 +54,9 @@ public class ComprehensiveViewController extends BaseController {
 
 	@Autowired
 	private IBasSecondBillService iBasSecondBillService;
+	
+	@Autowired
+	private IBasCAPEXAmountPoolService iBasCAPEXAmountPoolService;
 
 	private static Logger logger = Logger.getLogger(ComprehensiveViewController.class);
 
@@ -89,8 +96,8 @@ public class ComprehensiveViewController extends BaseController {
 			totalCount++;
 			allCount[phaseIndex]++;
 			// System.out.println("property=="+property);
-			BasCAPEXInvestPlan plan = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlanByYearAndBasCAPEXProject(year,
-					capexProject.getProjCode());
+			BasCAPEXInvestPlan plan = iBasCAPEXInvestPlanService.getBasCAPEXInvestPlanById(
+					capexProject.getId());
 			String shuxing = "";
 			if (plan != null) {
 				shuxing = "新建"; // 后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
@@ -101,10 +108,7 @@ public class ComprehensiveViewController extends BaseController {
 			}
 		}
 
-		// ps.clear();
-		// ps.put("capexProjectCodeArray", projectCodeSet);
-		// 一级集采台账
-		Set<Integer> firstContractIDSet = new HashSet<Integer>();
+		new HashSet<Integer>();
 		List<BasFirstBill> firstBillList = projectIDSet.size() > 0 ? iBasFirstBillService.getFirstBillByYear(year)
 				: java.util.Collections.EMPTY_LIST;
 		double contractValue = 0d;
@@ -157,86 +161,19 @@ public class ComprehensiveViewController extends BaseController {
 	@RequestMapping(value = "capexinvestdetail", method = RequestMethod.POST)
 	public String capexInvestDetail(HttpServletRequest request) throws Exception {
 
-		Date dataUpdateDate = null;
 		String year = request.getParameter("year");
 		if (year.equals("0")) {
 			year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
 		}
-		Hierarchy tree = ComponentFactory.getProfileManager().getObsHierarchy(user.getCompanyID());
+	/*	Hierarchy tree = ComponentFactory.getProfileManager().getObsHierarchy(user.getCompanyID());
 		tree.setComparator(RoleComparator.SequenceComparator);
 		Role root = (Role) tree.getObject(Role.ROOT_DEPARTMENT_ID);
 		List<Hierarchyable> roleList = tree.getDirectChildren(root);
-		request.setAttribute("roleList", roleList);
+		request.setAttribute("roleList", roleList);*/
+		
+		request=iBasCAPEXProjectService.getBasCAPEXInvestPlanUsage(year,request);   
+		request=iBasCAPEXAmountPoolService.getBasCAPEXAmountPoolUsage(year,request); 
 		request.setAttribute("index", 0);
-		double capexValue = 0;
-		double shiYongValue = 0;
-		Map<Integer, Double> capexValueMap = new HashMap<Integer, Double>();
-		Map<Integer, Double> shiYongValueMap = new HashMap<Integer, Double>();
-
-		List<BasCAPEXProject> projectList = cm.getCmProjectPageInfo(user, pageInfo).getItems();
-		TypeUtils.prepareForFormList(user, projectList, request);
-
-		for (BasCAPEXProject project : projectList) {
-			if (dataUpdateDate == null) {
-				dataUpdateDate = project.getModifyTime();
-			}
-			if (dataUpdateDate != null && project.getModifyTime() != null
-					&& dataUpdateDate.before(project.getModifyTime())) {
-				dataUpdateDate = project.getModifyTime();
-			}
-			CMCCTouziPlan plan = project.getYearTouziPlan(year);
-			String shuxing = "";
-			if (plan != null) {
-				shuxing = TypeUtils.resoveFieldAsString(user, plan, "enum04", request);
-			}
-			if ("新建".equalsIgnoreCase(shuxing.trim())) {
-				double tempCapexValue = TypeUtils.getNotNullDoubleValue(user, p, "num09");
-				double tempShiYongValue = TypeUtils.getNotNullDoubleValue(user, p, "num01");
-				capexValue += tempCapexValue;
-				shiYongValue += tempShiYongValue;
-
-				Role tempRole = (Role) TypeUtils.resoveFieldAsObject(user, p, "str25.sys01", request);
-				if (tempRole != null) {
-					Double roleCapexValue = capexValueMap.get(tempRole.getId());
-					if (roleCapexValue == null) {
-						roleCapexValue = 0d;
-					}
-					roleCapexValue += tempCapexValue;
-					capexValueMap.put(tempRole.getId(), roleCapexValue);
-
-					Double roleShiYongValue = shiYongValueMap.get(tempRole.getId());
-					if (roleShiYongValue == null) {
-						roleShiYongValue = 0d;
-					}
-					roleShiYongValue += tempShiYongValue;
-					shiYongValueMap.put(tempRole.getId(), roleShiYongValue);
-				}
-			}
-		}
-		request.setAttribute("capexValueMap", capexValueMap);
-		request.setAttribute("shiYongValueMap", shiYongValueMap);
-		request.setAttribute("capexValue", capexValue);
-		request.setAttribute("shiYongValue", shiYongValue);
-
-		double ziJinValue = 0;
-		double ziJinShiYongValue = 0;
-
-		List<CMCCZiJinPool> poolList = cm.getZiJinPoolPageInfo(user, pageInfo).getItems();
-		for (CMCCZiJinPool c : poolList) {
-			if (dataUpdateDate == null) {
-				dataUpdateDate = c.getLastUpdateTime();
-			}
-			if (dataUpdateDate != null && c.getLastUpdateTime() != null
-					&& dataUpdateDate.before(c.getLastUpdateTime())) {
-				dataUpdateDate = c.getLastUpdateTime();
-			}
-			ziJinValue += TypeUtils.getNotNullDoubleValue(user, c, "num02");
-			ziJinShiYongValue += TypeUtils.getNotNullDoubleValue(user, c, "num03");
-		}
-		ziJinShiYongValue = ziJinValue - ziJinShiYongValue;
-		request.setAttribute("ziJinValue", ziJinValue);
-		request.setAttribute("ziJinShiYongValue", ziJinShiYongValue);
-		request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
 		return CMCCConstant.PlanResult;
 	}
 }

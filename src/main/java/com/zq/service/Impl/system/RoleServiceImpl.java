@@ -102,4 +102,14 @@ public class RoleServiceImpl  implements IRoleService {
 	}
 
 
+	@Override
+	public Role getRoleById(int depMnt) {
+		
+		
+		return iRoleRepository.findById((long)depMnt);
+	}
+
+
+
+
 }

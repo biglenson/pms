@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.zq.commons.result.PageInfo;
 import com.zq.entity.basic.capex.BasCAPEXTransferplan;
 
 /**
@@ -20,6 +21,10 @@ public interface IBasCAPEXTransferplanService{
 	List<BasCAPEXTransferplan> getAllBasCAPEXTransferplan();
 
 	Page<BasCAPEXTransferplan> getBasCAPEXTransferplan(Integer page, int pageSize);
+
+	Page<BasCAPEXTransferplan> getCAPEXTransferplanByPageAndYear(int currentPage, int pageSize, String year);
+
+
 
 
 }

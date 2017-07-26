@@ -45,5 +45,11 @@ public class DepartmentServiceImpl implements IDepartmentService {
         return iDepartmentRepository.findAll(sort);
     }
 
+	@Override
+	public Department getDepById(int depMnt) {
+		
+		return iDepartmentRepository.findById((long)depMnt);
+	}
+
 
 }

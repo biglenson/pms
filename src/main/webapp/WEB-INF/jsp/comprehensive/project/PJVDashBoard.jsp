@@ -55,7 +55,7 @@
 							<jsp:include page="summary/summary.jsp" />
 							<jsp:include page="../comprehensive/capex/phaseStatus.jsp" />
 							<jsp:include page="plan/planDIV.jsp" />
-							<%-- <jsp:include page="capexflow/capexListContainer.jsp" /> --%>
+							<jsp:include page="capexflow/capexListContainer.jsp" /> 
 						</div>
 					</div>
 					<script type="text/javascript">

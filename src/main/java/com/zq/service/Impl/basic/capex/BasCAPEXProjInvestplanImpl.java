@@ -25,6 +25,12 @@ public class BasCAPEXProjInvestplanImpl implements IBasCAPEXProjInvestplanServic
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
 		return iBasCAPEXProjInvestplanRepository.findAll(request);
 	}
+
+	@Override
+	public BasCAPEXProjInvestplan getBasCAPEXProjInvestplanByProjCode(String projCode) {
+		
+		return iBasCAPEXProjInvestplanRepository.findByProjCode(projCode);
+	}
     
    
 

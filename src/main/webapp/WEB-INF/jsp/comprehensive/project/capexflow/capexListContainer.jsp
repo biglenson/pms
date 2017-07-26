@@ -21,7 +21,7 @@
  }
 	function A_changeList(index){
 		$.ajax({
-			url:"<%=path%>/GongchengAction.do?operation=gongchengListResult",
+			url:"<%=path%>/projectview/projectlist",
 			method:"POST",
 			data:{
 				year:document.frm.year.value

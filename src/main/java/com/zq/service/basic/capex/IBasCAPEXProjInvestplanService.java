@@ -13,5 +13,7 @@ public interface IBasCAPEXProjInvestplanService{
 
 	Page<BasCAPEXProjInvestplan> getBasCAPEXProjInvestplan(Integer page, int pageSize);
 
+	BasCAPEXProjInvestplan getBasCAPEXProjInvestplanByProjCode(String projCode);
+
 
 }

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.TypeUtils;
 import com.zq.dao.basic.capex.IBasCAPEXTransferplanRepository;
 import com.zq.entity.basic.capex.BasCAPEXTransferplan;
@@ -48,6 +50,13 @@ public class BasCAPEXTransferplanImpl implements IBasCAPEXTransferplanService {
 	public Page<BasCAPEXTransferplan> getBasCAPEXTransferplan(Integer pageNumber, int pageSize) {
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
 		return iBasCAPEXTransferplanRepository.findAll(request);
+	}
+
+	@Override
+	public Page<BasCAPEXTransferplan> getCAPEXTransferplanByPageAndYear(int currentPage, int pageSize, String year) {
+		Pageable request = new PageRequest(currentPage - 1, pageSize, null);
+		return iBasCAPEXTransferplanRepository.findByYear(year,request);
+
 	}
     
    

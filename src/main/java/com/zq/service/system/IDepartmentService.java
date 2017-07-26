@@ -17,4 +17,6 @@ public interface IDepartmentService{
 
     List<Department> selectTreeGrid();
 
+	Department getDepById(int depMnt);
+
 }

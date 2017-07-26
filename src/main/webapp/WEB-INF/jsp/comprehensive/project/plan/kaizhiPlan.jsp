@@ -3,7 +3,7 @@
 <%@ page import="com.zq.commons.utils.StringUtils"%>
 <%
 String path = request.getContextPath();
-int year=(Integer)request.getAttribute("year");
+String year=(String)request.getAttribute("year");
 Double []plan=(Double[])request.getAttribute("plan");
 Double []actual=(Double[])request.getAttribute("actual");
 
