@@ -1,22 +1,18 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@page import="net.sf.json.JSONArray"%>
 <%@ page import="com.zq.commons.utils.StringUtils"%>
 <%
 String path = request.getContextPath();
-Map<Integer,Map<Integer,List>> allProjectsCategory = (Map<Integer,Map<Integer,List>>)request.getAttribute("allProjectsCategory");
-Map<Integer,List> firstMap = allProjectsCategory.get(CMCCConstant.FIRST_ACCOUNT);
-Map<Integer,List> secondMap = allProjectsCategory.get(CMCCConstant.SECOND_ACCOUNT);
-List firstCapexList = firstMap.get(CMCCConstant.CAPEX_PROJECT);
-List firstOpexList = firstMap.get(CMCCConstant.OPEX_PROJECT);
-List secondCapexList = secondMap.get(CMCCConstant.CAPEX_PROJECT);
-List secondOpexList = secondMap.get(CMCCConstant.OPEX_PROJECT);
-Double[] capexMoney = new Double[allProjectsCategory.size()+1];
-Double[] opexMoney = new Double[allProjectsCategory.size()+1];
-capexMoney[0] = (Double)firstCapexList.get(0);
-capexMoney[1] = (Double)secondCapexList.get(0);
+Map<String,Double> firstBillMoney = (Map<String,Double>)request.getAttribute("firstBillMoney");
+Map<String,Double> secondBillMoney = (Map<String,Double>)request.getAttribute("secondBillMoney");
+Double[] capexMoney = new Double[3];
+Double[] opexMoney = new Double[3];
+capexMoney[0] = (Double)firstBillMoney.get("capexMoney");
+capexMoney[1] = (Double)secondBillMoney.get("capexMoney");
 capexMoney[2] = capexMoney[0] + capexMoney[1];
-opexMoney[0] = (Double)firstOpexList.get(0);
-opexMoney[1] = (Double)secondOpexList.get(0);
+opexMoney[0] = (Double)firstBillMoney.get("opexMoney");
+opexMoney[1] = (Double)secondBillMoney.get("opexMoney");
 opexMoney[2] = opexMoney[0] + opexMoney[1];
 Double firstMoney = capexMoney[0] + opexMoney[0];
 Double secondMoney = capexMoney[1] + opexMoney[1];

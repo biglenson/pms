@@ -5,6 +5,9 @@ import org.springframework.data.domain.Page;
 import com.zq.entity.basic.purchase.BasFirstBill;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -17,6 +20,8 @@ public interface IBasFirstBillService{
 	Page<BasFirstBill> getBasFirstBill(Integer page, int pageSize);
 
 	List getFirstBillByYear(String year);
+
+	HttpServletRequest getTotalMoneyFromBasFirstBill(HttpServletRequest request);
 
 
 }

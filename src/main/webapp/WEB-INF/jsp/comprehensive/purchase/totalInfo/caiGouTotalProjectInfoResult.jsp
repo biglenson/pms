@@ -1,22 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%@ page import="com.zq.commons.utils.StringUtils"%>
+<%@page import="net.sf.json.JSONArray"%>
 <%
 String path = request.getContextPath();
-Map<Integer,Map<Integer,List>> allProjectsCategory = (Map<Integer,Map<Integer,List>>)request.getAttribute("allProjectsCategory");
-Map<Integer,List> firstMap = allProjectsCategory.get(CMCCConstant.FIRST_ACCOUNT);
-Map<Integer,List> secondMap = allProjectsCategory.get(CMCCConstant.SECOND_ACCOUNT);
-List firstCapexList = firstMap.get(CMCCConstant.CAPEX_PROJECT);
-List firstOpexList = firstMap.get(CMCCConstant.OPEX_PROJECT);
-List secondCapexList = secondMap.get(CMCCConstant.CAPEX_PROJECT);
-List secondOpexList = secondMap.get(CMCCConstant.OPEX_PROJECT);
-Integer[] capexCount = new Integer[allProjectsCategory.size()+1];
-Integer[] opexCount = new Integer[allProjectsCategory.size()+1];
-capexCount[0] = (Integer)firstCapexList.get(1);
-capexCount[1] = (Integer)secondCapexList.get(1);
+Integer[] capexCount = new Integer[3];
+Integer[] opexCount = new Integer[3];
+capexCount[0] = (Integer)request.getAttribute("capexFCount");
+capexCount[1] = (Integer)request.getAttribute("opexFCount");
 capexCount[2] = capexCount[0] + capexCount[1];
-opexCount[0] = (Integer)firstOpexList.get(1);
-opexCount[1] = (Integer)secondOpexList.get(1);
+opexCount[0] = (Integer)request.getAttribute("capexSCount");
+opexCount[1] = (Integer)request.getAttribute("opexSCount");
 opexCount[2] = opexCount[0] + opexCount[1];
 Integer firstCount = capexCount[0] + opexCount[0];
 Integer secondCount = capexCount[1] + opexCount[1];
