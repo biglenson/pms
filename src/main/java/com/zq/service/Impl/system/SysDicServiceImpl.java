@@ -1,9 +1,12 @@
 package com.zq.service.Impl.system;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zq.controller.ComprehensiveViewController;
 import com.zq.dao.system.ISysDicRepository;
+import com.zq.entity.system.SysDic;
 import com.zq.service.system.ISysDicService;
 
 /**
@@ -14,12 +17,21 @@ import com.zq.service.system.ISysDicService;
 @Service
 public class SysDicServiceImpl implements ISysDicService {
 
+
+	private static Logger logger = Logger.getLogger(SysDicServiceImpl.class);
     @Autowired
     private ISysDicRepository iSysDicRepository;
 
 	@Override
 	public String getNameByClasscodeAndCode(String classcode, Integer code) {
-		return iSysDicRepository.findByClasscodeAndCode(classcode, code).getName();
+		String name = "";
+		SysDic sysDic = iSysDicRepository.findByClasscodeAndCode(classcode, code);
+		if(sysDic == null){
+			logger.info(classcode + ":" +code + "枚举值为null");
+		}else{			
+		   name = sysDic.getName();
+		}
+		return name;
 	}
 
 }
