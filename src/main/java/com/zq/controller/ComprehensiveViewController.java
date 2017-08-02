@@ -114,11 +114,11 @@ public class ComprehensiveViewController extends BaseController {
 		double contractValue = 0d;
 		for (BasFirstBill firstBill : firstBillList) {
 			if (dataUpdateDate == null) {
-				dataUpdateDate = firstBill.getLastUpdateTime();
+				dataUpdateDate = firstBill.getModifyTime();
 			}
-			if (dataUpdateDate != null && firstBill.getLastUpdateTime() != null
-					&& dataUpdateDate.before(firstBill.getLastUpdateTime())) {
-				dataUpdateDate = firstBill.getLastUpdateTime();
+			if (dataUpdateDate != null && firstBill.getModifyTime() != null
+					&& dataUpdateDate.before(firstBill.getModifyTime())) {
+				dataUpdateDate = firstBill.getModifyTime();
 			}
 			String projectCode = TypeUtils.nullToString(firstBill.getProjCode());
 			if (projectCodeSet.contains(projectCode)) {

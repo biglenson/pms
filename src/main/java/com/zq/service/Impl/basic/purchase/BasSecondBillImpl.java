@@ -49,13 +49,13 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 		int capexSCount=0;
 		int opexSCount=0;
 		String year = request.getParameter("year");
-		List<BasFirstBill> secondBillList = this.getSecondBillByYear(year);
+		List<BasSecondBill> secondBillList = this.getSecondBillByYear(year);
 		for(int i=0,j=secondBillList.size();i<j;i++){
-			BasFirstBill secondBill = secondBillList.get(i);
+			BasSecondBill secondBill = secondBillList.get(i);
 			if(dataUpdateDate == null){
-				dataUpdateDate = secondBill.getLastUpdateTime();
-			}else if(secondBill.getLastUpdateTime()!=null && dataUpdateDate.before(secondBill.getLastUpdateTime())){
-				dataUpdateDate = secondBill.getLastUpdateTime();
+				dataUpdateDate = secondBill.getModifyTime();
+			}else if(secondBill.getModifyTime()!=null && dataUpdateDate.before(secondBill.getModifyTime())){
+				dataUpdateDate = secondBill.getModifyTime();
 			}
 			int type=secondBill.getExpenditureType();
 			if(type==1){//capex
