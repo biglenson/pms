@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
+import com.zq.controller.CMCCSecondBill;
 import com.zq.dao.basic.purchase.IBasSecondBillRepository;
 import com.zq.entity.basic.purchase.BasFirstBill;
 import com.zq.entity.basic.purchase.BasSecondBill;
@@ -71,6 +72,38 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 		request.setAttribute("capexSCount",capexSCount);
 		request.setAttribute("opexSCount",opexSCount);
 		request.setAttribute("secondBillMoney",secondBillMoney);
+		return request;
+	}
+	@Override
+	public HttpServletRequest getPKindFromSecondBill(HttpServletRequest request, Map<String, Double> categoryMoney,
+			Map<String, Integer> categoryProject) {
+		Date dataUpdateDate = null;
+		String year = request.getParameter("year");
+		List<BasSecondBill> secondBills = this.getSecondBillByYear(year);
+		for(int i=0,j=secondBills.size();i<j;i++){
+			BasSecondBill secondBill = secondBills.get(i);			
+			int isFrame = secondBill.getContractFrameStatus();
+			int isRebulidProject = secondBill.getProjResetuprStatus();
+			String pinleiName = secondBill.getCategory();
+			if(!pinleiNames.contains(pinleiName)){
+				continue;
+			}
+			if(dataUpdateDate == null){
+				dataUpdateDate = secondBill.getModifyTime();
+			}else if(secondBill.getModifyTime()!=null && dataUpdateDate.before(secondBill.getModifyTime())){
+				dataUpdateDate = secondBill.getModifyTime();
+			}
+			if(isFrame==1){
+				//计算金额
+				Double money = categoryMoney.get(pinleiName)==null?0:categoryMoney.get(pinleiName) + TypeUtils.getNotNullDoubleValue(user, secondBill, "num05");
+				categoryMoney.put(pinleiName, money);
+			}
+			if(isRebulidProject==1){
+				//计算项目的个数
+				Integer count = categoryProject.get(pinleiName)==null?0:categoryProject.get(pinleiName) + 1;
+				categoryProject.put(pinleiName, count);
+			}
+		}
 		return request;
 	}
     

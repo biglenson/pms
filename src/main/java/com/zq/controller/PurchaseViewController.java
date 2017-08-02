@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.zq.commons.result.HighChartData;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
 import com.zq.entity.basic.purchase.BasFirstBill;
@@ -62,7 +63,6 @@ public class PurchaseViewController extends BaseController{
 	public String totalMoneyInfo(HttpServletRequest request){
 		request=iBasFirstBillService.getTotalMoneyFromBasFirstBill(request);
 		request=iBasSecondBillService.getTotalMoneyFromBasSecondBill(request);
-		System.out.println("---------------------"+request.getParameter("firstBillMoney"));;
 		return CMCCConstant.TotalMoneyInfo;		
 	}
 	
@@ -81,5 +81,83 @@ public class PurchaseViewController extends BaseController{
 		request=iBasFirstBillService.getTotalMoneyFromBasFirstBill(request);
 		request=iBasSecondBillService.getTotalMoneyFromBasSecondBill(request);
 		return CMCCConstant.TotalProjectInfo;		
+	}
+	
+	/**
+	* @Title: purchaseKindInfo
+	* @Description: TODO(采购品类分析)
+	* @author BigCoin
+	* @date 2017年8月1日 下午2:54:17
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	@RequestMapping(value = "purchasekindinfo",method =RequestMethod.POST)
+	public String purchaseKindInfo(HttpServletRequest request){
+		
+		Map<String,Double> categoryMoney = new HashMap();
+		Map<String,Integer> categoryProject = new HashMap();
+		List<String> pinleiNames = new ArrayList();
+		CodeTable pinleiCodeTable = ComponentFactory.getCodeTableManager().getCodeTable(user, "cmcc_jicai_pinlei");
+		List<CommonCode> commonCodes = pinleiCodeTable.getAvailableCodeList();
+		for(CommonCode code: commonCodes){
+			categoryMoney.put(code.getName(), new Double(0));
+			categoryProject.put(code.getName(), new Integer(0));
+			pinleiNames.add(code.getName());
+		}
+		int index = TypeUtils.getIntFromString(request.getParameter("index"));
+		request.setAttribute("index", index);
+		request=iBasSecondBillService.getPKindFromSecondBill(request,categoryMoney,categoryProject);
+		
+		List<FrameworkContract> frameContracts = this.getAllFrameContracts(user, request);
+		
+		for(int i=0,j=frameContracts.size();i<j;i++){
+			FrameworkContract frameContract = frameContracts.get(i);
+			if(frameContract.getYear()<=0){
+				continue;
+			}
+			
+			String isJicai = FormBaseResove.getEnumValueName(user, frameContract, "enum02");
+			String pinleiName = FormBaseResove.getEnumValueName(user, frameContract, "enum03");
+			if(!pinleiNames.contains(pinleiName)){
+				continue;
+			}
+//			cal.setTime(frameContract.getContractStartTime());
+			if(year != frameContract.getYear() || "集采".equals(isJicai)){
+				continue;
+			}
+			if(dataUpdateDate == null){
+				dataUpdateDate = frameContract.getLastUpdateTime();
+			}else if(frameContract.getLastUpdateTime()!=null && dataUpdateDate.before(frameContract.getLastUpdateTime())){
+				dataUpdateDate = frameContract.getLastUpdateTime();
+			}
+			Double money = categoryMoney.get(pinleiName)==null?0:categoryMoney.get(pinleiName) + FormBaseResove.getNotNullDoubleValue(user, frameContract, "num01");
+			categoryMoney.put(pinleiName, money);
+		}
+		List<HighChartData> moneyDatas = new ArrayList();
+		List<HighChartData> countDatas = new ArrayList();
+		Double totalMoney = 0d;
+		Integer totalCount = 0;
+		for(int i=0,j=pinleiNames.size();i<j;i++){
+			String pinleiName = pinleiNames.get(i);
+			HighChartData moneyData = new HighChartData();
+			HighChartData countData = new HighChartData();
+			moneyData.setName(pinleiName);
+			moneyData.setY(categoryMoney.get(pinleiName));
+			moneyDatas.add(moneyData);
+			countData.setName(pinleiName);
+			countData.setY(categoryProject.get(pinleiName));
+			countDatas.add(countData);
+			totalMoney += categoryMoney.get(pinleiName);
+			totalCount += categoryProject.get(pinleiName);
+		}
+		request.setAttribute("totalMoney", totalMoney);
+		request.setAttribute("totalCount", totalCount);
+		request.setAttribute("moneyDatas", moneyDatas);
+		request.setAttribute("countDatas", countDatas);
+		request.setAttribute("categoryNames", pinleiNames);
+		request.setAttribute(CMCCConstant.LASUPDATE, CMCCConstant.getLastUpdateString(dataUpdateDate));
+		return CMCCConstant.PurchaseKindInfo;		
 	}
 }

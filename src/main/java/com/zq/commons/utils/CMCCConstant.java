@@ -40,6 +40,7 @@ public class CMCCConstant {
 	public static final String PCVDashBoard="comprehensive/purchase/PCVDashBoard";
 	public static final String TotalMoneyInfo="comprehensive/purchase/totalInfo/caiGouTotalMoneyInfoResult";
 	public static final String TotalProjectInfo="comprehensive/purchase/totalInfo/caiGouTotalProjectInfoResult";
+	public static final String PurchaseKindInfo="comprehensive/purchase/categoryAnalysis/categoryInfoResult";
 	
 	/** 
 	* <p>Title:工程视图JSP </p> 
