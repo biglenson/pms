@@ -11,8 +11,8 @@ import com.zq.entity.system.SysDic;
  */
 public interface ISysDicService{
 
-	String getNameByClassAndCode(String string, Integer category);
-
 	List<SysDic> getAllSysDicListByClass(String string);
+	
+	String getNameByClasscodeAndCode(String classcode, Integer code);
 
 }

@@ -1,16 +1,16 @@
 package com.zq.service.Impl.basic.capex;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.zq.commons.result.PageInfo;
@@ -21,6 +21,7 @@ import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProjInvestplan;
 import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
 import com.zq.service.basic.capex.IBasCAPEXProjInvestplanService;
+import com.zq.service.system.ISysDicService;
 import com.zq.vo.basic.capex.BasCAPEXInvestPlanVO;
 
 /**
@@ -36,6 +37,9 @@ public class BasCAPEXInvestPlanImpl implements IBasCAPEXInvestPlanService {
 
     @Autowired
     private IBasCAPEXProjInvestplanService iBasCAPEXProjInvestplanService;
+    
+    @Autowired
+    private ISysDicService iSysDicService;
 
 	@Override
 	public Page<BasCAPEXInvestPlan> getBasCAPEXInvestPlan(int pageNumber, int pageSize) {
@@ -79,11 +83,6 @@ public class BasCAPEXInvestPlanImpl implements IBasCAPEXInvestPlanService {
 		return request;
 	}
 
-	private List<BasCAPEXInvestPlan> getBasCAPEXInvestPlanByYear(String year) {
-		
-		return iBasCAPEXInvestPlanRepository.findByYear(year);
-	}
-
 	@Override
 	public BasCAPEXInvestPlan getBasCAPEXInvestPlanById(int id) {
 		BasCAPEXProjInvestplan invPlan = iBasCAPEXProjInvestplanService.getBasCAPEXProjInvestplanByProjCode(String.valueOf(id));
@@ -97,7 +96,25 @@ public class BasCAPEXInvestPlanImpl implements IBasCAPEXInvestPlanService {
 
 	@Override
 	public List<BasCAPEXInvestPlanVO> getBasCAPEXInvestPlanVOList(List<BasCAPEXInvestPlan> content) {
-		return null;
+		List<BasCAPEXInvestPlanVO> voList = new ArrayList<>();		
+		for(BasCAPEXInvestPlan po:content){
+			BasCAPEXInvestPlanVO vo = new BasCAPEXInvestPlanVO();
+			BeanUtils.copyProperties(po, vo);		
+			String firstDomain = iSysDicService.getNameByClasscodeAndCode("Invest_domain",po.getFirstDomain());
+			String attribute = iSysDicService.getNameByClasscodeAndCode("attr_code",po.getAttribute());
+			if(firstDomain==null||firstDomain.equals("")){
+				vo.setFirstDomain("未录入数据");
+			}else{
+				vo.setFirstDomain(firstDomain);
+			}
+			if(attribute==null||attribute.equals("")){
+				vo.setAttribute("未录入数据");
+			}else{
+				vo.setAttribute(attribute);
+			}
+			voList.add(vo);
+		}
+		return voList;
 
 	}
     

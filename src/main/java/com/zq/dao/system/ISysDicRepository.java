@@ -7,8 +7,10 @@ import com.zq.entity.system.SysDic;
 
 public interface ISysDicRepository extends JpaRepository<SysDic, Long> {
 
-	SysDic findByClassAndCode(String string, Integer code);
 
 	List<SysDic> findByClasscode(String string);	
+
+	
+	SysDic findByClasscodeAndCode(String classcode, Integer code);	
 
 }

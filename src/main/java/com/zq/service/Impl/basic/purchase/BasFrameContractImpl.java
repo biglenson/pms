@@ -86,7 +86,7 @@ public class BasFrameContractImpl implements IBasFrameContractService {
 		for(int i=0,j=frameContracts.size();i<j;i++){
 			BasFrameContract frameContract = frameContracts.get(i);
 			int isJicai = frameContract.getPurchasingWay();
-			String pinleiName = iSysDicService.getNameByClassAndCode("purchasing_category",frameContract.getFrameCategories());
+			String pinleiName = iSysDicService.getNameByClasscodeAndCode("purchasing_category",frameContract.getFrameCategories());
 			if(year != frameContract.getYear() || isJicai==10){
 				continue;
 			}

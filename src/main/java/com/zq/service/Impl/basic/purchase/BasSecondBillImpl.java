@@ -85,7 +85,7 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 			BasSecondBill secondBill = secondBills.get(i);			
 			int isFrame = secondBill.getContractFrameStatus();
 			int isRebulidProject = secondBill.getProjResetuprStatus();
-			String pinleiName = iSysDicService.getNameByClassAndCode("purchasing_category",secondBill.getCategory());
+			String pinleiName = iSysDicService.getNameByClasscodeAndCode("purchasing_category",secondBill.getCategory());
 			if(dataUpdateDate == null){
 				dataUpdateDate = secondBill.getModifyTime();
 			}else if(secondBill.getModifyTime()!=null && dataUpdateDate.before(secondBill.getModifyTime())){

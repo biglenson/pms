@@ -21,17 +21,13 @@ public class SysDicServiceImpl implements ISysDicService {
     private ISysDicRepository iSysDicRepository;
 
 	@Override
-	public String getNameByClassAndCode(String string, Integer code) {
-		
-		return iSysDicRepository.findByClassAndCode(string,code).getName();
-	}
-
-	@Override
 	public List<SysDic> getAllSysDicListByClass(String string) {
 		
 		return iSysDicRepository.findByClasscode(string);
 	}
 
-
+	public String getNameByClasscodeAndCode(String classcode, Integer code) {
+		return iSysDicRepository.findByClasscodeAndCode(classcode, code).getName();
+	}
 
 }
