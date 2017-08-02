@@ -22,7 +22,7 @@ public class BasCAPEXInvestPlanVO{
 	
 	private Integer version;
 	
-	private Integer firstDomain;
+	private String firstDomain;
 		
 	private String secendDomain;
 	
@@ -30,7 +30,7 @@ public class BasCAPEXInvestPlanVO{
 		
 	private String fourthDomain;
 	
-	private Integer attribute;
+	private String attribute;
 	
 	private String projName;
 	
@@ -183,21 +183,14 @@ public class BasCAPEXInvestPlanVO{
 	/**
 	 * 一级专业 代码表：投资专业代码表
 	 */
-	public void setFirstDomain(int value) {
-		setFirstDomain(new Integer(value));
-	}
-	
-	/**
-	 * 一级专业 代码表：投资专业代码表
-	 */
-	public void setFirstDomain(Integer value) {
+	public void setFirstDomain(String value) {
 		this.firstDomain = value;
 	}
 	
 	/**
 	 * 一级专业 代码表：投资专业代码表
 	 */
-	public Integer getFirstDomain() {
+	public String getFirstDomain() {
 		return firstDomain;
 	}
 	
@@ -242,25 +235,19 @@ public class BasCAPEXInvestPlanVO{
 	public String getFourthDomain() {
 		return fourthDomain;
 	}
+
 	
 	/**
 	 * 属性 代码表：属性
 	 */
-	public void setAttribute(int value) {
-		setAttribute(new Integer(value));
-	}
-	
-	/**
-	 * 属性 代码表：属性
-	 */
-	public void setAttribute(Integer value) {
+	public void setAttribute(String value) {
 		this.attribute = value;
 	}
 	
 	/**
 	 * 属性 代码表：属性
 	 */
-	public Integer getAttribute() {
+	public String getAttribute() {
 		return attribute;
 	}
 	

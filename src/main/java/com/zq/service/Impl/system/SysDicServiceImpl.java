@@ -17,6 +17,9 @@ public class SysDicServiceImpl implements ISysDicService {
     @Autowired
     private ISysDicRepository iSysDicRepository;
 
-
+	@Override
+	public String getNameByClasscodeAndCode(String classcode, Integer code) {
+		return iSysDicRepository.findByClasscodeAndCode(classcode, code).getName();
+	}
 
 }

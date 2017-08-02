@@ -8,4 +8,6 @@ package com.zq.service.system;
  */
 public interface ISysDicService{
 
+	String getNameByClasscodeAndCode(String classcode, Integer code);
+
 }
