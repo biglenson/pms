@@ -6,7 +6,7 @@ String path = request.getContextPath();
 <script type="text/javascript">
 	function changeZhichuAnalysis(index){
 		$.ajax({
-			url:"<%=path%>/CaiGouAction.do?operation=zhichuInfo",
+			url:"<%=path%>/purchaseview/purchasemethodinfo",
 			method:"POST",
 			data:{
 				year:document.frm.year.value,

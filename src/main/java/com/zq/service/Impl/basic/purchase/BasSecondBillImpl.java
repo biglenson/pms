@@ -2,8 +2,10 @@ package com.zq.service.Impl.basic.purchase;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -105,6 +107,39 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 		request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
 		request.setAttribute("categoryMoney",categoryMoney);
 		request.setAttribute("categoryProject",categoryProject);
+		return request;
+	}
+	@Override
+	public HttpServletRequest getPMethodFromSecondBill(HttpServletRequest request, Map<String, Double> zhichuMoney,
+			Map<String, Integer> zhichuProject) {
+		Date dataUpdateDate = null;
+		String year = request.getParameter("year");
+		List<BasSecondBill> secondBills = this.getSecondBillByYear(year);
+		Set<String> secondBillNames = new HashSet();
+		for(int i=0,j=secondBills.size();i<j;i++){
+			BasSecondBill secondBill = secondBills.get(i);
+			int isRebulidProject = secondBill.getProjResetuprStatus();
+			String methodName = iSysDicService.getNameByClasscodeAndCode("purchasing_method",secondBill.getPurchasingMethod());
+			if(year != secondBill.getYear() || isRebulidProject==1){
+				continue;
+			}
+			if(dataUpdateDate == null){
+				dataUpdateDate = secondBill.getModifyTime();
+			}else if(secondBill.getModifyTime()!=null && dataUpdateDate.before(secondBill.getModifyTime())){
+				dataUpdateDate = secondBill.getModifyTime();
+			}
+			Double money = zhichuMoney.get(methodName)==null?0:zhichuMoney.get(methodName) + TypeUtils.string2Double(secondBill.getContractInTax());
+			zhichuMoney.put(methodName, money);
+			boolean flag = secondBillNames.add(secondBill.getProjName());
+			if(flag){
+				Integer count = zhichuProject.get(methodName)==null?0:zhichuProject.get(methodName) + 1;
+				zhichuProject.put(methodName, count);
+			}
+			
+		}
+		request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
+		request.setAttribute("zhichuMoney",zhichuMoney);
+		request.setAttribute("zhichuProject",zhichuProject);
 		return request;
 	}
     

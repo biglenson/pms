@@ -27,5 +27,8 @@ public interface IBasSecondBillService{
 	HttpServletRequest getPKindFromSecondBill(HttpServletRequest request, Map<String, Double> categoryMoney,
 			Map<String, Integer> categoryProject);
 
+	HttpServletRequest getPMethodFromSecondBill(HttpServletRequest request, Map<String, Double> zhichuMoney,
+			Map<String, Integer> zhichuProject);
+
 
 }
