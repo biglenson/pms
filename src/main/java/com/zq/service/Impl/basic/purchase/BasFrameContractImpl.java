@@ -12,10 +12,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
 import com.zq.dao.basic.purchase.IBasFrameContractRepository;
 import com.zq.entity.basic.purchase.BasFrameContract;
 import com.zq.service.basic.purchase.IBasFrameContractService;
+import com.zq.service.system.ISysDicService;
 
 /**
  *
@@ -27,6 +29,9 @@ public class BasFrameContractImpl implements IBasFrameContractService {
 
     @Autowired
     private IBasFrameContractRepository iBasFrameContractRepository;
+    
+    @Autowired
+    private ISysDicService iSysDicService;
 
 	@Override
 	public Page<BasFrameContract> getBasFrameContract(Integer pageNumber, int pageSize) {
@@ -70,6 +75,32 @@ public class BasFrameContractImpl implements IBasFrameContractService {
 	private List<BasFrameContract> getAllframeContractList(String year) {
 		
 		return iBasFrameContractRepository.findByYear(year);
+	}
+
+	@Override
+	public HttpServletRequest getPKindFromFrameContract(HttpServletRequest request, Map<String, Double> categoryMoney,
+			Map<String, Integer> categoryProject) {
+		Date dataUpdateDate = null;
+		String year = request.getParameter("year");
+		List<BasFrameContract> frameContracts = this.getAllframeContractList(year);
+		for(int i=0,j=frameContracts.size();i<j;i++){
+			BasFrameContract frameContract = frameContracts.get(i);
+			int isJicai = frameContract.getPurchasingWay();
+			String pinleiName = iSysDicService.getNameByClassAndCode("purchasing_category",frameContract.getFrameCategories());
+			if(year != frameContract.getYear() || isJicai==10){
+				continue;
+			}
+			if(dataUpdateDate == null){
+				dataUpdateDate = frameContract.getModifyTime();
+			}else if(frameContract.getModifyTime()!=null && dataUpdateDate.before(frameContract.getModifyTime())){
+				dataUpdateDate = frameContract.getModifyTime();
+			}
+			Double money = categoryMoney.get(pinleiName)==null?0:categoryMoney.get(pinleiName) + TypeUtils.string2Double(frameContract.getContractInTax());
+			categoryMoney.put(pinleiName, money);
+		}
+		request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
+		request.setAttribute("categoryMoney",categoryMoney);
+		return request;
 	}
     
    

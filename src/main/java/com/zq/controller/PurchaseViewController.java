@@ -21,10 +21,12 @@ import com.zq.commons.utils.TypeUtils;
 import com.zq.entity.basic.purchase.BasFirstBill;
 import com.zq.entity.basic.purchase.BasFrameContract;
 import com.zq.entity.basic.purchase.BasSecondBill;
+import com.zq.entity.system.SysDic;
 import com.zq.service.basic.capex.IBasCAPEXProjectService;
 import com.zq.service.basic.purchase.IBasFirstBillService;
 import com.zq.service.basic.purchase.IBasFrameContractService;
 import com.zq.service.basic.purchase.IBasSecondBillService;
+import com.zq.service.system.ISysDicService;
 
 
 /** 
@@ -46,6 +48,9 @@ public class PurchaseViewController extends BaseController{
 	
 	@Autowired
 	private IBasFrameContractService iBasFrameContractService;
+	
+	@Autowired
+	private ISysDicService iSysDicService;
 	
 	private static Logger logger = Logger.getLogger(PurchaseViewController.class);  
 
@@ -96,12 +101,11 @@ public class PurchaseViewController extends BaseController{
 	@RequestMapping(value = "purchasekindinfo",method =RequestMethod.POST)
 	public String purchaseKindInfo(HttpServletRequest request){
 		
-		Map<String,Double> categoryMoney = new HashMap();
-		Map<String,Integer> categoryProject = new HashMap();
-		List<String> pinleiNames = new ArrayList();
-		CodeTable pinleiCodeTable = ComponentFactory.getCodeTableManager().getCodeTable(user, "cmcc_jicai_pinlei");
-		List<CommonCode> commonCodes = pinleiCodeTable.getAvailableCodeList();
-		for(CommonCode code: commonCodes){
+		Map<String,Double> categoryMoney = new HashMap<String, Double>();
+		Map<String,Integer> categoryProject = new HashMap<String, Integer>();
+		List<String> pinleiNames = new ArrayList<String>();
+		List<SysDic> commonCodes = iSysDicService.getAllSysDicListByClass("purchasing_category");
+		for(SysDic code: commonCodes){
 			categoryMoney.put(code.getName(), new Double(0));
 			categoryProject.put(code.getName(), new Integer(0));
 			pinleiNames.add(code.getName());
@@ -109,38 +113,14 @@ public class PurchaseViewController extends BaseController{
 		int index = TypeUtils.getIntFromString(request.getParameter("index"));
 		request.setAttribute("index", index);
 		request=iBasSecondBillService.getPKindFromSecondBill(request,categoryMoney,categoryProject);
+		request=iBasFrameContractService.getPKindFromFrameContract(request,categoryMoney,categoryProject);
 		
-		List<FrameworkContract> frameContracts = this.getAllFrameContracts(user, request);
-		
-		for(int i=0,j=frameContracts.size();i<j;i++){
-			FrameworkContract frameContract = frameContracts.get(i);
-			if(frameContract.getYear()<=0){
-				continue;
-			}
-			
-			String isJicai = FormBaseResove.getEnumValueName(user, frameContract, "enum02");
-			String pinleiName = FormBaseResove.getEnumValueName(user, frameContract, "enum03");
-			if(!pinleiNames.contains(pinleiName)){
-				continue;
-			}
-//			cal.setTime(frameContract.getContractStartTime());
-			if(year != frameContract.getYear() || "集采".equals(isJicai)){
-				continue;
-			}
-			if(dataUpdateDate == null){
-				dataUpdateDate = frameContract.getLastUpdateTime();
-			}else if(frameContract.getLastUpdateTime()!=null && dataUpdateDate.before(frameContract.getLastUpdateTime())){
-				dataUpdateDate = frameContract.getLastUpdateTime();
-			}
-			Double money = categoryMoney.get(pinleiName)==null?0:categoryMoney.get(pinleiName) + FormBaseResove.getNotNullDoubleValue(user, frameContract, "num01");
-			categoryMoney.put(pinleiName, money);
-		}
-		List<HighChartData> moneyDatas = new ArrayList();
-		List<HighChartData> countDatas = new ArrayList();
+		List<HighChartData> moneyDatas = new ArrayList<HighChartData>();
+		List<HighChartData> countDatas = new ArrayList<HighChartData>();
 		Double totalMoney = 0d;
 		Integer totalCount = 0;
 		for(int i=0,j=pinleiNames.size();i<j;i++){
-			String pinleiName = pinleiNames.get(i);
+			String pinleiName =pinleiNames.get(i);
 			HighChartData moneyData = new HighChartData();
 			HighChartData countData = new HighChartData();
 			moneyData.setName(pinleiName);
@@ -157,7 +137,6 @@ public class PurchaseViewController extends BaseController{
 		request.setAttribute("moneyDatas", moneyDatas);
 		request.setAttribute("countDatas", countDatas);
 		request.setAttribute("categoryNames", pinleiNames);
-		request.setAttribute(CMCCConstant.LASUPDATE, CMCCConstant.getLastUpdateString(dataUpdateDate));
 		return CMCCConstant.PurchaseKindInfo;		
 	}
 }

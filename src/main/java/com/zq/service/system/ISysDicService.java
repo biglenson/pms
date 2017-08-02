@@ -1,5 +1,8 @@
 package com.zq.service.system;
 
+import java.util.List;
+
+import com.zq.entity.system.SysDic;
 
 /**
  *
@@ -7,5 +10,9 @@ package com.zq.service.system;
  *
  */
 public interface ISysDicService{
+
+	String getNameByClassAndCode(String string, Integer category);
+
+	List<SysDic> getAllSysDicListByClass(String string);
 
 }

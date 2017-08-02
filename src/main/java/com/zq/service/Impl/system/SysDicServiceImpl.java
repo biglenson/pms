@@ -1,9 +1,12 @@
 package com.zq.service.Impl.system;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zq.dao.system.ISysDicRepository;
+import com.zq.entity.system.SysDic;
 import com.zq.service.system.ISysDicService;
 
 /**
@@ -16,6 +19,18 @@ public class SysDicServiceImpl implements ISysDicService {
 
     @Autowired
     private ISysDicRepository iSysDicRepository;
+
+	@Override
+	public String getNameByClassAndCode(String string, Integer code) {
+		
+		return iSysDicRepository.findByClassAndCode(string,code).getName();
+	}
+
+	@Override
+	public List<SysDic> getAllSysDicListByClass(String string) {
+		
+		return iSysDicRepository.findByClasscode(string);
+	}
 
 
 

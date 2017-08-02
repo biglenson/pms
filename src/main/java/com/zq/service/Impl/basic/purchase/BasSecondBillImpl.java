@@ -1,6 +1,5 @@
 package com.zq.service.Impl.basic.purchase;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +14,10 @@ import org.springframework.stereotype.Service;
 
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
-import com.zq.controller.CMCCSecondBill;
 import com.zq.dao.basic.purchase.IBasSecondBillRepository;
-import com.zq.entity.basic.purchase.BasFirstBill;
 import com.zq.entity.basic.purchase.BasSecondBill;
 import com.zq.service.basic.purchase.IBasSecondBillService;
+import com.zq.service.system.ISysDicService;
 
 /**
  *
@@ -31,19 +29,22 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 
     @Autowired
     private IBasSecondBillRepository iBasSecondBillRepository;
+    
+    @Autowired
+    private ISysDicService iSysDicService;
 
 	@Override
 	public Page<BasSecondBill> getBasSecondBill(Integer pageNumber, int pageSize) {
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, null);
 		return iBasSecondBillRepository.findAll(request);
 	}
-	public List getSecondBillByYear(String year) {		
+	public List<BasSecondBill> getSecondBillByYear(String year) {		
 		return iBasSecondBillRepository.findByYear(year);
 	}
 	@Override
 	public HttpServletRequest getTotalMoneyFromBasSecondBill(HttpServletRequest request) {
 		Date dataUpdateDate = null;
-		Map<String,Double> secondBillMoney=new HashMap();
+		Map<String,Double> secondBillMoney=new HashMap<String, Double>();
 		Double capexMoney=0d;
 		Double opexMoney=0d;
 		int capexSCount=0;
@@ -84,10 +85,7 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 			BasSecondBill secondBill = secondBills.get(i);			
 			int isFrame = secondBill.getContractFrameStatus();
 			int isRebulidProject = secondBill.getProjResetuprStatus();
-			String pinleiName = secondBill.getCategory();
-			if(!pinleiNames.contains(pinleiName)){
-				continue;
-			}
+			String pinleiName = iSysDicService.getNameByClassAndCode("purchasing_category",secondBill.getCategory());
 			if(dataUpdateDate == null){
 				dataUpdateDate = secondBill.getModifyTime();
 			}else if(secondBill.getModifyTime()!=null && dataUpdateDate.before(secondBill.getModifyTime())){
@@ -95,7 +93,7 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 			}
 			if(isFrame==1){
 				//计算金额
-				Double money = categoryMoney.get(pinleiName)==null?0:categoryMoney.get(pinleiName) + TypeUtils.getNotNullDoubleValue(user, secondBill, "num05");
+				Double money = categoryMoney.get(pinleiName)==null?0:categoryMoney.get(pinleiName) + TypeUtils.string2Double(secondBill.getContractInTax());
 				categoryMoney.put(pinleiName, money);
 			}
 			if(isRebulidProject==1){
@@ -104,6 +102,9 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 				categoryProject.put(pinleiName, count);
 			}
 		}
+		request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
+		request.setAttribute("categoryMoney",categoryMoney);
+		request.setAttribute("categoryProject",categoryProject);
 		return request;
 	}
     
