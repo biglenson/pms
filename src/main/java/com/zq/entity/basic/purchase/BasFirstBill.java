@@ -184,14 +184,14 @@ public class BasFirstBill implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
-	public void setLastUpdateTime(java.sql.Timestamp value) {
+	public void setModifyTime(java.sql.Timestamp value) {
 		this.modifyTime = value;
 	}
 	
 	/**
 	 * 最后修改时间
 	 */
-	public java.sql.Timestamp getLastUpdateTime() {
+	public java.sql.Timestamp getModifyTime() {
 		return modifyTime;
 	}
 	

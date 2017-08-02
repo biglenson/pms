@@ -51,9 +51,9 @@ public class BasFirstBillImpl implements IBasFirstBillService {
 		for(int i=0,j=firstBillList.size();i<j;i++){
 			BasFirstBill firstBill = firstBillList.get(i);
 			if(dataUpdateDate == null){
-				dataUpdateDate = firstBill.getLastUpdateTime();
-			}else if(firstBill.getLastUpdateTime()!=null && dataUpdateDate.before(firstBill.getLastUpdateTime())){
-				dataUpdateDate = firstBill.getLastUpdateTime();
+				dataUpdateDate = firstBill.getModifyTime();
+			}else if(firstBill.getModifyTime()!=null && dataUpdateDate.before(firstBill.getModifyTime())){
+				dataUpdateDate = firstBill.getModifyTime();
 			}
 			int type=firstBill.getExpenditureType();
 			if(type==1){//capex
