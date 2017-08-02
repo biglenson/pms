@@ -1,6 +1,9 @@
 package com.zq.service.Impl.system;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,11 @@ public class SysDicServiceImpl implements ISysDicService {
     private ISysDicRepository iSysDicRepository;
 
 	@Override
+	public List<SysDic> getAllSysDicListByClass(String string) {
+		
+		return iSysDicRepository.findByClasscode(string);
+	}
+
 	public String getNameByClasscodeAndCode(String classcode, Integer code) {
 		String name = "";
 		SysDic sysDic = iSysDicRepository.findByClasscodeAndCode(classcode, code);

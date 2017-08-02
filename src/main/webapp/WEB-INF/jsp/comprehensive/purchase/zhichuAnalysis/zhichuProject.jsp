@@ -1,6 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
 <%@ page import="com.zq.commons.utils.StringUtils"%>
+<%@ page import="com.zq.commons.result.HighChartData"%>
+<%@page import="net.sf.json.JSONArray"%>
 <%
 String path = request.getContextPath();
 Integer totalCount = (Integer)request.getAttribute("totalCount");

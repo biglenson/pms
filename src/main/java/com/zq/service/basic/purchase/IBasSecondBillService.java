@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import com.zq.entity.basic.purchase.BasSecondBill;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +23,12 @@ public interface IBasSecondBillService{
 	List getSecondBillByYear(String year);
 
 	HttpServletRequest getTotalMoneyFromBasSecondBill(HttpServletRequest request);
+
+	HttpServletRequest getPKindFromSecondBill(HttpServletRequest request, Map<String, Double> categoryMoney,
+			Map<String, Integer> categoryProject);
+
+	HttpServletRequest getPMethodFromSecondBill(HttpServletRequest request, Map<String, Double> zhichuMoney,
+			Map<String, Integer> zhichuProject);
 
 
 }

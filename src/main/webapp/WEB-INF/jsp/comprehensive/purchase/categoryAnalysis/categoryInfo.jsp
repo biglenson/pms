@@ -6,7 +6,7 @@ String path = request.getContextPath();
 <script type="text/javascript">
 	function changeCategoryAnalysis(index){
 		$.ajax({
-			url:"<%=path%>/CaiGouAction.do?operation=categoryInfo",
+			url:"<%=path%>/purchaseview/purchasekindinfo",
 			method:"POST",
 			data:{
 				year:document.frm.year.value,
