@@ -92,8 +92,129 @@ public class ProcessController extends BaseController{
         logger.info("测试中！----------------------------service 3"); 
         model.addAttribute("benefitEvalTplList", benefitEvalTplVOList);
 
-		//return CMCCConstant.ChooseTemplate;  
-		return CMCCConstant.TEST;  
+		return CMCCConstant.ChooseTemplate;  
+		//return CMCCConstant.TEST;  
 	 } 
+
+    @RequestMapping(value = "simpleFromBenefit")
+    public String simpleFromBenefit(HttpServletRequest request, String pageTitle, String url) {
+        request.setAttribute("pageTitle", pageTitle);
+        request.setAttribute("url", url);
+        return CMCCConstant.SimpleFromBenefit;
+    }
+
+    /**
+    * @Title: simpleFormBasic
+    * @Description: TODO(项目、产品[基本信息])
+    * @author Administrator
+    * @date 2017年7月27日 下午1:37:19
+    * @param @param request
+    * @param @param pageTitle 标题
+    * @param @return 设定文件
+    * @return String 返回类型
+    * @throws
+    */
+    @RequestMapping(value = "simpleFormBasic")
+    public String simpleFormGeneral(HttpServletRequest request, String pageTitle, String url) {
+        request.setAttribute("pageTitle", pageTitle);
+        request.setAttribute("url", url);
+        return CMCCConstant.SimpleFormBasic;
+    }
+
+    /**
+    * @Title: chooseTemplate
+    * @Description: TODO(选择模版)
+    * @author Administrator
+    * @date 2017年7月27日 下午4:31:09
+    * @param @param request
+    * @param @param pageTitle
+    * @param @param url
+    * @param @return 设定文件
+    * @return String 返回类型
+    * @throws
+    @RequestMapping(value = "chooseTemplate")
+    public String chooseTemplate(HttpServletRequest request, String evalFor, String evalPhase) {
+        request.setAttribute("evalFor", evalFor);
+        request.setAttribute("evalPhase", evalPhase);
+        System.out.println("日志输出：evalPhase: " + evalPhase + "===evalFor: " + evalFor);
+        return CMCCConstant.ChooseTemplate;
+    }
+    */
+
+    /**
+    * @Title: benefitEvalPopup
+    * @Description: TODO(效益评估弹出框)
+    * @author Administrator
+    * @date 2017年7月30日 下午4:04:37
+    * @param @param request
+    * @param @param pageTitle
+    * @param @param url
+    * @param @return 设定文件
+    * @return String 返回类型
+    * @throws
+    */
+    @RequestMapping(value = "benefitEvalPopup")
+    public String benefitEvalPopup(HttpServletRequest request, String pageTitle, String url) {
+        request.setAttribute("pageTitle", pageTitle);
+        request.setAttribute("url", url);
+        return CMCCConstant.BenefitEvalPopup;
+    }
+
+    /**
+    * @Title: logPopup
+    * @Description: TODO(效益评估弹出框--日志)
+    * @author Administrator
+    * @date 2017年7月30日 下午11:42:24
+    * @param @param request
+    * @param @param pageTitle
+    * @param @param url
+    * @param @return 设定文件
+    * @return String 返回类型
+    * @throws
+    */
+    @RequestMapping(value = "logPopup")
+    public String logPopup(HttpServletRequest request, String pageTitle, String url) {
+        request.setAttribute("pageTitle", pageTitle);
+        request.setAttribute("url", url);
+        return CMCCConstant.LogPopup;
+    }
+
+    /**
+    * @Title: userSelectCommon
+    * @Description: TODO(效益评估弹出框--选择用户)
+    * @author Administrator
+    * @date 2017年8月1日 下午5:36:29
+    * @param @param request
+    * @param @param pageTitle
+    * @param @param url
+    * @param @return 设定文件
+    * @return String 返回类型
+    * @throws
+    */
+    @RequestMapping(value = "userSelectCommon")
+    public String userSelectCommon(HttpServletRequest request, String pageTitle, String url) {
+        request.setAttribute("pageTitle", pageTitle);
+        request.setAttribute("url", url);
+        return CMCCConstant.UserSelectCommon;
+    }
+
+    /**
+    * @Title: benefitEvalEditPopup
+    * @Description: TODO(选择模版之后的效益评估编辑窗体)
+    * @author Administrator
+    * @date 2017年8月3日 上午10:07:29
+    * @param @param request
+    * @param @param pageTitle
+    * @param @param url
+    * @param @return 设定文件
+    * @return String 返回类型
+    * @throws
+    */
+    @RequestMapping(value = "benefitEvalEditPopup")
+    public String benefitEvalEditPopup(HttpServletRequest request, String pageTitle, String url) {
+        request.setAttribute("pageTitle", pageTitle);
+        request.setAttribute("url", url);
+        return CMCCConstant.BenefitEvalEditPopup;
+    }
 
 }

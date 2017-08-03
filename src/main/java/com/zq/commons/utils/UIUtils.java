@@ -307,5 +307,259 @@ public class UIUtils {
 	    sb.append("</div>");
 	    sb.append("</td>");
 	    return sb.toString();
-	  }	 
+	  }
+	  
+	/**
+	* @Title: tabPanelStart
+	* @Description: TODO(Tab页签开始)
+	* @author Administrator
+	* @date 2017年7月26日 上午11:32:39
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String tabPanelStart(HttpServletRequest request){
+	  	StringBuilder sb = new StringBuilder();
+	  	sb.append("<div class='topnav' >");
+	  	sb.append(" <div class='hd' >");
+	  	sb.append("   <ul>");
+	  	return sb.toString();
+	}
+	
+	/**
+	* @Title: tabPanelEnd
+	* @Description: TODO(Tab页签结束)
+	* @author Administrator
+	* @date 2017年7月26日 上午11:31:11
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String tabPanelEnd(HttpServletRequest request){
+	  	StringBuilder sb = new StringBuilder();
+	  	sb.append("</ul>");
+	  	sb.append(" </div>");
+	  	sb.append("</div>");
+	  	return sb.toString();
+	}
+	    
+	/**
+	* @Title: tabPanel
+	* @Description: TODO(Tab页签)
+	* @author Administrator
+	* @date 2017年7月26日 上午11:31:54
+	* @param @param enabled 是否启用
+	* @param @param function 回调函数
+	* @param @param label 显示的标签
+	* @param @param name 属性值
+	* @param @param isOn 是否选中
+	* @param @param request 请求参数
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String tabPanel(boolean enabled, String function, String label, String name, boolean isOn, HttpServletRequest request) {
+	  	String labelStr = label == null ? "" : label;
+	  	labelStr = TypeUtils.xmlEncoderForIE(labelStr);
+	  	StringBuffer sb = new StringBuffer();
+	  	sb.append("<li ");
+	  	sb.append(" class='");
+	  	if (isOn) {
+	  	  sb.append(" on ");
+	  	}
+	  	if (!enabled) {
+	  	  sb.append(" disable ");
+	  	}
+	  	sb.append("' ");
+	  	sb.append("> ");
+	  	sb.append("<a ");
+	  	if ((enabled) && (!isOn) && (function != null)) {
+	  	  sb.append(" href='");
+	  	  sb.append(function);
+	  	  sb.append("'");
+	  	}
+	  	sb.append(" >");
+	
+	  	sb.append(labelStr);
+	
+	  	if ((name != null) && (name.trim().length() > 0)) {
+	  	  name = name.trim();
+	  	  if (name.startsWith("(")) {
+	  		name = name.substring(1);
+	  	  }
+	  	  if (name.endsWith(")")) {
+	  		name = name.substring(0, name.length() - 1);
+	  	  }
+	  	  sb.append("<span class='countClass'>");
+	  	  sb.append(name);
+	  	  sb.append("</span>");
+	  	}
+	  	sb.append("</a>");
+	
+	  	sb.append("</li>");
+	  	return sb.toString();
+	}
+	  
+	/**
+	* @Title: spacerDIV
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @author Administrator
+	* @date 2017年7月27日 下午4:52:19
+	* @param @param height
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String spacerDIV(String height, HttpServletRequest request) {
+	    StringBuffer sb = new StringBuffer();
+	    String heightStr = height == null ? "5" : height;
+	    sb.append("<div style=\"");
+	    sb.append("height:" + heightStr + "px;");
+	    sb.append("\"");
+	    sb.append(">&nbsp;</div>");
+	    return sb.toString();
+	}
+	
+	/**
+	* @Title: formBodyStart
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @author Administrator
+	* @date 2017年7月30日 下午3:53:50
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String formBodyStart(HttpServletRequest request) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("<div id='propDIV' class='propTableDIV'>");
+	    sb.append("<div style='width:760px;margin:0 auto;'>");
+	    return sb.toString();
+	}
+	
+	/**
+	* @Title: formBodyEnd
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @author Administrator
+	* @date 2017年7月30日 下午3:53:53
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String formBodyEnd(HttpServletRequest request) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("</div></div>");
+	    return sb.toString();
+	}
+	
+	/**
+	* @Title: toolbarStart
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @author Administrator
+	* @date 2017年7月30日 下午4:27:27
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String toolbarStart(HttpServletRequest request){
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("<div class='toolbar' id=\"toolbarDIV\">");
+	    sb.append("<table class='toolbarTable' cellspacing='0' cellpadding='0'>");
+	    sb.append("<tr>");
+	    return sb.toString();
+	}
+	
+	/**
+	* @Title: toolbarEnd
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @author Administrator
+	* @date 2017年7月30日 下午4:27:30
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String toolbarEnd(HttpServletRequest request){
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("</tr>");
+	    sb.append("</table>");
+	    sb.append("</div>");
+	    sb.append("<div class=\"Toolbar-spacing\"></div> ");
+	    return sb.toString();
+	}
+	
+	/**
+	* @Title: toolbarFloatRight
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @author Administrator
+	* @date 2017年7月30日 下午4:52:38
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String toolbarFloatRight(HttpServletRequest request) {
+	    StringBuilder sb = new StringBuilder("<td width='100%'></td>");
+	    return sb.toString();
+	}
+	
+	/**
+	* @Title: togglePanelStart
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @author Administrator
+	* @date 2017年7月30日 下午9:26:54
+	* @param @param title
+	* @param @param isToggle
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String togglePanelStart(String title, boolean isToggle, HttpServletRequest request) {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("<div  class='togglePanelTable'> ");
+	
+	    sb.append("<div class='togglePanelHeader'> ");
+	    sb.append("<table ");
+	    if (isToggle) {
+	      sb.append(" onclick=\"javascript:togglePanelNew(this);\"  style='cursor:pointer;' ");
+	    }
+	    sb.append(" >");
+	    if (isToggle) {
+	      sb.append("<td>");
+	      sb.append("<div class='toogleFormImg'></div>");
+	
+	      sb.append("</td>");
+	    }
+	    sb.append("<td nowrap=\"nowrap\">");
+	    sb.append(title);
+	    sb.append("</td>");
+	    sb.append("<td style='width:100%'><div class=\" togglePanelHeaderLine\"  ></div></td>");
+	    sb.append("</table>");
+	    sb.append("</div>");
+	    sb.append("<div class='togglePanelContent'  > ");
+	    return sb.toString();
+	}
+	
+	/**
+	* @Title: togglePanelEnd
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @author Administrator
+	* @date 2017年7月30日 下午9:26:50
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	public static String togglePanelEnd(HttpServletRequest request) {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("</div>");
+	    sb.append("</div>");
+	    return sb.toString();
+	}
 }
