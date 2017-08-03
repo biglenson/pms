@@ -37,9 +37,10 @@ function newFun() {
 		}
 	});	
 }
-function editFun(id) {
+
+function queryFun(id) {
 	var arg = new Array();
-	arg.src = "<%=path%>${action}/edit?id="+id;
+	arg.src = "<%=path%>${action}/query?id="+id;
 	arg.title = "<%= pageTitle %>";
 	arg.width = 840;
 	arg.height = document.body.clientHeight - 20;
@@ -95,7 +96,7 @@ function editFun(id) {
 						<td align="center"><img name="action-open" id="actionImg" src="/static/images/16x16/action_open.gif" title="快捷操作" style="cursor: pointer" onclick="">
 						</td>
 						<c:forEach items="${formListTitle}" var="list">
-							<td><div style="${list.style};white-space: nowrap;text-overflow: ellipsis;overflow: hidden;text-align:left;cursor:pointer" align="center" onclick="javascript:editFun(${record.id})" title="${record[list.attribute]}">${record[list.attribute]}</div></td>
+							<td><div style="${list.style};white-space: nowrap;text-overflow: ellipsis;overflow: hidden;text-align:left;cursor:pointer" align="center" onclick="javascript:queryFun(${record.id})" title="${record[list.attribute]}">${record[list.attribute]}</div></td>
 						</c:forEach>
 					</tr>
 				</c:forEach>
