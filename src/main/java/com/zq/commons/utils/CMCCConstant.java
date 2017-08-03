@@ -175,6 +175,24 @@ public class CMCCConstant {
 	public static final String EditBasAccountSubject = "data/datamap/EditBasAccountSubject";
 	public static final String EditBasAssetDetail = "data/datamap/EditBasAssetDetail";
 	public static final String EditBasExpenseDetail = "data/datamap/EditBasExpenseDetail";
+    //基本信息
+    public static final String SimpleFormBasic = "data/benefit/SimpleFormBasic";
+    //效益评估
+    public static final String SimpleFromBenefit = "data/benefit/SimpleFromBenefit";
+    //选择模版
+    public static final String ChooseTemplate = "data/benefit/ChooseTemplate";
+    //效益评估弹窗
+    public static final String BenefitEvalPopup = "data/benefit/BenefitEvalPopup";
+    //效益评估--日志弹窗
+    public static final String LogPopup = "data/benefit/LogPopup";
+    //效益评估--选择用户弹窗
+    public static final String UserSelectCommon = "data/benefit/UserSelectCommon";
+    //选择模版之后的效益评估编辑窗体 
+    public static final String BenefitEvalEditPopup = "data/benefit/BenefitEvalEditPopup";
+
+
+
+
 	/** 
 	* <p>Title: 系统管理JSP</p> 
 	* <p>Description: </p> 
