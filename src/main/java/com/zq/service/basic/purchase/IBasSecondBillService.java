@@ -36,6 +36,8 @@ public interface IBasSecondBillService{
 
 	HttpServletRequest getFinishInTimeFromSecondBill(HttpServletRequest request);
 
+	HttpServletRequest getOvertimeContractFromSecondBill(HttpServletRequest request);
+
 
 
 }

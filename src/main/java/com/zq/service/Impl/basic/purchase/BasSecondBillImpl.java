@@ -1,11 +1,15 @@
 package com.zq.service.Impl.basic.purchase;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -360,7 +364,92 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 		request.setAttribute("finishCount",finishCount);
 		request.setAttribute("delayFinishCount",delayFinishCount);
 		return request;
+	}
+	@Override
+	public HttpServletRequest getOvertimeContractFromSecondBill(HttpServletRequest request) {
+		Date dataUpdateDate = null;
+		int index=TypeUtils.getIntFromString(request.getParameter("index"));
+		String year=request.getParameter("year");
+		List<BasSecondBill> secondBills = this.getSecondBillByYear(year);
+		long period = 24*3600*1000;
+		if(index == 0){
+			//超时数据
+			Map<String,Integer> dataMap = new HashMap();
+			long endTime = new Date().getTime();
+			for(int i=0,j=secondBills.size();i<j;i++){
+				BasSecondBill secondBill = secondBills.get(i);
+				if(year != secondBill.getYear()){
+					continue;
+				}
+				if(secondBill.getContractApproveTime() != null){
+					endTime = secondBill.getContractApproveTime().getTime();
+				}
+				if(secondBill.getBeginTime() == null){
+					continue;
+				}
+				if(dataUpdateDate == null){
+					dataUpdateDate = secondBill.getModifyTime();
+				}else if(secondBill.getModifyTime()!=null && dataUpdateDate.before(secondBill.getModifyTime())){
+					dataUpdateDate = secondBill.getModifyTime();
+				}
+				long startTime = secondBill.getBeginTime().getTime();
+				int days = (int)TypeUtils.string2Double(secondBill.getFailBidsCycle());
+				long delayTime = days*period;
+				int betweenDays = (int) ((endTime - delayTime - startTime)/period);
+				if(betweenDays > CMCCConstant.CONTRACT_OVERTIME_DAYS){
+					dataMap.put(secondBill.getContractName(), betweenDays);
+				}
+			}
+			Map<String,Integer> returnMap = this.getOrderedTopData(dataMap);
+			request.setAttribute("contractOvertimeData", returnMap);
+		}else if(index == 1){
+			//即将超时预警数据
+			Map<String,Integer> dataMap = new HashMap();
+			long endTime = new Date().getTime();
+			for(int i=0,j=secondBills.size();i<j;i++){
+				BasSecondBill secondBill = secondBills.get(i);
+				if(year != secondBill.getYear() || secondBill.getBeginTime() == null){
+					continue;
+				}
+				if(dataUpdateDate == null){
+					dataUpdateDate = secondBill.getModifyTime();
+				}else if(secondBill.getModifyTime()!=null && dataUpdateDate.before(secondBill.getModifyTime())){
+					dataUpdateDate = secondBill.getModifyTime();
+				}
+				long startTime = secondBill.getBeginTime().getTime();
+				int days = (int)TypeUtils.string2Double(secondBill.getFailBidsCycle());
+				long delayTime = days*period;
+				int betweenDays = (int) ((endTime - delayTime - startTime)/period);
+				if(betweenDays <= CMCCConstant.CONTRACT_OVERTIME_DAYS){
+					dataMap.put(secondBill.getContractName(), betweenDays);
+				}
+			}
+			Map<String,Integer> returnMap = this.getOrderedTopData(dataMap);
+			request.setAttribute("contractOvertimeSoonData", returnMap);
+		}
+		request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
+		request.setAttribute("index", index);
+		return request;
 	}	
+	
+	private Map<String,Integer> getOrderedTopData(Map<String,Integer> dataMap){
+		Map<String,Integer> returnMap = new LinkedHashMap<String, Integer>();
+		List<Map.Entry<String, Integer>> sortList = new ArrayList<Map.Entry<String,Integer>>(dataMap.entrySet());
+		Collections.sort(sortList, new Comparator<Map.Entry<String,Integer>>() {
+			@Override
+			public int compare(Entry<String, Integer> o1,Entry<String, Integer> o2) {
+				return o2.getValue().compareTo(o1.getValue());
+			}
+		});
+		for(int i=0,j=sortList.size();i<j;i++){
+			Entry<String,Integer> entry = sortList.get(i);
+			returnMap.put(entry.getKey(), entry.getValue());
+			if(i==9){
+				break;
+			}
+		}
+		return returnMap;
+	}
     
    
 

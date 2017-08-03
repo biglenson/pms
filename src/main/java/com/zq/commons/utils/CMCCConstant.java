@@ -46,6 +46,7 @@ public class CMCCConstant {
 	public static final String SecondOpenMoneyInfo="comprehensive/purchase/secondOpenInfo/secondOpenMoneyInfoResult";
 	public static final String SecondOpenProjectInfo="comprehensive/purchase/secondOpenInfo/secondOpenProjectInfoResult";
 	public static final String SummaryInfo="comprehensive/purchase/summary/summaryResult";
+	public static final String OvertimeContractInfo="comprehensive/purchase/contractInfo/contractInfoResult";
 	
 	/** 
 	* <p>Title:工程视图JSP </p> 
@@ -216,7 +217,11 @@ public class CMCCConstant {
 	public static final String LASUPDATE = "LASUPDATESTRING";
 
 	public static final int PAGE_SIZE = 15;
-
+	
+	/**
+	 * 合同超时时间常量
+	 */
+	public static final int CONTRACT_OVERTIME_DAYS = 58;
 	  
 	
 	

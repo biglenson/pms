@@ -33,7 +33,7 @@ String path = request.getContextPath();
 jQuery(document).ready(function(){
 	var doAjax=function(index,select){
 		$.ajax({
-			url:"<%=path%>/CaiGouAction.do?operation=contractInfo",
+			url:"<%=path%>/purchaseview/overtimecontractinfo",
 			method:"POST",
 			data:{
 				year:document.frm.year.value,

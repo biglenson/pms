@@ -293,4 +293,10 @@ public class PurchaseViewController extends BaseController{
 		request.setAttribute("index", index);
 		return CMCCConstant.SummaryInfo;
 	}
+	
+	@RequestMapping(value = "overtimecontractinfo",method =RequestMethod.POST)
+	public String overtimeContractInfo(HttpServletRequest request){
+		request=iBasSecondBillService.getOvertimeContractFromSecondBill(request);	
+		return CMCCConstant.OvertimeContractInfo;
+	}
 }
