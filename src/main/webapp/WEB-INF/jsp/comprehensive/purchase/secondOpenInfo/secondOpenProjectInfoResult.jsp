@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import="net.sf.json.JSONArray"%>
+<%@ page import="com.zq.commons.utils.StringUtils"%>
 <%
 String path = request.getContextPath();
 Map<String,List> allOpenData = (Map<String,List>)request.getAttribute("allOpenData");

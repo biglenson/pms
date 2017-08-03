@@ -42,6 +42,10 @@ public class CMCCConstant {
 	public static final String TotalProjectInfo="comprehensive/purchase/totalInfo/caiGouTotalProjectInfoResult";
 	public static final String PurchaseKindInfo="comprehensive/purchase/categoryAnalysis/categoryInfoResult";
 	public static final String PurchaseMethodInfo="comprehensive/purchase/zhichuAnalysis/zhichuInfoResult";
+	public static final String secondBillCostSaving="comprehensive/purchase/costSavingInfo/costSavingInfoResult";
+	public static final String SecondOpenMoneyInfo="comprehensive/purchase/secondOpenInfo/secondOpenMoneyInfoResult";
+	public static final String SecondOpenProjectInfo="comprehensive/purchase/secondOpenInfo/secondOpenProjectInfoResult";
+	public static final String SummaryInfo="comprehensive/purchase/summary/summaryResult";
 	
 	/** 
 	* <p>Title:工程视图JSP </p> 

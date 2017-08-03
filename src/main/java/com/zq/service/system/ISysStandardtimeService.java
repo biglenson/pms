@@ -1,5 +1,6 @@
 package com.zq.service.system;
 
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -7,5 +8,7 @@ package com.zq.service.system;
  *
  */
 public interface ISysStandardtimeService{
+
+	HttpServletRequest getFinishInTimeFromSysStandardtime(HttpServletRequest request);
 
 }

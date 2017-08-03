@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.zq.commons.result.ColorHighChartData;
 import com.zq.commons.result.HighChartData;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
@@ -29,6 +30,7 @@ import com.zq.service.basic.purchase.IBasFirstBillService;
 import com.zq.service.basic.purchase.IBasFrameContractService;
 import com.zq.service.basic.purchase.IBasSecondBillService;
 import com.zq.service.system.ISysDicService;
+import com.zq.service.system.ISysStandardtimeService;
 
 
 /** 
@@ -53,6 +55,9 @@ public class PurchaseViewController extends BaseController{
 	
 	@Autowired
 	private ISysDicService iSysDicService;
+	
+	@Autowired
+	private ISysStandardtimeService iSysStandardtimeService;
 	
 	private static Logger logger = Logger.getLogger(PurchaseViewController.class);  
 
@@ -192,5 +197,100 @@ public class PurchaseViewController extends BaseController{
 		request.setAttribute("countDatas", countDatas);
 		request.setAttribute("methodNames", methodNames);
 		return CMCCConstant.PurchaseMethodInfo;
+	}
+	
+	/**
+	* @Title: secondBillCostSaving
+	* @Description: TODO(二级集采采购节约成本)
+	* @author BigCoin
+	* @date 2017年8月2日 下午4:49:03
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	@RequestMapping(value = "secondbillcostsaving",method =RequestMethod.POST)
+	public String secondBillCostSaving(HttpServletRequest request){
+		request = iBasSecondBillService.getCostSavingFromSecondBill(request);	
+		return CMCCConstant.secondBillCostSaving;
+	}
+
+	/**
+	* @Title: secondOpenMoneyInfo
+	* @Description: TODO(二级集采公开统计--金额)
+	* @author BigCoin
+	* @date 2017年8月3日 上午10:25:30
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	@RequestMapping(value = "secondopenmoneyinfo",method =RequestMethod.POST)
+	public String secondOpenMoneyInfo(HttpServletRequest request){
+		request=iBasSecondBillService.getOpenMoneyInfoFromSecondBill(request);
+		return CMCCConstant.SecondOpenMoneyInfo;
+	}
+	
+	/**
+	* @Title: secondOpenProjectInfo
+	* @Description: TODO(二级集采公开统计--项目数)
+	* @author BigCoin
+	* @date 2017年8月3日 上午10:41:47
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	@RequestMapping(value = "secondopenprojectinfo",method =RequestMethod.POST)
+	public String secondOpenProjectInfo(HttpServletRequest request){
+		request=iBasSecondBillService.getOpenMoneyInfoFromSecondBill(request);
+		return CMCCConstant.SecondOpenProjectInfo;
+	}
+	
+	/**
+	* @Title: summaryInfo
+	* @Description: TODO(采购及时率)
+	* @author BigCoin
+	* @date 2017年8月3日 下午4:00:42
+	* @param @param request
+	* @param @return 设定文件
+	* @return String 返回类型
+	* @throws
+	*/
+	@RequestMapping(value = "summaryinfo",method =RequestMethod.POST)
+	public String summaryInfo(HttpServletRequest request){		
+		int index=TypeUtils.getIntFromString(request.getParameter("index"));
+
+		request=iSysStandardtimeService.getFinishInTimeFromSysStandardtime(request);	
+		request=iBasSecondBillService.getFinishInTimeFromSecondBill(request);
+
+		List<ColorHighChartData> listData = new ArrayList();
+		ColorHighChartData colorData = new ColorHighChartData();
+		colorData.setColor("#a8da72");
+		if(index == 0){
+			colorData.setName("及时启动项目数");
+			colorData.setY((Integer)request.getAttribute("startCount"));
+		}else if(index == 1){
+			colorData.setName("及时完成项目数");
+			colorData.setY((Integer)request.getAttribute("finishCount"));
+		}
+		listData.add(colorData);
+		colorData = new ColorHighChartData();
+		colorData.setColor("#fe902c");
+		if(index == 0){
+			colorData.setName("延期启动项目数");
+			colorData.setY((Integer)request.getAttribute("delayStartCount"));
+		}else if(index == 1){
+			colorData.setName("延期完成项目数");
+			colorData.setY((Integer)request.getAttribute("delayFinishCount"));
+		}
+		listData.add(colorData);
+		if(index == 0){
+			request.setAttribute("startDatas", listData);
+		}else if(index == 1){
+			request.setAttribute("finishDatas", listData);
+		}
+		request.setAttribute("index", index);
+		return CMCCConstant.SummaryInfo;
 	}
 }

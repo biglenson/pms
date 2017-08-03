@@ -198,7 +198,7 @@ Integer index=(Integer)request.getAttribute("index");
 	                return this.name;
 	             <%}%>
        			},
-       			x:12
+       			x:-50
 	        },
         	tooltip: {
         		 pointFormatter:function(){
