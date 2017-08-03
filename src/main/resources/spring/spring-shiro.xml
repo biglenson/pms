@@ -75,6 +75,7 @@
                 /static/** = anon
                 /webhooks = anon
                 /login = anon
+                /test = anon
                 /** = authc
             </value>
         </property>

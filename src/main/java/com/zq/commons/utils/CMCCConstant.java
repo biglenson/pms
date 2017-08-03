@@ -32,6 +32,7 @@ public class CMCCConstant {
 	public static final String CurrentCost="comprehensive/financial/summary/summary_chengben";
 	public static final String InvestmentBudget="comprehensive/financial/summary/summary_touziyusuantotal";
 	public static final String ExpenditureTransfer="comprehensive/financial/summary/summary_kaizhizhuanzijindu";
+    public static final String TEST="test/test";
 	
 	/** 
 	* <p>Title:采购视图JSP </p> 
