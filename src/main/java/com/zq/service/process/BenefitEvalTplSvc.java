@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.*;
-//import javax.servlet.http.Part;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import java.io.*;
@@ -35,7 +34,6 @@ public class BenefitEvalTplSvc{
         List<BenefitEvalTplVO> benefitEvalTplVOList = new ArrayList<BenefitEvalTplVO>();
         List<BenefitEvalTpl> benefitEvalTplList = benefitEvalTplRepo.getBenefitEvalTplByEvalPhaseAndEvalFor(evalPhase, evalFor);
 
-        logger.info("测试中！----------------------------service 11"+ benefitEvalTplList.size()); 
 
         BenefitEvalTpl benefitEvalTpl = null;
         BenefitEvalTplVO benefitEvalTplVO = null;
@@ -44,9 +42,8 @@ public class BenefitEvalTplSvc{
         while (benefitEvalTplIter.hasNext()) {
             benefitEvalTpl = benefitEvalTplIter.next();
             benefitEvalTplVO = new BenefitEvalTplVO();
-            logger.info("测试中！----------------------------"+ benefitEvalTpl.getTplTitle()); 
             BeanUtils.copyProperties(benefitEvalTpl, benefitEvalTplVO);
-            logger.info("测试中！----------------------------"+ benefitEvalTplVO.getTplTitle()+"-----"+benefitEvalTplVO.getEvalFor()); 
+            logger.info("评估模板列表！----------------------------"+ benefitEvalTplVO.getTplTitle()); 
             benefitEvalTplVOList.add(benefitEvalTplVO);
         }
         return benefitEvalTplVOList;
