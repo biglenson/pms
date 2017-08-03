@@ -262,9 +262,9 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 		String year=request.getParameter("year");
 		int index=TypeUtils.getIntFromString(request.getParameter("index"));
 		List<BasSecondBill> secondBillList=this.getSecondBillByYear(year);
-		Map<String,Integer> startTimesMap = new HashMap();
-		Map<String,Integer> finishTimesNormalMap = new HashMap();
-		Map<String,Integer> finishTimesImportantMap = new HashMap();
+		Map<String,Integer> startTimesMap = (Map<String,Integer>)request.getAttribute("startTimesMap");
+		Map<String,Integer> finishTimesNormalMap = (Map<String,Integer>)request.getAttribute("finishTimesNormalMap");
+		Map<String,Integer> finishTimesImportantMap = (Map<String,Integer>)request.getAttribute("finishTimesImportantMap");
 		int startCount = 0;
 		int delayStartCount = 0;
 		Double totalDelatStartDays = 0d;

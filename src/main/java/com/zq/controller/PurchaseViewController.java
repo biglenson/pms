@@ -30,6 +30,7 @@ import com.zq.service.basic.purchase.IBasFirstBillService;
 import com.zq.service.basic.purchase.IBasFrameContractService;
 import com.zq.service.basic.purchase.IBasSecondBillService;
 import com.zq.service.system.ISysDicService;
+import com.zq.service.system.ISysStandardtimeService;
 
 
 /** 
@@ -54,6 +55,9 @@ public class PurchaseViewController extends BaseController{
 	
 	@Autowired
 	private ISysDicService iSysDicService;
+	
+	@Autowired
+	private ISysStandardtimeService iSysStandardtimeService;
 	
 	private static Logger logger = Logger.getLogger(PurchaseViewController.class);  
 
@@ -256,61 +260,10 @@ public class PurchaseViewController extends BaseController{
 	@RequestMapping(value = "summaryinfo",method =RequestMethod.POST)
 	public String summaryInfo(HttpServletRequest request){		
 		int index=TypeUtils.getIntFromString(request.getParameter("index"));
-		Map<String,Integer> startTimesMap = new HashMap();
-		Map<String,Integer> finishTimesNormalMap = new HashMap();
-		Map<String,Integer> finishTimesImportantMap = new HashMap();
 
-			request.setAttribute("startAllCount", startCount+delayStartCount);
-			request.setAttribute("startCount", startCount);
-			request.setAttribute("delayStartCount", delayStartCount);
-			request.setAttribute("totalDelayDays", totalDelatStartDays);
-			
+		request=iSysStandardtimeService.getFinishInTimeFromSysStandardtime(request);	
 		request=iBasSecondBillService.getFinishInTimeFromSecondBill(request);
-		List<FinishStandardTime> allFinishTimes = this.getAllFinishTimes(user, request);
-		if(allFinishTimes != null){
-			for(FinishStandardTime finishTime : allFinishTimes){
-				String name = FormBaseResove.getEnumValueName(user, finishTime, "enum03");
-				Integer value = Integer.parseInt(finishTime.getNum02());
-				if(name.contains("招标")){
-					startTimesMap.put("招标", value==null?0:value);
-				}else if(name.contains("比选")){
-					startTimesMap.put("比选", value==null?0:value);
-				}else if(name.contains("询价")){
-					startTimesMap.put("询价", value==null?0:value);
-				}else if(name.contains("竞争性谈判")){
-					startTimesMap.put("竞争性谈判", value==null?0:value);
-				}
-			}
-		}
-		if(allFinishTimes != null){
-			for(FinishStandardTime finishTime : allFinishTimes){
-				String name = FormBaseResove.getEnumValueName(user, finishTime, "enum03");
-				String level = FormBaseResove.getEnumValueName(user, finishTime, "enum01");
-				Integer value = Integer.parseInt(finishTime.getNum01());
-				if(level.contains("总经理")){
-					if(name.contains("招标")){
-						finishTimesImportantMap.put("招标", value==null?0:value);
-					}else if(name.contains("比选")){
-						finishTimesImportantMap.put("比选", value==null?0:value);
-					}else if(name.contains("询价")){
-						finishTimesImportantMap.put("询价", value==null?0:value);
-					}else if(name.contains("竞争性谈判")){
-						finishTimesImportantMap.put("竞争性谈判", value==null?0:value);
-					}
-				}else{
-					if(name.contains("招标")){
-						finishTimesNormalMap.put("招标", value==null?0:value);
-					}else if(name.contains("比选")){
-						finishTimesNormalMap.put("比选", value==null?0:value);
-					}else if(name.contains("询价")){
-						finishTimesNormalMap.put("询价", value==null?0:value);
-					}else if(name.contains("竞争性谈判")){
-						finishTimesNormalMap.put("竞争性谈判", value==null?0:value);
-					}
-				}
-			}
-		}
-	
+
 		List<ColorHighChartData> listData = new ArrayList();
 		ColorHighChartData colorData = new ColorHighChartData();
 		colorData.setColor("#a8da72");
