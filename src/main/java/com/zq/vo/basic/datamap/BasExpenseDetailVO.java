@@ -66,6 +66,12 @@ public class BasExpenseDetailVO {
 	}
 	
 	/**
+	 * id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
 	 * 公司ID
 	 */
 	public void setCompanyId(int value) {

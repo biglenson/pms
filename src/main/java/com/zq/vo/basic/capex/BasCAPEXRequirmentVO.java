@@ -30,9 +30,9 @@ public class BasCAPEXRequirmentVO {
 	
 	private java.sql.Timestamp reqSubmitTime;
 	
-	private Integer reqSubmitStatus;
+	private String reqSubmitStatus;
 	
-	private Integer reqAuditStatus;
+	private String reqAuditStatus;
 	
 	private java.sql.Timestamp reqConfirmTime;
 	
@@ -43,6 +43,12 @@ public class BasCAPEXRequirmentVO {
 		return id;
 	}
 	
+	/**
+	 * id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 	/**
 	 * 公司ID
 	 */
@@ -197,46 +203,33 @@ public class BasCAPEXRequirmentVO {
 	public java.sql.Timestamp getReqSubmitTime() {
 		return reqSubmitTime;
 	}
+
 	
 	/**
-	 * 需求是否已提交 代码表：是否代
+	 * 需求是否已提交 代码表：是否代码表
 	 */
-	public void setReqSubmitStatus(int value) {
-		setReqSubmitStatus(new Integer(value));
-	}
-	
-	/**
-	 * 需求是否已提交 代码表：是否代
-	 */
-	public void setReqSubmitStatus(Integer value) {
+	public void setReqSubmitStatus(String value) {
 		this.reqSubmitStatus = value;
 	}
 	
 	/**
-	 * 需求是否已提交 代码表：是否代
+	 * 需求是否已提交 代码表：是否代码表
 	 */
-	public Integer getReqSubmitStatus() {
+	public String getReqSubmitStatus() {
 		return reqSubmitStatus;
 	}
-	
+		
 	/**
 	 * 需求审核状态 1-通过；2-不
 	 */
-	public void setReqAuditStatus(int value) {
-		setReqAuditStatus(new Integer(value));
-	}
-	
-	/**
-	 * 需求审核状态 1-通过；2-不
-	 */
-	public void setReqAuditStatus(Integer value) {
+	public void setReqAuditStatus(String value) {
 		this.reqAuditStatus = value;
 	}
 	
 	/**
 	 * 需求审核状态 1-通过；2-不
 	 */
-	public Integer getReqAuditStatus() {
+	public String getReqAuditStatus() {
 		return reqAuditStatus;
 	}
 	

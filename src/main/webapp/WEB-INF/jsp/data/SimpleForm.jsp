@@ -26,17 +26,28 @@ function showMenu(obj) {
 }
 
 function newFun() {
-
-		var arg = new Array();
-		arg.src = "<%=path%>${action}/add";
-		arg.title = "<%= pageTitle %>";
-		arg.width = 840;
-		arg.height = document.body.clientHeight - 20;
-		parent.ET.showNewWindow(arg, function (ret) { 
-			if(ret != null){
-				document.frm.submit();
-			}
-		});	
+	var arg = new Array();
+	arg.src = "<%=path%>${action}/add";
+	arg.title = "<%= pageTitle %>";
+	arg.width = 840;
+	arg.height = document.body.clientHeight - 20;
+	parent.ET.showNewWindow(arg, function (ret) { 
+		if(ret != null){
+			document.frm.submit();
+		}
+	});	
+}
+function editFun(id) {
+	var arg = new Array();
+	arg.src = "<%=path%>${action}/edit?id="+id;
+	arg.title = "<%= pageTitle %>";
+	arg.width = 840;
+	arg.height = document.body.clientHeight - 20;
+	parent.ET.showNewWindow(arg, function (ret) { 
+		if(ret != null){
+			document.frm.submit();
+		}
+	});	
 }
 
 </script>
@@ -81,10 +92,10 @@ function newFun() {
 			<tbody>
 				<c:forEach items="${pageData}" var="record">
 					<tr class="listTableTR">
-						<td align="center"><img name="action-open" id="actionImg" src="/static/images/16x16/action_open.gif" title="快捷操作" style="cursor: pointer" onclick="javascript:showFormActionMenu(this, '285855');">
+						<td align="center"><img name="action-open" id="actionImg" src="/static/images/16x16/action_open.gif" title="快捷操作" style="cursor: pointer" onclick="">
 						</td>
 						<c:forEach items="${formListTitle}" var="list">
-							<td><div style="${list.style};white-space: nowrap;text-overflow: ellipsis;overflow: hidden;text-align:left;cursor:pointer" align="center" onclick="" title="${record[list.attribute]}">${record[list.attribute]}</div></td>
+							<td><div style="${list.style};white-space: nowrap;text-overflow: ellipsis;overflow: hidden;text-align:left;cursor:pointer" align="center" onclick="javascript:editFun(${record.id})" title="${record[list.attribute]}">${record[list.attribute]}</div></td>
 						</c:forEach>
 					</tr>
 				</c:forEach>

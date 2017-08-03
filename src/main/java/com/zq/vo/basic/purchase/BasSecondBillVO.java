@@ -114,7 +114,13 @@ public class BasSecondBillVO {
 	public int getId() {
 		return id;
 	}
-		
+	
+	/**
+	 * id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}	
 	/**
 	 * 公司ID
 	 */

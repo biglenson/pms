@@ -13,6 +13,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,6 @@ import org.springframework.stereotype.Service;
 import com.zq.commons.result.PageInfo;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.TypeUtils;
-
 import com.zq.dao.basic.capex.IBasCAPEXInvestPlanRepository;
 import com.zq.dao.basic.capex.IBasCAPEXProjectRepository;
 import com.zq.dao.basic.capex.IBasCAPEXRequirmentRepository;
@@ -32,13 +32,12 @@ import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
 import com.zq.entity.basic.capex.BasCAPEXTransferplan;
 import com.zq.entity.system.Department;
-import com.zq.entity.system.Role;
 import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
 import com.zq.entity.basic.capex.BasCAPEXRequirment;
 import com.zq.service.basic.capex.IBasCAPEXProjectService;
 import com.zq.service.basic.capex.IBasCAPEXTransferplanService;
 import com.zq.service.system.IDepartmentService;
-import com.zq.service.system.IRoleService;
+import com.zq.service.system.ISysDicService;
 import com.zq.vo.basic.capex.BasCAPEXProjectVO;
 
 /**
@@ -48,6 +47,8 @@ import com.zq.vo.basic.capex.BasCAPEXProjectVO;
  */
 @Service
 public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
+	
+	private static Logger logger = Logger.getLogger(BasCAPEXProjectServiceImpl.class);  
 
     @Autowired
     private IBasCAPEXProjectRepository iBasCAPEXProjectRepository;
@@ -57,18 +58,19 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
     private IBasCAPEXInvestPlanService iBasCAPEXInvestPlanService;
     
     @Autowired
-    private IRoleService iRoleService;
-    
-    @Autowired
     private IDepartmentService  iDepartmentService;
     
     @Autowired
     private IBasCAPEXTransferplanService iBasCAPEXTransferplanService;
-
+    
+    @Autowired
     private IBasCAPEXRequirmentRepository iBasCAPEXRequirmentRepository;
     
     @Autowired
     private IBasCAPEXInvestPlanRepository iBasCAPEXInvestPlanRepository;
+    
+    @Autowired
+    private ISysDicService iSysDicService;
     
 	@Override
 	public List<BasCAPEXProject> getALLCAPEXProject() {
@@ -292,9 +294,28 @@ public class BasCAPEXProjectServiceImpl implements IBasCAPEXProjectService {
 			BasCAPEXProjectVO vo = new BasCAPEXProjectVO();
 			BeanUtils.copyProperties(po, vo);			
 			BasCAPEXRequirment req = iBasCAPEXRequirmentRepository.findById(Integer.parseInt(po.getReqCode()));
-			String reqName = req.getReqName();
-			String reqDept = req.getReqDept();
-			String investPlanCode = req.getInvestPlanCode();
+			String projType = iSysDicService.getNameByClasscodeAndCode("capex_proj_type",po.getProjType());
+			String projStatus = iSysDicService.getNameByClasscodeAndCode("capex_proj_status",po.getProjStatus());
+			if(projType==null||projType.equals("")){
+				vo.setProjType("未录入数据");
+			}else{
+				vo.setProjType(projType);
+			}
+			if(projStatus==null||projStatus.equals("")){
+				vo.setProjStatus("未录入数据");
+			}else{
+				vo.setProjStatus(projStatus);
+			}
+			String reqName = "";
+			String reqDept = "";
+			String investPlanCode = "";
+			if(req == null){
+				logger.info(po.getReqCode() + "CAPEX需求数据为空");
+			}else{
+				reqName = req.getReqName();
+				reqDept = req.getReqDept();
+				investPlanCode = req.getInvestPlanCode();
+			}			
 			if(reqName==null||reqName.equals("")){
 				vo.setReqName("未录入名称");
 			}else{

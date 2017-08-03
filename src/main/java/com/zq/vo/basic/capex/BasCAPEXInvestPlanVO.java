@@ -5,7 +5,7 @@ package com.zq.vo.basic.capex;
 public class BasCAPEXInvestPlanVO{
 
 	private int id;
-		
+
 	private Integer companyId;
 	
 	private java.sql.Timestamp createTime;
@@ -54,6 +54,14 @@ public class BasCAPEXInvestPlanVO{
 	public int getId() {
 		return id;
 	}
+	
+	/**
+	 * id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	/**
 	 * 公司id
 	 */
