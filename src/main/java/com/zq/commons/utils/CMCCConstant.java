@@ -67,7 +67,6 @@ public class CMCCConstant {
 	* @date 2017年6月29日 上午11:22:46 
 	*/
 	public static final String BasCAPEXInvestplan = "data/SimpleForm"; 
-	public static final String AddCAPEXInvestplan = "data/AddSimpleForm"; 
 	public static final String BasCAPEXAmountPool = "data/SimpleForm";	
 	public static final String BasCAPEXRequirment = "data/SimpleForm"; 
 	public static final String BasCAPEXProject = "data/SimpleForm"; 
@@ -105,7 +104,81 @@ public class CMCCConstant {
 	public static final String BasAssetDetail = "data/SimpleForm";
 	public static final String BasExpenseDetail = "data/SimpleForm";
 
-
+	public static final String QueryBasCAPEXInvestplan = "data/capex/QueryBasCAPEXInvestplan"; 
+	public static final String QueryBasCAPEXAmountPool = "data/capex/QueryBasCAPEXAmountPool";	
+	public static final String QueryBasCAPEXRequirment = "data/capex/QueryBasCAPEXRequirment"; 
+	public static final String QueryBasCAPEXProject = "data/capex/QueryBasCAPEXProject"; 
+	public static final String QueryBasCAPEXProjInvestplan = "data/capex/QueryBasCAPEXProjInvestplan"; 
+	public static final String QueryBasCAPEXExpendplan = "data/capex/QueryBasCAPEXExpendplan"; 
+	public static final String QueryBasCAPEXTransferplan = "data/capex/QueryBasCAPEXTransferplan"; 
+	public static final String QueryBasCAPEXTotalInvestplan = "data/capex/QueryBasCAPEXTotalInvestplan"; 
+	
+	public static final String QueryBasOPEXBudgetpool = "data/opex/QueryBasOPEXBudgetpool";
+	public static final String QueryBasOpexBudgetpoolDetail = "data/opex/QueryBasOpexBudgetpoolDetail";
+	public static final String QueryBasOPEXBudgetAdjust = "data/opex/QueryBasOPEXBudgetAdjust";
+	public static final String QueryBasOPEXBudgetProject = "data/opex/QueryBasOPEXBudgetProject";
+	public static final String QueryBasOPEXRequirment = "data/opex/QueryBasOPEXRequirment";
+	public static final String QueryBasOPEXProject = "data/opex/QueryBasOPEXProject";
+	public static final String QueryBasOPEXManhour = "data/opex/QueryBasOPEXManhour";
+	
+	public static final String QueryBasFirstBill = "data/purchase/QueryBasFirstBill";
+	public static final String QueryBasSecondBill = "data/purchase/QueryBasSecondBill";
+	public static final String QueryBasFrameContract = "data/purchase/QueryBasFrameContract";
+	public static final String QueryBasOtherContract = "data/purchase/QueryBasOtherContract";
+	public static final String QueryBasOPEXPurchaseplan = "data/purchase/QueryBasOPEXPurchaseplan";
+	
+	public static final String QueryBasCustomer = "data/datamap/QueryBasCustomer";
+	public static final String QueryBasItemset = "data/datamap/QueryBasItemset";
+	public static final String QueryBasProduct = "data/datamap/QueryBasProduct";
+	public static final String QueryBasItemProdCust = "data/datamap/QueryBasItemProdCust";
+	public static final String QueryBasProjCapex = "data/datamap/QueryBasProjCapex";
+	public static final String QueryBasProductIncome = "data/datamap/QueryBasProductIncome";
+	public static final String QueryBasIncomeByprod = "data/datamap/QueryBasIncomeByprod";
+	public static final String QueryBasIncometargBytype = "data/datamap/QueryBasIncometargBytype";
+	public static final String QueryBasIncometargByprod = "data/datamap/QueryBasIncometargByprod";
+	public static final String QueryBasIncometargBydept = "data/datamap/QueryBasIncometargBydept";
+	public static final String QueryBasBudgetSubject = "data/datamap/QueryBasBudgetSubject";
+	public static final String QueryBasAccountSubject = "data/datamap/QueryBasAccountSubject";
+	public static final String QueryBasAssetDetail = "data/datamap/QueryBasAssetDetail";
+	public static final String QueryBasExpenseDetail = "data/datamap/QueryBasExpenseDetail";
+	
+	public static final String EditBasCAPEXInvestplan = "data/capex/EditBasCAPEXInvestplan"; 
+	public static final String EditBasCAPEXAmountPool = "data/capex/EditBasCAPEXAmountPool";	
+	public static final String EditBasCAPEXRequirment = "data/capex/EditBasCAPEXRequirment"; 
+	public static final String EditBasCAPEXProject = "data/capex/EditBasCAPEXProject"; 
+	public static final String EditBasCAPEXProjInvestplan = "data/capex/EditBasCAPEXProjInvestplan"; 
+	public static final String EditBasCAPEXExpendplan = "data/capex/EditBasCAPEXExpendplan"; 
+	public static final String EditBasCAPEXTransferplan = "data/capex/EditBasCAPEXTransferplan"; 
+	public static final String EditBasCAPEXTotalInvestplan = "data/capex/EditBasCAPEXTotalInvestplan"; 
+	
+	public static final String EditBasOPEXBudgetpool = "data/opex/EditBasOPEXBudgetpool";
+	public static final String EditBasOpexBudgetpoolDetail = "data/opex/EditBasOpexBudgetpoolDetail";
+	public static final String EditBasOPEXBudgetAdjust = "data/opex/EditBasOPEXBudgetAdjust";
+	public static final String EditBasOPEXBudgetProject = "data/opex/EditBasOPEXBudgetProject";
+	public static final String EditBasOPEXRequirment = "data/opex/EditBasOPEXRequirment";
+	public static final String EditBasOPEXProject = "data/opex/EditBasOPEXProject";
+	public static final String EditBasOPEXManhour = "data/opex/EditBasOPEXManhour";
+	
+	public static final String EditBasFirstBill = "data/purchase/EditBasFirstBill";
+	public static final String EditBasSecondBill = "data/purchase/EditBasSecondBill";
+	public static final String EditBasFrameContract = "data/purchase/EditBasFrameContract";
+	public static final String EditBasOtherContract = "data/purchase/EditBasOtherContract";
+	public static final String EditBasOPEXPurchaseplan = "data/purchase/EditBasOPEXPurchaseplan";
+	
+	public static final String EditBasCustomer = "data/datamap/EditBasCustomer";
+	public static final String EditBasItemset = "data/datamap/EditBasItemset";
+	public static final String EditBasProduct = "data/datamap/EditBasProduct";
+	public static final String EditBasItemProdCust = "data/datamap/EditBasItemProdCust";
+	public static final String EditBasProjCapex = "data/datamap/EditBasProjCapex";
+	public static final String EditBasProductIncome = "data/datamap/EditBasProductIncome";
+	public static final String EditBasIncomeByprod = "data/datamap/EditBasIncomeByprod";
+	public static final String EditBasIncometargBytype = "data/datamap/EditBasIncometargBytype";
+	public static final String EditBasIncometargByprod = "data/datamap/EditBasIncometargByprod";
+	public static final String EditBasIncometargBydept = "data/datamap/EditBasIncometargBydept";
+	public static final String EditBasBudgetSubject = "data/datamap/EditBasBudgetSubject";
+	public static final String EditBasAccountSubject = "data/datamap/EditBasAccountSubject";
+	public static final String EditBasAssetDetail = "data/datamap/EditBasAssetDetail";
+	public static final String EditBasExpenseDetail = "data/datamap/EditBasExpenseDetail";
 	/** 
 	* <p>Title: 系统管理JSP</p> 
 	* <p>Description: </p> 
@@ -140,8 +213,6 @@ public class CMCCConstant {
 	* <p>Description: </p> 
 	* @date 2017年7月15日 下午6:17:50 
 	*/
-	public static final String AddSimpleForm = "common/addSimpleForm";
-
 	public static final String LASUPDATE = "LASUPDATESTRING";
 
 	public static final int PAGE_SIZE = 15;

@@ -15,6 +15,7 @@ import com.zq.dao.basic.capex.IBasCAPEXProjectRepository;
 import com.zq.entity.basic.capex.BasCAPEXExpendplan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
 import com.zq.service.basic.capex.IBasCAPEXExpendplanService;
+import com.zq.service.system.ISysDicService;
 import com.zq.vo.basic.capex.BasCAPEXExpendplanVO;
 
 /**
@@ -29,6 +30,9 @@ public class BasCAPEXExpendplanImpl implements IBasCAPEXExpendplanService {
 	private IBasCAPEXExpendplanRepository iBasCAPEXExpendplanRepository;
 	@Autowired
 	private IBasCAPEXProjectRepository iBasCAPEXProjectRepository;
+    
+    @Autowired
+    private ISysDicService iSysDicService;
 	@Override
 	public List<BasCAPEXExpendplan> getAllCAPEXExpendplanByYear(String year) {
 
@@ -64,10 +68,15 @@ public class BasCAPEXExpendplanImpl implements IBasCAPEXExpendplanService {
 			BasCAPEXExpendplanVO vo = new BasCAPEXExpendplanVO();
 			BeanUtils.copyProperties(po, vo);			
 			BasCAPEXProject proj = iBasCAPEXProjectRepository.findById(Integer.parseInt(po.getProjCode()));
+			String capexPlanStatus = iSysDicService.getNameByClasscodeAndCode("capex_proj_type",proj.getCapexPlanStatus());
+			if(capexPlanStatus==null||capexPlanStatus.equals("")){
+				vo.setCapexPlanStatus("未录入数据");
+			}else{
+				vo.setCapexPlanStatus(capexPlanStatus);
+			}
 			String projName = proj.getProjName();
 			String projCode = proj.getProjCode();
 			String anualCapexPlan = proj.getAnualCapexPlan();
-			int capexPlanStatus = proj.getCapexPlanStatus();
 			if(projCode==null||projCode.equals("")){
 				vo.setProjCode("未录入编码");
 			}else{
@@ -83,7 +92,6 @@ public class BasCAPEXExpendplanImpl implements IBasCAPEXExpendplanService {
 			}else{
 				vo.setAnualCapexPlan(anualCapexPlan);
 			}
-			vo.setCapexPlanStatus(String.valueOf(capexPlanStatus));
 			voList.add(vo);
 		}
 		return voList;

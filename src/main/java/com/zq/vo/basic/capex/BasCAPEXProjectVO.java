@@ -30,13 +30,13 @@ public class BasCAPEXProjectVO {
 	
 	private String projCode;
 	
-	private Integer projType;
+	private String projType;
 	
 	private String projStartYear;
 	
 	private String belongProj;
 	
-	private Integer projStatus;
+	private String projStatus;
 	
 	private String projTotalInvest;
 	
@@ -110,6 +110,13 @@ public class BasCAPEXProjectVO {
 	 */
 	public int getId() {
 		return id;
+	}	
+	
+	/**
+	 * id
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 	/**
 	 * 公司ID
@@ -247,21 +254,14 @@ public class BasCAPEXProjectVO {
 	/**
 	 * 项目类型  代码表：capex项目类型代码表
 	 */
-	public void setProjType(int value) {
-		setProjType(new Integer(value));
-	}
-	
-	/**
-	 * 项目类型  代码表：capex项目类型代码表
-	 */
-	public void setProjType(Integer value) {
+	public void setProjType(String value) {
 		this.projType = value;
 	}
 	
 	/**
 	 * 项目类型  代码表：capex项目类型代码表
 	 */
-	public Integer getProjType() {
+	public String getProjType() {
 		return projType;
 	}
 	
@@ -291,26 +291,20 @@ public class BasCAPEXProjectVO {
 	 */
 	public String getBelongProj() {
 		return belongProj;
-	}
+	}	
+
 	
 	/**
 	 * 当前工程状态 代码表：CAPEX当前工程状态代码 
 	 */
-	public void setProjStatus(int value) {
-		setProjStatus(new Integer(value));
-	}
-	
-	/**
-	 * 当前工程状态 代码表：CAPEX当前工程状态代码 
-	 */
-	public void setProjStatus(Integer value) {
+	public void setProjStatus(String value) {
 		this.projStatus = value;
 	}
 	
 	/**
 	 * 当前工程状态 代码表：CAPEX当前工程状态代码 
 	 */
-	public Integer getProjStatus() {
+	public String getProjStatus() {
 		return projStatus;
 	}
 	

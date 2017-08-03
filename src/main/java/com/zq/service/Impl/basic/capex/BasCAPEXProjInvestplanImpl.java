@@ -16,6 +16,7 @@ import com.zq.entity.basic.capex.BasCAPEXInvestPlan;
 import com.zq.entity.basic.capex.BasCAPEXProjInvestplan;
 import com.zq.entity.basic.capex.BasCAPEXProject;
 import com.zq.service.basic.capex.IBasCAPEXProjInvestplanService;
+import com.zq.service.system.ISysDicService;
 import com.zq.vo.basic.capex.BasCAPEXProjInvestplanVO;
 
 /**
@@ -32,6 +33,8 @@ public class BasCAPEXProjInvestplanImpl implements IBasCAPEXProjInvestplanServic
     private IBasCAPEXProjectRepository iBasCAPEXProjectRepository;       
     @Autowired
     private IBasCAPEXInvestPlanRepository iBasCAPEXInvestPlanRepository;
+    @Autowired
+    private ISysDicService iSysDicService;
 
 	@Override
 	public Page<BasCAPEXProjInvestplan> getBasCAPEXProjInvestplan(Integer pageNumber, int pageSize) {
@@ -57,8 +60,18 @@ public class BasCAPEXProjInvestplanImpl implements IBasCAPEXProjInvestplanServic
 			String investPlanProjName = inspl.getProjName();
 			String investPlanCode = inspl.getProjCode();
 			String year = inspl.getYear();
-			int firstDomain = inspl.getFirstDomain();//枚举值
-			int attribute = inspl.getAttribute();//枚举值
+			String firstDomain = iSysDicService.getNameByClasscodeAndCode("Invest_domain",inspl.getFirstDomain());
+			String attribute = iSysDicService.getNameByClasscodeAndCode("attr_code",inspl.getAttribute());
+			if(firstDomain==null||firstDomain.equals("")){
+				vo.setFirstDomain("未录入数据");
+			}else{
+				vo.setFirstDomain(firstDomain);
+			}
+			if(attribute==null||attribute.equals("")){
+				vo.setAttribute("未录入数据");
+			}else{
+				vo.setAttribute(attribute);
+			}
 			if(projCode==null||projCode.equals("")){
 				vo.setProjCode("未录入编码");
 			}else{

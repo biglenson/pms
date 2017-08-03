@@ -34,6 +34,7 @@ import com.zq.vo.basic.capex.BasCAPEXExpendplanVO;
 import com.zq.vo.basic.capex.BasCAPEXInvestPlanVO;
 import com.zq.vo.basic.capex.BasCAPEXProjInvestplanVO;
 import com.zq.vo.basic.capex.BasCAPEXProjectVO;
+import com.zq.vo.basic.capex.BasCAPEXRequirmentVO;
 import com.zq.vo.basic.capex.BasCAPEXTransferplanVO;
 
 
@@ -99,10 +100,35 @@ public class CAPEXManagerController extends BaseController{
 		request.setAttribute("pageInfo", pageInfo);
 		return CMCCConstant.BasCAPEXInvestplan;	
 	}
-	@RequestMapping(value = "bascapexinvestplan/add")
-    public String add(HttpServletRequest request) {
-
-		return CMCCConstant.AddCAPEXInvestplan;	
+	/** 
+	* @Title: query 
+	* @Description: TODO(查看CAPEX投资计划) 
+	* @author shujukuss 
+	* @date 2017年8月3日 上午9:54:47 
+	* @param @param request
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "bascapexinvestplan/query")
+    public String query( @RequestParam(value = "id") int id) {
+		logger.info("id:" + id);
+		return CMCCConstant.QueryBasCAPEXInvestplan;	
+	}
+	/** 
+	* @Title: edit 
+	* @Description: TODO(新增/编辑CAPEX投资计划) 
+	* @author shujukuss 
+	* @date 2017年8月3日 上午9:54:51 
+	* @param @param request
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws 
+	*/
+	@RequestMapping(value = "bascapexinvestplan/edit")
+    public String edit(@RequestParam(value = "id") int id) {
+		logger.info("id:" + id);
+		return CMCCConstant.EditBasCAPEXInvestplan;	
 	}
 	/** 
 	* @Title: basCAPEXAmountPool 
@@ -150,8 +176,9 @@ public class CAPEXManagerController extends BaseController{
 	@RequestMapping(value = "bascapexrequirment")
     public String basCAPEXRequirment(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         int pageSize = CMCCConstant.PAGE_SIZE;
-        Page<BasCAPEXRequirment> pageData = iBasCAPEXRequirmentService.getBasCAPEXRequirment(page, pageSize);	        
-        request.setAttribute("pageData", pageData.getContent());
+        Page<BasCAPEXRequirment> pageData = iBasCAPEXRequirmentService.getBasCAPEXRequirment(page, pageSize);
+        List<BasCAPEXRequirmentVO> pageList = iBasCAPEXRequirmentService.getBasCAPEXRequirmentVOList(pageData.getContent());
+        request.setAttribute("pageData", pageList);
         logger.info("总记录数"+pageData.getTotalElements());  
         logger.info("当前第几页"+pageData.getNumber()+1);  
         logger.info("总页数"+pageData.getTotalPages());  
