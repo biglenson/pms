@@ -348,6 +348,9 @@ public class BasSecondBillImpl implements IBasSecondBillService {
 			}
 		}
 		request.setAttribute(CMCCConstant.LASUPDATE, TypeUtils.getRelativeTime(dataUpdateDate));
+		request.setAttribute("startAllCount", startCount+delayStartCount);
+		request.setAttribute("delayStartCount", delayStartCount);
+		request.setAttribute("totalDelayDays", totalDelatStartDays);
 		request.setAttribute("finishAllCount", finishCount+delayFinishCount);
 		request.setAttribute("finishCount", finishCount);
 		request.setAttribute("delayFinishCount", delayFinishCount);
