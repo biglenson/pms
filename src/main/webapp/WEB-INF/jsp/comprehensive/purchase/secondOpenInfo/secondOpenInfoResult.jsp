@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import="com.zq.commons.utils.StringUtils"%>
+<%@ page import="net.sf.json.JSONArray"%>
 <%
 String path = request.getContextPath();
 Map<String,List> allOpenData = (Map<String,List>)request.getAttribute("allOpenData");
@@ -18,7 +20,7 @@ count[1] = (Integer)unOpenData.get(1);
 <div
 	style="width: 49%; margin: 10px auto; float: left; border-left: 1px solid #D9D9D9; height: 320px;"
 	id="openTotalProject"></div>
-<jsp:include page="/jsp/viewChangeTime.jsp">
+<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 	<jsp:param name="lastUpdateDIV" value="secondOpenInfoDIVTimeDIV" />
 </jsp:include>
 <script type="text/javascript">

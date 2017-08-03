@@ -32,6 +32,7 @@ import com.zq.service.basic.capex.IBasCAPEXInvestPlanService;
 import com.zq.service.basic.capex.IBasCAPEXProjectService;
 import com.zq.service.basic.capex.IBasCAPEXTotalInvestplanService;
 import com.zq.service.basic.capex.IBasCAPEXTransferplanService;
+import com.zq.service.system.ISysDicService;
 
 /**
  * @ClassName: ProjectViewController
@@ -61,6 +62,9 @@ public class ProjectViewController extends BaseController {
 
 	@Autowired
 	private IBasCAPEXExpendplanService iBasCAPEXExpendplanService;
+	
+	@Autowired
+    private ISysDicService iSysDicService;
 
 	private static Logger logger = Logger.getLogger(ProjectViewController.class);
 
@@ -90,7 +94,7 @@ public class ProjectViewController extends BaseController {
 						capexproj.getId());
 				String attribute = "";
 				if (plan != null) {
-					attribute = "新建"; // 后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
+					attribute = iSysDicService.getNameByClasscodeAndCode("attr_code", plan.getAttribute()); // 后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
 				}
 				if ("新建".equals(attribute)) {
 					allValue += TypeUtils.string2Double(capexproj.getProjTotalInvest());
@@ -132,7 +136,7 @@ public class ProjectViewController extends BaseController {
 				}
 				String attribute = "";
 				if (plan != null) {
-					attribute = "新建"; // 后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
+					attribute = iSysDicService.getNameByClasscodeAndCode("attr_code", plan.getAttribute()); // 后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
 				}
 				if ("新建".equals(attribute)) {
 					projectValue += TypeUtils.string2Double(capexproj.getProjSetupAmount());
@@ -169,7 +173,7 @@ public class ProjectViewController extends BaseController {
 
 				String attribute = "";
 				if (plan != null) {
-					attribute = "新建"; // 后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
+					attribute = iSysDicService.getNameByClasscodeAndCode("attr_code", plan.getAttribute()); // 后期根据BasCAPEXInvestPlan中attribute去代码表中查出具体值
 				}
 				if ("新建".equals(attribute)) {
 					newValue++;

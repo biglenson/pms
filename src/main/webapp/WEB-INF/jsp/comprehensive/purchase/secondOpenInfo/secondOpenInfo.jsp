@@ -6,7 +6,7 @@ String path = request.getContextPath();
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		$.ajax({
-			url:"<%=path%>/CaiGouAction.do?operation=secondOpenMoneyInfo",
+			url:"<%=path%>/purchaseview/secondopenmoneyinfo",
 			method:"POST",
 			data:{
 				year:document.frm.year.value
@@ -17,7 +17,7 @@ String path = request.getContextPath();
 			}
 		});
 		$.ajax({
-			url:"<%=path%>/CaiGouAction.do?operation=secondOpenProjectInfo",
+			url:"<%=path%>/purchaseview/secondopenprojectinfo",
 			method:"POST",
 			data:{
 				year:document.frm.year.value

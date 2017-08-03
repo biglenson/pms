@@ -1,5 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="com.zq.commons.utils.TypeUtils"%>
+<%@ page import="com.zq.commons.result.HighChartData"%>
+<%@ page import="com.zq.commons.result.ColorHighChartData"%>
+<%@ page import="net.sf.json.JSONArray"%>
 <%
 String path = request.getContextPath();
 Integer index=(Integer)request.getAttribute("index");
@@ -49,7 +52,7 @@ Integer index=(Integer)request.getAttribute("index");
 	<div class="tabMore linkURL" style="margin-top: 20px;"
 		onclick="openMoreCaigouStartDetail()">更多详情</div>
 </div>
-<jsp:include page="/jsp/viewChangeTime.jsp">
+<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 	<jsp:param name="lastUpdateDIV" value="summary_startDIVTimeDIV" />
 </jsp:include>
 <script type="text/javascript">
@@ -153,7 +156,7 @@ Integer index=(Integer)request.getAttribute("index");
 	<div class="tabMore linkURL" style="margin-top: 20px;"
 		onclick="openMoreCaigouFinishDetail()">更多详情</div>
 </div>
-<jsp:include page="/jsp/viewChangeTime.jsp">
+<jsp:include page="/WEB-INF/jsp/common/viewChangeTime.jsp">
 	<jsp:param name="lastUpdateDIV" value="summary_finishDIVTimeDIV" />
 </jsp:include>
 <script type="text/javascript">

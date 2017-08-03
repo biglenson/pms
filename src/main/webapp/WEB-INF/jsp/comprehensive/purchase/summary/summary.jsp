@@ -41,7 +41,7 @@ String path = request.getContextPath();
 jQuery(document).ready(function(){
 	var doAjax=function(index,select){
 		$.ajax({
-			url:"<%=path%>/CaiGouAction.do?operation=summary",
+			url:"<%=path%>/purchaseview/summaryinfo",
 			method:"POST",
 			data:{
 				year:document.frm.year.value,

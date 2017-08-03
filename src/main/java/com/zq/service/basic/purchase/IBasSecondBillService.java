@@ -30,5 +30,12 @@ public interface IBasSecondBillService{
 	HttpServletRequest getPMethodFromSecondBill(HttpServletRequest request, Map<String, Double> zhichuMoney,
 			Map<String, Integer> zhichuProject);
 
+	HttpServletRequest getCostSavingFromSecondBill(HttpServletRequest request);
+
+	HttpServletRequest getOpenMoneyInfoFromSecondBill(HttpServletRequest request);
+
+	HttpServletRequest getFinishInTimeFromSecondBill(HttpServletRequest request);
+
+
 
 }
