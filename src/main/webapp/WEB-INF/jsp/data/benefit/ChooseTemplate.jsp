@@ -5,26 +5,7 @@
 
 <%
 	String path = request.getContextPath();
-	/* List templateList=(List)request.getAttribute("templateList");
-	MenuHelper.outNoMenuHeader(user, request, response);
-	CodeTable table=PlatformModuleFactory.getCodeTableManager().getCodeTable(user,"km_label");
-	CommonCode [] codes=table.getCommonCodes();
-	String labels=TypeUtils.nullToString(request.getParameter("labels"));
-	String [] labelArr=labels.split(",");
-	StringBuffer labelNames=new StringBuffer();
-	if(labels.length()>0){
-		for(String l:labelArr){
-			CommonCode c=table.getCommonCode(Integer.parseInt(l));
-			if(labelNames.length()==0){
-				labelNames.append(c.getName());
-			}else{
-				labelNames.append(","+c.getName());
-			}
-		}
-	} */
 %>
-
-
 
 <!-- 内容主体 -->
 <!DOCTYPE HTML>
@@ -45,7 +26,6 @@ function OkFun(){
 			return;
 		}
 	}
-	console.log('用户选择了确定!!');
 }
 function openTemplate(uid){
 	
@@ -124,7 +104,7 @@ var labelMap={};
 </head>
 <body class="popBody" onload="ET.Utils.onloadEvent();">
 <div class="popBodyDIV">
-<form name="frm" method="post" action="<%-- <%=path%>/ProjectAction.do --%>">
+<form name="frm" method="post" action="<%=path%>/benefitEvalEditPopup">
 <input type="hidden" name="operation" value="selectResourceType">
 <%-- <input type="hidden" name="scorecardType" value="<%=TypeUtils.nullToString(request.getParameter("scorecardType")) %>"> --%>
 <div style="height: 260px;"> 
@@ -132,25 +112,12 @@ var labelMap={};
 	<thead>
 		<tr>
 			<th ><div style='width:20px'>&nbsp;</div></th>
-			<!-- <th width='100%'><div style='width:100px;margin:0 auto'><bean:message key="name"/></div></th>					
-			<th ><div style='width:100px'><bean:message key="createdBy"/></th>
-			<th ><div style='width:100px'><bean:message key="createdTime"/></th> -->
 			<th width='100%'><div style='width:100px;margin:0 auto'>名称</div></th>					
 			<th ><div style='width:100px'>创建人</div></th>
 			<th ><div style='width:100px'>创建时间</div></th>
 		</tr>
 	</thead>
 	<tbody>
-	<%-- <%for(int i=0;i<templateList.size();i++){
-		ScorecardTemplate template=(ScorecardTemplate)templateList.get(i);
-	%>
-		<tr class="listTableTR"> 
-		    <td><input type="radio" id="templateID" name="templateID" value="<%=template.getId()%>" <%=i==0?"checked":""%>></td>
-		    <td ><%=TypeUtils.xmlEncoderForIE(template.getName())%></td>
-			<td ><%=TypeUtils.xmlEncoderForIE(template.getCreateByName(user)) %>&nbsp;</td>
-			<td ><%=TypeUtils.date2String(template.getCreateTime(),TypeUtils.DEFAULT_DATE_FORMAT)%>&nbsp;</td>
-		</tr>
-	<%}%> --%>
 		<c:forEach items="${benefitEvalTplList}" var="benefitEval">
 			<tr class="listTableTR"> 
 			    <td><input type="radio" id="templateID" name="templateID" value="${benefitEval.tplID}" /></td>
@@ -165,8 +132,6 @@ var labelMap={};
 <%=UIUtils.spacerDIV("5",request)%>
 <div class="OKButtonBottom">
 	<div class="OKButtonDIV">
-		<%-- <input class="kbutton OKButton" type="button" value='<bean:message key="ok"/>' onclick='OkFun();'>
-		<input name="cancelBtn" class="kbutton" type="button" value='<bean:message key="close"/>' onclick="parent.ET.closeModalWindow()"> --%>
 		<input class="kbutton OKButton" type="button" value='确定' onclick='OkFun();'>
 		<input name="cancelBtn" class="kbutton" type="button" value='关闭' onclick="parent.ET.closeModalWindow()">
 	</div>

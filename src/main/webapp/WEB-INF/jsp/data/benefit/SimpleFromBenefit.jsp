@@ -55,16 +55,16 @@ function selectScorecardTemplate(evalFor,evalPhase){
 	ET.showModalWindow(arg, function (ret) { 
 		if(!isNaN(ret)){
 			if(ret!=0){
-				newFormFun();
+				newFormFun(evalFor, evalPhase, ret);
 			}
 		}
 	});  
 }
 
 //选择模版之后的编辑弹出窗体
-function newFormFun() {
+function newFormFun(evalFor, evalPhase, chooseItem) {
 	var arg = new Array();
-	arg.src = "<%=path%>/datamap/benefitEvalEditPopup?pageTitle=<%= pageTitle %>&url=<%= url%>"+"&_id="+Math.random();
+	arg.src = "<%=path%>/datamap/benefitEvalEditPopup?evalFor="+ evalFor +"&evalPhase="+ evalPhase + "&chooseItem="+ chooseItem +"&_id=" + Math.random();
 	arg.title = "";
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;

@@ -12,6 +12,13 @@
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 %>
 
+<style>
+/* 层叠其他样式的覆盖 */
+td,div {
+	font-size: 12px;
+}
+</style>
+
 <script type="text/javascript">
 //保存
 function save() {	
@@ -81,8 +88,84 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <div style="overflow: auto;" class='relativeDIV' id="contentDIV">
 	<%=UIUtils.formBodyStart(request) %>
 		<!-- 基本信息 -->
-		<table  style="border:0;align:center;cellpadding:0;cellspacing:0" id="fieldTable" class='formTable'>
-			
+		<table  style="border:0;align:center;cellpadding:0;cellspacing:0" id="fieldTable" class='formTable'>						
+			<tbody>
+				<tr>
+					<td class="label white_background-color"></td>
+					<td class="content white_background-color"></td>
+					<td class="seperator"></td>
+					<td class="label white_background-color"></td>
+					<td class="content white_background-color"></td>
+				</tr>
+				<tr>
+					<td class="label">代码</td>
+					<td class="content" id="codetd"> 
+						<div class="content-line" id="div-codeName"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="label">标题<font class="red">*</font></td>
+					<td colspan="4" class="content" id="titletd">
+						<input class="text" name="title" value="" maxlength="250" altstr="标题" type="text">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="label">评估类型</td>
+					<td class="content  " id="categorytd"> 
+						<div class="content-line" id="div-categoryName">项目前评估</div>
+					</td>
+					<td class="seperator"></td>
+					<td class="label">状态</td>
+					<td class="content  " id="statustd"> 
+						<div class="content-line" id="div-statusName">待需求负责人审批</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="label">评估人</td>
+					<td class="content  " id="res01td">
+						<div class="content-div" id="content-div-res01" style="cursor: pointer;">
+							<input name="res01" value="" type="hidden">
+							<input class="text" name="res01Name" value="" readonly="" style="cursor: pointer;" type="text">
+							<img src="/pm/images/button/assign_resources.gif" id="div-img-res01" align="absmiddle">
+						</div> 
+						<script type="text/javascript">
+							ET.Utils.addEvent(document.getElementById('content-div-res01'),'click',function(){ 
+								var img=document.getElementById('div-img-res01');
+								treeSelectUtils.showUserSelect(img.parentElement.children[0],img.parentElement.children[1], 7,69,true); 
+							}) 
+						</script>
+					</td>
+					<td class="seperator"></td>
+					<td class="label">评估时间</td>
+					<td class="content  " id="date01td">
+						<div class="content-div" id="content-div-date01"> 
+							<input class="text" name="date01" id="date01" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
+							<img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer">
+						</div>  
+						<script type="text/javascript"> 
+							showCalendar("date01","imagdate01");
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="label">评估模板</td>
+					<td class="content" id="str01td">
+						<div class="content-line" id="div-str01Name">2.1项目评估模型-平台项目-增收型新建项目</div>
+					</td>
+				</tr>
+			</tbody>
 		</table>
 		<!-- 效益评估 -->
 		<jsp:include page="./BenefitInclude.jsp"/>
