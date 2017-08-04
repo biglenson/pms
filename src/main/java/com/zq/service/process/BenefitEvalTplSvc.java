@@ -48,4 +48,10 @@ public class BenefitEvalTplSvc{
         }
         return benefitEvalTplVOList;
     }
+    public BenefitEvalTplVO getBenefitEvalTplInfo(int tplID) {
+        BenefitEvalTpl benefitEvalTpl = benefitEvalTplRepo.getBenefitEvalTplByTplID(tplID);
+        BenefitEvalTplVO benefitEvalTplVO =  new BenefitEvalTplVO();
+        BeanUtils.copyProperties(benefitEvalTpl, benefitEvalTplVO);
+        return benefitEvalTplVO;
+    }
 }

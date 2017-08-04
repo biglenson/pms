@@ -75,6 +75,9 @@ public class ProcessController extends BaseController{
     @Autowired
     private BenefitEvalTplSvc benefitEvalTplSvc;
 	
+    @Autowired
+    private BenefitEvalTplItemSvc benefitEvalTplItemSvc;
+	
 	@RequestMapping(value = "chooseTemplate", method = RequestMethod.GET)  
 	public String getTemplateList(HttpServletRequest request, HttpServletResponse response, Model model,String captcha, 
                                     @RequestParam("evalPhase") Integer evalPhase,
@@ -211,9 +214,13 @@ public class ProcessController extends BaseController{
     * @throws
     */
     @RequestMapping(value = "benefitEvalEditPopup")
-    public String benefitEvalEditPopup(HttpServletRequest request, String pageTitle, String url) {
-        request.setAttribute("pageTitle", pageTitle);
-        request.setAttribute("url", url);
+	public String benefitEvalEditPopup(HttpServletRequest request, HttpServletResponse response, Model model,String captcha, 
+                                    @RequestParam("tplID") Integer tplID
+                                 ) {		 	
+        BenefitEvalTplVO benefitEvalTplVO = benefitEvalTplSvc.getBenefitEvalTplInfo(tplID);
+        List<BenefitEvalTplItemVO> formTemplate = benefitEvalTplItemSvc.getFormTemplate(tplID);
+        request.setAttribute("templateInfo", benefitEvalTplVO);
+        request.setAttribute("formTemplate", formTemplate);
         return CMCCConstant.BenefitEvalEditPopup;
     }
 
