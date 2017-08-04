@@ -26,6 +26,9 @@ public class BenefitEvalTplItem implements Serializable {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int tplItemID;
 	
+	@Column(name="tplID", nullable=false, length=11)	
+	private int tplID;
+	
 	@Column(name="evalDimension", nullable=false, length=50)	
 	private String evalDimension;
 	
@@ -51,6 +54,14 @@ public class BenefitEvalTplItem implements Serializable {
 	
 	public String getEvalDimension() {
 		return evalDimension;
+	}
+	
+	public void setTplID(int value) {
+		this.tplID = value;
+	}
+	
+	public int getTplID() {
+		return tplID;
 	}
 	
 	public void setEvalItem(String value) {

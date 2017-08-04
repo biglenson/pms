@@ -47,10 +47,6 @@ public class BenefitEvalTpl implements Serializable {
 	@Column(name="templateDesc", nullable=true, length=255)	
 	private String templateDesc;
 	
-	@OneToMany(targetEntity=BenefitEvalTplItem.class, fetch=FetchType.EAGER , cascade = { CascadeType.ALL})
-	@JoinColumns({ @JoinColumn(name="tplID", nullable=false) })	
-	private java.util.List<BenefitEvalTplItem> benefitEvalTplItem = new java.util.ArrayList<BenefitEvalTplItem>();
-	
 	public int getTplID() {
 		return tplID;
 	}
@@ -114,15 +110,6 @@ public class BenefitEvalTpl implements Serializable {
 	public String getTemplateDesc() {
 		return templateDesc;
 	}
-	
-	public void setBenefitEvalTplItem(java.util.List<BenefitEvalTplItem> value) {
-		this.benefitEvalTplItem = value;
-	}
-	
-	public java.util.List<BenefitEvalTplItem> getBenefitEvalTplItem() {
-		return benefitEvalTplItem;
-	}
-	
 	
 	public String toString() {
 		return String.valueOf(getTplID());
