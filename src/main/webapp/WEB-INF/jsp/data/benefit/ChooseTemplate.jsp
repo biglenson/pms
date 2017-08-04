@@ -153,7 +153,7 @@ var labelMap={};
 	<%}%> --%>
 		<c:forEach items="${benefitEvalTplList}" var="benefitEval">
 			<tr class="listTableTR"> 
-			    <td><input type="radio" id="templateID" name="templateID" value="${benefitEval.tplID}" checked="${benefitEval.tplID}==0?'checked':''" /></td>
+			    <td><input type="radio" id="templateID" name="templateID" value="${benefitEval.tplID}" /></td>
 			    <td >${benefitEval.tplTitle}</td>
 				<td >${benefitEval.creator}&nbsp;</td>
 				<td >${benefitEval.createTime}&nbsp;</td>
@@ -174,6 +174,10 @@ var labelMap={};
 </form>
 </div>
 <script type="text/javascript">
+$(function () {
+	//模版默认选中第一个
+	$(':radio').eq(0).attr('checked', true);
+});
 window.fixedTable=new EasyTrack.DataTable('fieldTable',{
 	autoHeight:false
 });	
