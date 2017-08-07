@@ -194,20 +194,24 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			<tbody>
 				<!-- 大类项 -->
 				<%
-				List<BenefitEvalTplItemVO> formTemplate2 = (List)request.getAttribute("formTemplate");
-					if(formTemplate2 != null && formTemplate2.size() > 0){
-						for(BenefitEvalTplItemVO item2 : formTemplate2){
-				%>
+				List<BenefitEvalTplItemVO> formTemplate = (List)request.getAttribute("formTemplate");
+					if(formTemplate != null && formTemplate.size() > 0){
+						String dimension = ""; //大类标识
+						int index = 1; //自定义索引
+						for(BenefitEvalTplItemVO item : formTemplate){
+							if(!dimension.equals(item.getEvalDimension())) {
+								dimension = item.getEvalDimension();
+				%>	
 				<tr class="listTableTR" >
 					<td align="center">
-					<input type="hidden" name="tplItemID" value="<%=item2.getListOrder()%>"/>
-						<%=item2.getListOrder()%>
+					<input type="hidden" name="tplItemID" value="<%=item.getListOrder()%>"/>
+						<%=index%>
 					</td>
-					<td title="<%=item2.getEvalDimension()%>">
+					<td title="<%=item.getEvalDimension()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
-							<input type="hidden" name="evalDimension" value="<%=item2.getEvalDimension()%>"/>
+							<input type="hidden" name="evalDimension" value="<%=item.getEvalDimension()%>"/>
 							<img src="<%=path %>/static/images/folderClosed.gif" style="width: 16px; height: 16px;"/>
-							<%=item2.getEvalDimension()%>
+							<%=item.getEvalDimension()%>
 						</div>
 					</td>
 					<td title="">
@@ -216,18 +220,13 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 							
 						</div>
 					</td>
-				</tr>
-				<%}} %>
+				</tr>		
+				<%}%>
 				<!-- 小类项 -->
-				<%
-				List<BenefitEvalTplItemVO> formTemplate = (List)request.getAttribute("formTemplate");
-					if(formTemplate != null && formTemplate.size() > 0){
-						for(BenefitEvalTplItemVO item : formTemplate){
-				%>
 				<tr class="listTableTR" >
 					<td align="center">
 						<input type="hidden" name="tplItemID" value="<%=item.getTplItemID()%>"/>
-						<%=item.getTplItemID()%>
+						<%=index+1%>
 					</td>
 					<td title="<%=item.getEvalItem()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
@@ -266,7 +265,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 						</div>
 					</td>
 				</tr>
-				<%}}else{%>
+				<%index++;}}else{%>
 				<tr class="listTableTR" >
 					<td colspan="9">没有记录</td>
 				</tr>
