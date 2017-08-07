@@ -91,8 +91,8 @@ public class CMCCConstant {
 	public static final String BasOPEXPurchaseplan = "data/SimpleForm";
 	
 	public static final String BasCustomer = "data/SimpleForm";
-	public static final String BasItemset = "data/SimpleForm";
-	public static final String BasProduct = "data/SimpleForm";
+	public static final String BasItemset = "data/benefit/SimpleForm2";
+	public static final String BasProduct = "data/benefit/SimpleForm2";
 	public static final String BasItemProdCust = "data/SimpleForm";
 	public static final String BasProjCapex = "data/SimpleForm";
 	public static final String BasProductIncome = "data/SimpleForm";
