@@ -2,22 +2,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
-<%@ page import= "com.zq.commons.result.PageInfo" %>
+<%-- <%@ page import="com.zq.vo.process.BenefitEvalTplVO" %>
+<%@ page import="com.zq.vo.process.BenefitEvalTplItemVO" %>
+<%@ page import="com.zq.commons.utils.TypeUtils" %> --%>
 <%
 	String path = request.getContextPath();
-	String pageTitle = (String)request.getAttribute("pageTitle");
-	Integer appid = (Integer)request.getAttribute("appid");
-	Long pid = (Long)request.getAttribute("pid");
-	String url = (String)request.getAttribute("url");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	
-	int nameWidth = (760-30-180-80-50-100-(true?160:0)-10); //是否是后评估，这里还没有变量，先写成true
+	/* BenefitEvalTplVO benefitEvalInfo = (BenefitEvalTplVO)request.getAttribute("templateInfo");
+	String evalPhase = benefitEvalInfo.getEvalPhase().toString();
+	boolean isAfterEval;
+	if ("1".equals(evalPhase)){
+		isAfterEval = true;
+	}else {
+		isAfterEval = false;
+	}
+	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10); //是否是后评估  */
+	int nameWidth = (760-30-180-80-50-100-(true?160:0)-10);
+	/* boolean canEdit = true;
+	boolean isNew = true; */
 %>
 
 <script type="text/javascript">
 
 </script>
-<body style="font-size:12px;">
+
 <form>
 <!-- 效益评估 -->
 <%=UIUtils.togglePanelStart("效益评估", true, request)%>
@@ -38,137 +45,113 @@
 			<th ><div style="width:100px">描述</div></th>
  		</tr> 
 	</thead>
-	
 	<%-- <tbody>
+		<!-- 大类项 -->
 		<%
-			if(cmccScoreItems!=null&&cmccScoreItems.size()>0){
-				for(CMCCFormScoreCardItem item:cmccScoreItems){				
-		%> 	
-		<tr class="listTableTR" >
-			<td align="center">
-			<input type="hidden" name="cmcc_seqno" value="<%=item.getSeqno()%>"/>
-			<input type="hidden" name="cmcc_scoreitemid" value="<%=item.getScoreitemid()%>"/>
-			<input type="hidden" name="cmcc_parentid" value="0"/>
-				<%=item.getSeqno()%>
-			</td>
-			<td title="<%=item.getName()%>">
-				<div style="width: <%=nameWidth %>px" class="nowrapText">
-					<input type="hidden" name="cmcc_name" value="<%=item.getName()%>"/>
-					<img src="<%=path %>/images/16x16/folderClosed.gif" style="width: 16px; height: 16px;"/>
-					<%=TypeUtils.xmlEncoderForIE(item.getName())%>
-				</div>
-			</td>
-			<td title="<%=item.getDescription()%>">
-				<div style="width:178px;" class="nowrapText">
-					<input type="hidden" name="cmcc_description" value="<%=item.getDescription()%>"/>
-					<%=TypeUtils.xmlEncoderForIE(item.getDescription())%>
-				</div>
-			</td>
-			<%if(isAfterScore){%>
-			<td>
-			<input type="hidden" name="cmcc_prescore" value=""/>
-			</td>
-			<%}%>
-			<td>
-			<input type="hidden" name="cmcc_score" value=""/>
-			</td>
-			<%if(isAfterScore){%>
-			<td>
-			<input type="hidden" name="cmcc_deviation" value=""/>
-			</td>
-			<%}%>
-			<td>
-			<input type="hidden" name="cmcc_templatescore" value=""/>
-			</td>
-			<td>
-			<input type="hidden" name="cmcc_remark" value=""/>
-			</td>
-		</tr>
-		<%
-			List<CMCCFormScoreCardItem> children = item.getChildren();
-			if(children!=null&&children.size()>0){
-				for(CMCCFormScoreCardItem child:children){
+		List<BenefitEvalTplItemVO> formTemplate2 = (List)request.getAttribute("formTemplate");
+			if(formTemplate2 != null && formTemplate2.size() > 0){
+				for(BenefitEvalTplItemVO item2 : formTemplate2){
 		%>
 		<tr class="listTableTR" >
 			<td align="center">
-			<input type="hidden" name="cmcc_seqno" value="<%=child.getSeqno()%>"/>
-			<input type="hidden" name="cmcc_scoreitemid" value="<%=child.getScoreitemid()%>"/>
-			<input type="hidden" name="cmcc_parentid" value="<%=item.getScoreitemid()%>"/>
-				<%=child.getSeqno()%>
+			<input type="hidden" name="tplItemID" value="<%=item2.getListOrder()%>"/>
+				<%=item2.getListOrder()%>
 			</td>
-			<td title="<%=child.getName()%>">
+			<td title="<%=item2.getEvalDimension()%>">
 				<div style="width: <%=nameWidth %>px" class="nowrapText">
-					<input type="hidden" name="cmcc_name" value="<%=child.getName()%>"/>
-					<img src="<%=path %>/images/16x16/empty.gif" style="width: 16px; height: 16px;"/><img src="<%=path %>/images/16x16/task.gif" style="width: 16px; height: 16px;"/>
-					<%=TypeUtils.xmlEncoderForIE(child.getName())%>
+					<input type="hidden" name="evalDimension" value="<%=item2.getEvalDimension()%>"/>
+					<img src="<%=path %>/static/images/folderClosed.gif" style="width: 16px; height: 16px;"/>
+					<%=item2.getEvalDimension()%>
 				</div>
 			</td>
-			<td title="<%=child.getDescription()%>">
+			<td title="">
+				<div style="width:178px;" class="nowrapText">
+					<input type="hidden" name="cmcc_description" value=""/>
+					
+				</div>
+			</td>
+		</tr>
+		<%}} %>
+		<!-- 小类项 -->
+		<%
+		List<BenefitEvalTplItemVO> formTemplate = (List)request.getAttribute("formTemplate");
+			if(formTemplate != null && formTemplate.size() > 0){
+				for(BenefitEvalTplItemVO item : formTemplate){
+		%>
+		<tr class="listTableTR" >
+			<td align="center">
+				<input type="hidden" name="tplItemID" value="<%=item.getTplItemID()%>"/>
+				<%=item.getTplItemID()%>
+			</td>
+			<td title="<%=item.getEvalItem()%>">
+				<div style="width: <%=nameWidth %>px" class="nowrapText">
+					<input type="hidden" name="evalItem" value="<%=item.getEvalItem()%>"/>
+					<img src="<%=path %>/static/images/benefit/empty.gif" style="width: 16px; height: 16px;"/>
+					<img src="<%=path %>/static/images/benefit/task.gif" style="width: 16px; height: 16px;"/>
+					<%=item.getEvalItem()%>
+				</div>
+			</td>
+			<td title="<%=item.getEvalDesc()%>">
 				<div style="width: 178px" class="nowrapText">
-					<input type="hidden" name="cmcc_description" value="<%=TypeUtils.nullToString(child.getDescription())%>"/>
-					<%=TypeUtils.xmlEncoderForIE(child.getDescription())%>
+					<input type="hidden" name="evalDesc" value="<%=item.getEvalDesc()%>"/>
+					<%=item.getEvalDesc()%>
 				</div>
 			</td>
-			<%if(isAfterScore){%>
+			<%if(isAfterEval){%>
 			<td align="right">
 				<%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" name="cmcc_prescore" contentType="N10.2" readonly="readonly" value="<%=TypeUtils.nullToString(child.getPrescore())%>"/>
+					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" name="cmcc_prescore" contentType="N10.2" readonly="readonly" value="<%=item.getEvalDimension()%>"/>
 				<%}else{%>
-					<%=TypeUtils.nullToString(child.getPrescore())%>
+					<%=TypeUtils.nullToString(item.getEvalDimension())%>
 				<%}%>
 			</td>
 			<%}%>
 			<td align="right">
-				<%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;" name="cmcc_score" <%if(isAfterScore){%>onchange="cmccScoreChangeFun(this);"<%}%>
-					 contentType="N10.2" value="<%=TypeUtils.nullToString(child.getScore())%>"/>
+				 <%if(canEdit){%>
+					<input type="text" class="text" style="width: 78px;text-align: right;" name="cmcc_score" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+					 contentType="N10.2" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
 				<%}else{%>
-					<%=TypeUtils.nullToString(child.getScore())%>
+					<%=TypeUtils.nullToString(item.getEvalItem())%>
 				<%}%>
 			</td>
-			<%if(isAfterScore){%>
+			<%if(isAfterEval){%>
 			<td align="right">
 				<%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" name="cmcc_deviation" readonly="readonly" value="<%=TypeUtils.nullToString(child.getDeviation())%>"/>
+					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" name="cmcc_deviation" readonly="readonly" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
 				<%}else{%>
-					<%=TypeUtils.nullToString(child.getDeviation())%>
+					<%=TypeUtils.nullToString(item.getEvalItem())%>
 				<%}%>
 			</td>
 			<%}%>
-			<td title="<%=TypeUtils.nullToString(child.getTemplatescore())%>" align="center">
+			<td title="" align="center">
+				<img src="<%=path %>/static/images/benefit/discussion.gif"/>
 				<%if(isNew){%>
-					<input type="hidden" name="cmcc_templatescore" value="<%=TypeUtils.nullToString(child.getTemplatescore())%>"/>
+					<input type="hidden" name="cmcc_templatescore" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
 				<%}%>
-				<%if(TypeUtils.nullToString(child.getTemplatescore()).length()>0){%>
-				<img src="<%=path %>/images/16x16/discussion_filled.gif"/>
+				<%if(TypeUtils.nullToString(item.getEvalItem()).length()>0){%>
+				<img src="<%=path %>/static/images/benefit/discussion_filled.gif"/>
 				<%}else{%>
-				<img src="<%=path %>/images/16x16/discussion.gif"/>
+				<img src="<%=path %>/static/images/benefit/discussion.gif"/>
 				<%}%>
 			</td>
-			<td title="<%=TypeUtils.nullToString(child.getRemark())%>">
+			<td title="<%=item.getRefValue()%>">
 				<div style="width: 100px" class="nowrapText">
 					<%if(canEdit){%>
-						<input type="text" class="text" style="width:98px;" name="cmcc_remark" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(child.getRemark())%>"/>
+						<input type="text" class="text" style="width:98px;" name="cmcc_remark" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalItem())%>"/>
 					<%}else{%>
-						<%=TypeUtils.xmlEncoderForIE(child.getRemark())%>
+						<%=TypeUtils.xmlEncoderForIE(item.getEvalItem())%>
 					<%}%>
 				</div>
 			</td>
 		</tr>
-		<%}}}}else{%>
+		<%}}else{%>
 		<tr class="listTableTR" >
-			<td colspan="9"><bean:message key="noRecord"/></td>
+			<td colspan="9">没有记录</td>
 		</tr>
 		<%}%>
-		</tbody> --%>
-		<tbody>
-			<tr class="listTableTR ">
-				<td colspan="9">没有记录</td>
-			</tr>
-		</tbody>
+	</tbody> --%>
 </table>
 <%=UIUtils.togglePanelEnd(request)%>
 
 <!-- 以上为表单 -->
 </form>
-</body>

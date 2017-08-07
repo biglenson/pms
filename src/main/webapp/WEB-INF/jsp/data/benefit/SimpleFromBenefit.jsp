@@ -63,9 +63,11 @@ function selectScorecardTemplate(evalFor,evalPhase){
 
 //选择模版之后的编辑弹出窗体
 function newFormFun(evalFor, evalPhase, chooseItem) {
+	var chooseFor = evalFor=='0'?"项目":"产品";
+	var choosePhase = evalPhase == '0'?"前":"后";
 	var arg = new Array();
-	arg.src = "<%=path%>/datamap/benefitEvalEditPopup?evalFor="+ evalFor +"&evalPhase="+ evalPhase + "&chooseItem="+ chooseItem +"&_id=" + Math.random();
-	arg.title = "";
+	arg.src = "<%=path%>/datamap/benefitEvalEditPopup?tplID="+ chooseItem +"&_id=" + Math.random();
+	arg.title = chooseFor + choosePhase + "评估";
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 

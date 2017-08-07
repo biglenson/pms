@@ -1,15 +1,21 @@
+<%@page import="org.hibernate.sql.Template"%>
 <%@page import="org.apache.commons.io.filefilter.FalseFileFilter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
-<%@ page import= "com.zq.commons.result.PageInfo" %>
+<%@ page import="com.zq.vo.process.BenefitEvalTplVO" %>
+<%@ page import="com.zq.vo.process.BenefitEvalTplItemVO" %>
 <%
 	String path = request.getContextPath();
-	String pageTitle = (String)request.getAttribute("pageTitle");
-	Integer appid = (Integer)request.getAttribute("appid");
-	Long pid = (Long)request.getAttribute("pid");
-	String url = (String)request.getAttribute("url");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	BenefitEvalTplVO benefitEvalInfo = (BenefitEvalTplVO)request.getAttribute("templateInfo");
+	String evalPhase = benefitEvalInfo.getEvalPhase().toString();
+	boolean isAfterEval;
+	if ("1".equals(evalPhase)){
+		isAfterEval = true;
+	}else {
+		isAfterEval = false;
+	}
+	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10); //是否是后评估
 %>
 
 <style>
@@ -18,6 +24,9 @@ td,div {
 	font-size: 12px;
 }
 </style>
+
+<%-- 输出Head1模块 --%>
+<jsp:include page="../../common/Head1.jsp" />
 
 <script type="text/javascript">
 //保存
@@ -63,21 +72,15 @@ function cancel() {
 	parent.ET.closeModalWindow();
 }
 
-//自动填充窗体标题栏
+//自动适配当前窗体高度
 function autoContentHeight(){
 	ET.MainScroll("contentDIV");
-	parent.ET.setModalWindowTitle('项目后评估');
 }
 ET.Utils.addOnloadEvent(autoContentHeight);
 </script>
 
-<%-- 输出Head1模块 --%>
-<jsp:include page="../../common/Head1.jsp" />
-
 <!-- 内容主体 -->
 <form name="frm" action="<%=path%>/datamap/benefitEvalPopup" method="post">
-<input type="hidden" name="pageTitle" value="<%= pageTitle %>">
-<input type="hidden" name="url" value="<%= url %>">
 <input type="hidden" name="operation" value="edit">
 
 <%=UIUtils.toolbarStart(request)%>
@@ -87,6 +90,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 
 <div style="overflow: auto;" class='relativeDIV' id="contentDIV">
 	<%=UIUtils.formBodyStart(request) %>
+	
 		<!-- 基本信息 -->
 		<table  style="border:0;align:center;cellpadding:0;cellspacing:0" id="fieldTable" class='formTable'>						
 			<tbody>
@@ -130,12 +134,12 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td colspan="5" height="5"></td>
 				</tr>
 				<tr>
-					<td class="label">评估人</td>
+					<td class="label">创建人</td>
 					<td class="content  " id="res01td">
 						<div class="content-div" id="content-div-res01" style="cursor: pointer;">
 							<input name="res01" value="" type="hidden">
 							<input class="text" name="res01Name" value="" readonly="" style="cursor: pointer;" type="text">
-							<img src="/pm/images/button/assign_resources.gif" id="div-img-res01" align="absmiddle">
+							<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 						</div> 
 						<script type="text/javascript">
 							ET.Utils.addEvent(document.getElementById('content-div-res01'),'click',function(){ 
@@ -145,11 +149,11 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 						</script>
 					</td>
 					<td class="seperator"></td>
-					<td class="label">评估时间</td>
+					<td class="label">创建时间</td>
 					<td class="content  " id="date01td">
 						<div class="content-div" id="content-div-date01"> 
 							<input class="text" name="date01" id="date01" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
-							<img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer">
+							<!-- <img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer"> -->
 						</div>  
 						<script type="text/javascript"> 
 							showCalendar("date01","imagdate01");
@@ -162,13 +166,115 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr>
 					<td class="label">评估模板</td>
 					<td class="content" id="str01td">
-						<div class="content-line" id="div-str01Name">2.1项目评估模型-平台项目-增收型新建项目</div>
+						<div class="content-line" id="div-str01Name">${templateInfo.tplTitle}</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		
 		<!-- 效益评估 -->
-		<jsp:include page="./BenefitInclude.jsp"/>
+		<%=UIUtils.togglePanelStart("效益评估", true, request)%>
+		<table style="width:100%;border:0;cellpadding:0;cellspacing:0" class="listTable">
+			<thead>
+			    <tr>
+			    	<th ><div style="width:30px">序号</div></th>
+					<th ><div style="width:<%=nameWidth%>px;">评价指标</div></th>
+					<th ><div style="width:180px">指标说明</div></th>
+					<%if(isAfterEval){%>
+					<th ><div style="width:80px">前评估值</div></th>
+					<%}%>
+					<th ><div style="width:80px"><%=(isAfterEval?"后":"前")%>评估值</div></th>
+					<%if(isAfterEval){%>
+					<th ><div style="width:80px">偏差</div></th>
+					<%}%>
+					<th ><div style="width:50px">参考值</div></th>
+					<th ><div style="width:100px">描述</div></th>
+		 		</tr> 
+			</thead>
+			<tbody>
+				<!-- 大类项 -->
+				<%
+				List<BenefitEvalTplItemVO> formTemplate2 = (List)request.getAttribute("formTemplate");
+					if(formTemplate2 != null && formTemplate2.size() > 0){
+						for(BenefitEvalTplItemVO item2 : formTemplate2){
+				%>
+				<tr class="listTableTR" >
+					<td align="center">
+					<input type="hidden" name="tplItemID" value="<%=item2.getListOrder()%>"/>
+						<%=item2.getListOrder()%>
+					</td>
+					<td title="<%=item2.getEvalDimension()%>">
+						<div style="width: <%=nameWidth %>px" class="nowrapText">
+							<input type="hidden" name="evalDimension" value="<%=item2.getEvalDimension()%>"/>
+							<img src="<%=path %>/static/images/folderClosed.gif" style="width: 16px; height: 16px;"/>
+							<%=item2.getEvalDimension()%>
+						</div>
+					</td>
+					<td title="">
+						<div style="width:178px;" class="nowrapText">
+							<input type="hidden" name="cmcc_description" value=""/>
+							
+						</div>
+					</td>
+				</tr>
+				<%}} %>
+				<!-- 小类项 -->
+				<%
+				List<BenefitEvalTplItemVO> formTemplate = (List)request.getAttribute("formTemplate");
+					if(formTemplate != null && formTemplate.size() > 0){
+						for(BenefitEvalTplItemVO item : formTemplate){
+				%>
+				<tr class="listTableTR" >
+					<td align="center">
+						<input type="hidden" name="tplItemID" value="<%=item.getTplItemID()%>"/>
+						<%=item.getTplItemID()%>
+					</td>
+					<td title="<%=item.getEvalItem()%>">
+						<div style="width: <%=nameWidth %>px" class="nowrapText">
+							<input type="hidden" name="evalItem" value="<%=item.getEvalItem()%>"/>
+							<img src="<%=path %>/static/images/benefit/empty.gif" style="width: 16px; height: 16px;"/>
+							<img src="<%=path %>/static/images/benefit/task.gif" style="width: 16px; height: 16px;"/>
+							<%=item.getEvalItem()%>
+						</div>
+					</td>
+					<td title="<%=item.getEvalDesc()%>">
+						<div style="width: 178px" class="nowrapText">
+							<input type="hidden" name="evalDesc" value="<%=item.getEvalDesc()%>"/>
+							<%=item.getEvalDesc()%>
+						</div>
+					</td>
+					<%if(isAfterEval){%>
+					<td align="right">
+						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" name="cmcc_prescore" contentType="N10.2" readonly="readonly" value="<%=item.getEvalDimension()%>"/>
+					</td>
+					<%}%>
+					<td align="right">
+						<input type="text" class="text" style="width: 78px;text-align: right;" name="cmcc_score" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+						 contentType="N10.2" value=""/>
+					</td>
+					<%if(isAfterEval){%>
+					<td align="right">
+						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" name="cmcc_deviation" readonly="readonly" value=""/>
+					</td>
+					<%}%>
+					<td title="" align="center">
+						<img src="<%=path %>/static/images/benefit/discussion.gif"/>
+					</td>
+					<td title="<%=item.getRefValue()%>">
+						<div style="width: 100px" class="nowrapText">
+							<input type="text" class="text" style="width:98px;" name="cmcc_remark" maxlength="100" value=""/>
+						</div>
+					</td>
+				</tr>
+				<%}}else{%>
+				<tr class="listTableTR" >
+					<td colspan="9">没有记录</td>
+				</tr>
+				<%}%>
+			</tbody>
+		</table>
+		<%=UIUtils.togglePanelEnd(request)%>
+		
 		<!--附件 -->
 		<jsp:include page="./AttachInclude.jsp"/>
 		<!--工作流 -->
@@ -178,5 +284,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 
 <!-- 以上为表单 -->
 </form>
+
 <%-- 输出公共BodyEnd模块 --%>
 <jsp:include page="../../common/BodyEnd.jsp" />
+</html>
