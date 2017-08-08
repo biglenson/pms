@@ -39,6 +39,7 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.apache.shiro.SecurityUtils;
 
 import java.util.*;
 
@@ -219,8 +220,19 @@ public class ProcessController extends BaseController{
                                  ) {		 	
         BenefitEvalTplVO benefitEvalTplVO = benefitEvalTplSvc.getBenefitEvalTplInfo(tplID);
         List<BenefitEvalTplItemVO> formTemplate = benefitEvalTplItemSvc.getFormTemplate(tplID);
-        request.setAttribute("templateInfo", benefitEvalTplVO);
-        request.setAttribute("formTemplate", formTemplate);
+        List<TaskHisVO> taskHisList = new ArrayList<TaskHisVO>();
+        TaskHisVO taskHisVO = new TaskHisVO();
+        taskHisVO.setTaskName("新建");
+        taskHisVO.setAssignee(getStaffName());
+        taskHisList.add(taskHisVO);
+        LoginInfoVO loginInfo = new LoginInfoVO();
+        loginInfo.setLoginID(getUserId());
+        loginInfo.setLoginName(getStaffName());
+        model.addAttribute("loginInfo", loginInfo);
+        model.addAttribute("taskName", "新建");
+        model.addAttribute("taskHisList", taskHisList);
+        model.addAttribute("templateInfo", benefitEvalTplVO);
+        model.addAttribute("formTemplate", formTemplate);
         return CMCCConstant.BenefitEvalEditPopup;
     }
 

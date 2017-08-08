@@ -25,7 +25,7 @@ public class BenefitEval implements Serializable {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int evalID;
 	
-	@Column(name="processID", nullable=false, unique=true, length=50)	
+	@Column(name="processID", nullable=true, unique=true, length=50)	
 	private String processID;
 	
 	@Column(name="evalCode", nullable=false, length=50)	
@@ -36,6 +36,9 @@ public class BenefitEval implements Serializable {
 	
 	@Column(name="creator", nullable=false, length=50)	
 	private String creator;
+	
+	@Column(name="hasDept", nullable=false)	
+	private int hasDept;
 	
 	@Column(name="createDate", nullable=false)	
 	private java.sql.Timestamp createDate;
@@ -54,6 +57,14 @@ public class BenefitEval implements Serializable {
 	
 	public int getEvalID() {
 		return evalID;
+	}
+	
+	private void setHasDept(int value) {
+		this.hasDept = value;
+	}
+	
+	public int getHasDept() {
+		return hasDept;
 	}
 	
 	public int getORMID() {
