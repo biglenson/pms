@@ -25,7 +25,7 @@ public class BenefitEval implements Serializable {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int evalID;
 	
-	@Column(name="processID", nullable=false, unique=true, length=50)	
+	@Column(name="processID", nullable=true, unique=true, length=50)	
 	private String processID;
 	
 	@Column(name="evalCode", nullable=false, length=50)	
