@@ -37,6 +37,9 @@ public class BenefitEval implements Serializable {
 	@Column(name="creator", nullable=false, length=50)	
 	private String creator;
 	
+	@Column(name="hasDept", nullable=false)	
+	private int hasDept;
+	
 	@Column(name="createDate", nullable=false)	
 	private java.sql.Timestamp createDate;
 	
@@ -54,6 +57,14 @@ public class BenefitEval implements Serializable {
 	
 	public int getEvalID() {
 		return evalID;
+	}
+	
+	private void setHasDept(int value) {
+		this.hasDept = value;
+	}
+	
+	public int getHasDept() {
+		return hasDept;
 	}
 	
 	public int getORMID() {
