@@ -10,6 +10,7 @@
 	String url = (String)request.getAttribute("url");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 %>
+
 <%-- 输出Head1模块 --%>
 <jsp:include page="../../common/Head1.jsp" />
 
@@ -121,16 +122,21 @@ function openForm(id,schemaID) {
 			</tbody>
 		</table>
 	</div>
+	<ul id="tab" style="margin:0;padding:0;list-style:none;overflow:hidden;border-top:1px solid #DDD;background:#F4F4F4;">
+        <li style="float:left;width:60px;height:30px;background:#FFF;border:0px;text-align:center;line-height:30px;cursor:pointer;">待办</li>
+        <li style="float:left;width:60px;height:30px;background:#F4F4F4;border:0px;text-align:center;line-height:30px;cursor:pointer;">已办</li>
+    </ul>
 
+	<div id='todo'>	
 	<table style="border:0;cellpadding:0;cellspacing:0" class="listTable"  id="fieldTable">
   		<thead>
-	         <tr>
-			  	<th style="width:100%;"><div style="width: 200px;margin:0 auto;">评估名称</div></th>
-				<th><div style="width: 90px;">评估状态</div></th>
-				<th><div style="width: 120px;">评估类型</div></th>
-				<th><div style="width: 120px;">评估模板</div></th>
-				<th><div style="width: 90px;">评估人</div></th>
-				<th><div style="width: 90px;">评估时间</div></th>
+	         <tr style="border-bottom: 1px solid #DDD;">
+			  	<th style="width:100%;background-color: #fff;"><div style="width: 200px;margin:0 auto;">评估名称</div></th>
+				<th style="background-color: #fff;"><div style="width: 90px;">评估状态</div></th>
+				<th style="background-color: #fff;"><div style="width: 120px;">评估类型</div></th>
+				<th style="background-color: #fff;"><div style="width: 120px;">评估模板</div></th>
+				<th style="background-color: #fff;"><div style="width: 90px;">评估人</div></th>
+				<th style="background-color: #fff;"><div style="width: 90px;">评估时间</div></th>
 	  		</tr>
   		</thead>
 		<tbody>		
@@ -182,12 +188,25 @@ function openForm(id,schemaID) {
 				<td></td>
 				<td></td>
 			</tr>
+
 		</tbody>
      </table>
-     
+     </div>
+     <div id='todo'></div>
 	<!-- 以上为表单 -->
 	<%-- <%=UIUtils.pageToolbar(pageInfo, request)%> --%>
 </form>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $("#tab li").click(function() {
+        	console.log('当前索引'+$(this).index());
+            $("#tab li").eq($(this).index()).css("background-color", "#FFF").siblings().css("background-color", "#F4F4F4");
+            $("div[id=todo]").hide().eq($(this).index()).show();
+            //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on'); 
+        });
+    });
+</script>
 <%-- 输出公共BodyEnd模块 --%>
 <jsp:include page="../../common/BodyEnd.jsp" />
