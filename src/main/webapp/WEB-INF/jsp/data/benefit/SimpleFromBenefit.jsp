@@ -123,7 +123,7 @@ function openForm(id,schemaID) {
 		</table>
 	</div>
 	<ul id="tab" style="margin:0;padding:0;list-style:none;overflow:hidden;border-top:1px solid #DDD;background:#F4F4F4;">
-        <li style="float:left;width:60px;height:30px;background:#FFF;border:0px;text-align:center;line-height:30px;cursor:pointer;">待办</li>
+        <li style="float:left;width:60px;height:30px;background:#FFF;border:0px;text-align:center;line-height:30px;cursor:pointer;border-left: 1px solid #DDD; ">待办</li>
         <li style="float:left;width:60px;height:30px;background:#F4F4F4;border:0px;text-align:center;line-height:30px;cursor:pointer;">已办</li>
     </ul>
 
