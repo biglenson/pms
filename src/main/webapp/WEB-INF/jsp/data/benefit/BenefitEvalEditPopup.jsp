@@ -30,6 +30,20 @@ td,div {
 <jsp:include page="../../common/Head1.jsp" />
 
 <script type="text/javascript">
+//提交
+function submit() {
+	$(function () {
+		var creator = $('input[name=evalTitle]').val();
+		if (!creator) {
+			alert('标题不能为空！');
+		}else  {
+			/* document.frm.submit(); */
+			document.frm.operation.value="submit";
+			etSubmit(document.frm);
+		}
+	}); 
+}
+
 //保存
 function save() {	
 	$(function () {
@@ -63,6 +77,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <input type="hidden" name="tplID" value="<%=tplID%>">
 
 <%=UIUtils.toolbarStart(request)%>
+	<%=UIUtils.toolbarButton(true, "javascript:submit(\"0\");", "提交", "save.gif", false, false, request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:save(\"0\");", "保存", "save.gif", false, false, request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
 <%=UIUtils.toolbarEnd(request)%>
@@ -145,6 +160,14 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">评估模板</td>
 					<td class="content" id="str01td">
 						<div class="content-line" id="div-str01Name">${templateInfo.tplTitle}</div>
+					</td>
+					<td class="seperator"></td>
+					<td class="label">是否有归口部门</td>
+					<td class="content  " id="statustd"> 
+						<select name="hasDept">
+						  <option value="0">是</option>
+						  <option value="1">否</option>
+						</select>
 					</td>
 				</tr>
 			</tbody>
