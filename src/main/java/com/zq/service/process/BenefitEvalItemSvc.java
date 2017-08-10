@@ -25,29 +25,12 @@ import java.io.*;
 
 
 @Component
-public class BenefitEvalSvc{
-    private static Log logger = LogFactory.getLog(BenefitEvalSvc.class);
+public class BenefitEvalItemSvc{
+    private static Log logger = LogFactory.getLog(BenefitEvalItemSvc.class);
     @Autowired
-    BenefitEvalRepository benefitEvalRepo;
+    BenefitEvalItemRepository benefitEvalItemRepo;
 
-    @Autowired
-    BenefitEvalTplRepository benefitEvalTplRepo;
-
-    public BenefitEvalVO getBenefitEvalInfo(int evalID) {
-        BenefitEvalVO benefitEvalVO = new BenefitEvalVO();
-        BenefitEval benefitEval = benefitEvalRepo.getBenefitEvalByEvalID(evalID);
-        BenefitEvalTpl benefitEvalTpl = benefitEvalTplRepo.getBenefitEvalTplByTplID(benefitEval.getTplID());
-        benefitEvalVO.setTplTitle(benefitEvalTpl.getTplTitle());
-        benefitEvalVO.setEvalPhase(benefitEvalTpl.getEvalPhase());
-        benefitEvalVO.setEvalFor(benefitEvalTpl.getEvalFor());
-
-        return benefitEvalVO;
-    }
-    public List<TaskTodoItemVO> getTaskTodo() {
-            return benefitEvalRepo.getTaskTodo("lenson");
-    }
-    public List<TaskTodoItemVO> getTaskDone() {
-            return benefitEvalRepo.getTaskDone("lenson");
-
+    public List<BenefitEvalItemVO> getBenefitEvalForm(int evalID) {
+        return benefitEvalItemRepo.getBenefitEvalForm(evalID);
     }
 }

@@ -25,6 +25,9 @@ public class BenefitEval implements Serializable {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int evalID;
 	
+	@Column(name="tplID", nullable=true, unique=true, length=50)	
+	private int tplID;
+	
 	@Column(name="processID", nullable=true, unique=true, length=50)	
 	private String processID;
 	
@@ -47,28 +50,23 @@ public class BenefitEval implements Serializable {
 	@JoinColumns({ @JoinColumn(name="evalAttach", referencedColumnName="attachID") })	
 	private Attachments evalAttach;
 	
-	@OneToMany(targetEntity=BenefitEvalItem.class, fetch=FetchType.EAGER , cascade = { CascadeType.ALL})
-	@JoinColumns({ @JoinColumn(name="evalID", nullable=false) })	
-	private java.util.List<BenefitEvalItem> benefitEvalItem = new java.util.ArrayList<BenefitEvalItem>();
-	
-	private void setEvalID(int value) {
-		this.evalID = value;
-	}
-	
 	public int getEvalID() {
 		return evalID;
 	}
 	
+	private void setTplID(int value) {
+		this.tplID = value;
+	}
+	
+	public int getTplID() {
+		return tplID;
+	}
 	private void setHasDept(int value) {
 		this.hasDept = value;
 	}
 	
 	public int getHasDept() {
 		return hasDept;
-	}
-	
-	public int getORMID() {
-		return getEvalID();
 	}
 	
 	public void setProcessID(String value) {
@@ -117,14 +115,6 @@ public class BenefitEval implements Serializable {
 	
 	public Attachments getEvalAttach() {
 		return evalAttach;
-	}
-	
-	public void setBenefitEvalItem(java.util.List<BenefitEvalItem> value) {
-		this.benefitEvalItem = value;
-	}
-	
-	public java.util.List<BenefitEvalItem> getBenefitEvalItem() {
-		return benefitEvalItem;
 	}
 	
 	

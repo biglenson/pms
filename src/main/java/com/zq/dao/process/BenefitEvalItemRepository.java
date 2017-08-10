@@ -14,13 +14,15 @@ import com.zq.entity.process.*;
  * @author shujukuss
  *
  */
-public interface BenefitEvalRepository extends JpaRepository<BenefitEval, Long>, BenefitEvalHelper{
+public interface BenefitEvalItemRepository extends JpaRepository<BenefitEvalItem, Long>, BenefitEvalItemHelper{
 
     /** 
      * @param priviID
      * @return
      */
 
-    BenefitEval getBenefitEvalByEvalID(int evalID);
+    //BenefitEvalItem getBenefitEvalByID(int tplID);
+    //List<BenefitEvalItemVO> getBenefitEvalFormInfo(int evalID);
+
 }
 

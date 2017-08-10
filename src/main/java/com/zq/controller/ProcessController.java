@@ -57,13 +57,6 @@ import java.util.*;
 public class ProcessController extends BaseController{	
 	private static Logger logger = Logger.getLogger(ProcessController.class);  
 	
-    /*
-    @Autowired
-    private CMCCCaptcha cmccCaptcha;
-    @Autowired
-    private IResourceService iResourceService;
-    */
-
     @Autowired
     private RuntimeService runtimeService;
 
@@ -81,6 +74,22 @@ public class ProcessController extends BaseController{
 	
     @Autowired
     private BenefitEvalSvc benefitEvalSvc;
+
+    @Autowired
+    private BenefitEvalItemSvc benefitEvalItemSvc;
+
+	@RequestMapping(value = "getBenefitEvalInfo", method = RequestMethod.GET)  
+	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
+                                    @RequestParam("evalID") Integer evalID) {		 	
+        logger.info("测试中！----------------------------evalForm"); 
+
+        List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
+        BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
+        model.addAttribute("benefitEvalForm",benefitEvalForm );
+        model.addAttribute("benefitEvalInfo",benefitEvalInfo );
+
+		return CMCCConstant.ChooseTemplate;  
+	 } 
 
 	@RequestMapping(value = "getTaskTodo", method = RequestMethod.GET)  
 	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha) {		 	
@@ -148,25 +157,6 @@ public class ProcessController extends BaseController{
         return CMCCConstant.SimpleFormBasic;
     }
 
-    /**
-    * @Title: chooseTemplate
-    * @Description: TODO(选择模版)
-    * @author Administrator
-    * @date 2017年7月27日 下午4:31:09
-    * @param @param request
-    * @param @param pageTitle
-    * @param @param url
-    * @param @return 设定文件
-    * @return String 返回类型
-    * @throws
-    @RequestMapping(value = "chooseTemplate")
-    public String chooseTemplate(HttpServletRequest request, String evalFor, String evalPhase) {
-        request.setAttribute("evalFor", evalFor);
-        request.setAttribute("evalPhase", evalPhase);
-        System.out.println("日志输出：evalPhase: " + evalPhase + "===evalFor: " + evalFor);
-        return CMCCConstant.ChooseTemplate;
-    }
-    */
 
     /**
     * @Title: benefitEvalPopup
