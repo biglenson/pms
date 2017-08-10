@@ -46,9 +46,10 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         TaskTodoItemVO taskDoneItemVO = null;
         
         String queryString = 
-            " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.tplTitle, b.ASSIGNEE_ assignee, b.CREATE_TIME_ createTime "+
-            "  from d_benefit_eval a, ACT_RU_TASK b, g_benefit_eval_tpl c "+
-            " where a.processID in (select distinct PROC_INST_ID_ from ACT_HI_TASKINST where ASSIGNEE_ = :userID) "+
+            " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.tplTitle, b.ASSIGNEE_ assignee, b.START_TIME_ createTime "+
+            "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
+            " where b.ASSIGNEE_ = :userID  "+
+            "       and b.END_TIME_ is not null "+
             "       and a.processID = b.PROC_INST_ID_ "+
             "       and a.tplID=c.tplID ";
 
