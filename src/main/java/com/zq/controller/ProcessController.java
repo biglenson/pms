@@ -79,6 +79,29 @@ public class ProcessController extends BaseController{
     @Autowired
     private BenefitEvalTplItemSvc benefitEvalTplItemSvc;
 	
+    @Autowired
+    private BenefitEvalSvc benefitEvalSvc;
+
+	@RequestMapping(value = "getTaskTodo", method = RequestMethod.GET)  
+	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha) {		 	
+        logger.info("测试中！----------------------------taskTodo"); 
+
+        List<TaskTodoItemVO> taskTodo = benefitEvalSvc.getTaskTodo();
+        model.addAttribute("taskTodo", taskTodo);
+
+		return CMCCConstant.ChooseTemplate;  
+	 } 
+
+	@RequestMapping(value = "getTaskDone", method = RequestMethod.GET)  
+	public String getTaskDone(HttpServletRequest request, HttpServletResponse response, Model model,String captcha) {		 	
+        logger.info("测试中！----------------------------taskDone"); 
+
+        List<TaskTodoItemVO> taskDone = benefitEvalSvc.getTaskDone();
+        model.addAttribute("taskDone", taskDone);
+
+		return CMCCConstant.ChooseTemplate;  
+	 } 
+
 	@RequestMapping(value = "chooseTemplate", method = RequestMethod.GET)  
 	public String getTemplateList(HttpServletRequest request, HttpServletResponse response, Model model,String captcha, 
                                     @RequestParam("evalPhase") Integer evalPhase,

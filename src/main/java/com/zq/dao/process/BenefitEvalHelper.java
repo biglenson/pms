@@ -8,6 +8,6 @@ import com.zq.vo.process.*;
 public interface BenefitEvalHelper{
 
     List<TaskTodoItemVO> getTaskTodo(String userID);
-    List<TaskDoneItemVO> getTaskDone(String userID)
+    List<TaskTodoItemVO> getTaskDone(String userID);
 
 }

@@ -41,9 +41,9 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         return taskTodo;
     }
 
-    public List<TaskDoneItemVO> getTaskDone(String userID) {
-        List<TaskDoneItemVO> taskDone = new ArrayList<TaskDoneItemVO>();
-        TaskDoneItemVO taskDoneItemVO = null;
+    public List<TaskTodoItemVO> getTaskDone(String userID) {
+        List<TaskTodoItemVO> taskDone = new ArrayList<TaskTodoItemVO>();
+        TaskTodoItemVO taskDoneItemVO = null;
         
         String queryString = 
             " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.tplTitle, b.ASSIGNEE_ assignee, b.CREATE_TIME_ createTime "+
@@ -57,7 +57,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         List rslt = q.getResultList();
         Iterator rsltIter = rslt.iterator();
         while ( rsltIter.hasNext() ) {
-            taskDoneItemVO = new TaskDoneItemVO();
+            taskDoneItemVO = new TaskTodoItemVO();
             Object[] obj = (Object[])rsltIter.next();
             taskDoneItemVO.setProcessID((String)obj[0]);
             taskDoneItemVO.setEvalTitle((String)obj[1]);

@@ -14,7 +14,7 @@ import com.zq.entity.process.*;
  * @author shujukuss
  *
  */
-public interface BenefitEvalRepository extends JpaRepository<BenefitEval, Long>{
+public interface BenefitEvalRepository extends JpaRepository<BenefitEval, Long>, BenefitEvalHelper{
 
     /** 
      * @param priviID
