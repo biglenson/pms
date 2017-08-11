@@ -183,7 +183,8 @@ public class CMCCConstant {
     //基本信息
     public static final String SimpleFormBasic = "data/benefit/SimpleFormBasic";
     //效益评估
-    public static final String SimpleFromBenefit = "data/benefit/SimpleFromBenefit";
+    public static final String GetTaskTodo= "data/benefit/GetTaskTodo";
+    public static final String GetTaskDone= "data/benefit/GetTaskDone";
     //选择模版
     public static final String ChooseTemplate = "data/benefit/ChooseTemplate";
     //效益评估弹窗

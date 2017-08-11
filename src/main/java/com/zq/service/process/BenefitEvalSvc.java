@@ -33,6 +33,10 @@ public class BenefitEvalSvc{
     @Autowired
     BenefitEvalTplRepository benefitEvalTplRepo;
 
+    public List<TaskHisItemVO> getTaskHis(String processID) {
+        return benefitEvalRepo.getTaskHis(processID);
+    }
+    
     public BenefitEvalVO getBenefitEvalInfo(int evalID) {
         BenefitEvalVO benefitEvalVO = new BenefitEvalVO();
         BenefitEval benefitEval = benefitEvalRepo.getBenefitEvalByEvalID(evalID);

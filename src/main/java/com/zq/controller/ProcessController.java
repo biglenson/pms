@@ -78,27 +78,51 @@ public class ProcessController extends BaseController{
     @Autowired
     private BenefitEvalItemSvc benefitEvalItemSvc;
 
-	@RequestMapping(value = "getBenefitEvalInfo", method = RequestMethod.GET)  
-	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
+    /*@RequestMapping(value = "benefitEvalPopup")
+    public String benefitEvalPopup(HttpServletRequest request, String pageTitle, String url) {
+        request.setAttribute("pageTitle", pageTitle);
+        request.setAttribute("url", url);
+    }
+    */
+	//@RequestMapping(value = "getBenefitEvalInfo", method = RequestMethod.GET)  
+	@RequestMapping(value = "benefitEvalPopup", method = RequestMethod.GET)  
+	public String getBenefitEvalInfo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
+                                    @RequestParam("pageTitle") String pageTitle,
+                                    @RequestParam("url") String url, 
                                     @RequestParam("evalID") Integer evalID) {		 	
         logger.info("测试中！----------------------------evalForm"); 
 
         List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
-        model.addAttribute("benefitEvalForm",benefitEvalForm );
+        List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
         model.addAttribute("benefitEvalInfo",benefitEvalInfo );
+        model.addAttribute("benefitEvalForm",benefitEvalForm );
+        model.addAttribute("taskHis",taskHis );
+        model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("url", url);
 
-		return CMCCConstant.ChooseTemplate;  
+        return CMCCConstant.BenefitEvalPopup;
 	 } 
 
+    /*
+    public String simpleFromBenefit(HttpServletRequest request, String pageTitle, String url) {
+        request.setAttribute("pageTitle", pageTitle);
+        request.setAttribute("url", url);
+        return CMCCConstant.SimpleFromBenefit;
+    }
+    */
+    //@RequestMapping(value = "simpleFromBenefit", method = RequestMethod.GET)  
 	@RequestMapping(value = "getTaskTodo", method = RequestMethod.GET)  
-	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha) {		 	
+	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
+                                    @RequestParam("pageTitle") String pageTitle,
+                                    @RequestParam("url") String url) {		 	
         logger.info("测试中！----------------------------taskTodo"); 
 
         List<TaskTodoItemVO> taskTodo = benefitEvalSvc.getTaskTodo();
         model.addAttribute("taskTodo", taskTodo);
-
-		return CMCCConstant.ChooseTemplate;  
+        model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("url", url);
+        return CMCCConstant.GetTaskTodo;
 	 } 
 
 	@RequestMapping(value = "getTaskDone", method = RequestMethod.GET)  
@@ -132,12 +156,6 @@ public class ProcessController extends BaseController{
 		//return CMCCConstant.TEST;  
 	 } 
 
-    @RequestMapping(value = "simpleFromBenefit")
-    public String simpleFromBenefit(HttpServletRequest request, String pageTitle, String url) {
-        request.setAttribute("pageTitle", pageTitle);
-        request.setAttribute("url", url);
-        return CMCCConstant.SimpleFromBenefit;
-    }
 
     /**
     * @Title: simpleFormBasic
@@ -170,12 +188,6 @@ public class ProcessController extends BaseController{
     * @return String 返回类型
     * @throws
     */
-    @RequestMapping(value = "benefitEvalPopup")
-    public String benefitEvalPopup(HttpServletRequest request, String pageTitle, String url) {
-        request.setAttribute("pageTitle", pageTitle);
-        request.setAttribute("url", url);
-        return CMCCConstant.BenefitEvalPopup;
-    }
 
     /**
     * @Title: logPopup
@@ -233,11 +245,11 @@ public class ProcessController extends BaseController{
                                  ) {		 	
         BenefitEvalTplVO benefitEvalTplVO = benefitEvalTplSvc.getBenefitEvalTplInfo(tplID);
         List<BenefitEvalTplItemVO> formTemplate = benefitEvalTplItemSvc.getFormTemplate(tplID);
-        List<TaskHisVO> taskHisList = new ArrayList<TaskHisVO>();
-        TaskHisVO taskHisVO = new TaskHisVO();
-        taskHisVO.setTaskName("新建");
-        taskHisVO.setAssignee(getStaffName());
-        taskHisList.add(taskHisVO);
+        List<TaskHisItemVO> taskHisList = new ArrayList<TaskHisItemVO>();
+        TaskHisItemVO taskHisItemVO = new TaskHisItemVO();
+        taskHisItemVO.setTaskName("新建");
+        taskHisItemVO.setAssignee(getStaffName());
+        taskHisList.add(taskHisItemVO);
         LoginInfoVO loginInfo = new LoginInfoVO();
         loginInfo.setLoginID(getUserId());
         loginInfo.setLoginName(getStaffName());

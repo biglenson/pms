@@ -11,6 +11,34 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
     @PersistenceContext
     private EntityManager em;
 
+    public List<TaskHisItemVO> getTaskHis(String processID) {
+        List<TaskHisItemVO> taskHis = new ArrayList<TaskHisItemVO>();
+        TaskHisItemVO taskHisItemVO = null;
+        
+        String queryString = 
+            "    select a.NAME_ taskName, ASSIGNEE_ assignee, END_TIME_ endTime, c.TEXT_ dealResult, MESSAGE_ comment    " +
+            "      from ACT_HI_TASKINST a     " +
+            "           left join ACT_HI_COMMENT b on a.ID_ = b.TASK_ID_    " +
+            "           left join ACT_HI_VARINST c on a.ID_ = c.TASK_ID_ and c.NAME_ = 'dealRslt'     " +
+            "     where a.PROC_INST_ID_ = :processID     " +
+            "     order by  END_TIME_ desc    "; 
+        Query q = em.createNativeQuery(queryString).setParameter("processID", processID);
+
+        List rslt = q.getResultList();
+        Iterator rsltIter = rslt.iterator();
+        while ( rsltIter.hasNext() ) {
+            taskHisItemVO = new TaskHisItemVO();
+            Object[] obj = (Object[])rsltIter.next();
+            taskHisItemVO.setTaskName((String)obj[0]);
+            taskHisItemVO.setAssignee((String)obj[1]);
+            taskHisItemVO.setDealTime((Timestamp)obj[2]);
+            taskHisItemVO.setDealResult((String)obj[3]);
+            taskHisItemVO.setDealOpinion((String)obj[4]);
+            taskHis.add(taskHisItemVO);
+        }
+        return taskHis;
+    }
+
     public List<TaskTodoItemVO> getTaskTodo(String userID) {
         List<TaskTodoItemVO> taskTodo = new ArrayList<TaskTodoItemVO>();
         TaskTodoItemVO taskTodoItemVO = null;
