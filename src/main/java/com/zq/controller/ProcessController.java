@@ -85,8 +85,10 @@ public class ProcessController extends BaseController{
 
         List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
-        model.addAttribute("benefitEvalForm",benefitEvalForm );
+        List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
         model.addAttribute("benefitEvalInfo",benefitEvalInfo );
+        model.addAttribute("benefitEvalForm",benefitEvalForm );
+        model.addAttribute("taskHis",taskHis );
 
 		return CMCCConstant.ChooseTemplate;  
 	 } 
@@ -233,11 +235,11 @@ public class ProcessController extends BaseController{
                                  ) {		 	
         BenefitEvalTplVO benefitEvalTplVO = benefitEvalTplSvc.getBenefitEvalTplInfo(tplID);
         List<BenefitEvalTplItemVO> formTemplate = benefitEvalTplItemSvc.getFormTemplate(tplID);
-        List<TaskHisVO> taskHisList = new ArrayList<TaskHisVO>();
-        TaskHisVO taskHisVO = new TaskHisVO();
-        taskHisVO.setTaskName("新建");
-        taskHisVO.setAssignee(getStaffName());
-        taskHisList.add(taskHisVO);
+        List<TaskHisItemVO> taskHisList = new ArrayList<TaskHisItemVO>();
+        TaskHisItemVO taskHisItemVO = new TaskHisItemVO();
+        taskHisItemVO.setTaskName("新建");
+        taskHisItemVO.setAssignee(getStaffName());
+        taskHisList.add(taskHisItemVO);
         LoginInfoVO loginInfo = new LoginInfoVO();
         loginInfo.setLoginID(getUserId());
         loginInfo.setLoginName(getStaffName());

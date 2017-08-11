@@ -3,7 +3,7 @@ package com.zq.vo.process;
 import java.util.*;
 import java.sql.Timestamp;
 
-public class TaskHisVO {
+public class TaskHisItemVO {
 
 	private String taskName;
 	private String assignee;
