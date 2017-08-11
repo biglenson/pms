@@ -8,6 +8,7 @@ public class BenefitEvalItemVO {
 
 	private int itemID;
 	private int tplItemID;
+	private String evalDimension;
 	private String evalItem;
 	private String evalDesc;
 	private String refValue;
@@ -39,14 +40,18 @@ public class BenefitEvalItemVO {
 		this.evalItem = evalItem;
 	}
 
+	public String getEvalDimension() {
+		return this.evalDimension;
+	}
+
+	public void setEvalDimension(String evalDimension) {
+		this.evalDimension = evalDimension;
+	}
+
 	public String getEvalDesc() {
 		return this.evalDesc;
 	}
 
-	/**
-	 * 
-	 * @param evalDesc
-	 */
 	public void setEvalDesc(String evalDesc) {
 		this.evalDesc = evalDesc;
 	}
