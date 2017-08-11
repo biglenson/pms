@@ -14,7 +14,7 @@
 <script type="text/javascript">
 //效益评估
 function openFormScorecard() {
-	document.frm.action = "<%=path%>/datamap/simpleFromBenefit";
+	document.frm.action = "<%=path%>/datamap/getTaskTodo";
 	etSubmit(document.frm);
 }
 </script>
@@ -23,7 +23,7 @@ function openFormScorecard() {
 <jsp:include page="../../common/Head1.jsp" />
 
 <!-- 内容主体 -->
-<form name="frm" action="<%=path%>/datamap/simpleFormBasic" method="post">
+<form name="frm" action="<%=path%>/datamap/getTaskTodo" method="GET">
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
 
