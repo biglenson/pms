@@ -126,13 +126,16 @@ public class ProcessController extends BaseController{
 	 } 
 
 	@RequestMapping(value = "getTaskDone", method = RequestMethod.GET)  
-	public String getTaskDone(HttpServletRequest request, HttpServletResponse response, Model model,String captcha) {		 	
+	public String getTaskDone(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
+						            @RequestParam("pageTitle") String pageTitle,
+						            @RequestParam("url") String url) {		 			 	
         logger.info("测试中！----------------------------taskDone"); 
 
         List<TaskTodoItemVO> taskDone = benefitEvalSvc.getTaskDone();
         model.addAttribute("taskDone", taskDone);
-
-		return CMCCConstant.ChooseTemplate;  
+        model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("url", url);
+		return CMCCConstant.GetTaskDone;  
 	 } 
 
 	@RequestMapping(value = "chooseTemplate", method = RequestMethod.GET)  
