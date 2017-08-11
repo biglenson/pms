@@ -2,16 +2,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
-<%@ page import= "com.zq.commons.result.PageInfo" %>
+<%@ page import= "com.zq.vo.process.BenefitEvalItemVO" %>
+<%@ page import= "com.zq.vo.process.TaskHisItemVO" %>
+<%@ page import= "com.zq.vo.process.BenefitEvalVO" %>
 <%
 	String path = request.getContextPath();
-	String pageTitle = (String)request.getAttribute("pageTitle");
-	Integer appid = (Integer)request.getAttribute("appid");
-	Long pid = (Long)request.getAttribute("pid");
-	String url = (String)request.getAttribute("url");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	
-	int nameWidth = (760-30-180-80-50-100-(true?160:0)-10); //是否是后评估，这里还没有变量，先写成true
+	//获取效益评估Form表单信息
+	List<BenefitEvalItemVO> benefitEvalFormList = (List)request.getAttribute("benefitEvalForm");
+	//获取工作流信息
+	List<TaskHisItemVO> taskHisList = (List)request.getAttribute("taskHis");
+	//获取基本信息
+	BenefitEvalVO benefitEvalInfo = (BenefitEvalVO)request.getAttribute("benefitEvalInfo");
+	//判断前后评估,1是后评估,0是前评估
+	String evalPhase = String.valueOf(benefitEvalInfo.getEvalPhase());
+	int tplID = benefitEvalInfo.getTplID();
+	boolean isAfterEval;
+	if ("1".equals(evalPhase)){
+		isAfterEval = true;
+	}else {
+		isAfterEval = false;
+	}
+	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10);
 %>
 
 <style>
@@ -50,7 +61,7 @@ function showMoreButton (obj){
 
 //日志
 function logFun(){
-	var src= "<%=path%>/datamap/logPopup?pageTitle=<%= pageTitle %>&url=<%= url%>"+"&_id="+Math.random();
+	var src= "<%=path%>/datamap/logPopup?pageTitle=产品&url=/datamap/basproduct"+"&_id="+Math.random();
 	var arg = {};
 	arg.src=src;
 	arg.title='日志';
@@ -155,9 +166,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 
 <!-- 内容主体 -->
 <form name="frm" action="<%=path%>/datamap/benefitEvalPopup" method="post">
-<input type="hidden" name="pageTitle" value="<%= pageTitle %>">
-<input type="hidden" name="url" value="<%= url %>">
 <input type="hidden" name="operation" value="edit">
+<input type="hidden" name="tplID" value="<%=tplID%>">
 
 <%=UIUtils.toolbarStart(request)%>
 <%=UIUtils.toolbarButton(true, "javascript:edit(\"1\")", "编辑", "save.gif", false, false, request)%>
@@ -169,6 +179,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 
 <div style="overflow: auto;" class='relativeDIV' id="contentDIV">
 	<%=UIUtils.formBodyStart(request) %>
+	<!-- 基本信息 -->
 	<table style="border:0;align:center;cellpadding:0;cellspacing:0" class='formTable' id="fieldTable">
 		<tbody>
 			<tr>
@@ -180,17 +191,18 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			</tr>
 			<tr>
 				<td class="label">代码</td>
-				<td class="content" id="codetd"> 
-					<div class="content-line" id="div-codeName"></div>
+				<td class="content" id="evalCode"> 
+					<div class="content-line" id="div-evalCode"><%=benefitEvalInfo.getEvalCode()%></div>
+					<input name="evalCode" value="<%=benefitEvalInfo.getEvalCode()%>" type="hidden">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="5" height="5"></td>
 			</tr>
 			<tr>
-				<td class="label">标题<font class="red">*</font></td>
-				<td colspan="4" class="content" id="titletd">
-					<input class="text" name="title" value="" maxlength="250" altstr="标题" type="text">
+				<td class="label"><%=benefitEvalInfo.getEvalTitle()%><font class="red">*</font></td>
+				<td colspan="4" class="content" id="evalTitle">
+					<input class="text" name="evalTitle" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
 				</td>
 			</tr>
 			<tr>
@@ -199,7 +211,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			<tr>
 				<td class="label">评估类型</td>
 				<td class="content  " id="categorytd"> 
-					<div class="content-line" id="div-categoryName">项目前评估</div>
+					<div class="content-line" id="div-categoryName"><%=benefitEvalInfo.getEvalFor()==0?"项目":"产品"%><%=isAfterEval%>评估</div>
 				</td>
 				<td class="seperator"></td>
 				<td class="label">状态</td>
@@ -212,11 +224,11 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			</tr>
 			<tr>
 				<td class="label">创建人</td>
-				<td class="content  " id="res01td">
+				<td class="content  " id="creator">
 					<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-						<input name="res01" value="" type="hidden">
-						<input class="text" name="res01Name" value="" readonly="" style="cursor: pointer;" type="text">
-						<!-- <img src="/pm/images/button/assign_resources.gif" id="div-img-res01" align="absmiddle"> -->
+						<input name="creator" value="" type="hidden">
+						<input class="text" name="creator" value="" readonly="" style="cursor: pointer;" type="text">
+						<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 					</div> 
 					<script type="text/javascript">
 						ET.Utils.addEvent(document.getElementById('content-div-res01'),'click',function(){ 
@@ -242,8 +254,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			</tr>
 			<tr>
 				<td class="label">评估模板</td>
-				<td class="content" id="str01td">
-					<div class="content-line" id="div-str01Name">xxx</div>
+				<td class="content" id="tplTitle">
+					<div class="content-line" id="div-tplTitle"><%=benefitEvalInfo.getTplTitle() %></div>
 				</td>
 				<td class="seperator"></td>
 				<td class="label">是否有归口部门</td>
