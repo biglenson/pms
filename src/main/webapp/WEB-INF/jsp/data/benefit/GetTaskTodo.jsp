@@ -10,9 +10,7 @@
 	Long pid = (Long)request.getAttribute("pid");
 	String url = (String)request.getAttribute("url");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	Integer evalID = 1;
-	Integer evalID2 = new Integer(2);
-	
+
 	//获取待办任务数据集合
 	List<TaskTodoItemVO> taskTodoList = (List)request.getAttribute("taskTodo");
 	String evalFor = url.indexOf("/datamap/basitemset") >= 0 ? "项目" : "产品";

@@ -16,7 +16,7 @@ public class BenefitEvalItemRepositoryImpl implements BenefitEvalItemHelper {
         BenefitEvalItemVO benefitEvalItemVO = null;
         
         String queryString = 
-                    "   select b.itemID, a.tplItemID, a.evalItem, a.evalDesc, a.refValue,    " +
+                    "   select b.itemID, a.tplItemID, a.evalItem, a.evalDimension, a.evalDesc, a.refValue,    " +
                     "          b.evalValue, b.evalNote, a.listOrder   " +
                     "     from g_benefit_eval_tpl_item a, d_benefit_eval_item b   " +
                     "    where b.tplItemID = a.tplItemID and b.evalID= :evalID    " ;
@@ -31,11 +31,12 @@ public class BenefitEvalItemRepositoryImpl implements BenefitEvalItemHelper {
             benefitEvalItemVO.setItemID((Integer)obj[0]);
             benefitEvalItemVO.setTplItemID((Integer)obj[1]);
             benefitEvalItemVO.setEvalItem((String)obj[2]);
-            benefitEvalItemVO.setEvalDesc((String)obj[3]);
-            benefitEvalItemVO.setRefValue((String)obj[4]);
-            benefitEvalItemVO.setEvalValue((String)obj[5]);
-            benefitEvalItemVO.setEvalNote((String)obj[6]);
-            benefitEvalItemVO.setListOrder((Integer)obj[7]);
+            benefitEvalItemVO.setEvalDimension((String)obj[3]);
+            benefitEvalItemVO.setEvalDesc((String)obj[4]);
+            benefitEvalItemVO.setRefValue((String)obj[5]);
+            benefitEvalItemVO.setEvalValue((String)obj[6]);
+            benefitEvalItemVO.setEvalNote((String)obj[7]);
+            benefitEvalItemVO.setListOrder((Integer)obj[8]);
             benefitEvalForm.add(benefitEvalItemVO);
         }
         return benefitEvalForm;
