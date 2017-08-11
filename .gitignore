@@ -2,3 +2,5 @@
 /log/
 /.classpath
 /.project
+*.swp
+*.bak
