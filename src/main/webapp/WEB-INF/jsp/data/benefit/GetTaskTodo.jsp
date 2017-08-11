@@ -9,6 +9,8 @@
 	Long pid = (Long)request.getAttribute("pid");
 	String url = (String)request.getAttribute("url");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	Integer evalID = 1;
+	Integer evalID2 = new Integer(2);
 %>
 
 <%-- 输出Head1模块 --%>
@@ -88,7 +90,7 @@ function cleanFun(){
 //评估列表条目 
 function openForm(id,schemaID) {
 	var arg = new Array();
-	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>"+"&_id="+Math.random();
+	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>&evalID=<%= evalID2%>"+"&_id="+Math.random();
 	arg.title = "项目前评估";
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
