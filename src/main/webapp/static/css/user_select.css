@@ -1,0 +1,270 @@
+@charset "utf-8";
+.userSelectDIV{
+	margin:15px auto;
+	width:621px;
+}
+
+.userSelectDIV  .leftDIV{
+	width:301px; float:left;
+	border-right:1px solid  #D2DBE3;
+	border-left:1px solid #D2DBE;
+	background-color: #F7F8FA;
+}
+
+.userSelectDIV  .leftDIV  .user_search_Table{
+	width:auto;
+	position:relative;
+	background-color:#FFF;
+	border-bottom:1px solid #D2DBE3;
+	
+}
+.userSelectDIV  .leftDIV  .user_search_Table  .projectTypeDIV{
+	height: 20px;
+	padding: 2px 0px;
+}
+.userSelectDIV  .leftDIV  .user_search_Table  .backToProject{
+ 	position: absolute;
+ 	width:16px;
+ 	left:0px;
+ 	height:24px;
+ 	background-position:left 0px top 5px;
+	background-repeat: no-repeat;
+	background-image: url("/static/images/16x16/arrow-left.png");
+ 	cursor: pointer;
+ }
+.userSelectDIV  .leftDIV  .user_search_Table  .projectName{
+	width:180px;
+	padding-left:20px;
+	float:left;
+	font-weight:bold;
+	color:#198ad4;
+}
+.userSelectDIV  .leftDIV  .user_search_Table  .antherSelectType{
+	height: 24px;
+	width:80px;
+	margin-right:5px;
+	padding-right:4px;
+	float:right;
+	cursor:pointer;
+	background-position:right 0px top 3px;
+	background-repeat: no-repeat;
+	background-image: url("/static/images/16x16/arrow-right2.png");
+}
+.userSelectDIV  .leftDIV .user_search_Table ul{
+	display: block;
+	list-style-type: none;
+	color: #6D747D;
+	margin-left:10px;
+	height:24px;
+}
+
+.userSelectDIV  .leftDIV .user_search_Table ul li{
+	float:left;
+	height: 20px;
+	cursor:pointer;
+	padding:2px 20px;
+}
+.userSelectDIV  .leftDIV .user_search_Table ul li.on{
+	padding-bottom:1px;
+	color:#2598e2;
+	cursor:default;
+	font-weight:bold;
+	border-bottom:2px solid #2598e2;
+}
+
+.userSelectDIV .searchDIV{
+	background-color: #FFF;
+	position:relative; 
+	margin:6px 10px;
+	border:1px solid  #D2DBE3;
+	height:24px;
+	 border-radius:2px;
+}
+.userSelectDIV   .searchDIV  #searchValue{
+	border:none;
+	outline:none; 
+	width:240px;
+	font-size:14px;
+	height:14px; 
+	padding:5px 10px;
+}
+.userSelectDIV   .searchDIV   #searchImg{
+	position: absolute;right:10px; top:4px;
+}
+
+.userSelectDIV  .resultDIV{
+	height:280px;margin-right:5px;overflow: hidden;
+}
+.userSelectDIV  .already_selectDIV{
+	height:320px;overflow: hidden;
+}
+
+.userSelectDIV  .userItem{
+	line-height: 36px;
+	height: 36px;
+	overflow:hidden;
+	position: relative; 
+}
+.userSelectDIV  .userItem  .userPhoto{
+	float:left;
+	line-height: 36px;
+	height: 36px;
+	padding-left:20px;
+}
+.userSelectDIV .userItem .userPhoto  img{
+	width:24px;height:24px;
+	margin-top:-6px;
+}
+
+.userSelectDIV  .userItem .userNameDepart{
+	padding-left:65px;
+	padding-right:20px;
+	line-height: 36px;
+	height: 36px;
+}
+
+.userSelectDIV .userItem  .userNameDepart  .user-name-div{
+	float:left;width:55%;color:#000;
+}
+
+.userSelectDIV .userItem .userNameDepart  .user-depart-div{
+	width:35%;
+	float:left; 
+	color:#6D747D;
+}
+.userSelectDIV .userItem  .checkUser{
+	width:16px;height:16px;
+	margin-right:20px;
+	margin-top:10px;
+	background-image:url(/static//images/16x16/userSelect_notcheck.png);
+	float:right;
+}
+.userSelectDIV .userItem  .checkUser.checked{
+	background-image:url(/static/images/16x16/userSelect_check.png);
+}
+.startUserDrag{
+	background-color: #74D473;
+	 opacity: 0.4;
+}
+.activeDrop{
+	border-bottom: 1px dotted  #6D747D;
+	background-color:#F7F8FA;
+	border-top: 1px dotted  #6D747D;
+}
+.daggleHelperClass{
+	background-color: #EAEDF2;
+	color:#EEE;
+	font-weight:bold;
+	 opacity: 0.6;
+}
+.userSelectDIV  .userItem:HOVER {
+	background-color: #EAEDF2;
+}
+.userSelectDIV .userItem  .deleteUser{
+	width:16px;height:16px;
+	margin-top:10px;
+	margin-right:20px;
+	cursor:pointer;
+	float:right;
+	background-image:url(/static/images/16x16/cancel_check.png);
+}
+.userSelectDIV .userItem:HOVER  .deleteUser{
+	background-image:url(/static/images/16x16/cancel_checkon.png);
+}
+.userSelectDIV .loadding{
+	width:100%;
+	height:100%;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-image: url(/static/images/32x32/Loading.gif);
+}
+
+.userSelectDIV .rightDIV{
+	width:310px;float:left;
+}
+.userSelectDIV  .selectMessage{
+	line-height:24px;
+	padding-left:20px;
+	border-bottom:1px solid #D2DBE3;
+	overflow: hidden;
+}
+.userSelectDIV  .selectMessage .selectCountTag {
+	font-size: 13px;
+	font-weight: bold;
+}
+.userSelectDIV  .clearAll{
+	float: right;
+	margin-right:30px;
+	color:#2598e2;
+	cursor: pointer;
+}
+
+
+.userSelectDIV  .resultDIV  .depart-item{
+	line-height: 36px;
+	margin-right:2px;
+}
+.userSelectDIV  .resultDIV  .depart-item.depart-match{
+	font-weight: bold;
+}
+.userSelectDIV  .resultDIV  .depart-item  .depart_name {
+	
+}
+.userSelectDIV   .departchildren  .userItem  .checkUser{
+	position: absolute;
+	margin:0px;
+	float:none;
+	top:10px;
+	right:10px;	
+}
+.userSelectDIV   .departchildren  .userItem .user-name-div{
+	margin:0px 5px;
+}
+.userSelectDIV  .resultDIV   .depart_toogleImg{
+	padding-left:10px;
+	position:relative;
+	top:0px;
+	padding-right:3px;
+	margin-left:5px;
+	height:10px;
+	display:inline-block;
+	cursor:pointer;
+	background-repeat: no-repeat;
+	background-image: url("/static/images/16x16/arrow-right.png");
+}
+.userSelectDIV  .resultDIV   .depart_name {
+	font-size:13px;
+	cursor:pointer;
+}
+.userSelectDIV  .resultDIV   .depart_toogleImg.open{
+	background-image: url("/static/images/16x16/arrow_depart.png");
+	top:2px;
+}
+ .userSelectDIV  .resultDIV  .depart-item:HOVER{
+ 	background-color: #EAEDF2;
+ }
+ .userSelectDIV  .resultDIV  .departchildren{
+ 	margin-left: 12px;
+ 	display: none;
+ }
+.no-result{
+	color:red;
+	margin:20px;
+	line-height: 36px;
+}
+ 
+.user-loadMorm{
+	text-align:center;
+	color:#2598e2;
+	line-height:30px;
+	cursor: pointer;
+}
+.userSelectDIV  .dumascroll .dumascroll_arrow_up ,.userSelectDIV  .dumascroll .dumascroll_arrow_down ,
+.userSelectDIV  .dumascroll .dumascroll_arrow_left, .userSelectDIV  .dumascroll .dumascroll_arrow_right
+{
+	width:0px;
+	height: 0px;
+}
+.userSelectDIV .dumascroll .dumascroll_handleY  ,.userSelectDIV .dumascroll .dumascroll_handleX{
+   background-image: url("/static/images/16x16/slider2.png");
+}

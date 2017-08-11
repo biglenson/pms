@@ -64,10 +64,10 @@
 			<%}%> 	 --%>	
 			<tr class="listTableTR" id="attachRow___475018" >
 				<td align="left">
-					<input name="_documentID" value="475018" type="hidden">
+					<!-- <input name="_documentID" value="475018" type="hidden">
 					<input name="_attachmentID" value="2388" type="hidden">
 					<input name="_attachmentType" value="0" type="hidden">
-					<input name="_disableItems" value=",3" type="hidden">
+					<input name="_disableItems" value=",3" type="hidden"> -->
 					<span><img src="/static/images/attachment.png"></span>
 					<a href="javascript:openAttachFun(475018);">新建 Microsoft Word 文档.docx</a><span style="color: #949FA1;">(11 KB)</span>&nbsp;&nbsp;
 					<a href="javascript:downloadAttachFun(475018,2388,0);"><span style="color: #35A0E5;">下载</span></a>&nbsp;&nbsp;

@@ -689,7 +689,8 @@ function ET_TreeSelectUtils(){
 			}
 		}
 		arg.theme="search";
-	    arg.src = ET.etPath+"/../../../UserAction.do?operation=userSelectCommon2&_id="+Math.random() + sUrl;
+	    /*arg.src = ET.etPath+"/../../../UserAction.do?operation=userSelectCommon2&_id="+Math.random() + sUrl;*/
+	    arg.src = "/datamap/userSelectCommon?_id="+Math.random();
 		if(isMulti){
 			arg.width = 630;
 			arg.height =430;

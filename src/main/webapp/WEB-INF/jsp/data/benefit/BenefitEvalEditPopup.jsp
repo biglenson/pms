@@ -9,6 +9,7 @@
 	String path = request.getContextPath();
 	BenefitEvalTplVO benefitEvalInfo = (BenefitEvalTplVO)request.getAttribute("templateInfo");
 	String evalPhase = benefitEvalInfo.getEvalPhase().toString();
+	int tplID = benefitEvalInfo.getTplID();
 	boolean isAfterEval;
 	if ("1".equals(evalPhase)){
 		isAfterEval = true;
@@ -29,41 +30,32 @@ td,div {
 <jsp:include page="../../common/Head1.jsp" />
 
 <script type="text/javascript">
+//提交
+function submit() {
+	$(function () {
+		var creator = $('input[name=evalTitle]').val();
+		if (!creator) {
+			alert('标题不能为空！');
+		}else  {
+			/* document.frm.submit(); */
+			document.frm.operation.value="submit";
+			etSubmit(document.frm);
+		}
+	}); 
+}
+
 //保存
 function save() {	
-	<%-- try{
-		fillEditorContent(); //如果定义了富文本，需要将富文本的内容输入到name属性为richText01等隐藏input中才能保存,该方法在RichTextScript.jsp中定义
-	}catch(e){
-	}
-	
-	if(!checkAllNecessaryFormInputs(document.frm, "<%=session.getAttribute("CurrentLanguage")%>")) {
-		return false;
-	}	
-	
-	var code=document.frm.code;
-	if(code!=null){
-		CMCCAction.checkCodeUnique({
-			'code':code.value
-			,schemaID:'<%=schema.getId()%>'
-		},function(ret){
-			if(ret==null){
-				parent.ET.setModalWindowReturnValue("1");
-				ET.disableAllButton();	
-				document.frm.backType.value=backType;
-				document.frm.operation.value="newSimpleForm";
-				etSubmit(document.frm);
-			}else{
-				alert(ret);
-				document.frm.code.select();
-			}
-		})
-	}else{
-		parent.ET.setModalWindowReturnValue("1");
-		ET.disableAllButton();	
-		document.frm.backType.value=backType;
-		document.frm.operation.value="newSimpleForm";
-		etSubmit(document.frm);
-	} --%>
+	$(function () {
+		var creator = $('input[name=evalTitle]').val();
+		if (!creator) {
+			alert('标题不能为空！');
+		}else  {
+			/* document.frm.submit(); */
+			document.frm.operation.value="save";
+			etSubmit(document.frm);
+		}
+	});  
 }
 
 //取消
@@ -81,9 +73,11 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 
 <!-- 内容主体 -->
 <form name="frm" action="<%=path%>/datamap/benefitEvalPopup" method="post">
-<input type="hidden" name="operation" value="edit">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="tplID" value="<%=tplID%>">
 
 <%=UIUtils.toolbarStart(request)%>
+	<%=UIUtils.toolbarButton(true, "javascript:submit(\"0\");", "提交", "save.gif", false, false, request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:save(\"0\");", "保存", "save.gif", false, false, request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
 <%=UIUtils.toolbarEnd(request)%>
@@ -113,7 +107,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr>
 					<td class="label">标题<font class="red">*</font></td>
 					<td colspan="4" class="content" id="titletd">
-						<input class="text" name="title" value="" maxlength="250" altstr="标题" type="text">
+						<input class="text" name="evalTitle" value="" maxlength="250" type="text">
 					</td>
 				</tr>
 				<tr>
@@ -135,10 +129,9 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				</tr>
 				<tr>
 					<td class="label">创建人</td>
-					<td class="content  " id="res01td">
+					<td class="content  " id="creator">
 						<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-							<input name="res01" value="" type="hidden">
-							<input class="text" name="res01Name" value="" readonly="" style="cursor: pointer;" type="text">
+							<input class="text" name="creator" value="admin" readonly="" style="cursor: pointer;" type="text">
 							<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 						</div> 
 						<script type="text/javascript">
@@ -152,7 +145,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">创建时间</td>
 					<td class="content  " id="date01td">
 						<div class="content-div" id="content-div-date01"> 
-							<input class="text" name="date01" id="date01" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
+							<input class="text" name="createDate" id="createDate" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
 							<!-- <img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer"> -->
 						</div>  
 						<script type="text/javascript"> 
@@ -167,6 +160,14 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">评估模板</td>
 					<td class="content" id="str01td">
 						<div class="content-line" id="div-str01Name">${templateInfo.tplTitle}</div>
+					</td>
+					<td class="seperator"></td>
+					<td class="label">是否有归口部门</td>
+					<td class="content  " id="statustd"> 
+						<select name="hasDept">
+						  <option value="0">是</option>
+						  <option value="1">否</option>
+						</select>
 					</td>
 				</tr>
 			</tbody>
@@ -204,20 +205,16 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				%>	
 				<tr class="listTableTR" >
 					<td align="center">
-					<input type="hidden" name="tplItemID" value="<%=item.getListOrder()%>"/>
 						<%=index%>
 					</td>
 					<td title="<%=item.getEvalDimension()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
-							<input type="hidden" name="evalDimension" value="<%=item.getEvalDimension()%>"/>
 							<img src="<%=path %>/static/images/folderClosed.gif" style="width: 16px; height: 16px;"/>
 							<%=item.getEvalDimension()%>
 						</div>
 					</td>
 					<td title="">
 						<div style="width:178px;" class="nowrapText">
-							<input type="hidden" name="cmcc_description" value=""/>
-							
 						</div>
 					</td>
 				</tr>		
@@ -225,12 +222,10 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<!-- 小类项 -->
 				<tr class="listTableTR" >
 					<td align="center">
-						<input type="hidden" name="tplItemID" value="<%=item.getTplItemID()%>"/>
 						<%=index+1%>
 					</td>
 					<td title="<%=item.getEvalItem()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
-							<input type="hidden" name="evalItem" value="<%=item.getEvalItem()%>"/>
 							<img src="<%=path %>/static/images/benefit/empty.gif" style="width: 16px; height: 16px;"/>
 							<img src="<%=path %>/static/images/benefit/task.gif" style="width: 16px; height: 16px;"/>
 							<%=item.getEvalItem()%>
@@ -238,17 +233,16 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					</td>
 					<td title="<%=item.getEvalDesc()%>">
 						<div style="width: 178px" class="nowrapText">
-							<input type="hidden" name="evalDesc" value="<%=item.getEvalDesc()%>"/>
 							<%=item.getEvalDesc()%>
 						</div>
 					</td>
 					<%if(isAfterEval){%>
 					<td align="right">
-						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" name="cmcc_prescore" contentType="N10.2" readonly="readonly" value="<%=item.getEvalDimension()%>"/>
+						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" name="cmcc_prescore" contentType="N10.2" readonly="readonly" value=""/>
 					</td>
 					<%}%>
 					<td align="right">
-						<input type="text" class="text" style="width: 78px;text-align: right;" name="cmcc_score" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+						<input type="text" class="text" style="width: 78px;text-align: right;" name="evalValue<%item.getTplItemID();%>" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
 						 contentType="N10.2" value=""/>
 					</td>
 					<%if(isAfterEval){%>
@@ -256,12 +250,16 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" name="cmcc_deviation" readonly="readonly" value=""/>
 					</td>
 					<%}%>
-					<td title="" align="center">
-						<img src="<%=path %>/static/images/benefit/discussion.gif"/>
+					<td title="<%=item.getRefValue() %>" align="center">
+						<%if(item.getRefValue().length()>0){%>
+							<img src="<%=path %>/static/images/benefit/discussion_filled.gif" />
+						<%}else{%>
+							<img src="<%=path %>/static/images/benefit/discussion.gif" />
+						<%}%>
 					</td>
-					<td title="<%=item.getRefValue()%>">
+					<td title="">
 						<div style="width: 100px" class="nowrapText">
-							<input type="text" class="text" style="width:98px;" name="cmcc_remark" maxlength="100" value=""/>
+							<input type="text" class="text" style="width:98px;" name="evalNote<%item.getTplItemID();%>" maxlength="100" value=""/>
 						</div>
 					</td>
 				</tr>
