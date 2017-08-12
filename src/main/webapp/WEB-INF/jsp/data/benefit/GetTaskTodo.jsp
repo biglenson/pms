@@ -91,10 +91,10 @@ function cleanFun(){
 }
 
 //评估列表条目点击事件
-function openForm(processID) {
+function openForm(processID, evalPhase) {
 	var arg = new Array();
 	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>&evalID="+processID+"&_id="+Math.random();
-	arg.title = "";
+	arg.title = "<%=evalFor%>"+ evalPhase +"评估";
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 
@@ -151,7 +151,7 @@ function openForm(processID) {
 			</tr>
 			<%} else{ for (TaskTodoItemVO taskTodo : taskTodoList) {%>
 			<tr class="listTableTR">
-				<td class="linkURL" onclick="openForm(<%=taskTodo.getProcessID()%>);"><%=taskTodo.getTaskName()%></td>
+				<td class="linkURL" onclick="openForm(<%=taskTodo.getProcessID()%>,<%=taskTodo.getEvalPhase()==0?"前":"后"%>);"><%=taskTodo.getTaskName()%></td>
 				<td><%=taskTodo.getEvalTitle()%></td>
 				<td><%=evalFor%><%=taskTodo.getEvalPhase()==0?"前":"后"%>评估</td>
 				<td><%=taskTodo.getTplTitle()%></td>
