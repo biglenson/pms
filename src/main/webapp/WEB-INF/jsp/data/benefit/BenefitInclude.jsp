@@ -47,7 +47,7 @@
 			<th ><div style="width:100px">描述</div></th>
  		</tr> 
 	</thead>
-	<%-- <tbody>
+	<tbody>
 		<!-- 大类项 -->
 		<%
 		//获取效益评估Form表单信息
@@ -106,13 +106,13 @@
 					<input type="text" class="text" style="width: 78px;text-align: right;" name="evalValue" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
 					 contentType="N10.2" value="<%=TypeUtils.nullToString(item.getEvalValue())%>"/>
 				<%}else{%>
-					<%=TypeUtils.nullToString(item.getEvalItem())%>
+					<%=TypeUtils.nullToString(item.getEvalValue())%>
 				<%}%>
 			</td>
 			<%if(isAfterEval){%>
 			<td align="right">
 				<%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" name="cmcc_deviation" readonly="readonly" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
+					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" name="deviation" readonly="readonly" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalItem())%>
 				<%}%>
@@ -144,7 +144,7 @@
 			<td colspan="9">没有记录</td>
 		</tr>
 		<%}%>
-	</tbody> --%>
+	</tbody>
 </table>
 <%=UIUtils.togglePanelEnd(request)%>
 
