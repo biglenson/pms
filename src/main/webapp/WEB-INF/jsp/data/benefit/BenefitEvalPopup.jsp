@@ -211,7 +211,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			<tr>
 				<td class="label">评估类型</td>
 				<td class="content  " id="categorytd"> 
-					<div class="content-line" id="div-categoryName"><%=benefitEvalInfo.getEvalFor()==0?"项目":"产品"%><%=isAfterEval%>评估</div>
+					<div class="content-line" id="div-categoryName"><%=benefitEvalInfo.getEvalFor()==0?"项目":"产品"%><%=isAfterEval==false?"前":"后"%>评估</div>
 				</td>
 				<td class="seperator"></td>
 				<td class="label">状态</td>
@@ -227,7 +227,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="content  " id="creator">
 					<div class="content-div" id="content-div-res01" style="cursor: pointer;">
 						<input name="creator" value="" type="hidden">
-						<input class="text" name="creator" value="" readonly="" style="cursor: pointer;" type="text">
+						<input class="text" name="creator" value="<%=benefitEvalInfo.getCreator()%>" readonly="" style="cursor: pointer;" type="text">
 						<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 					</div> 
 					<script type="text/javascript">
@@ -239,9 +239,9 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				</td>
 				<td class="seperator"></td>
 				<td class="label">创建时间</td>
-				<td class="content  " id="date01td">
-					<div class="content-div" id="content-div-date01"> 
-						<input class="text" name="date01" id="date01" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
+				<td class="content  " id="createDatetd">
+					<div class="content-div" id="content-div-createDate"> 
+						<input class="text" name="createDate" id="createDate" value="<%=benefitEvalInfo.getCreateDate()%>" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
 						<!-- <img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer"> -->
 					</div>  
 					<script type="text/javascript"> 
