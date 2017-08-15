@@ -2,17 +2,17 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="BenefitEvalProcess" name="BenefitEvalProcess" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="EvalEditByCreator" name="提出人创建编辑评估"></userTask>
-    <userTask id="EvalApprByCLeader" name="提出部门领导审核评估"></userTask>
+    <userTask id="EvalEditByCreator" name="提出人创建编辑评估" activiti:assignee="${vAssignee}"></userTask>
+    <userTask id="EvalApprByCLeader" name="提出部门领导审核评估" activiti:assignee="${vAssignee}"></userTask>
     <exclusiveGateway id="IsApprovedByCLeader" name="审核是否通过"></exclusiveGateway>
-    <userTask id="WorkDistributeByFLeader" name="财务部门领导分配工作"></userTask>
-    <userTask id="EvalCheckByFEmp" name="财务人员核查"></userTask>
+    <userTask id="WorkDistributeByFLeader" name="财务部门领导分配工作" activiti:assignee="${vAssignee}"></userTask>
+    <userTask id="EvalCheckByFEmp" name="财务人员核查" activiti:assignee="${vAssignee}"></userTask>
     <sequenceFlow id="flow6" name="审核通过，没有归口部门。" sourceRef="IsApprovedByCLeader" targetRef="WorkDistributeByFLeader">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && hasDept==0}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow7" sourceRef="WorkDistributeByFLeader" targetRef="EvalCheckByFEmp"></sequenceFlow>
-    <userTask id="EvalApprByRLeader" name="归口部门领导审核"></userTask>
-    <userTask id="EvalApprByFLeader" name="财务部门领导审核"></userTask>
+    <userTask id="EvalApprByRLeader" name="归口部门领导审核" activiti:assignee="${vAssignee}"></userTask>
+    <userTask id="EvalApprByFLeader" name="财务部门领导审核" activiti:assignee="${vAssignee}"></userTask>
     <sequenceFlow id="flow8" sourceRef="EvalCheckByFEmp" targetRef="EvalApprByFLeader"></sequenceFlow>
     <exclusiveGateway id="IsApprovedByFLeader" name="审核是否通过"></exclusiveGateway>
     <sequenceFlow id="flow9" sourceRef="EvalApprByFLeader" targetRef="IsApprovedByFLeader"></sequenceFlow>
@@ -26,7 +26,7 @@
     <sequenceFlow id="flow12" name="审核通过，退回。" sourceRef="IsApprovedByFLeader" targetRef="EvalRejectConfirm">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==1}]]></conditionExpression>
     </sequenceFlow>
-    <userTask id="EvalRejectConfirm" name="提出部门领导处理退回"></userTask>
+    <userTask id="EvalRejectConfirm" name="提出部门领导处理退回" activiti:assignee="${vAssignee}"></userTask>
     <endEvent id="endevent2" name="End"></endEvent>
     <exclusiveGateway id="IsToRevise" name="是否重新提交"></exclusiveGateway>
     <sequenceFlow id="flow13" sourceRef="EvalRejectConfirm" targetRef="IsToRevise"></sequenceFlow>
@@ -36,11 +36,11 @@
     <sequenceFlow id="flow15" name="放弃修订" sourceRef="IsToRevise" targetRef="endevent2">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isToRevise==0}]]></conditionExpression>
     </sequenceFlow>
-    <userTask id="WorkDistributeByRLeader" name="归口部门领导分配工作"></userTask>
+    <userTask id="WorkDistributeByRLeader" name="归口部门领导分配工作" activiti:assignee="${vAssignee}"></userTask>
     <sequenceFlow id="flow16" name="审核通过，有归口部门。" sourceRef="IsApprovedByCLeader" targetRef="WorkDistributeByRLeader">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && hasDept==1}]]></conditionExpression>
     </sequenceFlow>
-    <userTask id="EvalCheckByREmp" name="归口部门员工核查"></userTask>
+    <userTask id="EvalCheckByREmp" name="归口部门员工核查" activiti:assignee="${vAssignee}"></userTask>
     <exclusiveGateway id="IsApprovedByRLeader" name="审核是否通过"></exclusiveGateway>
     <sequenceFlow id="flow17" sourceRef="WorkDistributeByRLeader" targetRef="EvalCheckByREmp"></sequenceFlow>
     <sequenceFlow id="flow18" sourceRef="EvalCheckByREmp" targetRef="EvalApprByRLeader"></sequenceFlow>
@@ -52,13 +52,21 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==0}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow22" sourceRef="startevent1" targetRef="EvalEditByCreator"></sequenceFlow>
-    <sequenceFlow id="flow23" sourceRef="EvalEditByCreator" targetRef="EvalApprByCLeader"></sequenceFlow>
+    <sequenceFlow id="flow23" sourceRef="EvalEditByCreator" targetRef="IsToCommit"></sequenceFlow>
     <sequenceFlow id="flow24" sourceRef="EvalApprByCLeader" targetRef="IsApprovedByCLeader"></sequenceFlow>
     <sequenceFlow id="flow25" name="审核未通过" sourceRef="IsApprovedByCLeader" targetRef="EvalEditByCreator">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==0}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow26" name="审核未通过，重新核查。" sourceRef="IsApprovedByRLeader" targetRef="EvalCheckByREmp">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==0}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="IsToCommit" name="是否提交"></exclusiveGateway>
+    <sequenceFlow id="flow27" name="提交" sourceRef="IsToCommit" targetRef="EvalApprByCLeader">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isToSubmit==1}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="endevent3" name="End"></endEvent>
+    <sequenceFlow id="flow28" name="放弃" sourceRef="IsToCommit" targetRef="endevent3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isToSubmit==0}]]></conditionExpression>
     </sequenceFlow>
     <textAnnotation id="textannotation1">
       <text>Enter your text here</text>
@@ -67,13 +75,13 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_BenefitEvalProcess">
     <bpmndi:BPMNPlane bpmnElement="BenefitEvalProcess" id="BPMNPlane_BenefitEvalProcess">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
-        <omgdc:Bounds height="35.0" width="35.0" x="60.0" y="143.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="65.0" y="143.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="EvalEditByCreator" id="BPMNShape_EvalEditByCreator">
         <omgdc:Bounds height="61.0" width="111.0" x="200.0" y="130.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="EvalApprByCLeader" id="BPMNShape_EvalApprByCLeader">
-        <omgdc:Bounds height="61.0" width="122.0" x="455.0" y="130.0"></omgdc:Bounds>
+        <omgdc:Bounds height="61.0" width="122.0" x="550.0" y="130.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="IsApprovedByCLeader" id="BPMNShape_IsApprovedByCLeader">
         <omgdc:Bounds height="40.0" width="40.0" x="775.0" y="140.0"></omgdc:Bounds>
@@ -113,6 +121,12 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="IsApprovedByRLeader" id="BPMNShape_IsApprovedByRLeader">
         <omgdc:Bounds height="40.0" width="40.0" x="990.0" y="378.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="IsToCommit" id="BPMNShape_IsToCommit">
+        <omgdc:Bounds height="40.0" width="40.0" x="403.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="406.0" y="267.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="textannotation1" id="BPMNShape_textannotation1">
         <omgdc:Bounds height="50.0" width="100.0" x="1245.0" y="704.0"></omgdc:Bounds>
@@ -214,15 +228,15 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
-        <omgdi:waypoint x="95.0" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="100.0" y="160.0"></omgdi:waypoint>
         <omgdi:waypoint x="200.0" y="160.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
         <omgdi:waypoint x="311.0" y="160.0"></omgdi:waypoint>
-        <omgdi:waypoint x="455.0" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="403.0" y="160.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
-        <omgdi:waypoint x="577.0" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="672.0" y="160.0"></omgdi:waypoint>
         <omgdi:waypoint x="775.0" y="160.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
@@ -240,6 +254,20 @@
         <omgdi:waypoint x="1206.0" y="188.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="42.0" width="100.0" x="968.0" y="265.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="443.0" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="550.0" y="160.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="100.0" x="463.0" y="140.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="423.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="423.0" y="267.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="100.0" x="429.0" y="196.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
