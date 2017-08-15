@@ -78,12 +78,45 @@ public class ProcessController extends BaseController{
     @Autowired
     private BenefitEvalItemSvc benefitEvalItemSvc;
 
-    /*@RequestMapping(value = "benefitEvalPopup")
-    public String benefitEvalPopup(HttpServletRequest request, String pageTitle, String url) {
+    @Autowired
+    private EvalCodeGenSvc evalCodeGenSvc;
+
+    @RequestMapping(value = "saveBenefitEval")
+	public String saveBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
+                                    @RequestParam("pageTitle") String pageTitle,
+                                    @RequestParam("url") String url, 
+                                    @RequestParam("benefitEvalInfo") BenefitEvalVO benefitInfo,
+                                    @RequestParam("benefitEvalForm") List<BenefitEvalItemVO> benefitEvalForm
+                                    ) {		 	
+        logger.info("----------------------------saveBenefitEval"); 
+        String evalCode = benefitInfo.getEvalCode();
+        int evalPhase = benefitInfo.getEvalPhase();
+        String codeType = null;
+        if ( evalPhase == 0 ) {
+            codeType = new String("BE"); 
+        }else  {
+            codeType = new String("AE"); 
+        }
+
+
+
+        if (evalCode.length() == 0 ) {
+            evalCode = evalCodeGenSvc.getEvalCode("I", codeType);
+            logger.info("获取EvalCode！----------------------------evalCode: "+ evalCode); 
+        } else {
+            logger.info("保存已有Eval！----------------------------: "); 
+
+        }
+        
+
+
+
         request.setAttribute("pageTitle", pageTitle);
         request.setAttribute("url", url);
+        return CMCCConstant.BenefitEvalPopup;
     }
-    */
+
+
 	//@RequestMapping(value = "getBenefitEvalInfo", method = RequestMethod.GET)  
 	@RequestMapping(value = "benefitEvalPopup", method = RequestMethod.GET)  
 	public String getBenefitEvalInfo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
