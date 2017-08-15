@@ -10,4 +10,5 @@ DROP TABLE IF EXISTS d_benefit_eval_item;
 DROP TABLE IF EXISTS d_upload_file;
 DROP TABLE IF EXISTS g_benefit_eval_tpl;
 DROP TABLE IF EXISTS g_benefit_eval_tpl_item;
+DROP TABLE IF EXISTS d__eval_code_gen;
 

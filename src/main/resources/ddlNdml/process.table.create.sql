@@ -11,3 +11,5 @@ ALTER TABLE d_benefit_eval_item ADD INDEX FKd_benefit_707337 (evalID), ADD CONST
 ALTER TABLE d_benefit_eval_item ADD INDEX FKd_benefit_301159 (tplItemID), ADD CONSTRAINT FKd_benefit_301159 FOREIGN KEY (tplItemID) REFERENCES g_benefit_eval_tpl_item (tplItemID);
 ALTER TABLE d_benefit_eval ADD INDEX FKd_benefit_664992 (tplID), ADD CONSTRAINT FKd_benefit_664992 FOREIGN KEY (tplID) REFERENCES g_benefit_eval_tpl (tplID);
 
+CREATE TABLE d_eval_code_gen (evalID int(11) NOT NULL AUTO_INCREMENT, codeType varchar(50), deptShortName varchar(50), yearMonth varchar(50), currValue int(11), PRIMARY KEY (evalID));
+
