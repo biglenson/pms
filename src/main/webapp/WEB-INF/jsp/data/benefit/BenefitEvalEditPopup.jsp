@@ -7,8 +7,10 @@
 <%@ page import="com.zq.vo.process.BenefitEvalTplItemVO" %>
 <%
 	String path = request.getContextPath();
+	//获取模版基本信息
 	BenefitEvalTplVO benefitEvalInfo = (BenefitEvalTplVO)request.getAttribute("templateInfo");
 	String evalPhase = benefitEvalInfo.getEvalPhase().toString();
+	String evalFor = String.valueOf(benefitEvalInfo.getEvalFor());
 	int tplID = benefitEvalInfo.getTplID();
 	boolean isAfterEval;
 	if ("1".equals(evalPhase)){
@@ -17,6 +19,9 @@
 		isAfterEval = false;
 	}
 	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10); //是否是后评估
+	//获取评估信息，确定跳转页面的页面标题信息
+	String evFor = evalFor=="0"?"项目":"产品";
+	String evPhase = evalPhase == "0"?"前":"后";
 %>
 
 <style>
@@ -39,6 +44,7 @@ function submit() {
 		}else  {
 			/* document.frm.submit(); */
 			document.frm.operation.value="submit";
+			document.frm.action="<%=path%>/datamap/benefitEvalPopup2";
 			etSubmit(document.frm);
 		}
 	}); 
@@ -72,7 +78,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 </script>
 
 <!-- 内容主体 -->
-<form name="frm" action="<%=path%>/datamap/benefitEvalPopup" method="post">
+<form name="frm" action="<%=path%>/datamap/benefitEvalPopup" method="GET">
 <input type="hidden" name="operation" value="">
 <input type="hidden" name="tplID" value="<%=tplID%>">
 
