@@ -31,6 +31,7 @@ import com.zq.commons.utils.StringUtils;
 import com.zq.service.system.IResourceService;
 import com.zq.service.process.*;
 import com.zq.vo.process.*;
+import com.alibaba.fastjson.JSON;
 
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
@@ -83,14 +84,12 @@ public class ProcessController extends BaseController{
 
     @RequestMapping(value = "saveBenefitEval")
 	public String saveBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
-                                    @RequestParam("pageTitle") String pageTitle,
-                                    @RequestParam("url") String url, 
-                                    @RequestParam("benefitEvalInfo") BenefitEvalVO benefitInfo,
-                                    @RequestParam("benefitEvalForm") List<BenefitEvalItemVO> benefitEvalForm
+                                    @RequestParam("jsonString") String jsonString
                                     ) {		 	
-        logger.info("----------------------------saveBenefitEval"); 
-        String evalCode = benefitInfo.getEvalCode();
-        int evalPhase = benefitInfo.getEvalPhase();
+        logger.info("----------------------------saveBenefitEval"+jsonString); 
+        BenefitEvalVO benefitEvalVO = JSON.parseObject(jsonString, BenefitEvalVO.class);
+        String evalCode = benefitEvalVO.getEvalCode();
+        int evalPhase = benefitEvalVO.getEvalPhase();
         String codeType = null;
         if ( evalPhase == 0 ) {
             codeType = new String("BE"); 
@@ -109,10 +108,6 @@ public class ProcessController extends BaseController{
         }
         
 
-
-
-        request.setAttribute("pageTitle", pageTitle);
-        request.setAttribute("url", url);
         return CMCCConstant.BenefitEvalPopup;
     }
 
