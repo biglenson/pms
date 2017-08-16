@@ -3,25 +3,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
+<%@ page import="com.zq.vo.process.LoginInfoVO" %>
 <%@ page import="com.zq.vo.process.BenefitEvalTplVO" %>
 <%@ page import="com.zq.vo.process.BenefitEvalTplItemVO" %>
 <%
 	String path = request.getContextPath();
-	//获取模版基本信息
+	//获取登录人信息
+	LoginInfoVO loginInfo = (LoginInfoVO)request.getAttribute("loginInfo");
+	//获取基本信息
 	BenefitEvalTplVO benefitEvalInfo = (BenefitEvalTplVO)request.getAttribute("templateInfo");
 	String evalPhase = benefitEvalInfo.getEvalPhase().toString();
 	String evalFor = String.valueOf(benefitEvalInfo.getEvalFor());
 	int tplID = benefitEvalInfo.getTplID();
+	String evPhase = "";
+	//判断是前评估还是后评估，1是后评估，0是前评估
 	boolean isAfterEval;
 	if ("1".equals(evalPhase)){
 		isAfterEval = true;
+		evPhase = "后";
 	}else {
 		isAfterEval = false;
+		evPhase = "前";
 	}
-	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10); //是否是后评估
+	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10);
 	//获取评估信息，确定跳转页面的页面标题信息
-	String evFor = evalFor=="0"?"项目":"产品";
-	String evPhase = evalPhase == "0"?"前":"后";
+	String evFor = "";
+	if("0".equals(evalFor)) {
+		evFor = "项目";
+	}else{
+		evFor = "产品";
+	}
+	// 评估状态
+	String evalStatus = evFor + evPhase;
+	//获取效益评估信息
+	List<BenefitEvalTplItemVO> formInfos = (List)request.getAttribute("formTemplate");
 %>
 
 <style>
@@ -57,9 +72,52 @@ function save() {
 		if (!creator) {
 			alert('标题不能为空！');
 		}else  {
-			/* document.frm.submit(); */
+			<%-- /* document.frm.submit(); */
+			/* document.frm.operation.value="save";
+			etSubmit(document.frm); */
 			document.frm.operation.value="save";
-			etSubmit(document.frm);
+			document.frm.action="<%=path%>/datamap/saveBenefitEval";
+			document.frm.pageTitle.value="<%=evFor%>";
+			document.frm.url.value="data/itemset";
+			etSubmit(document.frm); --%>
+			var obj = {};
+			$('.formTable').find('[dbField]').each(function(index, elem) {
+				var dbField = $(elem).attr("dbField");
+				var vtype = $(elem).attr("vtype");
+				obj[dbField] = getVtypeVal(vtype, elem);
+			});
+			var arr = new Array();
+			for (var i = 1; i <= <%=formInfos.size()%>; i++) {
+				var obj2 = {};
+				$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
+					var dbField = $(elem).attr("dbField"+i).substring(0,7);
+					var vtype = $(elem).attr("vtype");
+					obj2[dbField] = getVtypeVal(vtype, elem);
+					arr[i-1] = obj2;
+				});
+			}
+			//传递名称：jsonString
+			var obj3 = {};
+			obj3.templateInfo = obj;
+			obj3.formTemplate = arr;
+			
+			console.log(obj);
+			console.log(arr);
+			console.log(obj3);
+			console.log(JSON.stringify(obj3));
+			
+			$.ajax({
+			    type: "POST",
+			    url: "<%=path%>/datamap/saveBenefitEval",
+			    data: {
+			    	"jsonString":JSON.stringify(obj3)
+			    },
+			    datatype: "json",
+			    contentType: "application/json;charset=utf-8",
+			    success: function(data) {
+			        console.log(data);
+			    }
+			});
 		}
 	});  
 }
@@ -78,13 +136,13 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 </script>
 
 <!-- 内容主体 -->
-<form name="frm" action="<%=path%>/datamap/benefitEvalPopup" method="GET">
+<form name="frm" id="frm" action="<%=path%>/datamap/benefitEvalPopup" method="GET">
 <input type="hidden" name="operation" value="">
 <input type="hidden" name="tplID" value="<%=tplID%>">
 
 <%=UIUtils.toolbarStart(request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:submit(\"0\");", "提交", "save.gif", false, false, request)%>
-	<%=UIUtils.toolbarButton(true, "javascript:save(\"0\");", "保存", "save.gif", false, false, request)%>
+	<%=UIUtils.toolbarButton(true, "javascript:save();", "保存", "save.gif", false, false, request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
 <%=UIUtils.toolbarEnd(request)%>
 
@@ -97,14 +155,18 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr>
 					<td class="label white_background-color"></td>
 					<td class="content white_background-color"></td>
-					<td class="seperator"></td>
+					<td class="seperator">
+						<input vtype="input" dbField="evalID" type="hidden" name="evalID" value=""/>
+						<input vtype="input" dbField="tplID" type="hidden" name="tplID" value="<%=benefitEvalInfo.getTplID()%>"/>
+					</td>
 					<td class="label white_background-color"></td>
 					<td class="content white_background-color"></td>
 				</tr>
 				<tr>
 					<td class="label">代码</td>
-					<td class="content" id="codetd"> 
-						<div class="content-line" id="div-codeName"></div>
+					<td class="content" id="evalCode"> 
+						<div class="content-line" id="div-evalCode"></div>
+						<input vtype="input" dbField="evalCode" type="hidden" name="evalCode" value=""/>
 					</td>
 				</tr>
 				<tr>
@@ -113,7 +175,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr>
 					<td class="label">标题<font class="red">*</font></td>
 					<td colspan="4" class="content" id="titletd">
-						<input class="text" name="evalTitle" value="" maxlength="250" type="text">
+						<input vtype="input" dbField="evalTitle" class="text" name="evalTitle" value="" maxlength="250" type="text">
 					</td>
 				</tr>
 				<tr>
@@ -122,12 +184,13 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr>
 					<td class="label">评估类型</td>
 					<td class="content  " id="categorytd"> 
-						<div class="content-line" id="div-categoryName">项目前评估</div>
+						<div class="content-line" id="div-categoryName"><%=evalStatus%>评估</div>
+						<input vtype="input" dbField="evalStatus" type="hidden" name="evalStatus" value=""/>
 					</td>
 					<td class="seperator"></td>
 					<td class="label">状态</td>
 					<td class="content  " id="statustd"> 
-						<div class="content-line" id="div-statusName">待需求负责人审批</div>
+						<div class="content-line" id="div-statusName">${taskName}</div>
 					</td>
 				</tr>
 				<tr>
@@ -137,7 +200,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">创建人</td>
 					<td class="content  " id="creator">
 						<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-							<input class="text" name="creator" value="admin" readonly="" style="cursor: pointer;" type="text">
+							<input vtype="input" dbField="creator" class="text" name="creator" value="<%=loginInfo.getLoginName()%>" readonly="" style="cursor: pointer;" type="text">
 							<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 						</div> 
 						<script type="text/javascript">
@@ -151,7 +214,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">创建时间</td>
 					<td class="content  " id="date01td">
 						<div class="content-div" id="content-div-date01"> 
-							<input class="text" name="createDate" id="createDate" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
+							<input vtype="input" dbField="createDate" class="text" name="createDate" id="createDate" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
 							<!-- <img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer"> -->
 						</div>  
 						<script type="text/javascript"> 
@@ -166,11 +229,12 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">评估模板</td>
 					<td class="content" id="str01td">
 						<div class="content-line" id="div-str01Name">${templateInfo.tplTitle}</div>
+						<input vtype="input" dbField="tplTitle" type="hidden" name="tplTitle" value="${templateInfo.tplTitle}"/>
 					</td>
 					<td class="seperator"></td>
 					<td class="label">是否有归口部门</td>
-					<td class="content  " id="statustd"> 
-						<select name="hasDept">
+					<td class="content" id="statustd"> 
+						<select vtype="select" dbField="hasDept" name="hasDept">
 						  <option value="0">是</option>
 						  <option value="1">否</option>
 						</select>
@@ -229,6 +293,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr class="listTableTR" >
 					<td align="center">
 						<%=index+1%>
+						<input vtype="input" dbField<%=index%>="tplItemID" type="hidden" name="tplItemID" value="<%=item.getTplItemID()%>"/>
+						<input vtype="input" dbField<%=index%>="tplID" type="hidden" name="tplID" value="<%=item.getTplID()%>"/>
 					</td>
 					<td title="<%=item.getEvalItem()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
@@ -248,7 +314,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					</td>
 					<%}%>
 					<td align="right">
-						<input type="text" class="text" style="width: 78px;text-align: right;" name="evalValue<%item.getTplItemID();%>" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+						<input vtype="input" dbField<%=index%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" name="evalValue<%item.getTplItemID();%>" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
 						 contentType="N10.2" value=""/>
 					</td>
 					<%if(isAfterEval){%>
@@ -265,7 +331,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					</td>
 					<td title="">
 						<div style="width: 100px" class="nowrapText">
-							<input type="text" class="text" style="width:98px;" name="evalNote<%item.getTplItemID();%>" maxlength="100" value=""/>
+							<input vtype="input" dbField<%=index%>="evalNote" type="text" class="text" style="width:98px;" name="evalNote<%item.getTplItemID();%>" maxlength="100" value=""/>
 						</div>
 					</td>
 				</tr>
@@ -291,3 +357,23 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <%-- 输出公共BodyEnd模块 --%>
 <jsp:include page="../../common/BodyEnd.jsp" />
 </html>
+
+<script>
+//判断各表单项类型获取对应的值
+function getVtypeVal(vtype, elem) {
+	var val = "";
+	if (vtype == "input") { // 输入框
+		val = $.trim($(elem).val());
+	} else if (vtype == "select") { // 下拉框
+		val = $(elem).val();
+	} else if (vtype == "radios") { // 单选
+		val = $(elem).attr("val");
+	} else if (vtype == "date") {	// 时间
+		val = $(elem).val();
+	}
+	if (!val) {
+		val = "";
+	}
+	return val;
+}
+</script>
