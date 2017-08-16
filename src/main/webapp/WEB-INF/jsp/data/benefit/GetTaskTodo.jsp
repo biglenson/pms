@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
 <%@ page import= "com.zq.commons.result.PageInfo" %>
+<%@ page import="com.zq.vo.process.TaskTodoItemVO" %>
 <%
 	String path = request.getContextPath();
 	String pageTitle = (String)request.getAttribute("pageTitle");
@@ -9,8 +10,10 @@
 	Long pid = (Long)request.getAttribute("pid");
 	String url = (String)request.getAttribute("url");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	Integer evalID = 1;
-	Integer evalID2 = new Integer(2);
+
+	//获取待办任务数据集合
+	List<TaskTodoItemVO> taskTodoList = (List)request.getAttribute("taskTodo");
+	String evalFor = url.indexOf("/datamap/basitemset") >= 0 ? "项目" : "产品";
 %>
 
 <%-- 输出Head1模块 --%>
@@ -87,11 +90,11 @@ function cleanFun(){
 	etSubmit(document.frm);
 }
 
-//评估列表条目 
-function openForm(id,schemaID) {
+//评估列表条目点击事件
+function openForm(processID, evalPhase) {
 	var arg = new Array();
-	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>&evalID=<%= evalID2%>"+"&_id="+Math.random();
-	arg.title = "项目前评估";
+	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>&evalID="+processID+"&_id="+Math.random();
+	arg.title = "<%=evalFor%>"+ evalPhase +"评估";
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 
@@ -105,7 +108,7 @@ function openForm(id,schemaID) {
 }
 </script>
 <div class="popBodyDIV popBodyDIVNew">
-<form name="frm" action="<%=path%>/datamap/simpleFromBenefit" method="post">
+<form name="frm" action="<%=path%>/datamap/simpleFromBenefit" method="GET">
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
 
@@ -142,60 +145,26 @@ function openForm(id,schemaID) {
 	  		</tr>
   		</thead>
 		<tbody>		
-<%-- 				<%
-				if (totalSize == 0) {
-						%>
-					  <tr class="listTableTR">
-					    <td colspan="6"><bean:message key="NoRecord"/></td>
-					  </tr>
-				<%
-					} else{
-							for (FormBase form:formBaseList) {
-				%>
-				<tr class="listTableTR">
-					<td class="linkURL" onclick="openForm(<%=form.getId()%>,<%=form.getCategory()%>);"><%=TypeUtils.xmlEncoderForIE(form.getTitle())%></td>
-					<td><%=TypeUtils.xmlEncoderForIE(form.getStatusName(sLocale))%></td>
-					<td><%=TypeUtils.xmlEncoderForIE(form.getCategoryName(user, sLocale))%></td>
-					<td><%=TypeUtils.xmlEncoderForIE(cmccSimpleForm.getScoreCardTemplateName(user, form.getStr01()))%></td>
-					<td><%=TypeUtils.xmlEncoderForIE(CommonUtils.getUserNameByIDs(user.getCompanyID(), form.getRes01()))%></td>
-					<td><%=TypeUtils.date2String(form.getDate01(), 1)%></td>
-				</tr>
-			<%
-				}}
-			%> --%>
-
-			<tr class="listTableTR" style="">
-				<td class="linkURL" onclick="openForm(520996,1096);">前评估测试</td>
-				<td>待需求负责人审批</td>
-				<td>项目前评估</td>
-				<td>项目效益评估模型-促销项目</td>
-				<td>chenliang</td>
-				<td>2017-07-25</td>
+			<%if (taskTodoList.size() == 0) {%>
+			<tr class="listTableTR">
+				<td colspan="6">没有记录</td>
 			</tr>
-		
-			<tr class="listTableTR" style="">
-				<td class="linkURL" onclick="openForm(517121,1097);">test项目后评估</td>
-				<td>待提交</td>
-				<td>项目后评估</td>
-				<td>项目效益评估模型-促销项目</td>
-				<td>黄利利</td>
-				<td>2017-06-20</td>
+			<%} else{ for (TaskTodoItemVO taskTodo : taskTodoList) {%>
+			<tr class="listTableTR">
+				<td class="linkURL" onclick="openForm(<%=taskTodo.getProcessID()%>,<%=taskTodo.getEvalPhase()==0?"前":"后"%>);"><%=taskTodo.getTaskName()%></td>
+				<td><%=taskTodo.getEvalTitle()%></td>
+				<td><%=evalFor%><%=taskTodo.getEvalPhase()==0?"前":"后"%>评估</td>
+				<td><%=taskTodo.getTplTitle()%></td>
+				<td><%=taskTodo.getAssignee()%></td>
+				<td><%=taskTodo.getCreateTime()%></td>
 			</tr>
-		
-			<tr class="listTableTR" style="">
-				<td class="linkURL" onclick="openForm(421632,1096);">促销项目效益评估</td>
-				<td>通过</td>
-				<td>项目前评估</td>
-				<td>项目效益评估模型-促销项目</td>
-				<td></td>
-				<td></td>
-			</tr>
-
+			<%}}%>
 		</tbody>
      </table>
      </div>
      <div id='todo'></div>
 	<!-- 以上为表单 -->
+	<!-- 分页导航条 -->
 	<%-- <%=UIUtils.pageToolbar(pageInfo, request)%> --%>
 </form>
 </div>
@@ -207,6 +176,10 @@ function openForm(id,schemaID) {
             $("#tab li").eq($(this).index()).css("background-color", "#FFF").siblings().css("background-color", "#F4F4F4");
             $("div[id=todo]").hide().eq($(this).index()).show();
             //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on'); 
+            if ($(this).index() == 1) {
+            	document.frm.action = "<%=path%>/datamap/getTaskDone";
+            	etSubmit(document.frm);
+			}
         });
     });
 </script>
