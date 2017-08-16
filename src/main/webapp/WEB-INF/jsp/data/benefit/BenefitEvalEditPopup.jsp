@@ -112,8 +112,6 @@ function save() {
 			    data: {
 			    	"jsonString":JSON.stringify(obj3)
 			    },
-			    datatype: "json",
-			    contentType: "application/json;charset=utf-8",
 			    success: function(data) {
 			        console.log(data);
 			    }
