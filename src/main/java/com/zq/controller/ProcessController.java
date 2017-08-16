@@ -29,8 +29,6 @@ import com.zq.commons.shiro.captcha.CMCCCaptcha;
 import com.zq.commons.utils.CMCCConstant;
 import com.zq.commons.utils.StringUtils;
 import com.zq.service.system.IResourceService;
-import com.zq.service.process.*;
-import com.zq.vo.process.*;
 import com.alibaba.fastjson.JSON;
 
 import org.activiti.engine.IdentityService;
@@ -42,8 +40,13 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.apache.shiro.SecurityUtils;
 
+import org.springframework.beans.BeanUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import java.util.*;
 
+import com.zq.service.process.*;
+import com.zq.vo.process.*;
+import com.zq.entity.process.*;
 
 
 /** 
@@ -82,12 +85,18 @@ public class ProcessController extends BaseController{
     @Autowired
     private EvalCodeGenSvc evalCodeGenSvc;
 
-    @RequestMapping(value = "saveBenefitEval")
+    @RequestMapping(value = "saveBenefitEval", method = RequestMethod.POST)  
 	public String saveBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("jsonString") String jsonString
                                     ) {		 	
+        BenefitEval benefitEval = new BenefitEval();
+        logger.info("----------------------------saveBenefitEval"+jsonString); 
+        jsonString = StringEscapeUtils.unescapeHtml(jsonString);
         logger.info("----------------------------saveBenefitEval"+jsonString); 
         BenefitEvalVO benefitEvalVO = JSON.parseObject(jsonString, BenefitEvalVO.class);
+        BeanUtils.copyProperties(benefitEvalVO, benefitEval);
+        
+        logger.info("----------------------------savedEvalID"+benefitEval.getEvalID()); 
         String evalCode = benefitEvalVO.getEvalCode();
         int evalPhase = benefitEvalVO.getEvalPhase();
         String codeType = null;
@@ -106,6 +115,7 @@ public class ProcessController extends BaseController{
             logger.info("保存已有Eval！----------------------------: "); 
 
         }
+        //benefitEvalSvc.save(benefitEval);
         
 
         return CMCCConstant.BenefitEvalPopup;
