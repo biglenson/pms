@@ -200,7 +200,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td colspan="5" height="5"></td>
 			</tr>
 			<tr>
-				<td class="label"><%=benefitEvalInfo.getEvalTitle()%><font class="red">*</font></td>
+				<td class="label">标题<font class="red">*</font></td>
 				<td colspan="4" class="content" id="evalTitle">
 					<input class="text" name="evalTitle" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
 				</td>
