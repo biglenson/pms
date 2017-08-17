@@ -102,8 +102,15 @@ public class ProcessController extends BaseController{
 
         logger.info("-BenefitEval------------------------evalTitle:    "+benefitEvalVO.getEvalTitle()); 
         
-        benefitEvalSvc.saveBenefitEvalInfo(benefitEvalVO);   
+        benefitEvalVO = benefitEvalSvc.saveBenefitEvalInfo(benefitEvalVO);   
 
+        int evalID = benefitEvalVO.getEvalID();
+        List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
+        BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
+        List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
+        model.addAttribute("benefitEvalInfo",benefitEvalInfo );
+        model.addAttribute("benefitEvalForm",benefitEvalForm );
+        model.addAttribute("taskHis",taskHis );
         return CMCCConstant.BenefitEvalPopup;
     }
 

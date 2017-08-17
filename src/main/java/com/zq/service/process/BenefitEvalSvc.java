@@ -95,6 +95,7 @@ public class BenefitEvalSvc{
         }
         logger.info("----------------------------savedEvalID:   "+benefitEval.getEvalID()); 
         benefitEvalRepo.save(benefitEval);
+        logger.info("保存后的evalID----------------------------evalID: "+ benefitEval.getEvalID()); 
 
         BeanUtils.copyProperties(benefitEval, benefitEvalVO);
         return benefitEvalVO;
