@@ -21,7 +21,7 @@ public interface BenefitEvalItemRepository extends JpaRepository<BenefitEvalItem
      * @return
      */
 
-    //BenefitEvalItem getBenefitEvalByID(int tplID);
+    BenefitEvalItem getBenefitEvalItemByItemID(int itemID);
     //List<BenefitEvalItemVO> getBenefitEvalFormInfo(int evalID);
 
 }

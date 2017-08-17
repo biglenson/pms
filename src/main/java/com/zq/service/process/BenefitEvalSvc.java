@@ -65,7 +65,7 @@ public class BenefitEvalSvc{
     
     @Transactional
     public BenefitEvalVO saveBenefitEvalInfo(BenefitEvalVO benefitEvalVO, List<BenefitEvalItemVO> benefitEvalForm) {
-        BenefitEval benefitEval = new BenefitEval();
+        BenefitEval benefitEval = null;
         BenefitEvalItem benefitEvalItem = null;
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("vAssignee", "lenson");
@@ -87,7 +87,7 @@ public class BenefitEvalSvc{
             evalCode = this.getEvalCode("XYPG", evalPhase);
             logger.info("获取EvalCode！----------------------------evalCode: "+ evalCode); 
             ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("BenefitEvalProcess", evalCode, variables);
-
+            benefitEval = new BenefitEval();
             benefitEval.setProcessID(processInstance.getProcessInstanceId());
             benefitEval.setEvalCode(evalCode);
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
@@ -107,6 +107,21 @@ public class BenefitEvalSvc{
 
         } else {
             logger.info("保存已有Eval！----------------------------: "); 
+
+            evalID = benefitEvalVO.getEvalID();
+            benefitEval = benefitEvalRepo.getBenefitEvalByEvalID(evalID);
+            benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
+            benefitEval.setCreateDate(new Date());
+            benefitEvalRepo.save(benefitEval);
+
+            for (BenefitEvalItemVO benefitEvalItemVO : benefitEvalForm) {
+                int itemID = benefitEvalItemVO.getItemID();
+                benefitEvalItem = benefitEvalItemRepo.getBenefitEvalItemByItemID(itemID);
+                BeanUtils.copyProperties(benefitEvalItemVO, benefitEvalItem);
+                benefitEvalItemRepo.save(benefitEvalItem);
+                logger.info("保存Item-----------:  "+ benefitEvalItemVO.getEvalValue()+"----"+benefitEvalItemVO.getEvalNote());
+            }
+
 
         }
         logger.info("----------------------------savedEvalID:   "+benefitEval.getEvalID()); 
@@ -139,6 +154,7 @@ public class BenefitEvalSvc{
         BenefitEvalVO benefitEvalVO = new BenefitEvalVO();
         BenefitEval benefitEval = benefitEvalRepo.getBenefitEvalByEvalID(evalID);
         BenefitEvalTpl benefitEvalTpl = benefitEvalTplRepo.getBenefitEvalTplByTplID(benefitEval.getTplID());
+        BeanUtils.copyProperties(benefitEval, benefitEvalVO);
         benefitEvalVO.setTplTitle(benefitEvalTpl.getTplTitle());
         benefitEvalVO.setEvalPhase(benefitEvalTpl.getEvalPhase());
         benefitEvalVO.setEvalFor(benefitEvalTpl.getEvalFor());
