@@ -90,7 +90,7 @@ function save() {
 			for (var i = 1; i <= <%=formInfos.size()%>; i++) {
 				var obj2 = {};
 				$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
-					var dbField = $(elem).attr("dbField"+i).substring(0,7);
+					var dbField = $(elem).attr("dbField"+i);
 					var vtype = $(elem).attr("vtype");
 					obj2[dbField] = getVtypeVal(vtype, elem);
 					arr[i-1] = obj2;
@@ -190,7 +190,6 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">评估类型</td>
 					<td class="content  " id="categorytd"> 
 						<div class="content-line" id="div-categoryName"><%=evalStatus%>评估</div>
-						<input vtype="input" dbField="evalStatus" type="hidden" value=""/>
 					</td>
 					<td class="seperator"></td>
 					<td class="label">状态</td>
@@ -205,7 +204,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">创建人</td>
 					<td class="content  " id="creator">
 						<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-							<input vtype="input" dbField="creator" class="text" value="<%=loginInfo.getLoginName()%>" readonly="" style="cursor: pointer;" type="text">
+							<input vtype="input" dbField="creator" class="text" value="<%=loginInfo.getLoginName()%>" readonly="" style="cursor: pointer;" type="text"/>
 							<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 						</div> 
 						<script type="text/javascript">
@@ -219,12 +218,9 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">创建时间</td>
 					<td class="content  " id="date01td">
 						<div class="content-div" id="content-div-date01"> 
-							<input vtype="input" dbField="createDate" class="text" id="createDate" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
-							<!-- <img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer"> -->
+							<input vtype="input" dbField="createDate" type="hidden" class="text" value=""/>
+							<div class="content-line">系统自动创建</div>
 						</div>  
-						<script type="text/javascript"> 
-							showCalendar("date01","imagdate01");
-						</script>
 					</td>
 				</tr>
 				<tr>
@@ -299,7 +295,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td align="center">
 						<%=index+1%>
 						<input vtype="input" dbField<%=index%>="tplItemID" type="hidden" value="<%=item.getTplItemID()%>"/>
-						<input vtype="input" dbField<%=index%>="tplID" type="hidden" value="<%=item.getTplID()%>"/>
+						<input vtype="input" dbField<%=index%>="evalID" type="hidden" value=""/>
+						<input vtype="input" dbField<%=index%>="itemID" type="hidden" value=""/>
 					</td>
 					<td title="<%=item.getEvalItem()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
