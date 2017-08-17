@@ -111,8 +111,10 @@ public class ProcessController extends BaseController{
 
 
         int evalID = benefitEvalVO.getEvalID();
+        logger.info("-BenefitEval------------------------evalID back:    "+evalID); 
         benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
+        logger.info("-BenefitEval------------------------evalTitle :    "+benefitEvalInfo.getEvalTitle()); 
         List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
         model.addAttribute("benefitEvalInfo",benefitEvalInfo );
         model.addAttribute("benefitEvalForm",benefitEvalForm );
