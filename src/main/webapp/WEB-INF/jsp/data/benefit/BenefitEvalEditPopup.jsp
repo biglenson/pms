@@ -96,14 +96,9 @@ function save() {
 					arr[i-1] = obj2;
 				});
 			}
-			//传递名称：jsonString
-			var obj3 = {};
-			obj3.formTemplate = arr;
 			
 			console.log(obj);
 			console.log(arr);
-			console.log(obj3);
-			console.log(JSON.stringify(obj3));
 			
 			<%-- $.ajax({
 			    type: "POST",
@@ -119,7 +114,7 @@ function save() {
 			}); --%>
 			document.frm.operation.value="save";
 			document.frm.evalInfo.value=JSON.stringify(obj);
-			document.frm.evalForm.value=JSON.stringify(obj3);
+			document.frm.evalForm.value=JSON.stringify(arr);
 			document.frm.action="<%=path%>/datamap/saveBenefitEval";
 			etSubmit(document.frm);
 		}
