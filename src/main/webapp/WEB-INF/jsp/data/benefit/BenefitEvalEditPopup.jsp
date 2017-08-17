@@ -98,7 +98,6 @@ function save() {
 			}
 			//传递名称：jsonString
 			var obj3 = {};
-			obj3.templateInfo = obj;
 			obj3.formTemplate = arr;
 			
 			console.log(obj);
@@ -110,7 +109,8 @@ function save() {
 			    type: "POST",
 			    url: "<%=path%>/datamap/saveBenefitEval",
 			    data: {
-			    	"jsonString":JSON.stringify(obj3)
+			    	"evalInfo":JSON.stringify(obj)
+			    	"evalForm":JSON.stringify(obj3)
 			    },
 			    success: function(data) {
 			        console.log(data);
