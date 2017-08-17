@@ -53,7 +53,7 @@ td,div {
 //提交
 function submit() {
 	$(function () {
-		var creator = $('input[name=evalTitle]').val();
+		var creator = $('input[dbField=evalTitle]').val();
 		if (!creator) {
 			alert('标题不能为空！');
 		}else  {
@@ -68,7 +68,7 @@ function submit() {
 //保存
 function save() {	
 	$(function () {
-		var creator = $('input[name=evalTitle]').val();
+		var creator = $('input[dbField=evalTitle]').val();
 		if (!creator) {
 			alert('标题不能为空！');
 		}else  {
@@ -105,17 +105,23 @@ function save() {
 			console.log(obj3);
 			console.log(JSON.stringify(obj3));
 			
-			$.ajax({
+			<%-- $.ajax({
 			    type: "POST",
 			    url: "<%=path%>/datamap/saveBenefitEval",
 			    data: {
 			    	"evalInfo":JSON.stringify(obj),
 			    	"evalForm":JSON.stringify(obj3)
 			    },
-			    success: function(data) {
-			        console.log(data);
+			    success: function() {
+			       /*  console.log(data); */
+			    	window.location.href= '<%=path%>/datamap/BenefitEvalPopup'
 			    }
-			});
+			}); --%>
+			document.frm.operation.value="save";
+			document.frm.evalInfo.value=JSON.stringify(obj);
+			document.frm.evalForm.value=JSON.stringify(obj3);
+			document.frm.action="<%=path%>/datamap/saveBenefitEval";
+			etSubmit(document.frm);
 		}
 	});  
 }
@@ -134,9 +140,10 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 </script>
 
 <!-- 内容主体 -->
-<form name="frm" id="frm" action="<%=path%>/datamap/benefitEvalPopup" method="GET">
+<form name="frm" action="" method="POST">
 <input type="hidden" name="operation" value="">
-<input type="hidden" name="tplID" value="<%=tplID%>">
+<input type="hidden" name="evalInfo" value="">
+<input type="hidden" name="evalForm" value="">
 
 <%=UIUtils.toolbarStart(request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:submit(\"0\");", "提交", "save.gif", false, false, request)%>
@@ -154,8 +161,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label white_background-color"></td>
 					<td class="content white_background-color"></td>
 					<td class="seperator">
-						<input vtype="input" dbField="evalID" type="hidden" name="evalID" value=""/>
-						<input vtype="input" dbField="tplID" type="hidden" name="tplID" value="<%=benefitEvalInfo.getTplID()%>"/>
+						<input vtype="input" dbField="evalID" type="hidden" value=""/>
+						<input vtype="input" dbField="tplID" type="hidden" value="<%=benefitEvalInfo.getTplID()%>"/>
 					</td>
 					<td class="label white_background-color"></td>
 					<td class="content white_background-color"></td>
@@ -164,7 +171,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">代码</td>
 					<td class="content" id="evalCode"> 
 						<div class="content-line" id="div-evalCode"></div>
-						<input vtype="input" dbField="evalCode" type="hidden" name="evalCode" value=""/>
+						<input vtype="input" dbField="evalCode" type="hidden" value=""/>
 					</td>
 				</tr>
 				<tr>
@@ -173,7 +180,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr>
 					<td class="label">标题<font class="red">*</font></td>
 					<td colspan="4" class="content" id="titletd">
-						<input vtype="input" dbField="evalTitle" class="text" name="evalTitle" value="" maxlength="250" type="text">
+						<input vtype="input" dbField="evalTitle" class="text" value="" maxlength="250" type="text">
 					</td>
 				</tr>
 				<tr>
@@ -183,7 +190,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">评估类型</td>
 					<td class="content  " id="categorytd"> 
 						<div class="content-line" id="div-categoryName"><%=evalStatus%>评估</div>
-						<input vtype="input" dbField="evalStatus" type="hidden" name="evalStatus" value=""/>
+						<input vtype="input" dbField="evalStatus" type="hidden" value=""/>
 					</td>
 					<td class="seperator"></td>
 					<td class="label">状态</td>
@@ -198,7 +205,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">创建人</td>
 					<td class="content  " id="creator">
 						<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-							<input vtype="input" dbField="creator" class="text" name="creator" value="<%=loginInfo.getLoginName()%>" readonly="" style="cursor: pointer;" type="text">
+							<input vtype="input" dbField="creator" class="text" value="<%=loginInfo.getLoginName()%>" readonly="" style="cursor: pointer;" type="text">
 							<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 						</div> 
 						<script type="text/javascript">
@@ -212,7 +219,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">创建时间</td>
 					<td class="content  " id="date01td">
 						<div class="content-div" id="content-div-date01"> 
-							<input vtype="input" dbField="createDate" class="text" name="createDate" id="createDate" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
+							<input vtype="input" dbField="createDate" class="text" id="createDate" value="" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
 							<!-- <img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer"> -->
 						</div>  
 						<script type="text/javascript"> 
@@ -227,12 +234,12 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">评估模板</td>
 					<td class="content" id="str01td">
 						<div class="content-line" id="div-str01Name">${templateInfo.tplTitle}</div>
-						<input vtype="input" dbField="tplTitle" type="hidden" name="tplTitle" value="${templateInfo.tplTitle}"/>
+						<input vtype="input" dbField="tplTitle" type="hidden" value="${templateInfo.tplTitle}"/>
 					</td>
 					<td class="seperator"></td>
 					<td class="label">是否有归口部门</td>
 					<td class="content" id="statustd"> 
-						<select vtype="select" dbField="hasDept" name="hasDept">
+						<select vtype="select" dbField="hasDept">
 						  <option value="0">是</option>
 						  <option value="1">否</option>
 						</select>
@@ -291,8 +298,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr class="listTableTR" >
 					<td align="center">
 						<%=index+1%>
-						<input vtype="input" dbField<%=index%>="tplItemID" type="hidden" name="tplItemID" value="<%=item.getTplItemID()%>"/>
-						<input vtype="input" dbField<%=index%>="tplID" type="hidden" name="tplID" value="<%=item.getTplID()%>"/>
+						<input vtype="input" dbField<%=index%>="tplItemID" type="hidden" value="<%=item.getTplItemID()%>"/>
+						<input vtype="input" dbField<%=index%>="tplID" type="hidden" value="<%=item.getTplID()%>"/>
 					</td>
 					<td title="<%=item.getEvalItem()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
@@ -308,16 +315,16 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					</td>
 					<%if(isAfterEval){%>
 					<td align="right">
-						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" name="cmcc_prescore" contentType="N10.2" readonly="readonly" value=""/>
+						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" readonly="readonly" value=""/>
 					</td>
 					<%}%>
 					<td align="right">
-						<input vtype="input" dbField<%=index%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" name="evalValue<%item.getTplItemID();%>" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+						<input vtype="input" dbField<%=index%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
 						 contentType="N10.2" value=""/>
 					</td>
 					<%if(isAfterEval){%>
 					<td align="right">
-						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" name="cmcc_deviation" readonly="readonly" value=""/>
+						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" readonly="readonly" value=""/>
 					</td>
 					<%}%>
 					<td title="<%=item.getRefValue() %>" align="center">
@@ -329,7 +336,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					</td>
 					<td title="">
 						<div style="width: 100px" class="nowrapText">
-							<input vtype="input" dbField<%=index%>="evalNote" type="text" class="text" style="width:98px;" name="evalNote<%item.getTplItemID();%>" maxlength="100" value=""/>
+							<input vtype="input" dbField<%=index%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value=""/>
 						</div>
 					</td>
 				</tr>
