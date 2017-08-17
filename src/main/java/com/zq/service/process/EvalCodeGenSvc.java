@@ -18,7 +18,14 @@ public class EvalCodeGenSvc {
 	@Autowired
 	EvalCodeGenRepository evalCodeGenRepo;
 	@Transactional
-	public String getEvalCode(String deptShortName, String codeType){
+	public String getEvalCode(String deptShortName, int  iCodeType){
+        String codeType = null;
+        if ( iCodeType == 0 ) {
+            codeType = new String("BF"); 
+        }else  {
+            codeType = new String("AF"); 
+        }
+
 		evalCodeGenRepo.incrementEvalCode(deptShortName, codeType);
 		evalCodeInfo=evalCodeGenRepo.getByDeptShortNameAndCodeType(deptShortName, codeType);
 		evalCode = "000" + evalCodeInfo.get(0).getCurrValue();

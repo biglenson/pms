@@ -39,10 +39,12 @@ public class UploadFile implements Serializable {
 	private String upFileSavedName;
 	
 	@Column(name="uploadTime", nullable=true)	
-	private java.sql.Timestamp uploadTime;
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date uploadTime;
 	
 	@Column(name="commitTime", nullable=false)	
-	private java.sql.Timestamp commitTime;
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date commitTime;
 	
 	@Column(name="uploadStatus", nullable=true, length=11)	
 	private Integer uploadStatus;
@@ -110,28 +112,28 @@ public class UploadFile implements Serializable {
 	/**
 	 * 上传时间
 	 */
-	public void setUploadTime(java.sql.Timestamp value) {
+	public void setUploadTime(Date value) {
 		this.uploadTime = value;
 	}
 	
 	/**
 	 * 上传时间
 	 */
-	public java.sql.Timestamp getUploadTime() {
+	public Date getUploadTime() {
 		return uploadTime;
 	}
 	
 	/**
 	 * 提交时间
 	 */
-	public void setCommitTime(java.sql.Timestamp value) {
+	public void setCommitTime(Date value) {
 		this.commitTime = value;
 	}
 	
 	/**
 	 * 提交时间
 	 */
-	public java.sql.Timestamp getCommitTime() {
+	public Date getCommitTime() {
 		return commitTime;
 	}
 	

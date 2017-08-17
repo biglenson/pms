@@ -36,7 +36,8 @@ public class BenefitEvalTpl implements Serializable {
 	private int evalFor;
 	
 	@Column(name="createTime", nullable=false)	
-	private java.sql.Timestamp createTime;
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date createTime;
 	
 	@Column(name="listOrder", nullable=false, length=11)	
 	private int listOrder;
@@ -79,11 +80,11 @@ public class BenefitEvalTpl implements Serializable {
 		return evalFor;
 	}
 	
-	public void setCreateTime(java.sql.Timestamp value) {
+	public void setCreateTime(Date value) {
 		this.createTime = value;
 	}
 	
-	public java.sql.Timestamp getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 	

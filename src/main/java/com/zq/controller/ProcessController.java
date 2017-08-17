@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.transaction.annotation.*;
 
 import com.zq.commons.result.Tree;
 import com.zq.commons.shiro.captcha.CMCCCaptcha;
@@ -82,41 +83,28 @@ public class ProcessController extends BaseController{
     @Autowired
     private BenefitEvalItemSvc benefitEvalItemSvc;
 
-    @Autowired
-    private EvalCodeGenSvc evalCodeGenSvc;
+    //@Autowired
+    //private EvalCodeGenSvc evalCodeGenSvc;
+
 
     @RequestMapping(value = "saveBenefitEval", method = RequestMethod.POST)  
+    @Transactional
 	public String saveBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
-                                    @RequestParam("jsonString") String jsonString
+                                    @RequestParam("evalInfo") String evalInfo, 
+                                    @RequestParam("evalForm") String evalForm
                                     ) {		 	
-        BenefitEval benefitEval = new BenefitEval();
-        logger.info("----------------------------saveBenefitEval"+jsonString); 
-        jsonString = StringEscapeUtils.unescapeHtml(jsonString);
-        logger.info("----------------------------saveBenefitEval"+jsonString); 
-        BenefitEvalVO benefitEvalVO = JSON.parseObject(jsonString, BenefitEvalVO.class);
-        BeanUtils.copyProperties(benefitEvalVO, benefitEval);
+        evalInfo = StringEscapeUtils.unescapeHtml(evalInfo);
+        logger.info("-BenefitEval------------------------origin evalInfo:    "+evalInfo); 
+        evalForm = StringEscapeUtils.unescapeHtml(evalForm);
+        logger.info("-BenefitEval------------------------origin evalform:    "+evalForm); 
+        BenefitEvalVO benefitEvalVO = JSON.parseObject(evalInfo, BenefitEvalVO.class);
+
+
+
+        logger.info("-BenefitEval------------------------evalTitle:    "+benefitEvalVO.getEvalTitle()); 
+        benefitEvalVO.setEvalTitle("temp Title");
         
-        logger.info("----------------------------savedEvalID"+benefitEval.getEvalID()); 
-        String evalCode = benefitEvalVO.getEvalCode();
-        int evalPhase = benefitEvalVO.getEvalPhase();
-        String codeType = null;
-        if ( evalPhase == 0 ) {
-            codeType = new String("BE"); 
-        }else  {
-            codeType = new String("AE"); 
-        }
-
-
-
-        if (evalCode.length() == 0 ) {
-            evalCode = evalCodeGenSvc.getEvalCode("I", codeType);
-            logger.info("获取EvalCode！----------------------------evalCode: "+ evalCode); 
-        } else {
-            logger.info("保存已有Eval！----------------------------: "); 
-
-        }
-        //benefitEvalSvc.save(benefitEval);
-        
+        benefitEvalSvc.saveBenefitEvalInfo(benefitEvalVO);   
 
         return CMCCConstant.BenefitEvalPopup;
     }
