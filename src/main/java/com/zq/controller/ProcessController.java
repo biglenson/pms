@@ -88,7 +88,6 @@ public class ProcessController extends BaseController{
 
 
     @RequestMapping(value = "saveBenefitEval", method = RequestMethod.POST)  
-    @Transactional
 	public String saveBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("evalInfo") String evalInfo, 
                                     @RequestParam("evalForm") String evalForm
@@ -102,7 +101,6 @@ public class ProcessController extends BaseController{
 
 
         logger.info("-BenefitEval------------------------evalTitle:    "+benefitEvalVO.getEvalTitle()); 
-        benefitEvalVO.setEvalTitle("temp Title");
         
         benefitEvalSvc.saveBenefitEvalInfo(benefitEvalVO);   
 

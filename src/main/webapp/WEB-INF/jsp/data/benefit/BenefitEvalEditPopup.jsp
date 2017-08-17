@@ -109,7 +109,7 @@ function save() {
 			    type: "POST",
 			    url: "<%=path%>/datamap/saveBenefitEval",
 			    data: {
-			    	"evalInfo":JSON.stringify(obj)
+			    	"evalInfo":JSON.stringify(obj),
 			    	"evalForm":JSON.stringify(obj3)
 			    },
 			    success: function(data) {

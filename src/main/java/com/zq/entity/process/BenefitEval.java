@@ -55,14 +55,14 @@ public class BenefitEval implements Serializable {
 		return evalID;
 	}
 	
-	private void setTplID(int value) {
+	public void setTplID(int value) {
 		this.tplID = value;
 	}
 	
 	public int getTplID() {
 		return tplID;
 	}
-	private void setHasDept(int value) {
+	public void setHasDept(int value) {
 		this.hasDept = value;
 	}
 	
