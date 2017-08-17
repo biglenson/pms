@@ -22,5 +22,6 @@ public interface BenefitEvalRepository extends JpaRepository<BenefitEval, Long>,
      */
 
     BenefitEval getBenefitEvalByEvalID(int evalID);
+    BenefitEval getBenefitEvalByProcessID(String processID);
 }
 

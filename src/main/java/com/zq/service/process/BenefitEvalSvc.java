@@ -57,6 +57,11 @@ public class BenefitEvalSvc{
     public List<TaskHisItemVO> getTaskHis(String processID) {
         return benefitEvalRepo.getTaskHis(processID);
     }
+
+    public int getEvalIDByProcessID(String processID) {
+
+        return benefitEvalRepo.getBenefitEvalByProcessID(processID).getEvalID();
+    }
     
     @Transactional
     public BenefitEvalVO saveBenefitEvalInfo(BenefitEvalVO benefitEvalVO, List<BenefitEvalItemVO> benefitEvalForm) {

@@ -126,9 +126,10 @@ public class ProcessController extends BaseController{
 	public String getBenefitEvalInfo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
                                     @RequestParam("pageTitle") String pageTitle,
                                     @RequestParam("url") String url, 
-                                    @RequestParam("evalID") Integer evalID) {		 	
+                                    @RequestParam("processID") String processID) {		 	
         logger.info("测试中！----------------------------evalForm"); 
-
+        
+        int evalID = benefitEvalSvc.getEvalIDByProcessID(processID);
         List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
         List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
