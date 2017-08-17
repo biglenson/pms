@@ -26,6 +26,12 @@ public class BenefitEvalItem implements Serializable {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int itemID;
 	
+	@Column(name="evalID", nullable=false, length=11)	
+	private int evalID;
+	
+	@Column(name="tplItemID", nullable=false, length=11)	
+	private int tplItemID;
+	
 	@Column(name="evalValue", nullable=false, length=255)	
 	private String evalValue;
 	
@@ -38,6 +44,22 @@ public class BenefitEvalItem implements Serializable {
 	
 	public int getItemID() {
 		return itemID;
+	}
+	
+	public void setTplItemID(int value) {
+		this.tplItemID = value;
+	}
+	
+	public int getTplItemID() {
+		return tplItemID;
+	}
+	
+	public void setEvalID(int value) {
+		this.evalID = value;
+	}
+	
+	public int getEvalID() {
+		return evalID;
 	}
 	
 	public int getORMID() {

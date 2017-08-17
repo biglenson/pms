@@ -43,6 +43,9 @@ public class BenefitEvalSvc{
     BenefitEvalRepository benefitEvalRepo;
 
     @Autowired
+    BenefitEvalItemRepository benefitEvalItemRepo;
+
+    @Autowired
     BenefitEvalTplRepository benefitEvalTplRepo;
 
     //@Autowired
@@ -56,13 +59,15 @@ public class BenefitEvalSvc{
     }
     
     @Transactional
-    public BenefitEvalVO saveBenefitEvalInfo(BenefitEvalVO benefitEvalVO) {
+    public BenefitEvalVO saveBenefitEvalInfo(BenefitEvalVO benefitEvalVO, List<BenefitEvalItemVO> benefitEvalForm) {
         BenefitEval benefitEval = new BenefitEval();
+        BenefitEvalItem benefitEvalItem = null;
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("vAssignee", "lenson");
 
         String evalCode = benefitEvalVO.getEvalCode();
         int evalPhase = benefitEvalVO.getEvalPhase();
+        int evalID = 0;
         /*
         List<Task> tasks = taskService.createTaskQuery().processDefinitionKey("ppp").taskAssignee("lenson").list();
         String taskName = new String("abc");
@@ -72,9 +77,7 @@ public class BenefitEvalSvc{
         }
         identityService.setAuthenticatedUserId("lenson");
         */
-
-
-
+        
         if (evalCode == null || evalCode.length() == 0 ) {
             evalCode = this.getEvalCode("XYPG", evalPhase);
             logger.info("获取EvalCode！----------------------------evalCode: "+ evalCode); 
@@ -86,15 +89,22 @@ public class BenefitEvalSvc{
             benefitEval.setTplID( benefitEvalVO.getTplID() );
             benefitEval.setCreator("Lenson");
             benefitEval.setCreateDate(new Date());
+            benefitEvalRepo.save(benefitEval);
+            evalID =  benefitEval.getEvalID();
 
-
+            for (BenefitEvalItemVO benefitEvalItemVO : benefitEvalForm) {
+                benefitEvalItem = new BenefitEvalItem();
+                benefitEvalItem.setEvalID(evalID);
+                BeanUtils.copyProperties(benefitEvalItemVO, benefitEvalItem);
+                benefitEvalItemRepo.save(benefitEvalItem);
+                logger.info("保存Item-----------:  "+ benefitEvalItemVO.getEvalValue()+"----"+benefitEvalItemVO.getEvalNote());
+            }
 
         } else {
             logger.info("保存已有Eval！----------------------------: "); 
 
         }
         logger.info("----------------------------savedEvalID:   "+benefitEval.getEvalID()); 
-        benefitEvalRepo.save(benefitEval);
         logger.info("保存后的evalID----------------------------evalID: "+ benefitEval.getEvalID()); 
 
         BeanUtils.copyProperties(benefitEval, benefitEvalVO);

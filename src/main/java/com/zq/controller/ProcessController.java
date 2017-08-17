@@ -97,15 +97,21 @@ public class ProcessController extends BaseController{
         evalForm = StringEscapeUtils.unescapeHtml(evalForm);
         logger.info("-BenefitEval------------------------origin evalform:    "+evalForm); 
         BenefitEvalVO benefitEvalVO = JSON.parseObject(evalInfo, BenefitEvalVO.class);
-
-
-
         logger.info("-BenefitEval------------------------evalTitle:    "+benefitEvalVO.getEvalTitle()); 
         
-        benefitEvalVO = benefitEvalSvc.saveBenefitEvalInfo(benefitEvalVO);   
+        List<BenefitEvalItemVO> benefitEvalForm = JSON.parseArray(evalForm, BenefitEvalItemVO.class);
+        for (BenefitEvalItemVO benefitEvalItemVO : benefitEvalForm) {  
+            logger.info("-parseArray------------------------:   "+benefitEvalItemVO.getEvalValue()); 
+        }
+
+        benefitEvalVO = benefitEvalSvc.saveBenefitEvalInfo(benefitEvalVO, benefitEvalForm);   
+        logger.info("-BenefitEval------------------------evalTitle back:    "+benefitEvalVO.getEvalTitle()); 
+
+
+
 
         int evalID = benefitEvalVO.getEvalID();
-        List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
+        benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
         List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
         model.addAttribute("benefitEvalInfo",benefitEvalInfo );
