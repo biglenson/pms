@@ -151,8 +151,8 @@ function openForm(processID, evalPhase) {
 			</tr>
 			<%} else{ for (TaskTodoItemVO taskTodo : taskTodoList) {%>
 			<tr class="listTableTR">
-				<td class="linkURL" onclick="openForm(<%=taskTodo.getProcessID()%>,<%=taskTodo.getEvalPhase()==0?"前":"后"%>);"><%=taskTodo.getTaskName()%></td>
-				<td><%=taskTodo.getEvalTitle()%></td>
+				<td class="linkURL" onclick="openForm(<%=taskTodo.getProcessID()%>,<%=taskTodo.getEvalPhase()==0?"前":"后"%>);"><%=taskTodo.getEvalTitle()%></td>
+				<td><%=taskTodo.getTaskName()%></td>
 				<td><%=evalFor%><%=taskTodo.getEvalPhase()==0?"前":"后"%>评估</td>
 				<td><%=taskTodo.getTplTitle()%></td>
 				<td><%=taskTodo.getAssignee()%></td>
