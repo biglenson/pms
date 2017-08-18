@@ -39,6 +39,7 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.activiti.engine.FormService;
 import org.apache.shiro.SecurityUtils;
 
 import org.springframework.beans.BeanUtils;
@@ -69,6 +70,9 @@ public class ProcessController extends BaseController{
     private TaskService taskService;
 
     @Autowired
+    private FormService formService;
+
+    @Autowired
     private IdentityService identityService;
 
     @Autowired
@@ -86,7 +90,18 @@ public class ProcessController extends BaseController{
     //@Autowired
     //private EvalCodeGenSvc evalCodeGenSvc;
 
+    @RequestMapping(value = "delBenefitEval", method = RequestMethod.POST)  
+	public String delBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
+                                    @RequestParam("taskID") String taskID
+                                    ) {		 	
+        Map<String, String> variables = new HashMap<String, String>();
+        variables.put("isToSubmit", "0");
+        formService.submitTaskFormData(taskID, variables);
 
+        model.addAttribute("feedback","评估信息删除成功！" );
+
+        return CMCCConstant.BenefitEvalPopup;
+    }
     @RequestMapping(value = "saveBenefitEval", method = RequestMethod.POST)  
 	public String saveBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("evalInfo") String evalInfo, 
@@ -111,6 +126,8 @@ public class ProcessController extends BaseController{
 
 
         int evalID = benefitEvalVO.getEvalID();
+        String processID = benefitEvalVO.getProcessID();
+        String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
         logger.info("-BenefitEval------------------------evalID back:    "+evalID); 
         benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
@@ -119,6 +136,7 @@ public class ProcessController extends BaseController{
         model.addAttribute("benefitEvalInfo",benefitEvalInfo );
         model.addAttribute("benefitEvalForm",benefitEvalForm );
         model.addAttribute("taskHis",taskHis );
+        model.addAttribute("taskID",taskID );
         return CMCCConstant.BenefitEvalPopup;
     }
 
@@ -132,12 +150,14 @@ public class ProcessController extends BaseController{
         logger.info("测试中！----------------------------evalForm"); 
         
         int evalID = benefitEvalSvc.getEvalIDByProcessID(processID);
+        String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
         List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
         List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
         model.addAttribute("benefitEvalInfo",benefitEvalInfo );
         model.addAttribute("benefitEvalForm",benefitEvalForm );
         model.addAttribute("taskHis",taskHis );
+        model.addAttribute("taskID",taskID );
         model.addAttribute("pageTitle", pageTitle);
         model.addAttribute("url", url);
 

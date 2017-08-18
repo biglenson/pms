@@ -44,7 +44,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         TaskTodoItemVO taskTodoItemVO = null;
         
         String queryString = 
-            " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.CREATE_TIME_ createTime "+
+            " select a.processID, a.evalTitle, b.ID_ taskID , b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.CREATE_TIME_ createTime "+
             "  from d_benefit_eval a, ACT_RU_TASK b, g_benefit_eval_tpl c "+
             " where b.ASSIGNEE_ = :userID "+
             "       and a.processID = b.PROC_INST_ID_ "+
@@ -59,12 +59,13 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             Object[] obj = (Object[])rsltIter.next();
             taskTodoItemVO.setProcessID((String)obj[0]);
             taskTodoItemVO.setEvalTitle((String)obj[1]);
-            taskTodoItemVO.setTaskName((String)obj[2]);
-            taskTodoItemVO.setEvalPhase((Integer)obj[3]);
-            taskTodoItemVO.setEvalFor((Integer)obj[4]);
-            taskTodoItemVO.setTplTitle((String)obj[5]);
-            taskTodoItemVO.setAssignee((String)obj[6]);
-            taskTodoItemVO.setCreateTime((Timestamp)obj[7]);
+            taskTodoItemVO.setTaskID((String)obj[2]);
+            taskTodoItemVO.setTaskName((String)obj[3]);
+            taskTodoItemVO.setEvalPhase((Integer)obj[4]);
+            taskTodoItemVO.setEvalFor((Integer)obj[5]);
+            taskTodoItemVO.setTplTitle((String)obj[6]);
+            taskTodoItemVO.setAssignee((String)obj[7]);
+            taskTodoItemVO.setCreateTime((Timestamp)obj[8]);
             taskTodo.add(taskTodoItemVO);
         }
         return taskTodo;
@@ -75,7 +76,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         TaskTodoItemVO taskDoneItemVO = null;
         
         String queryString = 
-            " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.START_TIME_ createTime "+
+            " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.START_TIME_ createTime "+
             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
             " where b.ASSIGNEE_ = :userID  "+
             "       and b.END_TIME_ is not null "+
@@ -91,12 +92,13 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             Object[] obj = (Object[])rsltIter.next();
             taskDoneItemVO.setProcessID((String)obj[0]);
             taskDoneItemVO.setEvalTitle((String)obj[1]);
-            taskDoneItemVO.setTaskName((String)obj[2]);
-            taskDoneItemVO.setEvalPhase((Integer)obj[3]);
-            taskDoneItemVO.setEvalFor((Integer)obj[4]);
-            taskDoneItemVO.setTplTitle((String)obj[5]);
-            taskDoneItemVO.setAssignee((String)obj[6]);
-            taskDoneItemVO.setCreateTime((Timestamp)obj[7]);
+            taskDoneItemVO.setTaskID((String)obj[2]);
+            taskDoneItemVO.setTaskName((String)obj[3]);
+            taskDoneItemVO.setEvalPhase((Integer)obj[4]);
+            taskDoneItemVO.setEvalFor((Integer)obj[5]);
+            taskDoneItemVO.setTplTitle((String)obj[6]);
+            taskDoneItemVO.setAssignee((String)obj[7]);
+            taskDoneItemVO.setCreateTime((Timestamp)obj[8]);
             taskDone.add(taskDoneItemVO);
         }
         return taskDone;

@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class TaskTodoItemVO {
 
 	private String processID;
+	private String taskID;
 	private String evalTitle;
 	private String taskName;
 	private int evalPhase;
@@ -28,6 +29,13 @@ public class TaskTodoItemVO {
 
 	public String getProcessID() {
 		return this.processID;
+	}
+	public String getTaskID() {
+		return this.taskID;
+	}
+
+	public void setTaskID(String taskID) {
+		this.taskID = taskID;
 	}
 	/**
 	 * 

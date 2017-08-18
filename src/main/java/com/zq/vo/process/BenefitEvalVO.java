@@ -8,6 +8,7 @@ public class BenefitEvalVO {
 
 	private int evalID;
 	private String processID;
+	private String taskID;
 	private String evalCode;
 	private String evalTitle;
 	private String creator;
@@ -34,12 +35,16 @@ public class BenefitEvalVO {
 		return this.processID;
 	}
 
-	/**
-	 * 
-	 * @param processID
-	 */
 	public void setProcessID(String processID) {
 		this.processID = processID;
+	}
+
+	public String getTaskID() {
+		return this.taskID;
+	}
+
+	public void setTaskID(String taskID) {
+		this.taskID = taskID;
 	}
 
 	public String getEvalCode() {
