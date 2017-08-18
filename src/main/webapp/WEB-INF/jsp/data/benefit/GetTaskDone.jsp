@@ -16,6 +16,13 @@
 	//获取已办任务数据集合
 	List<TaskTodoItemVO> taskDoneList = (List)request.getAttribute("taskDone");
 	String evalFor = url.indexOf("/datamap/basitemset") >= 0 ? "项目" : "产品";
+	//判断任务待办归属产品还是项目
+	int isProject = 0;
+	if(url.indexOf("/datamap/basitemset") >= 0) {
+		isProject = 0;
+	}else{
+		isProject = 1;
+	}
 %>
 
 <%-- 输出Head1模块 --%>
@@ -95,8 +102,9 @@ function cleanFun(){
 //评估列表条目点击事件
 function openForm(processID, evalPhase) {
 	var arg = new Array();
-	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>&evalID="+processID+"&_id="+Math.random();
-	arg.title = "<%=evalFor%>"+ evalPhase +"评估";
+	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>&processID="+processID+"&_id="+Math.random();
+	var evPhase = evalPhase==0?"前":"后";
+	arg.title = "<%=evalFor%>"+ evPhase +"评估";
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 
@@ -151,16 +159,31 @@ function openForm(processID, evalPhase) {
 			<tr class="listTableTR">
 				<td colspan="6">没有记录</td>
 			</tr>
-			<%} else{ for (TaskTodoItemVO taskDone : taskDoneList) {%>
-			<tr class="listTableTR">
-				<td class="linkURL" onclick="openForm(<%=taskDone.getProcessID()%>,<%=taskDone.getEvalPhase()==0?"前":"后"%>);"><%=taskDone.getEvalTitle()%></td>
-				<td><%=taskDone.getTaskName()%></td>
-				<td><%=evalFor%><%=taskDone.getEvalPhase()==0?"前":"后"%>评估</td>
-				<td><%=taskDone.getTplTitle()%></td>
-				<td><%=taskDone.getAssignee()%></td>
-				<td><%=taskDone.getCreateTime()%></td>
-			</tr>
-			<%}}%>
+			<%} else{ 
+				int count = taskDoneList.size();
+				for (TaskTodoItemVO taskDone : taskDoneList) {
+					if (taskDone.getEvalFor() == isProject){
+						count --;
+						%>
+						<tr class="listTableTR">
+							<td class="linkURL" onclick="openForm(<%=taskDone.getProcessID()%>,<%=taskDone.getEvalPhase()%>);"><%=taskDone.getEvalTitle()%></td>
+							<td><%=taskDone.getTaskName()%></td>
+							<td><%=evalFor%><%=taskDone.getEvalPhase()==0?"前":"后"%>评估</td>
+							<td><%=taskDone.getTplTitle()%></td>
+							<td><%=taskDone.getAssignee()%></td>
+							<td><%=taskDone.getCreateTime()%></td>
+						</tr>
+						<%
+					}
+				} 
+				if(count == taskDoneList.size()){
+					%>
+						<tr class="listTableTR">
+							<td colspan="6">没有记录</td>
+						</tr>
+					<% 
+				}
+			}%>
 		</tbody>
      </table>
      </div>

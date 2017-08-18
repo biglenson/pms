@@ -110,11 +110,24 @@ function save() {
 //删除
 function del() {
 	console.log('===========测试中！======================>删除----');
+	if (window.confirm("确定删除该任务单?")) {
+		var arg = new Array();
+		arg.src = "<%=path%>/datamap/delBenefitEval?_id="+Math.random();
+		arg.width = 120;
+		arg.height = 120;
+		arg.theme="search";
+		parent.ET.showModalWindow(arg, function (ret) { 
+			if(ret != null){
+				cleanFun();
+				etSubmit(document.frm);
+			}
+		});
+	}
 }
 
 //取消
 function cancel() {
-	console.log('===========测试中！======================>删除----');
+	console.log('===========测试中！======================>取消----');
 	/* treeSelectUtils.showUserSelect(this.children[2],this.children[3],role,role_id,true); */
 	var arg = new Array();
 	if(isMulti){
