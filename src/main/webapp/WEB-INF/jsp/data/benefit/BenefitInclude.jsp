@@ -79,6 +79,8 @@
 		<tr class="listTableTR" >
 			<td align="center">
 				<%=index+1%>
+				<input vtype="input" dbField<%=index%>="tplItemID" type="hidden" value="<%=item.getTplItemID()%>"/>
+				<input vtype="input" dbField<%=index%>="itemID" type="hidden" value="<%=item.getItemID()%>"/>
 			</td>
 			<td title="<%=item.getEvalItem()%>">
 				<div style="width: <%=nameWidth %>px" class="nowrapText">
@@ -95,7 +97,7 @@
 			<%if(isAfterEval){%>
 			<td align="right">
 				<%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" name="evalValue" contentType="N10.2" readonly="readonly" value="<%=item.getEvalValue()%>"/>
+					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" readonly="readonly" value="<%=item.getEvalValue()%>"/>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalValue())%>
 				<%}%>
@@ -103,7 +105,7 @@
 			<%}%>
 			<td align="right">
 				 <%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;" name="evalValue" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+					<input vtype="input" dbField<%=index%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
 					 contentType="N10.2" value="<%=TypeUtils.nullToString(item.getEvalValue())%>"/>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalValue())%>
@@ -112,27 +114,23 @@
 			<%if(isAfterEval){%>
 			<td align="right">
 				<%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" name="deviation" readonly="readonly" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
+					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" readonly="readonly" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalItem())%>
 				<%}%>
 			</td>
 			<%}%>
 			<td title="<%=item.getRefValue()%>" align="center">
-				<img src="<%=path %>/static/images/benefit/discussion.gif"/>
-				<%if(isNew){%>
-					<input type="hidden" name="refValue" value="<%=TypeUtils.nullToString(item.getRefValue())%>"/>
-				<%}%>
 				<%if(TypeUtils.nullToString(item.getRefValue()).length()>0){%>
-				<img src="<%=path %>/static/images/benefit/discussion_filled.gif"/>
+					<img src="<%=path %>/static/images/benefit/discussion_filled.gif"/>
 				<%}else{%>
-				<img src="<%=path %>/static/images/benefit/discussion.gif"/>
+					<img src="<%=path %>/static/images/benefit/discussion.gif"/>
 				<%}%>
 			</td>
 			<td title="<%=item.getEvalNote()%>">
 				<div style="width: 100px" class="nowrapText">
 					<%if(canEdit){%>
-						<input type="text" class="text" style="width:98px;" name="evalNote" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
+						<input vtype="input" dbField<%=index%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
 					<%}else{%>
 						<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>
 					<%}%>

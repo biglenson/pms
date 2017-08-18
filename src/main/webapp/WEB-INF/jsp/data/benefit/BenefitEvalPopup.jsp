@@ -23,6 +23,8 @@
 		isAfterEval = false;
 	}
 	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10);
+	//获取效益评估Form表单信息
+	List<BenefitEvalItemVO> formInfos = (List)request.getAttribute("benefitEvalForm");
 %>
 
 <style>
@@ -70,30 +72,49 @@ function logFun(){
 	top.ET.showModalWindow(arg)
 }
 
-//编辑
-function edit() {	
-	/* SimpleFormAction.checkModified(document.frm.schemaID.value, document.frm.formID.value, document.frm.updateTime.value, function(data) {
-		var errNo = data.substring(0,1);
-		if(errNo == "0"){
-			alert(data.substring(1));
-			parent.ET.closeModalWindow("1");
-		} else if(errNo == "1"){
-			alert(data.substring(1));		
-			document.frm.operation.value="open";
-			etSubmit(document.frm);
-		}else if(errNo == "2"){
-			alert(data.substring(1));		
-		} else {
-			document.frm.operation.value="edit";
-			etSubmit(document.frm);
-		}
-	}); */
-	document.frm.operation.value="edit";
+//提交
+function submit() {
+	console.log('===========测试中！======================>提交----');
+}
+
+//保存
+function save() {	
+	console.log('===========测试中！======================>修改再保存----');
+	var obj = {};
+	$('.formTable').find('[dbField]').each(function(index, elem) {
+		var dbField = $(elem).attr("dbField");
+		var vtype = $(elem).attr("vtype");
+		obj[dbField] = getVtypeVal(vtype, elem);
+	});
+	var arr = new Array();
+	for (var i = 1; i <= <%=formInfos.size()%>; i++) {
+		var obj2 = {};
+		$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
+			var dbField = $(elem).attr("dbField"+i);
+			var vtype = $(elem).attr("vtype");
+			obj2[dbField] = getVtypeVal(vtype, elem);
+			arr[i-1] = obj2;
+		});
+	}
+	
+	console.log(obj);
+	console.log(arr);
+	
+	document.frm.operation.value="save";
+	document.frm.evalInfo.value=JSON.stringify(obj);
+	document.frm.evalForm.value=JSON.stringify(arr);
+	document.frm.action="<%=path%>/datamap/saveBenefitEval";
 	etSubmit(document.frm);
 }
-//解锁
-function unlock() {
-	console.log('点击了...');
+
+//删除
+function del() {
+	console.log('===========测试中！======================>删除----');
+}
+
+//取消
+function cancel() {
+	console.log('===========测试中！======================>删除----');
 	/* treeSelectUtils.showUserSelect(this.children[2],this.children[3],role,role_id,true); */
 	var arg = new Array();
 	if(isMulti){
@@ -165,13 +186,16 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 </script>
 
 <!-- 内容主体 -->
-<form name="frm" action="<%=path%>/datamap/benefitEvalPopup" method="post">
-<input type="hidden" name="operation" value="edit">
-<input type="hidden" name="tplID" value="<%=tplID%>">
+<form name="frm" action="" method="POST">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="evalInfo" value="">
+<input type="hidden" name="evalForm" value="">
 
 <%=UIUtils.toolbarStart(request)%>
-<%=UIUtils.toolbarButton(true, "javascript:edit(\"1\")", "编辑", "save.gif", false, false, request)%>
-<%=UIUtils.toolbarButton(true, "javascript:unlock();", "解锁", "back.gif", false, false, request)%>
+<%=UIUtils.toolbarButton(true, "javascript:submit()", "提交", "save.gif", false, false, request)%>
+<%=UIUtils.toolbarButton(true, "javascript:save();", "保存", "save.gif", false, false, request)%>
+<%=UIUtils.toolbarButton(true, "javascript:del()", "删除", "delete.gif", false, false, request)%>
+<%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
 
 <%=UIUtils.toolbarFloatRight(request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:showMoreButton(this);","更多", null, false, false, request)%>
@@ -185,7 +209,10 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			<tr>
 				<td class="label white_background-color"></td>
 				<td class="content white_background-color"></td>
-				<td class="seperator"></td>
+				<td class="seperator">
+					<input vtype="input" dbField="evalID" type="hidden" value="<%=benefitEvalInfo.getEvalID()%>"/>
+					<input vtype="input" dbField="tplID" type="hidden" value="<%=benefitEvalInfo.getTplID()%>"/>
+				</td>
 				<td class="label white_background-color"></td>
 				<td class="content white_background-color"></td>
 			</tr>
@@ -193,16 +220,16 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="label">代码</td>
 				<td class="content" id="evalCode"> 
 					<div class="content-line" id="div-evalCode"><%=benefitEvalInfo.getEvalCode()%></div>
-					<input name="evalCode" value="<%=benefitEvalInfo.getEvalCode()%>" type="hidden">
+					<input value="<%=benefitEvalInfo.getEvalCode()%>" type="hidden">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="5" height="5"></td>
 			</tr>
 			<tr>
-				<td class="label"><%=benefitEvalInfo.getEvalTitle()%><font class="red">*</font></td>
+				<td class="label">标题<font class="red">*</font></td>
 				<td colspan="4" class="content" id="evalTitle">
-					<input class="text" name="evalTitle" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
+					<input vtype="input" dbField="evalTitle" class="text" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
 				</td>
 			</tr>
 			<tr>
@@ -226,8 +253,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="label">创建人</td>
 				<td class="content  " id="creator">
 					<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-						<input name="creator" value="" type="hidden">
-						<input class="text" name="creator" value="<%=benefitEvalInfo.getCreator()%>" readonly="" style="cursor: pointer;" type="text">
+						<input vtype="input" dbField="creator" class="text" value="<%=benefitEvalInfo.getCreator()%>" readonly="" style="cursor: pointer;" type="text">
 						<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 					</div> 
 					<script type="text/javascript">
@@ -241,12 +267,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="label">创建时间</td>
 				<td class="content  " id="createDatetd">
 					<div class="content-div" id="content-div-createDate"> 
-						<input class="text" name="createDate" id="createDate" value="<%=benefitEvalInfo.getCreateDate()%>" contenttype="D2" style="cursor: pointer;" autocomplete="off" type="text">
-						<!-- <img src="/pm/images/16x16/calendar.gif" name="imagdate01" id="imagdate01" style="cursor:pointer"> -->
+						<div class="content-line">系统自动创建</div>
 					</div>  
-					<script type="text/javascript"> 
-						showCalendar("date01","imagdate01");
-					</script>
 				</td>
 			</tr>
 			<tr>
@@ -260,7 +282,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="seperator"></td>
 				<td class="label">是否有归口部门</td>
 				<td class="content  " id="statustd"> 
-					<select name="hasDept">
+					<select vtype="select" dbField="hasDept">
 					  <option value="0">是</option>
 					  <option value="1">否</option>
 					</select>
@@ -282,3 +304,23 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 
 <%-- 输出公共BodyEnd模块 --%>
 <jsp:include page="../../common/BodyEnd.jsp" />
+
+<script type="text/javascript">
+//判断各表单项类型获取对应的值
+function getVtypeVal(vtype, elem) {
+	var val = "";
+	if (vtype == "input") { // 输入框
+		val = $.trim($(elem).val());
+	} else if (vtype == "select") { // 下拉框
+		val = $(elem).val();
+	} else if (vtype == "radios") { // 单选
+		val = $(elem).attr("val");
+	} else if (vtype == "date") {	// 时间
+		val = $(elem).val();
+	}
+	if (!val) {
+		val = "";
+	}
+	return val;
+}
+</script>
