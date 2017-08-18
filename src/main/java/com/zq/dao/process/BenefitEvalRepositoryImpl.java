@@ -44,7 +44,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         TaskTodoItemVO taskTodoItemVO = null;
         
         String queryString = 
-            " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.tplTitle, b.ASSIGNEE_ assignee, b.CREATE_TIME_ createTime "+
+            " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.CREATE_TIME_ createTime "+
             "  from d_benefit_eval a, ACT_RU_TASK b, g_benefit_eval_tpl c "+
             " where b.ASSIGNEE_ = :userID "+
             "       and a.processID = b.PROC_INST_ID_ "+
@@ -61,9 +61,10 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             taskTodoItemVO.setEvalTitle((String)obj[1]);
             taskTodoItemVO.setTaskName((String)obj[2]);
             taskTodoItemVO.setEvalPhase((Integer)obj[3]);
-            taskTodoItemVO.setTplTitle((String)obj[4]);
-            taskTodoItemVO.setAssignee((String)obj[5]);
-            taskTodoItemVO.setCreateTime((Timestamp)obj[6]);
+            taskTodoItemVO.setEvalFor((Integer)obj[4]);
+            taskTodoItemVO.setTplTitle((String)obj[5]);
+            taskTodoItemVO.setAssignee((String)obj[6]);
+            taskTodoItemVO.setCreateTime((Timestamp)obj[7]);
             taskTodo.add(taskTodoItemVO);
         }
         return taskTodo;
@@ -74,7 +75,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         TaskTodoItemVO taskDoneItemVO = null;
         
         String queryString = 
-            " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.tplTitle, b.ASSIGNEE_ assignee, b.START_TIME_ createTime "+
+            " select a.processID, a.evalTitle, b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.START_TIME_ createTime "+
             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
             " where b.ASSIGNEE_ = :userID  "+
             "       and b.END_TIME_ is not null "+
@@ -92,9 +93,10 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             taskDoneItemVO.setEvalTitle((String)obj[1]);
             taskDoneItemVO.setTaskName((String)obj[2]);
             taskDoneItemVO.setEvalPhase((Integer)obj[3]);
-            taskDoneItemVO.setTplTitle((String)obj[4]);
-            taskDoneItemVO.setAssignee((String)obj[5]);
-            taskDoneItemVO.setCreateTime((Timestamp)obj[6]);
+            taskDoneItemVO.setEvalFor((Integer)obj[4]);
+            taskDoneItemVO.setTplTitle((String)obj[5]);
+            taskDoneItemVO.setAssignee((String)obj[6]);
+            taskDoneItemVO.setCreateTime((Timestamp)obj[7]);
             taskDone.add(taskDoneItemVO);
         }
         return taskDone;

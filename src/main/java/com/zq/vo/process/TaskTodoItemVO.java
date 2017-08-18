@@ -9,6 +9,7 @@ public class TaskTodoItemVO {
 	private String evalTitle;
 	private String taskName;
 	private int evalPhase;
+	private int evalFor;
 	private String tplTitle;
 	private String assignee;
 	private Timestamp createTime;
@@ -52,12 +53,16 @@ public class TaskTodoItemVO {
 		return this.evalPhase;
 	}
 
-	/**
-	 * 
-	 * @param evalPhase
-	 */
 	public void setEvalPhase(int evalPhase) {
 		this.evalPhase = evalPhase;
+	}
+
+	public int getEvalFor() {
+		return this.evalFor;
+	}
+
+	public void setEvalFor(int evalFor) {
+		this.evalFor = evalFor;
 	}
 
 	public String getTplTitle() {
