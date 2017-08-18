@@ -220,7 +220,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="label">代码</td>
 				<td class="content" id="evalCode"> 
 					<div class="content-line" id="div-evalCode"><%=benefitEvalInfo.getEvalCode()%></div>
-					<input value="<%=benefitEvalInfo.getEvalCode()%>" type="hidden">
+					<input vtype="input" dbField="evalCode" type="hidden" value="<%=benefitEvalInfo.getEvalCode()%>"/>
 				</td>
 			</tr>
 			<tr>
