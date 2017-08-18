@@ -14,9 +14,9 @@
 <jsp:include page="../../common/Head1.jsp" />
 
 <!-- 内容主体 -->
-
 <div style="overflow: auto;" class='relativeDIV' id="contentDIV">
 	<h1>提示信息页面</h1>
+	
 </div>
 
 <%-- 输出公共BodyEnd模块 --%>
