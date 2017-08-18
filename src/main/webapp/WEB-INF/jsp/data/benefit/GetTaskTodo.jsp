@@ -14,6 +14,14 @@
 	//获取待办任务数据集合
 	List<TaskTodoItemVO> taskTodoList = (List)request.getAttribute("taskTodo");
 	String evalFor = url.indexOf("/datamap/basitemset") >= 0 ? "项目" : "产品";
+	//判断任务待办归属产品还是项目
+	int isProject = 0;
+	if(url.indexOf("/datamap/basitemset") >= 0) {
+		isProject = 0;
+	}else{
+		isProject = 1;
+	}
+	
 %>
 
 <%-- 输出Head1模块 --%>
@@ -155,16 +163,31 @@ function openForm(processID, evalPhase) {
 			<tr class="listTableTR">
 				<td colspan="6">没有记录</td>
 			</tr>
-			<%} else{ for (TaskTodoItemVO taskTodo : taskTodoList) {%>
-			<tr class="listTableTR">
-				<td class="linkURL" onclick="openForm(<%=taskTodo.getProcessID()%>,<%=taskTodo.getEvalPhase()%>);"><%=taskTodo.getEvalTitle()%></td>
-				<td><%=taskTodo.getTaskName()%></td>
-				<td><%=evalFor%><%=taskTodo.getEvalPhase()==0?"前":"后"%>评估</td>
-				<td><%=taskTodo.getTplTitle()%></td>
-				<td><%=taskTodo.getAssignee()%></td>
-				<td><%=taskTodo.getCreateTime()%></td>
-			</tr>
-			<%}}%>
+			<%} else{ 
+				int count = taskTodoList.size();
+				for (TaskTodoItemVO taskTodo : taskTodoList) {
+					if (taskTodo.getEvalFor() == isProject){
+						count --;
+						%>
+						<tr class="listTableTR">
+							<td class="linkURL" onclick="openForm(<%=taskTodo.getProcessID()%>,<%=taskTodo.getEvalPhase()%>);"><%=taskTodo.getEvalTitle()%></td>
+							<td><%=taskTodo.getTaskName()%></td>
+							<td><%=evalFor%><%=taskTodo.getEvalPhase()==0?"前":"后"%>评估</td>
+							<td><%=taskTodo.getTplTitle()%></td>
+							<td><%=taskTodo.getAssignee()%></td>
+							<td><%=taskTodo.getCreateTime()%></td>
+						</tr>
+						<%
+					}
+				} 
+				if(count == taskTodoList.size()){
+					%>
+						<tr class="listTableTR">
+							<td colspan="6">没有记录</td>
+						</tr>
+					<% 
+				}
+			}%>
 		</tbody>
      </table>
      </div>
