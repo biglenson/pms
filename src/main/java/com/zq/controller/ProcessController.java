@@ -100,7 +100,7 @@ public class ProcessController extends BaseController{
 
         model.addAttribute("feedback","评估信息删除成功！" );
 
-        return CMCCConstant.BenefitEvalPopup;
+        return CMCCConstant.Feedback;
     }
     @RequestMapping(value = "saveBenefitEval", method = RequestMethod.POST)  
 	public String saveBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,

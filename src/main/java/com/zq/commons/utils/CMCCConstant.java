@@ -195,6 +195,9 @@ public class CMCCConstant {
     public static final String UserSelectCommon = "data/benefit/UserSelectCommon";
     //选择模版之后的效益评估编辑窗体 
     public static final String BenefitEvalEditPopup = "data/benefit/BenefitEvalEditPopup";
+    //反馈页面
+    public static final String Feedback = "data/benefit/FeedBack";
+
 
 
 
