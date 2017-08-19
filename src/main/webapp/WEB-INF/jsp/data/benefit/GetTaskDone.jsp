@@ -10,8 +10,6 @@
 	Long pid = (Long)request.getAttribute("pid");
 	String url = (String)request.getAttribute("url");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	Integer evalID = 1;
-	Integer evalID2 = new Integer(2);
 	
 	//获取已办任务数据集合
 	List<TaskTodoItemVO> taskDoneList = (List)request.getAttribute("taskDone");
@@ -86,10 +84,15 @@ function newFormFun(evalFor, evalPhase, chooseItem) {
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 
+		console.log('===========测试中！======================>关闭了弹出窗口----');
 		if(ret != null){
 			cleanFun();
 			etSubmit(document.frm);
 		}
+		//刷新待办任务
+		document.frm.action = "<%=path%>/datamap/getTaskTodo";
+		etSubmit(document.frm);
+		console.log('===========测试中！======================>刷新了待办任务----');
 	});
 }
 
@@ -108,12 +111,10 @@ function openForm(processID, evalPhase) {
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 
-		SimpleFormAction.unlockMySelf(id, function(data) {
-			if(ret != null){
-				cleanFun();
-				etSubmit(document.frm);
-			}
-		});
+    	//刷新已办任务
+		document.frm.action = "<%=path%>/datamap/getTaskDone";
+    	etSubmit(document.frm);
+		console.log('===========测试中！======================>刷新了已办任务----');
 	});
 }
 </script>

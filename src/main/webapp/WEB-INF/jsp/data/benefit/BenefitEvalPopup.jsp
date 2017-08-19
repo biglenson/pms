@@ -110,17 +110,24 @@ function save() {
 //删除
 function del() {
 	console.log('===========测试中！======================>删除----');
+	
 	if (window.confirm("确定删除该任务单?")) {
 		var arg = new Array();
-		arg.src = "<%=path%>/datamap/delBenefitEval?_id="+Math.random();
-		arg.width = 120;
+		arg.src="<%=path%>/datamap/delBenefitEval?taskID=" + ${taskID};
+		arg.width = 220;
 		arg.height = 120;
-		arg.theme="search";
-		parent.ET.showModalWindow(arg, function (ret) { 
-			if(ret != null){
-				cleanFun();
-				etSubmit(document.frm);
-			}
+		arg.theme="feedback";
+		top.ET.showModalWindow(arg, function (ret) { 
+			parent.ET.setModalWindowReturnValue (1);
+			parent.ET.closeModalWindow(
+					function cc() {
+						//刷新待办任务
+						document.frm.action = "<%=path%>/datamap/getTaskTodo";
+						etSubmit(document.frm);
+						console.log('===========测试中！======================>刷新了待办任务----');
+						
+					}
+			);
 		});
 	}
 }
@@ -128,30 +135,7 @@ function del() {
 //取消
 function cancel() {
 	console.log('===========测试中！======================>取消----');
-	/* treeSelectUtils.showUserSelect(this.children[2],this.children[3],role,role_id,true); */
-	var arg = new Array();
-	if(isMulti){
-		arg.width = 630;
-		arg.height =430;
-	}else{
-		arg.width = 630;
-		arg.height = 430;
-	}
-	parent.ET.showModalWindow(arg, function (oRet){
-		/* if (oRet!=null) {
-			if(typeof idField!='undefined' && idField!=null){
-				idField.value=oRet.userIds;
-			}
-			if(typeof nameField!='undefined' && nameField!=null){
-				nameField.value=oRet.userNames;
-			}
-		}
-		if(typeof(parent.onSelectUserOKFun)!='undefined'&&typeof(funtion)=='undefined'){
-			parent.onSelectUserOKFun(idField);
-		}else if(typeof(funtion)!='undefined'){
-			funtion(idField);
-		} */
-	});
+	parent.ET.closeModalWindow();
 }
 
 <%-- function showMoreButton (obj){
@@ -203,11 +187,12 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <input type="hidden" name="operation" value="">
 <input type="hidden" name="evalInfo" value="">
 <input type="hidden" name="evalForm" value="">
+<input type="hidden" name="taskID" value="${taskID}">
 
 <%=UIUtils.toolbarStart(request)%>
-<%=UIUtils.toolbarButton(true, "javascript:submit()", "提交", "save.gif", false, false, request)%>
+<%=UIUtils.toolbarButton(true, "javascript:submit();", "提交", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:save();", "保存", "save.gif", false, false, request)%>
-<%=UIUtils.toolbarButton(true, "javascript:del()", "删除", "delete.gif", false, false, request)%>
+<%=UIUtils.toolbarButton(true, "javascript:del();", "删除", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
 
 <%=UIUtils.toolbarFloatRight(request)%>

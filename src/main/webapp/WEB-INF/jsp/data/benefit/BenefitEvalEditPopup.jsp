@@ -72,14 +72,6 @@ function save() {
 		if (!creator) {
 			alert('标题不能为空！');
 		}else  {
-			<%-- /* document.frm.submit(); */
-			/* document.frm.operation.value="save";
-			etSubmit(document.frm); */
-			document.frm.operation.value="save";
-			document.frm.action="<%=path%>/datamap/saveBenefitEval";
-			document.frm.pageTitle.value="<%=evFor%>";
-			document.frm.url.value="data/itemset";
-			etSubmit(document.frm); --%>
 			var obj = {};
 			$('.formTable').find('[dbField]').each(function(index, elem) {
 				var dbField = $(elem).attr("dbField");
@@ -100,18 +92,6 @@ function save() {
 			console.log(obj);
 			console.log(arr);
 			
-			<%-- $.ajax({
-			    type: "POST",
-			    url: "<%=path%>/datamap/saveBenefitEval",
-			    data: {
-			    	"evalInfo":JSON.stringify(obj),
-			    	"evalForm":JSON.stringify(obj3)
-			    },
-			    success: function() {
-			       /*  console.log(data); */
-			    	window.location.href= '<%=path%>/datamap/BenefitEvalPopup'
-			    }
-			}); --%>
 			document.frm.operation.value="save";
 			document.frm.evalInfo.value=JSON.stringify(obj);
 			document.frm.evalForm.value=JSON.stringify(arr);

@@ -90,7 +90,7 @@ public class ProcessController extends BaseController{
     //@Autowired
     //private EvalCodeGenSvc evalCodeGenSvc;
 
-    @RequestMapping(value = "delBenefitEval", method = RequestMethod.POST)  
+    @RequestMapping(value = "delBenefitEval", method = RequestMethod.GET)  
 	public String delBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("taskID") String taskID
                                     ) {		 	

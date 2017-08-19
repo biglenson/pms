@@ -112,12 +112,10 @@ function openForm(processID, evalPhase) {
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 
-		SimpleFormAction.unlockMySelf(id, function(data) {
-			if(ret != null){
-				cleanFun();
-				etSubmit(document.frm);
-			}
-		});
+		//刷新待办任务
+		document.frm.action = "<%=path%>/datamap/getTaskTodo";
+		etSubmit(document.frm);
+		console.log('===========测试中！======================>刷新了待办任务----');
 	});
 }
 </script>

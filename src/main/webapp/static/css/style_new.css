@@ -5289,3 +5289,12 @@ input[type='checkbox']:not (:checked ):disabled+img.checkbox_imgDIV {
 	color: red;
 	margin: 30px 0px;
 }
+/* 流程提示信息框 */
+.uiDom.window.feedback  .titleContainer {
+	padding: 0px 0px 0px 0px;
+	display: none;
+}
+.uiDom.window.feedback  .windowCloseAble {
+	padding: 0px 0px 0px 0px;
+	display: none;
+}
