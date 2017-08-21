@@ -19,21 +19,25 @@
 <%-- 输出Head1模块 --%>
 <jsp:include page="../../common/Head1.jsp" />
 
+<%-- 引入选择联系人样式以及动态处理js核心文件 --%>
 <link href="/static/css/user_select.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/static/js/selectUser.js"></script>
 
 <script type="text/javascript">
 function onloadFun(){
+	<%-- 设置弹出窗体的标题和主体样式，search样式为底部有确定和取消按钮,无则使用默认仅有标题栏 --%>
 	parent.ET.setModalWindowTheme("search");
 	parent.ET.setModalWindowTitle("<div>选择用户</div>");
 	/* try{
 		document.frm.idField.value=parent.ET.currentIDField.value;
 	}catch(ex){
 	} */
+	<%-- 创建选择联系人核心处理对象,并设置相关配置项信息 --%>
 	window.selectUserObj=new ET.SelectUser({
 		isMutil:<%=isMulti%>
 		,rootDepartmentID:69
 	});
+	<%-- 获取tab选项卡实例 --%>
 	var seachTypeJQuery = jQuery(".user_search_Table ul li");
 	$("#backToProject").click(function(){
 		$("#projectTypeDIV").show();
@@ -55,7 +59,9 @@ function onloadFun(){
 		$("#searchValue").val("");
 		window.selectUserObj.doSearch();
 	});
+	<%-- 初始化已经被选择的的用户项(右侧Div) --%>
 	initAlreadySelected();
+	<%-- tab选项卡点击事件 --%>
 	seachTypeJQuery.on("click", function(event){
 		var dom = $(this);
 		if(!dom.hasClass('on')){
@@ -73,6 +79,7 @@ function onloadFun(){
 			window.setTimeout(function(){
 				window.selectUserObj.searchValue.focus();
 			},10)
+			<%-- 加载搜索引擎 --%>
 			window.selectUserObj.doSearch();
 		}
 	})
@@ -85,6 +92,7 @@ function onloadFun(){
 	window.setTimeout(function(){
 		window.selectUserObj.searchValue.focus();
 	},10)
+	<%-- 底栏按钮点击事件 --%>
 	$("#btnCancel").on('click',function(){
 		parent.ET.closeModalWindow();
 	})
@@ -92,6 +100,8 @@ function onloadFun(){
 		OKFun();
 	})
 }
+
+<%-- 确定 --%>
 function OKFun(){
 	<%if(isMulti){%>
 		 parent.ET.closeModalWindow(window.selectUserObj.getOldAlreadySelect());
@@ -109,6 +119,8 @@ function OKFun(){
 	<%}%>
 <%}%>
 }
+
+<%-- 加载js逻辑处理 --%>
 function evalScripts(text){
 	if( typeof text == 'string'){
 		var script = null;
@@ -126,7 +138,8 @@ function evalScripts(text){
 		}
 	}
 }
-//初始化已经被选择的的用户项(右侧Div)
+
+<%-- 初始化已经被选择的的用户项(右侧Div) --%>
 function initAlreadySelected(){
 	jQuery.ajax({
 		url:'<%=path%>/UserAction.do?operation=alreaySelectUser',
@@ -136,15 +149,19 @@ function initAlreadySelected(){
 		},
 		dataType:'html',
 		success:function(html){
+			<%-- 加载已选中联系人展示页面 --%>
 			window.selectUserObj.alreadySelectBarDIV.html($(html));
+			<%-- 加载js逻辑处理 --%>
 			evalScripts(html);
+			<%-- 全量刷新 --%>
 			window.selectUserObj.freshTotal();
 			window.selectUserObj.alreadySelectBar.resize();
-			//加载左侧Div用户选择界面
+			<%-- 加载左侧Div用户选择界面(搜索引擎) --%>
 			window.selectUserObj.doSearch();
 		}
 	})
 }
+
 jQuery(document).ready(function(){
 	onloadFun();
 });
@@ -156,6 +173,7 @@ jQuery(document).ready(function(){
 <input type="hidden" name="isMulti" value="<%=isMulti%>">
 
 <div  id='userSelectDIV'  class=" userSelectDIV ">
+	<%-- 左边窗体（常用联系人、所有人、部门） --%>
 	<div id="leftDIV" class='leftDIV' >
 		<div id="user_search_Table" class="user_search_Table">
 			<%if(isShowProject){ %>
@@ -165,6 +183,7 @@ jQuery(document).ready(function(){
 				<div style='clear:both;'></div>
 			</div>
 			<%} %>
+			<%-- tab选项卡 --%>
 			<div id="commonTypeDIV"  <%if(isShowProject){ %>style="display:none;" <%} %>>
 				<%--切换 选项卡 --%>
 				<%if(isShowProject){ %>
@@ -177,26 +196,27 @@ jQuery(document).ready(function(){
 				</ul>
 			</div>
 		</div>
-		
+		<%-- 搜索框 --%>
 		<div id="searchDIV" class="searchDIV">
 			<input id="searchValue" maxlength="200" autocomplete="off" title="输入以搜索" placeholder="输入以搜索" type="text">
 			<img id="searchImg" src="<%=path %>/static/images/16x16/search.png">
 		</div>
-		 
+		<%-- 搜索结果展示区域 --%>
 		<div id="resultDIV"  class=" resultDIV">
-			<%-- 搜索结果显示区域--%>
 			<div class="loadding"></div>
 		</div>
-	</div><%-- id="leftDIV" --%>
+	</div>
 
+	<%-- 右边窗体（选中的联系人展示区域） --%>
 	<div id="rightDIV"  class=" rightDIV"  >
-		<%-- 显示已经选中的人 --%>
+		<%-- 导航条 --%>
 		<div id="selectMessage" class='selectMessage'>
 			<span id='selectTag' class='selectTag'>已选择</span>
 			<span id='selectCountTag' class='selectCountTag'>&nbsp;100</span>
 			<span class='selectTag'>人员</span>
 			<span id="clearAll" class='clearAll'>清空全部</span>
 		</div>
+		<%-- 已选择的联系人展示区域 --%>
 		<div id="already_selectDIV"  class='already_selectDIV '   >	
 			<div class="loadding"></div>
 		</div>
@@ -204,6 +224,8 @@ jQuery(document).ready(function(){
 
 	<div style='clear:both;'></div>
 </div>
+
+<%-- 底栏确认与取消按钮 --%>
 <div class="OKButtonBottom">
 	<div class="OKButtonDIV  "  >
 		<input type="button" id="btnSave"  name="btnSave"  class="kbutton OKButton"  value="确定" >
