@@ -250,23 +250,12 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			<tr>
 				<td class="label">创建人</td>
 				<td class="content  " id="creator">
-					<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-						<input vtype="input" dbField="creator" class="text" value="<%=benefitEvalInfo.getCreator()%>" readonly="" style="cursor: pointer;" type="text">
-						<img src="<%=path%>/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
-					</div> 
-					<script type="text/javascript">
-						ET.Utils.addEvent(document.getElementById('content-div-res01'),'click',function(){ 
-							var img=document.getElementById('div-img-res01');
-							treeSelectUtils.showUserSelect(img.parentElement.children[0],img.parentElement.children[1], 7,69,true); 
-						}) 
-					</script>
+					<div class="content-line" style="cursor: pointer;"><%=benefitEvalInfo.getCreator()%></div> 
 				</td>
 				<td class="seperator"></td>
 				<td class="label">创建时间</td>
 				<td class="content  " id="createDatetd">
-					<div class="content-div" id="content-div-createDate"> 
-						<div class="content-line">系统自动创建</div>
-					</div>  
+					<div class="content-line" id="content-div-createDate">系统自动创建</div>
 				</td>
 			</tr>
 			<tr>
@@ -292,6 +281,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 	<jsp:include page="./BenefitInclude.jsp"/>
 	<!--附件 -->
 	<jsp:include page="./AttachInclude.jsp"/>
+	<!--下一步-->
+	<jsp:include page="./NextStepInclude.jsp"/>
 	<!--工作流 -->
 	<jsp:include page="./WorkFlowInclude.jsp"/>
 	<%=UIUtils.formBodyEnd(request) %> 
