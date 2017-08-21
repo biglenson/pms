@@ -3,6 +3,7 @@
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
 <%@ page import= "com.zq.commons.result.PageInfo" %>
 <%@ page import="com.zq.vo.process.TaskTodoItemVO" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String pageTitle = (String)request.getAttribute("pageTitle");
@@ -172,7 +173,7 @@ function openForm(processID, evalPhase) {
 							<td><%=evalFor%><%=taskDone.getEvalPhase()==0?"前":"后"%>评估</td>
 							<td><%=taskDone.getTplTitle()%></td>
 							<td><%=taskDone.getAssignee()%></td>
-							<td><%=taskDone.getCreateTime()%></td>
+							<td><fmt:formatDate value="<%=taskDone.getCreateTime()%>" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						</tr>
 						<%
 					}
