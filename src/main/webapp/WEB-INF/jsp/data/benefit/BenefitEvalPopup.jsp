@@ -269,10 +269,17 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="seperator"></td>
 				<td class="label">是否有归口部门</td>
 				<td class="content  " id="statustd"> 
-					<select vtype="select" dbField="hasDept">
-					  <option value="0">是</option>
-					  <option value="1">否</option>
-					</select>
+					<%if(benefitEvalInfo.getHasDept() == 0) { %>
+						<select vtype="select" dbField="hasDept" id="selector_status">
+						  <option value="0" selected="selected">是</option>
+						  <option value="1">否</option>
+						</select>
+					<%}else if(benefitEvalInfo.getHasDept() == 1) {%>
+						<select vtype="select" dbField="hasDept" id="selector_status">
+						  <option value="0">是</option>
+						  <option value="1" selected="selected">否</option>
+						</select>
+					<%}%>
 				</td>
 			</tr>
 		</tbody>
