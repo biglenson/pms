@@ -199,8 +199,8 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label">是否有归口部门</td>
 					<td class="content" id="statustd"> 
 						<select vtype="select" dbField="hasDept">
-						  <option value="0">是</option>
-						  <option value="1">否</option>
+						  <option value="1" selected="selected">是</option>
+						  <option value="0">否</option>
 						</select>
 					</td>
 				</tr>
