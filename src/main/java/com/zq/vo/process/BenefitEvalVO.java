@@ -9,6 +9,10 @@ public class BenefitEvalVO {
 	private int evalID;
 	private String processID;
 	private String taskID;
+	private String taskName;
+	private String assignee;
+	private String dealRslt;
+	private String dealOpinion;
 	private String evalCode;
 	private String evalTitle;
 	private String creator;
@@ -29,6 +33,38 @@ public class BenefitEvalVO {
 	 */
 	public void setEvalID(int evalID) {
 		this.evalID = evalID;
+	}
+
+	public String getDealOpinion() {
+		return this.dealOpinion;
+	}
+
+	public void setDealOpinion(String dealOpinion) {
+		this.dealOpinion = dealOpinion;
+	}
+
+	public String getDealRslt() {
+		return this.dealRslt;
+	}
+
+	public void setDealRslt(String dealRslt) {
+		this.dealRslt = dealRslt;
+	}
+
+	public String getAssignee() {
+		return this.assignee;
+	}
+
+	public void setAssignee(String assignee) {
+		this.assignee = assignee;
+	}
+
+	public String getTaskName() {
+		return this.taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 
 	public String getProcessID() {
