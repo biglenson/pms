@@ -25,6 +25,8 @@
 	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10);
 	//获取效益评估Form表单信息
 	List<BenefitEvalItemVO> formInfos = (List)request.getAttribute("benefitEvalForm");
+	//获取唯一任务单ID号
+	String taskID = (String)request.getAttribute("taskID");
 %>
 
 <style>
@@ -113,7 +115,7 @@ function del() {
 	
 	if (window.confirm("确定删除该任务单?")) {
 		var arg = new Array();
-		arg.src="<%=path%>/datamap/delBenefitEval?taskID=" + ${taskID};
+		arg.src="<%=path%>/datamap/delBenefitEval?taskID=<%=taskID%>";
 		arg.width = 220;
 		arg.height = 120;
 		arg.theme="feedback";
@@ -312,6 +314,8 @@ function getVtypeVal(vtype, elem) {
 	} else if (vtype == "radios") { // 单选
 		val = $(elem).attr("val");
 	} else if (vtype == "date") {	// 时间
+		val = $(elem).val();
+	} else if (vtype == "textarea") {	// 文本域
 		val = $(elem).val();
 	}
 	if (!val) {
