@@ -195,10 +195,13 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <input type="hidden" name="taskID" value="${taskID}">
 
 <%=UIUtils.toolbarStart(request)%>
+<%if("1".equals(isEditable)){ %>
 <%=UIUtils.toolbarButton(true, "javascript:submit();", "提交", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:save();", "保存", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:del();", "删除", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
+<%} %>
+
 
 <%=UIUtils.toolbarFloatRight(request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:showMoreButton(this);","更多", null, false, false, request)%>
