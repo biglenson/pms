@@ -337,6 +337,8 @@ function getVtypeVal(vtype, elem) {
 		val = $(elem).attr("val");
 	} else if (vtype == "date") {	// 时间
 		val = $(elem).val();
+	} else if (vtype == "textarea") {	// 文本域
+		val = $(elem).val();
 	}
 	if (!val) {
 		val = "";
