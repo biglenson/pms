@@ -86,6 +86,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         List<TaskTodoItemVO> taskDone = new ArrayList<TaskTodoItemVO>();
         TaskTodoItemVO taskDoneItemVO = null;
         
+        /*
         String queryString = 
             " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.START_TIME_ createTime "+
             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
@@ -94,6 +95,17 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             "       and a.processID = b.PROC_INST_ID_ "+
             "       and a.tplID=c.tplID " +
             " order by b.START_TIME_ desc";
+            */
+
+         String queryString =
+             " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, " +
+             "        c.tplTitle, b.ASSIGNEE_ assignee, ifnull(b.END_TIME_, sysdate())  createTime "+
+             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
+             " where b.ASSIGNEE_ = :userID  "+
+             "       and b.END_TIME_ is not null "+
+             "       and a.processID = b.PROC_INST_ID_ "+
+             "       and a.tplID=c.tplID " +
+             " order by createTime desc";
 
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
 
