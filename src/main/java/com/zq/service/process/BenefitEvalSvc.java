@@ -40,6 +40,9 @@ public class BenefitEvalSvc{
     private RuntimeService runtimeService;
 
     @Autowired
+    private TaskService taskService;
+
+    @Autowired
     BenefitEvalRepository benefitEvalRepo;
 
     @Autowired
@@ -67,6 +70,7 @@ public class BenefitEvalSvc{
     public BenefitEvalVO saveBenefitEvalInfo(BenefitEvalVO benefitEvalVO, List<BenefitEvalItemVO> benefitEvalForm) {
         BenefitEval benefitEval = null;
         BenefitEvalItem benefitEvalItem = null;
+        String processID = "";
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("vAssignee", "lenson");
 
@@ -89,7 +93,9 @@ public class BenefitEvalSvc{
             logger.info("获取EvalCode！----------------------------hasDept: "+ benefitEvalVO.getHasDept()); 
             ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("BenefitEvalProcess", evalCode, variables);
             benefitEval = new BenefitEval();
-            benefitEval.setProcessID(processInstance.getProcessInstanceId());
+            processID = processInstance.getProcessInstanceId();
+            logger.info("获取-------------------processID: "+ processID); 
+            benefitEval.setProcessID(processID);
             benefitEval.setEvalCode(evalCode);
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
             benefitEval.setHasDept( benefitEvalVO.getHasDept() );
@@ -109,13 +115,16 @@ public class BenefitEvalSvc{
 
         } else {
             logger.info("保存已有Eval！----------------------------: "); 
-
+            
             evalID = benefitEvalVO.getEvalID();
             benefitEval = benefitEvalRepo.getBenefitEvalByEvalID(evalID);
+            processID = benefitEval.getProcessID();
+            logger.info("获取-------------------processID: "+ processID); 
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
             benefitEval.setHasDept( benefitEvalVO.getHasDept() );
             benefitEval.setCreateDate(new Date());
             benefitEvalRepo.save(benefitEval);
+
 
             for (BenefitEvalItemVO benefitEvalItemVO : benefitEvalForm) {
                 int itemID = benefitEvalItemVO.getItemID();
@@ -129,6 +138,15 @@ public class BenefitEvalSvc{
         }
         logger.info("----------------------------savedEvalID:   "+benefitEval.getEvalID()); 
         logger.info("保存后的evalID----------------------------evalID: "+ benefitEval.getEvalID()); 
+
+            logger.info("获取-------------------processID: "+ processID); 
+        String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
+        logger.info("------------taskID:  "+ taskID+"   ----------------processID: "+ processID); 
+        Map<String, Object> submitInfo = new HashMap<String, Object>();
+        submitInfo.put("assignee", "Lenson");
+        submitInfo.put("dealRslt", "提交");
+        submitInfo.put("dealOpinion", "可以提交");
+        taskService.setVariablesLocal(taskID, submitInfo);
 
         BeanUtils.copyProperties(benefitEval, benefitEvalVO);
         return benefitEvalVO;
