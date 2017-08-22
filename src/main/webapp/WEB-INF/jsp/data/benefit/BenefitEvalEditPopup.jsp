@@ -207,7 +207,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			</tbody>
 		</table>
 		
-		<!-- 效益评估 -->
+		<%-- 效益评估 --%>
 		<%=UIUtils.togglePanelStart("效益评估", true, request)%>
 		<table style="width:100%;border:0;cellpadding:0;cellspacing:0" class="listTable">
 			<thead>
@@ -251,6 +251,12 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 						<div style="width:178px;" class="nowrapText">
 						</div>
 					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>		
 				<%}%>
 				<!-- 小类项 -->
@@ -309,11 +315,11 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 		</table>
 		<%=UIUtils.togglePanelEnd(request)%>
 		
-		<!--附件 -->
+		<%-- 附件 --%>
 		<jsp:include page="./AttachInclude.jsp"/>
-		<!--下一步-->
+		<%-- 下一步 --%>
 		<jsp:include page="./NextStepInclude.jsp"/>
-		<!--工作流 -->
+		<%-- 工作流 --%>
 		<jsp:include page="./WorkFlowInclude.jsp"/>
     <%=UIUtils.formBodyEnd(request) %>
 </div>
@@ -326,7 +332,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 </html>
 
 <script>
-//判断各表单项类型获取对应的值
+<%-- 判断各表单项类型获取对应的值 --%>
 function getVtypeVal(vtype, elem) {
 	var val = "";
 	if (vtype == "input") { // 输入框
