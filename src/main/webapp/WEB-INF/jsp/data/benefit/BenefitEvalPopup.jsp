@@ -1,3 +1,4 @@
+<%@page import="com.alibaba.druid.sql.ast.statement.SQLIfStatement.Else"%>
 <%@page import="org.apache.commons.io.filefilter.FalseFileFilter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -27,6 +28,8 @@
 	List<BenefitEvalItemVO> formInfos = (List)request.getAttribute("benefitEvalForm");
 	//获取唯一任务单ID号
 	String taskID = (String)request.getAttribute("taskID");
+	//获取是否可编辑信息(即区分待办或者已办,0是已办,1是待办)
+	String isEditable =  String.valueOf(request.getAttribute("isEditable"));
 %>
 
 <style>
@@ -192,10 +195,13 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <input type="hidden" name="taskID" value="${taskID}">
 
 <%=UIUtils.toolbarStart(request)%>
+<%if("1".equals(isEditable)){ %>
 <%=UIUtils.toolbarButton(true, "javascript:submit();", "提交", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:save();", "保存", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:del();", "删除", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
+<%} %>
+
 
 <%=UIUtils.toolbarFloatRight(request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:showMoreButton(this);","更多", null, false, false, request)%>
@@ -229,7 +235,11 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			<tr>
 				<td class="label">标题<font class="red">*</font></td>
 				<td colspan="4" class="content" id="evalTitle">
-					<input vtype="input" dbField="evalTitle" class="text" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
+					<%if("0".equals(isEditable)) { %>
+						<div class="content-line" id="div-titleName"><%=benefitEvalInfo.getEvalTitle()%></div>
+					<%}else { %>
+						<input vtype="input" dbField="evalTitle" class="text" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
+					<%}%>
 				</td>
 			</tr>
 			<tr>
@@ -271,28 +281,40 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="seperator"></td>
 				<td class="label">是否有归口部门</td>
 				<td class="content  " id="statustd"> 
-					<%if(benefitEvalInfo.getHasDept() == 1) { %>
-						<select vtype="select" dbField="hasDept" id="selector_status">
-						  <option value="1" selected="selected">是</option>
-						  <option value="0">否</option>
-						</select>
-					<%}else if(benefitEvalInfo.getHasDept() == 0) {%>
-						<select vtype="select" dbField="hasDept" id="selector_status">
-						  <option value="1">是</option>
-						  <option value="0" selected="selected">否</option>
-						</select>
+					<%if(benefitEvalInfo.getHasDept() == 1) { 
+						if("0".equals(isEditable)) {
+					%>
+							<div class="content-line">是</div>
+						<%} else{%>
+							<select vtype="select" dbField="hasDept" id="selector_status">
+							  <option value="1" selected="selected">是</option>
+							  <option value="0">否</option>
+							</select>
+						<%} %>
+					<%}else if(benefitEvalInfo.getHasDept() == 0) {
+						if("0".equals(isEditable)) {
+					%>
+							<div class="content-line">否</div>
+						<%} else{%>
+							<select vtype="select" dbField="hasDept" id="selector_status">
+							  <option value="1">是</option>
+							  <option value="0" selected="selected">否</option>
+							</select>
+						<%} %>
 					<%}%>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	<!-- 效益评估 -->
+	<%-- 效益评估 --%>
 	<jsp:include page="./BenefitInclude.jsp"/>
-	<!--附件 -->
+	<%-- 附件 --%>
 	<jsp:include page="./AttachInclude.jsp"/>
-	<!--下一步-->
+	<%-- 下一步 --%>
+	<%if("1".equals(isEditable)) {%>
 	<jsp:include page="./NextStepInclude.jsp"/>
-	<!--工作流 -->
+	<%}%>
+	<%-- 工作流 --%>
 	<jsp:include page="./WorkFlowInclude.jsp"/>
 	<%=UIUtils.formBodyEnd(request) %> 
 </div>
@@ -304,7 +326,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <jsp:include page="../../common/BodyEnd.jsp" />
 
 <script type="text/javascript">
-//判断各表单项类型获取对应的值
+<%-- 判断各表单项类型获取对应的值 --%>
 function getVtypeVal(vtype, elem) {
 	var val = "";
 	if (vtype == "input") { // 输入框

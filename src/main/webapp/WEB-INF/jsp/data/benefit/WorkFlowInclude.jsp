@@ -38,7 +38,7 @@
 		%>
 		<tr class="listTableTR" >
 			<td>
-				<%if(index == 1){%>
+				<%if(index != 1){%>
 					<img src="<%=path%>/static/images/userSelect_check.png">
 				<%}else {%>
 					<img src="<%=path%>/static/images/bulletin_board_on.gif">

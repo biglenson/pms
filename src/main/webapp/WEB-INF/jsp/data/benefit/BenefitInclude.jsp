@@ -21,6 +21,13 @@
 	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10);
 	boolean canEdit = true;
 	boolean isNew = true;
+	//获取是否可编辑信息(即区分待办或者已办,0是已办,1是待办)
+	String isEditable =  String.valueOf(request.getAttribute("isEditable"));
+	if("0".equals(isEditable)) {
+		canEdit = false;
+	}else if("1".equals(isEditable)) {
+		canEdit = true;
+	}
 %>
 
 <script type="text/javascript">
@@ -73,6 +80,12 @@
 				<div style="width:178px;" class="nowrapText">
 				</div>
 			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
 		</tr>		
 		<%}%>
 		<!-- 小类项 -->
