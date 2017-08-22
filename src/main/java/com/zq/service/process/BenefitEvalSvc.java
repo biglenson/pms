@@ -86,6 +86,7 @@ public class BenefitEvalSvc{
         if (evalCode == null || evalCode.length() == 0 ) {
             evalCode = this.getEvalCode("XYPG", evalPhase);
             logger.info("获取EvalCode！----------------------------evalCode: "+ evalCode); 
+            logger.info("获取EvalCode！----------------------------hasDept: "+ benefitEvalVO.getHasDept()); 
             ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("BenefitEvalProcess", evalCode, variables);
             benefitEval = new BenefitEval();
             benefitEval.setProcessID(processInstance.getProcessInstanceId());
@@ -112,6 +113,7 @@ public class BenefitEvalSvc{
             evalID = benefitEvalVO.getEvalID();
             benefitEval = benefitEvalRepo.getBenefitEvalByEvalID(evalID);
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
+            benefitEval.setHasDept( benefitEvalVO.getHasDept() );
             benefitEval.setCreateDate(new Date());
             benefitEvalRepo.save(benefitEval);
 
