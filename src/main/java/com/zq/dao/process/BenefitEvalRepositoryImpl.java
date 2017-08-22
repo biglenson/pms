@@ -15,12 +15,22 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         List<TaskHisItemVO> taskHis = new ArrayList<TaskHisItemVO>();
         TaskHisItemVO taskHisItemVO = null;
         
+        /*
         String queryString = 
             "    select a.NAME_ taskName, ASSIGNEE_ assignee, END_TIME_ endTime, c.TEXT_ dealResult, MESSAGE_ comment    " +
             "      from ACT_HI_TASKINST a     " +
             "           left join ACT_HI_COMMENT b on a.ID_ = b.TASK_ID_    " +
             "           left join ACT_HI_VARINST c on a.ID_ = c.TASK_ID_ and c.NAME_ = 'dealRslt'     " +
             "     where a.PROC_INST_ID_ = :processID     " +
+            "     order by  END_TIME_ desc    "; 
+            */
+        String queryString = 
+            "    select a.ACT_NAME_ taskName, ASSIGNEE_ assignee, END_TIME_ endTime, c.TEXT_ dealResult, MESSAGE_ comment    " +
+            "      from ACT_HI_ACTINST a     " +
+            "           left join ACT_HI_COMMENT b on a.ID_ = b.TASK_ID_    " +
+            "           left join ACT_HI_VARINST c on a.ID_ = c.TASK_ID_ and c.NAME_ = 'dealRslt'     " +
+            "     where a.PROC_INST_ID_ = :processID     " +
+            "           and ACT_TYPE_ in ('startEvent', 'userTask', 'endEvent')    " +
             "     order by  END_TIME_ desc    "; 
         Query q = em.createNativeQuery(queryString).setParameter("processID", processID);
 
@@ -48,7 +58,8 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             "  from d_benefit_eval a, ACT_RU_TASK b, g_benefit_eval_tpl c "+
             " where b.ASSIGNEE_ = :userID "+
             "       and a.processID = b.PROC_INST_ID_ "+
-            "       and a.tplID=c.tplID ";
+            "       and a.tplID=c.tplID " +
+            " order by b.CREATE_TIME_ desc";
 
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
 
@@ -81,7 +92,8 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             " where b.ASSIGNEE_ = :userID  "+
             "       and b.END_TIME_ is not null "+
             "       and a.processID = b.PROC_INST_ID_ "+
-            "       and a.tplID=c.tplID ";
+            "       and a.tplID=c.tplID " +
+            " order by b.START_TIME_ desc";
 
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
 

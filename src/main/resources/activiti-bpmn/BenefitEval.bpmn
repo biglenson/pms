@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="BenefitEvalProcess" name="BenefitEvalProcess" isExecutable="true">
-    <startEvent id="startevent1" name="Start"></startEvent>
+    <startEvent id="startevent1" name="开始评估流程"></startEvent>
     <userTask id="EvalEditByCreator" name="提出人创建编辑评估" activiti:assignee="${vAssignee}"></userTask>
     <userTask id="EvalApprByCLeader" name="提出部门领导审核评估" activiti:assignee="${vAssignee}"></userTask>
     <exclusiveGateway id="IsApprovedByCLeader" name="审核是否通过"></exclusiveGateway>
@@ -19,7 +19,7 @@
     <sequenceFlow id="flow10" name="审核未通过。" sourceRef="IsApprovedByFLeader" targetRef="EvalCheckByFEmp">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==0}]]></conditionExpression>
     </sequenceFlow>
-    <endEvent id="endevent1" name="End"></endEvent>
+    <endEvent id="endevent1" name="财务部审核通过"></endEvent>
     <sequenceFlow id="flow11" name="审核通过" sourceRef="IsApprovedByFLeader" targetRef="endevent1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==0}]]></conditionExpression>
     </sequenceFlow>
@@ -27,7 +27,7 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==1}]]></conditionExpression>
     </sequenceFlow>
     <userTask id="EvalRejectConfirm" name="提出部门领导处理退回" activiti:assignee="${vAssignee}"></userTask>
-    <endEvent id="endevent2" name="End"></endEvent>
+    <endEvent id="endevent2" name="放弃修订"></endEvent>
     <exclusiveGateway id="IsToRevise" name="是否重新提交"></exclusiveGateway>
     <sequenceFlow id="flow13" sourceRef="EvalRejectConfirm" targetRef="IsToRevise"></sequenceFlow>
     <sequenceFlow id="flow14" name="修订重新提交" sourceRef="IsToRevise" targetRef="EvalEditByCreator">
@@ -52,7 +52,7 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==0}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow22" sourceRef="startevent1" targetRef="EvalEditByCreator"></sequenceFlow>
-    <sequenceFlow id="flow23" sourceRef="EvalEditByCreator" targetRef="IsToCommit"></sequenceFlow>
+    <sequenceFlow id="flow23" sourceRef="EvalEditByCreator" targetRef="IsToSubmit"></sequenceFlow>
     <sequenceFlow id="flow24" sourceRef="EvalApprByCLeader" targetRef="IsApprovedByCLeader"></sequenceFlow>
     <sequenceFlow id="flow25" name="审核未通过" sourceRef="IsApprovedByCLeader" targetRef="EvalEditByCreator">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==0}]]></conditionExpression>
@@ -60,12 +60,12 @@
     <sequenceFlow id="flow26" name="审核未通过，重新核查。" sourceRef="IsApprovedByRLeader" targetRef="EvalCheckByREmp">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==0}]]></conditionExpression>
     </sequenceFlow>
-    <exclusiveGateway id="IsToCommit" name="是否提交"></exclusiveGateway>
-    <sequenceFlow id="flow27" name="提交" sourceRef="IsToCommit" targetRef="EvalApprByCLeader">
+    <exclusiveGateway id="IsToSubmit" name="是否提交"></exclusiveGateway>
+    <sequenceFlow id="flow27" name="提交" sourceRef="IsToSubmit" targetRef="EvalApprByCLeader">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isToSubmit==1}]]></conditionExpression>
     </sequenceFlow>
-    <endEvent id="endevent3" name="End"></endEvent>
-    <sequenceFlow id="flow28" name="放弃" sourceRef="IsToCommit" targetRef="endevent3">
+    <endEvent id="endevent3" name="删除评估"></endEvent>
+    <sequenceFlow id="flow28" name="放弃" sourceRef="IsToSubmit" targetRef="endevent3">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isToSubmit==0}]]></conditionExpression>
     </sequenceFlow>
     <textAnnotation id="textannotation1">
@@ -122,7 +122,7 @@
       <bpmndi:BPMNShape bpmnElement="IsApprovedByRLeader" id="BPMNShape_IsApprovedByRLeader">
         <omgdc:Bounds height="40.0" width="40.0" x="990.0" y="378.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="IsToCommit" id="BPMNShape_IsToCommit">
+      <bpmndi:BPMNShape bpmnElement="IsToSubmit" id="BPMNShape_IsToSubmit">
         <omgdc:Bounds height="40.0" width="40.0" x="403.0" y="140.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
@@ -260,14 +260,14 @@
         <omgdi:waypoint x="443.0" y="160.0"></omgdi:waypoint>
         <omgdi:waypoint x="550.0" y="160.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="463.0" y="140.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="22.0" x="463.0" y="140.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
         <omgdi:waypoint x="423.0" y="180.0"></omgdi:waypoint>
         <omgdi:waypoint x="423.0" y="267.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="429.0" y="196.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="22.0" x="429.0" y="196.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
