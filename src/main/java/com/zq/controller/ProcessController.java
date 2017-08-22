@@ -149,8 +149,15 @@ public class ProcessController extends BaseController{
                                     @RequestParam("processID") String processID) {		 	
         logger.info("测试中！----------------------------evalForm"); 
         
+        int isEditable = 0;
         int evalID = benefitEvalSvc.getEvalIDByProcessID(processID);
-        String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
+        String taskID = null;
+        String curUser = new String("lenson");
+        Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
+        if (task != null) {
+            taskID = task.getId();
+            if (task.getAssignee() != curUser) isEditable = 1;
+        }
         List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
         List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
@@ -160,6 +167,7 @@ public class ProcessController extends BaseController{
         model.addAttribute("taskID",taskID );
         model.addAttribute("pageTitle", pageTitle);
         model.addAttribute("url", url);
+        model.addAttribute("isEditable", isEditable);
 
         return CMCCConstant.BenefitEvalPopup;
 	 } 
