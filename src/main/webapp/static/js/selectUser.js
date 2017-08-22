@@ -1,44 +1,56 @@
-
+/** 选择联系人核心处理文件 */
 ET.SelectUser=function(config){
 	var opts = $.extend({}, ET.SelectUser.defaultConfig, config);     
 	this.config=opts;
 	this.initial();
 }
 ET.SelectUser.defaultConfig={
-		path:"/pm"
-		/**
-		 * 搜索结果显示区域 的ID
-		 */
-		,resultSelect:'resultDIV' 
-		,userSelect:'.userItem'
-		,searchValue:'searchValue'
-		/**
-		 * 是否多选
-		 */
-		,isMutil:true
-		
-		/**
-		 * 已选的显示区域
-		 */
-		,alreadySelect:'already_selectDIV'
-		,selectCountTag:'selectCountTag'
-		,clearAllTag:'clearAll'
-		,rootDepartmentID:69
-		,loadMore:'加载更多'
-		,loadMoreBatch:100
-		,scrollLoadBatch:30
-	};
+	path:"/pm"
+	/**
+	 * 搜索结果显示区域 的ID
+	 */
+	,resultSelect:'resultDIV' 
+	,userSelect:'.userItem'
+	,searchValue:'searchValue'
+	/**
+	 * 是否多选
+	 */
+	,isMutil:true
+	
+	/**
+	 * 已选的显示区域
+	 */
+	,alreadySelect:'already_selectDIV'
+	,selectCountTag:'selectCountTag'
+	,clearAllTag:'clearAll'
+	,rootDepartmentID:69
+	,loadMore:'加载更多'
+	,loadMoreBatch:100
+	,scrollLoadBatch:30
+};
+/** 
+ * 已选择的总数 
+ */
 ET.SelectUser.prototype.freshTotal=function(){
 	var _self=this;
 	_self.selectCountTag.text(_self.getSelectSize());
 };
+/** 
+ * 获取已选择的总数 
+ */
 ET.SelectUser.prototype.getSelectSize=function(){
 	var _self=this;
 	var size=_self.alreadySelectCacheArray.length;
 	return size;
 };
+/**
+ * 初始化拖拽
+ */
 ET.SelectUser.prototype.initialDrag=function(select){
 }
+/**
+ * 懒加载（滚动）事件
+ */
 ET.SelectUser.prototype._addScrollDataEvent=function(){
 	var _self=this;
 	var $=jQuery;
@@ -116,16 +128,21 @@ ET.SelectUser.prototype._addScrollDataEvent=function(){
 		},20);
 	};
 };
-
+/**
+ * 初始化
+ */
 ET.SelectUser.prototype.initial=function(){
 	var _self=this;
 	var config=_self.config;
 	var $=jQuery;
+	//获取搜索结果展示区域的DIV
 	_self.resultSelect=$("#"+config.resultSelect);
 	_self.resultSelectBar=new ET.ScrollBar(_self.resultSelect.get(0).id,{
 		resizeAble:false
 	});
+	//获取配置项信息，是否支持多选
 	var isMutil=_self.config.isMutil;
+	//获取已选择的结果展示区域DIV
 	_self.alreadySelect=$("#"+config.alreadySelect);
 	_self.alreadySelectBar=new ET.ScrollBar(_self.alreadySelect.get(0).id,{
 		resizeAble:false
@@ -155,6 +172,7 @@ ET.SelectUser.prototype.initial=function(){
 	})
 	_self._addScrollDataEvent();
 	
+	//清空已选择的
 	var clearAllObj=$("#"+_self.config.clearAllTag);
 	clearAllObj.on('click',function(){
 		for(var userID in _self.alreadySelectCache){
@@ -175,6 +193,7 @@ ET.SelectUser.prototype.initial=function(){
 		var departUserData=_self.departUserLoadData[departID];
 		var departArray=_self.departLoadData[departID].children;
 		
+		//创建片段装载用户数据(用户列表项)
 		if(departUserData!=null&&departUserData.length>0){
 			var userFrag=$(document.createDocumentFragment());
 			var size=_self.config.loadMoreBatch-departArray.length;
@@ -371,6 +390,9 @@ ET.SelectUser.prototype.initial=function(){
 		 changeSelectAll();
 	});
 }
+/**
+ * 获取最终选择的用户数据
+ */
 ET.SelectUser.prototype.getOldAlreadySelect=function(){
 	var result={};
 	var _self=this;
@@ -392,12 +414,17 @@ ET.SelectUser.prototype.getOldAlreadySelect=function(){
 	}
 	return result;
 }
-
+/**
+ * 正在加载(转圈浮层)
+ */
 ET.SelectUser.prototype.showSearchLoading=function(){
 	var _self=this;
 	_self.resultSelectBarDIV.html("<div class='loadding'></div>");
 	_self.resultSelectBar.resize();
 };
+/**
+ * 搜索核心处理
+ */
 ET.SelectUser.prototype.doSearch=function(){
 	var _self=this;
 	var $=jQuery;
