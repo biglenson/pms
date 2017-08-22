@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
 <%@ page import= "com.zq.vo.process.TaskHisItemVO" %>
+<%@ page import="com.zq.commons.utils.TypeUtils" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -46,19 +48,19 @@
 				<%=index%>
 			</td>
 			<td>
-				<%=item.getTaskName()%>
+				<%=TypeUtils.nullToString(item.getTaskName())%>
 			</td>
 			<td>
-				<%=item.getAssignee()%>
+				<%=TypeUtils.nullToString(item.getAssignee())%>
 			</td>
 			<td>
-				<%=item.getDealTime()%>
+				<fmt:formatDate value="<%=item.getDealTime()%>" pattern="yyyy-MM-dd HH:mm:ss"/>
 			</td>
 			<td>
-				<%=item.getDealResult()%>
+				<%=TypeUtils.nullToString(item.getDealResult())%>
 			</td>
 			<td>
-				<%=item.getDealOpinion()%>
+				<%=TypeUtils.nullToString(item.getDealOpinion())%>
 			</td>
 		</tr>
 		<%index++;}}else{%>
