@@ -91,6 +91,7 @@ public class BenefitEvalSvc{
             benefitEval.setProcessID(processInstance.getProcessInstanceId());
             benefitEval.setEvalCode(evalCode);
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
+            benefitEval.setHasDept( benefitEvalVO.getHasDept() );
             benefitEval.setTplID( benefitEvalVO.getTplID() );
             benefitEval.setCreator("Lenson");
             benefitEval.setCreateDate(new Date());
