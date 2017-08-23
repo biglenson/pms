@@ -143,6 +143,12 @@ function cancel() {
 	parent.ET.closeModalWindow();
 }
 
+//关闭 
+function closeBtn() {
+	console.log('===========测试中！======================>关闭----');
+	parent.ET.closeModalWindow("1");
+}
+
 <%-- function showMoreButton (obj){
 	var listMenu = new Array();
 	listMenu.items = new Array();
@@ -200,6 +206,9 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <%=UIUtils.toolbarButton(true, "javascript:save();", "保存", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:del();", "删除", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
+<%} %>
+<%if("0".equals(isEditable)){ %>
+<%=UIUtils.toolbarButton(true, "javascript:closeBtn();", "关闭", "back.gif", false, false, request)%>
 <%} %>
 
 
