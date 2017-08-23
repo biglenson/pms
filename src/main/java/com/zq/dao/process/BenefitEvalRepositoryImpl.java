@@ -25,13 +25,13 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             "     order by  END_TIME_ desc    "; 
             */
         String queryString = 
-            "    select a.ACT_NAME_ taskName, ASSIGNEE_ assignee, END_TIME_ endTime, c.TEXT_ dealResult, MESSAGE_ comment    " +
+            "    select a.ACT_NAME_ taskName, ASSIGNEE_ assignee, ifnull(END_TIME_,sysdate()) endTime, c.TEXT_ dealResult, MESSAGE_ comment    " +
             "      from ACT_HI_ACTINST a     " +
-            "           left join ACT_HI_COMMENT b on a.ID_ = b.TASK_ID_    " +
-            "           left join ACT_HI_VARINST c on a.ID_ = c.TASK_ID_ and c.NAME_ = 'dealRslt'     " +
+            "           left join ACT_HI_COMMENT b on a.TASK_ID_ = b.TASK_ID_    " +
+            "           left join ACT_HI_VARINST c on a.TASK_ID_ = c.TASK_ID_ and c.NAME_ = 'dealRslt'     " +
             "     where a.PROC_INST_ID_ = :processID     " +
             "           and ACT_TYPE_ in ('startEvent', 'userTask', 'endEvent')    " +
-            "     order by  END_TIME_ desc    "; 
+            "     order by  START_TIME_ desc, endTime desc    "; 
         Query q = em.createNativeQuery(queryString).setParameter("processID", processID);
 
         List rslt = q.getResultList();
@@ -86,6 +86,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         List<TaskTodoItemVO> taskDone = new ArrayList<TaskTodoItemVO>();
         TaskTodoItemVO taskDoneItemVO = null;
         
+        /*
         String queryString = 
             " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.START_TIME_ createTime "+
             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
@@ -94,6 +95,17 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             "       and a.processID = b.PROC_INST_ID_ "+
             "       and a.tplID=c.tplID " +
             " order by b.START_TIME_ desc";
+            */
+
+         String queryString =
+             " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, " +
+             "        c.tplTitle, b.ASSIGNEE_ assignee, ifnull(b.END_TIME_, sysdate())  createTime "+
+             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
+             " where b.ASSIGNEE_ = :userID  "+
+             "       and b.END_TIME_ is not null "+
+             "       and a.processID = b.PROC_INST_ID_ "+
+             "       and a.tplID=c.tplID " +
+             " order by createTime desc";
 
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
 
