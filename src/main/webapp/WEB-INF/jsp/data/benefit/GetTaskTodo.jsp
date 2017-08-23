@@ -113,6 +113,7 @@ function openForm(processID, evalPhase) {
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 
+		console.log('返回值结果：  ' + ret);
 		//刷新待办任务
 		document.frm.action = "<%=path%>/datamap/getTaskTodo";
 		etSubmit(document.frm);
@@ -124,6 +125,7 @@ function openForm(processID, evalPhase) {
 <form name="frm" action="<%=path%>/datamap/simpleFromBenefit" method="GET">
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
+<input type="hidden" name="operation" value="">
 
 <%=UIUtils.tabPanelStart(request)%>
 <%=UIUtils.tabPanel(true, "javascript:simpleForm();", pageTitle+"基本信息", null, false, request)%>
@@ -206,6 +208,7 @@ function openForm(processID, evalPhase) {
             //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on'); 
             if ($(this).index() == 1) {
             	document.frm.action = "<%=path%>/datamap/getTaskDone";
+            	document.frm.operation.value="toggle";
             	etSubmit(document.frm);
 			}
         });

@@ -123,6 +123,7 @@ function openForm(processID, evalPhase) {
 <form name="frm" action="<%=path%>/datamap/simpleFromBenefit" method="GET">
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
+<input type="hidden" name="operation" value="">
 
 <%=UIUtils.tabPanelStart(request)%>
 <%=UIUtils.tabPanel(true, "javascript:simpleForm();", pageTitle+"基本信息", null, false, request)%>
@@ -205,6 +206,7 @@ function openForm(processID, evalPhase) {
             //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on'); 
             if ($(this).index() == 0) {
             	document.frm.action = "<%=path%>/datamap/getTaskTodo";
+            	document.frm.operation.value="toggle";
             	etSubmit(document.frm);
 			}
         });

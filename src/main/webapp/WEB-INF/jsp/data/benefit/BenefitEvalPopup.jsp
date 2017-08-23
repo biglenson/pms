@@ -110,6 +110,7 @@ function save() {
 	document.frm.evalForm.value=JSON.stringify(arr);
 	document.frm.action="<%=path%>/datamap/saveBenefitEval";
 	etSubmit(document.frm);
+	parent.ET.setModalWindowReturnValue("1");
 }
 
 //删除
