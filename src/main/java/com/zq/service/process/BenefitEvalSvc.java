@@ -32,6 +32,7 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.apache.shiro.SecurityUtils;
+import org.activiti.engine.task.Task;
 
 @Component
 public class BenefitEvalSvc{
@@ -100,7 +101,7 @@ public class BenefitEvalSvc{
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
             benefitEval.setHasDept( benefitEvalVO.getHasDept() );
             benefitEval.setTplID( benefitEvalVO.getTplID() );
-            benefitEval.setCreator("Lenson");
+            benefitEval.setCreator("lenson");
             benefitEval.setCreateDate(new Date());
             benefitEvalRepo.save(benefitEval);
             evalID =  benefitEval.getEvalID();
@@ -143,10 +144,10 @@ public class BenefitEvalSvc{
         String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
         logger.info("------------taskID:  "+ taskID+"   ----------------processID: "+ processID); 
         Map<String, Object> submitInfo = new HashMap<String, Object>();
-        submitInfo.put("assignee", "Lenson");
-        submitInfo.put("dealRslt", "提交");
-        submitInfo.put("dealOpinion", "可以提交");
+        submitInfo.put("assignee", "lenson");
+        submitInfo.put("dealRslt", benefitEvalVO.getDealRslt());
         taskService.setVariablesLocal(taskID, submitInfo);
+        taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
 
         BeanUtils.copyProperties(benefitEval, benefitEvalVO);
         return benefitEvalVO;
@@ -179,6 +180,22 @@ public class BenefitEvalSvc{
         benefitEvalVO.setTplTitle(benefitEvalTpl.getTplTitle());
         benefitEvalVO.setEvalPhase(benefitEvalTpl.getEvalPhase());
         benefitEvalVO.setEvalFor(benefitEvalTpl.getEvalFor());
+
+        Map<String, Object> variables = null;
+        String processID = benefitEval.getProcessID();
+        Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
+        if (task != null){
+            String taskID = task.getId();
+            variables = taskService.getVariablesLocal(taskID);
+            String assignee = variables.get("assignee").toString(); 
+            String dealRslt = variables.get("dealRslt").toString(); 
+            String dealOpinion = taskService.getTaskComments(taskID, "BenefitEval").get(0).getFullMessage();
+            benefitEvalVO.setAssignee(assignee);
+            benefitEvalVO.setDealRslt(dealRslt);
+            benefitEvalVO.setDealOpinion(dealOpinion);
+        }
+
+        
 
         return benefitEvalVO;
     }

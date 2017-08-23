@@ -123,11 +123,17 @@ public class ProcessController extends BaseController{
         logger.info("-BenefitEval------------------------evalTitle back:    "+benefitEvalVO.getEvalTitle()); 
 
 
-
-
+        int isEditable = 0;
         int evalID = benefitEvalVO.getEvalID();
+        String taskID = null;
         String processID = benefitEvalVO.getProcessID();
-        String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
+        Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
+        String curUser = new String("lenson");
+        if (task != null) {
+            taskID = task.getId();
+            if (task.getAssignee().equals(curUser)) isEditable = 1;
+        }
+
         logger.info("-BenefitEval------------------------evalID back:    "+evalID); 
         benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
@@ -137,6 +143,7 @@ public class ProcessController extends BaseController{
         model.addAttribute("benefitEvalForm",benefitEvalForm );
         model.addAttribute("taskHis",taskHis );
         model.addAttribute("taskID",taskID );
+        model.addAttribute("isEditable",isEditable );
         return CMCCConstant.BenefitEvalPopup;
     }
 
@@ -156,8 +163,11 @@ public class ProcessController extends BaseController{
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         if (task != null) {
             taskID = task.getId();
-            if (task.getAssignee() != curUser) isEditable = 1;
+            if (task.getAssignee().equals(curUser)) isEditable = 1;
+            logger.info("测试中！----------------------------assigneeeee:   "+ task.getAssignee()); 
         }
+        logger.info("测试中！----------------------------isEditable:   "+ isEditable); 
+
         List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
         List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());
