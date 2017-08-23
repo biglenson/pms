@@ -125,13 +125,13 @@ public class ProcessController extends BaseController{
 
         int isEditable = 0;
         int evalID = benefitEvalVO.getEvalID();
+        String taskID = null;
         String processID = benefitEvalVO.getProcessID();
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
-        String taskID = task.getId();
         String curUser = new String("lenson");
         if (task != null) {
             taskID = task.getId();
-            if (task.getAssignee() == curUser) isEditable = 1;
+            if (task.getAssignee().equals(curUser)) isEditable = 1;
         }
 
         logger.info("-BenefitEval------------------------evalID back:    "+evalID); 
@@ -163,8 +163,11 @@ public class ProcessController extends BaseController{
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         if (task != null) {
             taskID = task.getId();
-            if (task.getAssignee() == curUser) isEditable = 1;
+            if (task.getAssignee().equals(curUser)) isEditable = 1;
+            logger.info("测试中！----------------------------assigneeeee:   "+ task.getAssignee()); 
         }
+        logger.info("测试中！----------------------------isEditable:   "+ isEditable); 
+
         List<BenefitEvalItemVO> benefitEvalForm = benefitEvalItemSvc.getBenefitEvalForm(evalID);
         BenefitEvalVO benefitEvalInfo = benefitEvalSvc.getBenefitEvalInfo(evalID);
         List<TaskHisItemVO> taskHis = benefitEvalSvc.getTaskHis(benefitEvalInfo.getProcessID());

@@ -100,7 +100,7 @@ public class BenefitEvalSvc{
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
             benefitEval.setHasDept( benefitEvalVO.getHasDept() );
             benefitEval.setTplID( benefitEvalVO.getTplID() );
-            benefitEval.setCreator("Lenson");
+            benefitEval.setCreator("lenson");
             benefitEval.setCreateDate(new Date());
             benefitEvalRepo.save(benefitEval);
             evalID =  benefitEval.getEvalID();
@@ -143,9 +143,9 @@ public class BenefitEvalSvc{
         String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
         logger.info("------------taskID:  "+ taskID+"   ----------------processID: "+ processID); 
         Map<String, Object> submitInfo = new HashMap<String, Object>();
-        submitInfo.put("assignee", "Lenson");
-        submitInfo.put("dealRslt", "提交");
-        submitInfo.put("dealOpinion", "可以提交");
+        submitInfo.put("assignee", "lenson");
+        submitInfo.put("dealRslt", benefitEvalVO.getDealRslt());
+        submitInfo.put("dealOpinion",benefitEvalVO.getDealOpinion()); 
         taskService.setVariablesLocal(taskID, submitInfo);
 
         BeanUtils.copyProperties(benefitEval, benefitEvalVO);
