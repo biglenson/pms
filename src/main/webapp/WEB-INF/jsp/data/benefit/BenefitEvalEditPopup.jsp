@@ -318,7 +318,37 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 		<%-- 附件 --%>
 		<jsp:include page="./AttachInclude.jsp"/>
 		<%-- 下一步 --%>
-		<jsp:include page="./NextStepInclude.jsp"/>
+		<%=UIUtils.togglePanelStart("下一步", true, request)%>
+		<table style="border:0;align:center;cellpadding:0;cellspacing:0" id="fieldTable" class="formTable">						
+			<tbody>
+				<tr>
+					<td class="label white_background-color"></td>
+					<td class="content white_background-color"></td>
+					<td class="seperator">
+						<input vtype="select" dbField="dealRslt" value=""/>
+						<input vtype="textarea" dbfield="dealOpinion" value=""/>
+					</td>
+					<td class="label white_background-color"></td>
+					<td class="content white_background-color"></td>
+				</tr>
+				<tr>
+					<td class="label">处理人<font class="red">*</font></td>
+					<td class="content  " id="creator">
+						<div class="content-div" id="content-div-res01" style="cursor: pointer;">
+							<input vtype="input" dbfield="assignee" class="text" value="lenson" readonly="" style="cursor: pointer;" type="text">
+							<img src="/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
+						</div> 
+						<script type="text/javascript">
+							ET.Utils.addEvent(document.getElementById('content-div-res01'),'click',function(){ 
+								var img=document.getElementById('div-img-res01');
+								treeSelectUtils.showUserSelect(img.parentElement.children[0],img.parentElement.children[1], 7,69,true); 
+							}) 
+						</script>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<%=UIUtils.togglePanelEnd(request)%>
 		<%-- 工作流 --%>
 		<jsp:include page="./WorkFlowInclude.jsp"/>
     <%=UIUtils.formBodyEnd(request) %>
