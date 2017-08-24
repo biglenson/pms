@@ -61,14 +61,15 @@
 		List<BenefitEvalItemVO> benefitEvalFormList = (List)request.getAttribute("benefitEvalForm");
 			if(benefitEvalFormList != null && benefitEvalFormList.size() > 0){
 				String dimension = ""; //大类标识
-				int index = 1; //自定义索引
+				int index = 1; //自定义索引,该索引仅用于排序
+				int indexKey = 1; //自定义索引,该索引用于表单数据的提取
 				for(BenefitEvalItemVO item : benefitEvalFormList){
 					if(!dimension.equals(item.getEvalDimension())) {
 						dimension = item.getEvalDimension();
 		%>	
 		<tr class="listTableTR" >
 			<td align="center">
-				<%=index%>
+				<%=index++%>
 			</td>
 			<td title="<%=item.getEvalDimension()%>">
 				<div style="width: <%=nameWidth %>px" class="nowrapText">
@@ -91,9 +92,9 @@
 		<!-- 小类项 -->
 		<tr class="listTableTR" >
 			<td align="center">
-				<%=index+1%>
-				<input vtype="input" dbField<%=index%>="tplItemID" type="hidden" value="<%=item.getTplItemID()%>"/>
-				<input vtype="input" dbField<%=index%>="itemID" type="hidden" value="<%=item.getItemID()%>"/>
+				<%=index%>
+				<input vtype="input" dbField<%=indexKey%>="tplItemID" type="hidden" value="<%=item.getTplItemID()%>"/>
+				<input vtype="input" dbField<%=indexKey%>="itemID" type="hidden" value="<%=item.getItemID()%>"/>
 			</td>
 			<td title="<%=item.getEvalItem()%>">
 				<div style="width: <%=nameWidth %>px" class="nowrapText">
@@ -118,7 +119,7 @@
 			<%}%>
 			<td align="right">
 				 <%if(canEdit){%>
-					<input vtype="input" dbField<%=index%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+					<input vtype="input" dbField<%=indexKey%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
 					 contentType="N10.2" value="<%=TypeUtils.nullToString(item.getEvalValue())%>"/>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalValue())%>
@@ -143,14 +144,14 @@
 			<td title="<%=item.getEvalNote()%>">
 				<div style="width: 100px" class="nowrapText">
 					<%if(canEdit){%>
-						<input vtype="input" dbField<%=index%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
+						<input vtype="input" dbField<%=indexKey%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
 					<%}else{%>
 						<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>
 					<%}%>
 				</div>
 			</td>
 		</tr>
-		<%index++;}}else{%>
+		<%index++;indexKey++;}}else{%>
 		<tr class="listTableTR" >
 			<td colspan="9">没有记录</td>
 		</tr>

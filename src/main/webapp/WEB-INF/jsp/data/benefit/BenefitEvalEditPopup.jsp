@@ -232,14 +232,15 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				List<BenefitEvalTplItemVO> formTemplate = (List)request.getAttribute("formTemplate");
 					if(formTemplate != null && formTemplate.size() > 0){
 						String dimension = ""; //大类标识
-						int index = 1; //自定义索引
+						int index = 1; //自定义索引,该索引仅用于排序
+						int indexKey = 1; //自定义索引,该索引用于表单数据的提取
 						for(BenefitEvalTplItemVO item : formTemplate){
 							if(!dimension.equals(item.getEvalDimension())) {
 								dimension = item.getEvalDimension();
 				%>	
 				<tr class="listTableTR" >
 					<td align="center">
-						<%=index%>
+						<%=index++%>
 					</td>
 					<td title="<%=item.getEvalDimension()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
@@ -262,10 +263,10 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<!-- 小类项 -->
 				<tr class="listTableTR" >
 					<td align="center">
-						<%=index+1%>
-						<input vtype="input" dbField<%=index%>="tplItemID" type="hidden" value="<%=item.getTplItemID()%>"/>
-						<input vtype="input" dbField<%=index%>="evalID" type="hidden" value=""/>
-						<input vtype="input" dbField<%=index%>="itemID" type="hidden" value=""/>
+						<%=index%>
+						<input vtype="input" dbField<%=indexKey%>="tplItemID" type="hidden" value="<%=item.getTplItemID()%>"/>
+						<input vtype="input" dbField<%=indexKey%>="evalID" type="hidden" value=""/>
+						<input vtype="input" dbField<%=indexKey%>="itemID" type="hidden" value=""/>
 					</td>
 					<td title="<%=item.getEvalItem()%>">
 						<div style="width: <%=nameWidth %>px" class="nowrapText">
@@ -285,7 +286,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					</td>
 					<%}%>
 					<td align="right">
-						<input vtype="input" dbField<%=index%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+						<input vtype="input" dbField<%=indexKey%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
 						 contentType="N10.2" value=""/>
 					</td>
 					<%if(isAfterEval){%>
@@ -302,11 +303,11 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					</td>
 					<td title="">
 						<div style="width: 100px" class="nowrapText">
-							<input vtype="input" dbField<%=index%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value=""/>
+							<input vtype="input" dbField<%=indexKey%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value=""/>
 						</div>
 					</td>
 				</tr>
-				<%index++;}}else{%>
+				<%index++;indexKey++;}}else{%>
 				<tr class="listTableTR" >
 					<td colspan="9">没有记录</td>
 				</tr>
