@@ -81,7 +81,7 @@ function submit() {
 			document.frm.operation.value="submit";
 			document.frm.evalInfo.value=JSON.stringify(obj);
 			document.frm.evalForm.value=JSON.stringify(arr);
-			document.frm.action="<%=path%>/datamap/saveBenefitEval";
+			document.frm.action="<%=path%>/datamap/submitBenefitEval";
 			etSubmit(document.frm);
 			parent.ET.setModalWindowReturnValue("1");
 		}

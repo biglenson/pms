@@ -106,7 +106,7 @@ function cleanFun(){
 //评估列表条目点击事件
 function openForm(processID, evalPhase) {
 	var arg = new Array();
-	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>&processID="+processID+"&_id="+Math.random();
+	arg.src = "<%=path%>/datamap/benefitEvalPopup?pageTitle=<%= pageTitle %>&url=<%= url%>&processID="+processID+"&submitFrom=done"+"&_id="+Math.random();
 	var evPhase = evalPhase==0?"前":"后";
 	arg.title = "<%=evalFor%>"+ evPhase +"评估";
 	arg.width = 840;
@@ -200,7 +200,7 @@ function openForm(processID, evalPhase) {
 <script>
     $(document).ready(function() {
         $("#tab li").click(function() {
-        	console.log('当前索引'+$(this).index());
+        	console.log('当前索引2'+$(this).index());
             $("#tab li").eq($(this).index()).css("background-color", "#FFF").siblings().css("background-color", "#F4F4F4");
             $("div[id=todo]").hide().eq($(this).index()).show();
             //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on'); 

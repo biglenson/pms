@@ -30,6 +30,8 @@
 	String taskID = (String)request.getAttribute("taskID");
 	//获取是否可编辑信息(即区分待办或者已办,0是已办,1是待办)
 	String isEditable =  String.valueOf(request.getAttribute("isEditable"));
+	//获取任务单来源,todo为待办,done为已办
+	String submitFrom = (String)request.getAttribute("submitFrom");
 %>
 
 <style>
@@ -228,13 +230,13 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <input type="hidden" name="taskID" value="${taskID}">
 
 <%=UIUtils.toolbarStart(request)%>
-<%if("1".equals(isEditable)){ %>
+<%if("todo".equals(submitFrom)){ %>
 <%=UIUtils.toolbarButton(true, "javascript:submit();", "提交", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:save();", "保存", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:del();", "删除", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
 <%} %>
-<%if("0".equals(isEditable)){ %>
+<%if("done".equals(submitFrom)){ %>
 <%=UIUtils.toolbarButton(true, "javascript:closeBtn();", "关闭", "back.gif", false, false, request)%>
 <%} %>
 
@@ -271,7 +273,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			<tr>
 				<td class="label">标题<font class="red">*</font></td>
 				<td colspan="4" class="content" id="evalTitle">
-					<%if("0".equals(isEditable)) { %>
+					<%if("done".equals(submitFrom)) { %>
 						<div class="content-line" id="div-titleName"><%=benefitEvalInfo.getEvalTitle()%></div>
 					<%}else { %>
 						<input vtype="input" dbField="evalTitle" class="text" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
@@ -282,7 +284,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td colspan="5" height="5"></td>
 			</tr>
 			<tr>
-				<td class="label">评估类型</td>
+				<td class="label">评估类型<%=submitFrom %></td>
 				<td class="content  " id="categorytd"> 
 					<div class="content-line" id="div-categoryName"><%=benefitEvalInfo.getEvalFor()==0?"项目":"产品"%><%=isAfterEval==false?"前":"后"%>评估</div>
 				</td>
@@ -318,7 +320,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="label">是否有归口部门</td>
 				<td class="content  " id="statustd"> 
 					<%if(benefitEvalInfo.getHasDept() == 1) { 
-						if("0".equals(isEditable)) {
+						if("done".equals(submitFrom)) {
 					%>
 							<div class="content-line">是</div>
 						<%} else{%>
@@ -328,7 +330,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 							</select>
 						<%} %>
 					<%}else if(benefitEvalInfo.getHasDept() == 0) {
-						if("0".equals(isEditable)) {
+						if("done".equals(submitFrom)) {
 					%>
 							<div class="content-line">否</div>
 						<%} else{%>
@@ -347,7 +349,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 	<%-- 附件 --%>
 	<jsp:include page="./AttachInclude.jsp"/>
 	<%-- 下一步 --%>
-	<%if("1".equals(isEditable)) {%>
+	<%if("todo".equals(submitFrom)) {%>
 	<jsp:include page="./NextStepInclude.jsp"/>
 	<%}%>
 	<%-- 工作流 --%>

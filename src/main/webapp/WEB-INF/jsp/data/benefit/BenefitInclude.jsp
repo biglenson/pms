@@ -23,9 +23,11 @@
 	boolean isNew = true;
 	//获取是否可编辑信息(即区分待办或者已办,0是已办,1是待办)
 	String isEditable =  String.valueOf(request.getAttribute("isEditable"));
-	if("0".equals(isEditable)) {
+	//获取任务单来源,todo为待办,done为已办
+	String submitFrom = (String)request.getAttribute("submitFrom");
+	if("done".equals(submitFrom)) {
 		canEdit = false;
-	}else if("1".equals(isEditable)) {
+	}else if("todo".equals(submitFrom)) {
 		canEdit = true;
 	}
 %>
