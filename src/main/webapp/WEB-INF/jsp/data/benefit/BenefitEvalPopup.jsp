@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
+<%@ page import="com.zq.commons.utils.TypeUtils" %>
 <%@ page import= "com.zq.vo.process.BenefitEvalItemVO" %>
 <%@ page import= "com.zq.vo.process.TaskHisItemVO" %>
 <%@ page import= "com.zq.vo.process.BenefitEvalVO" %>
@@ -292,7 +293,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="seperator"></td>
 				<td class="label">状态</td>
 				<td class="content  " id="statustd"> 
-					<div class="content-line" id="div-statusName">待需求负责人审批</div>
+					<div class="content-line" id="div-statusName"><%=TypeUtils.nullToString(benefitEvalInfo.getTaskName())%></div>
 				</td>
 			</tr>
 			<tr>
