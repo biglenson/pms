@@ -1,7 +1,6 @@
 package com.zq.vo.process;
 
 import java.util.*;
-import java.sql.Timestamp;
 import java.io.Serializable;
 
 public class BenefitEvalVO {
@@ -16,7 +15,7 @@ public class BenefitEvalVO {
 	private String evalCode;
 	private String evalTitle;
 	private String creator;
-	private Timestamp createDate;
+	private Date createDate;
 	private int tplID;
 	private String tplTitle;
 	private int evalPhase;
@@ -119,7 +118,7 @@ public class BenefitEvalVO {
 		this.creator = creator;
 	}
 
-	public Timestamp getCreateDate() {
+	public Date getCreateDate() {
 		return this.createDate;
 	}
 
@@ -127,7 +126,7 @@ public class BenefitEvalVO {
 	 * 
 	 * @param createDate
 	 */
-	public void setCreateDate(Timestamp createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 

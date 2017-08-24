@@ -75,6 +75,7 @@ public class BenefitEvalSvc{
 
         variables.put("assignee", "lenson");
         variables.put("dealRslt", benefitEvalVO.getDealRslt());
+        //variables.put("rsltVal", benefitEvalVO.getDealRslt());
         variables.put("dealOpinion", benefitEvalVO.getDealOpinion());
         //taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
         taskService.setVariablesLocal(taskID, variables);
@@ -220,15 +221,18 @@ public class BenefitEvalSvc{
     public BenefitEvalVO getBenefitEvalInfo(int evalID) {
         BenefitEvalVO benefitEvalVO = new BenefitEvalVO();
         BenefitEval benefitEval = benefitEvalRepo.getBenefitEvalByEvalID(evalID);
+        String processID = benefitEval.getProcessID();
+        Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         BenefitEvalTpl benefitEvalTpl = benefitEvalTplRepo.getBenefitEvalTplByTplID(benefitEval.getTplID());
         BeanUtils.copyProperties(benefitEval, benefitEvalVO);
         benefitEvalVO.setTplTitle(benefitEvalTpl.getTplTitle());
         benefitEvalVO.setEvalPhase(benefitEvalTpl.getEvalPhase());
         benefitEvalVO.setEvalFor(benefitEvalTpl.getEvalFor());
+        benefitEvalVO.setTaskName(task.getName());
+        logger.info("-----------dddddd-----------------createDate:   "+benefitEvalVO.getCreateDate()); 
+        logger.info("-----------dddddd-----------------createDate:   "+benefitEval.getCreateDate()); 
 
         Map<String, Object> variables = null;
-        String processID = benefitEval.getProcessID();
-        Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         if (task != null){
             String taskID = task.getId();
             logger.info("-----------tttt-----------------taskID:   "+taskID); 
