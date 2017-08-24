@@ -2,6 +2,7 @@
 <%@page import="org.apache.commons.io.filefilter.FalseFileFilter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
 <%@ page import= "com.zq.vo.process.BenefitEvalItemVO" %>
 <%@ page import= "com.zq.vo.process.TaskHisItemVO" %>
@@ -284,7 +285,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td colspan="5" height="5"></td>
 			</tr>
 			<tr>
-				<td class="label">评估类型<%=submitFrom %></td>
+				<td class="label">评估类型</td>
 				<td class="content  " id="categorytd"> 
 					<div class="content-line" id="div-categoryName"><%=benefitEvalInfo.getEvalFor()==0?"项目":"产品"%><%=isAfterEval==false?"前":"后"%>评估</div>
 				</td>
@@ -305,7 +306,13 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="seperator"></td>
 				<td class="label">创建时间</td>
 				<td class="content  " id="createDatetd">
-					<div class="content-line" id="content-div-createDate">系统自动创建</div>
+					<div class="content-line" id="content-div-createDate">
+						<%if("todo".equals(submitFrom)) { %>
+							系统自动创建
+						<%}else { %>
+							<fmt:formatDate value="<%=benefitEvalInfo.getCreateDate()%>" pattern="yyyy-MM-dd HH:mm:ss"/>
+						<% } %>
+					</div>
 				</td>
 			</tr>
 			<tr>
