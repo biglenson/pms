@@ -7,6 +7,9 @@
 	String path = request.getContextPath();
 	//获取基本信息
 	BenefitEvalVO benefitEvalInfo = (BenefitEvalVO)request.getAttribute("benefitEvalInfo");
+	String dealRslt = (String)request.getAttribute("dealRslt");
+	//获取下一步流程评审意见信息（下拉框枚举值）
+	Map<String,String> rsltOption = (Map)request.getAttribute("rsltOption");
 %>
 
 <script type="text/javascript">
@@ -44,12 +47,23 @@
 			<td colspan="5" height="5"></td>
 		</tr>
 		<tr>
-			<td class="label">处理结果<font class="red">*</font></td>
+			<td class="label">处理结果<%=dealRslt%><font class="red">*</font></td>
 			<td class="content" id="dealRslt_statustd"> 
 				<select vtype="select" dbField="dealRslt">
+				<%if("".equals(dealRslt) || dealRslt == null) { %>
 					<option value="">--请选择--</option>
-					<option value="1">同意</option>
-					<option value="0">不同意</option>
+					<%for (Map.Entry<String, String> entry : rsltOption.entrySet()) {%>	  
+						<option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
+					<%}%>
+				<% }else {
+					for (Map.Entry<String, String> entry : rsltOption.entrySet()) {
+						if(entry.getKey() == dealRslt) { %>
+							<option value="<%=entry.getKey()%>" selected="selected"><%=entry.getValue()%></option>
+					<% 	}else { %>
+							<option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
+					<%	}
+					}%>
+				<%} %>
 				</select>
 			</td>
 		</tr>
