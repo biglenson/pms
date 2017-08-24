@@ -131,7 +131,8 @@ public class ProcessController extends BaseController{
     @RequestMapping(value = "saveBenefitEval", method = RequestMethod.POST)  
 	public String saveBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("evalInfo") String evalInfo, 
-                                    @RequestParam("evalForm") String evalForm
+                                    @RequestParam("evalForm") String evalForm,
+                                    @RequestParam("submitFrom") String submitFrom
                                     ) {		 	
         evalInfo = StringEscapeUtils.unescapeHtml(evalInfo);
         logger.info("-BenefitEval------------------------origin evalInfo:    "+evalInfo); 
@@ -176,6 +177,7 @@ public class ProcessController extends BaseController{
         model.addAttribute("taskID",taskID );
         model.addAttribute("isEditable",isEditable );
         model.addAttribute("rsltOption", rsltOption );
+        model.addAttribute("submitFrom", submitFrom );
         return CMCCConstant.BenefitEvalPopup;
     }
 
