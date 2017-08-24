@@ -75,7 +75,8 @@ public class BenefitEvalSvc{
 
         variables.put("assignee", "lenson");
         variables.put("dealRslt", benefitEvalVO.getDealRslt());
-        taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
+        variables.put("dealOpinion", benefitEvalVO.getDealOpinion());
+        //taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
         taskService.setVariablesLocal(taskID, variables);
         variables.clear();
 
@@ -189,8 +190,9 @@ public class BenefitEvalSvc{
         Map<String, Object> submitInfo = new HashMap<String, Object>();
         submitInfo.put("assignee", "lenson");
         submitInfo.put("dealRslt", benefitEvalVO.getDealRslt());
+        submitInfo.put("dealOpinion", benefitEvalVO.getDealOpinion());
         taskService.setVariablesLocal(taskID, submitInfo);
-        taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
+        //taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
 
         BeanUtils.copyProperties(benefitEval, benefitEvalVO);
         return benefitEvalVO;
@@ -234,7 +236,8 @@ public class BenefitEvalSvc{
             if (variables != null && variables.size() !=0) {
                 String assignee = variables.get("assignee").toString(); 
                 String dealRslt = variables.get("dealRslt").toString(); 
-                String dealOpinion = taskService.getTaskComments(taskID, "BenefitEval").get(0).getFullMessage();
+                String dealOpinion = variables.get("dealOpinion").toString(); 
+                //String dealOpinion = taskService.getTaskComments(taskID, "BenefitEval").get(0).getFullMessage();
                 benefitEvalVO.setAssignee(assignee);
                 benefitEvalVO.setDealRslt(dealRslt);
                 benefitEvalVO.setDealOpinion(dealOpinion);
