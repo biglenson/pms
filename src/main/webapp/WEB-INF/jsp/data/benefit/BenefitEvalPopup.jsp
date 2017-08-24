@@ -136,6 +136,7 @@ function save() {
 	console.log(arr);
 	
 	document.frm.operation.value="save";
+	document.frm.submitFrom.value="todo";
 	document.frm.evalInfo.value=JSON.stringify(obj);
 	document.frm.evalForm.value=JSON.stringify(arr);
 	document.frm.action="<%=path%>/datamap/saveBenefitEval";
@@ -230,6 +231,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <input type="hidden" name="evalInfo" value="">
 <input type="hidden" name="evalForm" value="">
 <input type="hidden" name="taskID" value="${taskID}">
+<input type="hidden" name="submitFrom" value="">
 
 <%=UIUtils.toolbarStart(request)%>
 <%if("todo".equals(submitFrom)){ %>

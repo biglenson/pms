@@ -116,6 +116,7 @@ function save() {
 			console.log(arr);
 			
 			document.frm.operation.value="save";
+			document.frm.submitFrom.value="todo";
 			document.frm.evalInfo.value=JSON.stringify(obj);
 			document.frm.evalForm.value=JSON.stringify(arr);
 			document.frm.action="<%=path%>/datamap/saveBenefitEval";
@@ -142,6 +143,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <input type="hidden" name="operation" value="">
 <input type="hidden" name="evalInfo" value="">
 <input type="hidden" name="evalForm" value="">
+<input type="hidden" name="submitFrom" value="">
 
 <%=UIUtils.toolbarStart(request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:submit(\"0\");", "提交", "save.gif", false, false, request)%>
@@ -349,7 +351,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="label white_background-color"></td>
 					<td class="content white_background-color"></td>
 					<td class="seperator">
-						<input type="hidden" vtype="select" dbField="dealRslt" value=""/>
+						<input type="hidden" vtype="select" dbField="dealRslt" value="1"/>
 						<input type="hidden" vtype="textarea" dbfield="dealOpinion" value=""/>
 					</td>
 					<td class="label white_background-color"></td>
