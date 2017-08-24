@@ -63,12 +63,36 @@ public class BenefitEvalSvc{
 	@Autowired
 	EvalCodeGenRepository evalCodeGenRepo;
 
+    @Transactional
+    public BenefitEvalVO submitBenefitEvalInfo(BenefitEvalVO benefitEvalVO, List<BenefitEvalItemVO> benefitEvalForm) {
+        this.saveBenefitEvalInfo(benefitEvalVO, benefitEvalForm);   
+        String processID = benefitEvalVO.getProcessID();
+
+        Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
+        String taskID = task.getId();
+        Map<String, String> variables = new HashMap<String, String>();
+        String dealRsltPropName = null;
+        variables.put("assignee", "lenson");
+        variables.put("hasDept", benefitEvalVO.getHasDept()+"");
+        List<FormProperty> formProperties = formService.getTaskFormData(taskID).getFormProperties();
+        for (FormProperty formProperty : formProperties){
+            if (formProperty.getType().getName() == "enum") dealRsltPropName = formProperty.getName();
+        }
+        variables.put(dealRsltPropName, benefitEvalVO.getDealRslt());
+        taskService.setVariablesLocal(taskID, variables);
+        taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
+        formService.submitTaskFormData(taskID, variables);
+
+
+
+        return benefitEvalVO;
+    }
     public Map<String, String> getDealRsltOption(String taskID) {
         List<FormProperty> formProperties = formService.getTaskFormData(taskID).getFormProperties();
         Map<String, String> rsltOption = null;
         for (FormProperty formProperty : formProperties){
             if (formProperty.getType().getName() == "enum")
-                rsltOption =  (Map<String, String>)formService.getTaskFormData(taskID).getFormProperties().get(0).getType().getInformation("values");
+                rsltOption =  (Map<String, String>)formProperty.getType().getInformation("values");
         }
         return rsltOption;
     }
