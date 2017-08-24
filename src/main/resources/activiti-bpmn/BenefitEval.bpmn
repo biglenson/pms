@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="BenefitEvalProcess" name="BenefitEvalProcess" isExecutable="true">
-    <startEvent id="startevent1" name="开始评估流程"></startEvent>
-    <userTask id="EvalEditByCreator" name="提出人创建编辑评估" activiti:assignee="${vAssignee}"></userTask>
-    <userTask id="EvalApprByCLeader" name="提出部门领导审核评估" activiti:assignee="${vAssignee}"></userTask>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="EvalEditByCreator" name="提出人创建编辑评估" activiti:assignee="${vAssignee}">
+      <extensionElements>
+        <activiti:formProperty id="isToSubmit" name="isToSubmit" type="enum">
+          <activiti:value id="0" name="删除"></activiti:value>
+          <activiti:value id="1" name="提交"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="EvalApprByCLeader" name="提出部门领导审核评估" activiti:assignee="${vAssignee}">
+      <extensionElements>
+        <activiti:formProperty id="isApproved" name="isApproved" type="enum">
+          <activiti:value id="0" name="审批未通过"></activiti:value>
+          <activiti:value id="1" name="审批通过"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="hasDept" name="hasDept" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
     <exclusiveGateway id="IsApprovedByCLeader" name="审核是否通过"></exclusiveGateway>
     <userTask id="WorkDistributeByFLeader" name="财务部门领导分配工作" activiti:assignee="${vAssignee}"></userTask>
     <userTask id="EvalCheckByFEmp" name="财务人员核查" activiti:assignee="${vAssignee}"></userTask>
@@ -11,23 +26,46 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && hasDept==0}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow7" sourceRef="WorkDistributeByFLeader" targetRef="EvalCheckByFEmp"></sequenceFlow>
-    <userTask id="EvalApprByRLeader" name="归口部门领导审核" activiti:assignee="${vAssignee}"></userTask>
-    <userTask id="EvalApprByFLeader" name="财务部门领导审核" activiti:assignee="${vAssignee}"></userTask>
+    <userTask id="EvalApprByRLeader" name="归口部门领导审核" activiti:assignee="${vAssignee}">
+      <extensionElements>
+        <activiti:formProperty id="isApproved" name="isApproved" type="enum">
+          <activiti:value id="0" name="审批未通过"></activiti:value>
+          <activiti:value id="1" name="审批通过并提交财务部门"></activiti:value>
+          <activiti:value id="2" name="审批通过需退回发起部门"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="EvalApprByFLeader" name="财务部门领导审核" activiti:assignee="${vAssignee}">
+      <extensionElements>
+        <activiti:formProperty id="isApproved" name="isApproved" type="enum">
+          <activiti:value id="0" name="审核未通过"></activiti:value>
+          <activiti:value id="1" name="审核通过"></activiti:value>
+          <activiti:value id="2" name="审核通过需退回发起部门"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
     <sequenceFlow id="flow8" sourceRef="EvalCheckByFEmp" targetRef="EvalApprByFLeader"></sequenceFlow>
     <exclusiveGateway id="IsApprovedByFLeader" name="审核是否通过"></exclusiveGateway>
     <sequenceFlow id="flow9" sourceRef="EvalApprByFLeader" targetRef="IsApprovedByFLeader"></sequenceFlow>
     <sequenceFlow id="flow10" name="审核未通过。" sourceRef="IsApprovedByFLeader" targetRef="EvalCheckByFEmp">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==0}]]></conditionExpression>
     </sequenceFlow>
-    <endEvent id="endevent1" name="财务部审核通过"></endEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow11" name="审核通过" sourceRef="IsApprovedByFLeader" targetRef="endevent1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==0}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow12" name="审核通过，退回。" sourceRef="IsApprovedByFLeader" targetRef="EvalRejectConfirm">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==1}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==2}]]></conditionExpression>
     </sequenceFlow>
-    <userTask id="EvalRejectConfirm" name="提出部门领导处理退回" activiti:assignee="${vAssignee}"></userTask>
-    <endEvent id="endevent2" name="放弃修订"></endEvent>
+    <userTask id="EvalRejectConfirm" name="提出部门领导处理退回" activiti:assignee="${vAssignee}">
+      <extensionElements>
+        <activiti:formProperty id="isToRevise" name="isToRevise" type="enum">
+          <activiti:value id="0" name="放弃修改"></activiti:value>
+          <activiti:value id="1" name="修改并重新提交"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent2" name="End"></endEvent>
     <exclusiveGateway id="IsToRevise" name="是否重新提交"></exclusiveGateway>
     <sequenceFlow id="flow13" sourceRef="EvalRejectConfirm" targetRef="IsToRevise"></sequenceFlow>
     <sequenceFlow id="flow14" name="修订重新提交" sourceRef="IsToRevise" targetRef="EvalEditByCreator">
@@ -46,10 +84,10 @@
     <sequenceFlow id="flow18" sourceRef="EvalCheckByREmp" targetRef="EvalApprByRLeader"></sequenceFlow>
     <sequenceFlow id="flow19" sourceRef="EvalApprByRLeader" targetRef="IsApprovedByRLeader"></sequenceFlow>
     <sequenceFlow id="flow20" name="审核通过，退回。" sourceRef="IsApprovedByRLeader" targetRef="EvalRejectConfirm">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==1}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==2}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow21" name="审核通过" sourceRef="IsApprovedByRLeader" targetRef="WorkDistributeByFLeader">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1 && isToReject==0}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isApproved==1}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow22" sourceRef="startevent1" targetRef="EvalEditByCreator"></sequenceFlow>
     <sequenceFlow id="flow23" sourceRef="EvalEditByCreator" targetRef="IsToSubmit"></sequenceFlow>
@@ -64,7 +102,7 @@
     <sequenceFlow id="flow27" name="提交" sourceRef="IsToSubmit" targetRef="EvalApprByCLeader">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isToSubmit==1}]]></conditionExpression>
     </sequenceFlow>
-    <endEvent id="endevent3" name="删除评估"></endEvent>
+    <endEvent id="endevent3" name="End"></endEvent>
     <sequenceFlow id="flow28" name="放弃" sourceRef="IsToSubmit" targetRef="endevent3">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isToSubmit==0}]]></conditionExpression>
     </sequenceFlow>

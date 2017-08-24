@@ -94,6 +94,16 @@ public class ProcessController extends BaseController{
 	public String delBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("taskID") String taskID
                                     ) {		 	
+        /*
+        String pName = formService.getTaskFormData(taskID).getFormProperties().get(0).getName();
+        Map<String, String> selectValues = (Map<String, String>)formService.getTaskFormData(taskID).getFormProperties().get(0).getType().getInformation("values");
+        if (selectValues != null) {
+                for (Map.Entry<String, String> enumEntry : selectValues.entrySet()){
+                    logger.info("enum, key: {}, value: {}-----------"+ enumEntry.getKey()+"=========="+ enumEntry.getValue());
+                }
+        }
+        logger.info("-testFormProperties------------------------pName:    "+pName); 
+        */
         Map<String, String> variables = new HashMap<String, String>();
         variables.put("isToSubmit", "0");
         formService.submitTaskFormData(taskID, variables);
@@ -126,12 +136,17 @@ public class ProcessController extends BaseController{
         int isEditable = 0;
         int evalID = benefitEvalVO.getEvalID();
         String taskID = null;
+        Map<String, String> rsltOption = null;
         String processID = benefitEvalVO.getProcessID();
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         String curUser = new String("lenson");
         if (task != null) {
             taskID = task.getId();
-            if (task.getAssignee().equals(curUser)) isEditable = 1;
+            if (task.getAssignee().equals(curUser)){
+                 isEditable = 1;
+                 rsltOption = benefitEvalSvc.getDealRsltOption(taskID);
+            }
+            
         }
 
         logger.info("-BenefitEval------------------------evalID back:    "+evalID); 
@@ -144,6 +159,7 @@ public class ProcessController extends BaseController{
         model.addAttribute("taskHis",taskHis );
         model.addAttribute("taskID",taskID );
         model.addAttribute("isEditable",isEditable );
+        model.addAttribute("rsltOption", rsltOption );
         return CMCCConstant.BenefitEvalPopup;
     }
 
@@ -159,11 +175,15 @@ public class ProcessController extends BaseController{
         int isEditable = 0;
         int evalID = benefitEvalSvc.getEvalIDByProcessID(processID);
         String taskID = null;
+        Map<String, String> rsltOption = null;
         String curUser = new String("lenson");
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         if (task != null) {
             taskID = task.getId();
-            if (task.getAssignee().equals(curUser)) isEditable = 1;
+            if (task.getAssignee().equals(curUser)){
+                isEditable = 1;
+                 rsltOption = benefitEvalSvc.getDealRsltOption(taskID);
+            }
             logger.info("测试中！----------------------------assigneeeee:   "+ task.getAssignee()); 
         }
         logger.info("测试中！----------------------------isEditable:   "+ isEditable); 
@@ -178,6 +198,7 @@ public class ProcessController extends BaseController{
         model.addAttribute("pageTitle", pageTitle);
         model.addAttribute("url", url);
         model.addAttribute("isEditable", isEditable);
+        model.addAttribute("rsltOption", rsltOption );
 
         return CMCCConstant.BenefitEvalPopup;
 	 } 

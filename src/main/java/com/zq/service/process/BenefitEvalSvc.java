@@ -28,11 +28,13 @@ import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.FormService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.apache.shiro.SecurityUtils;
 import org.activiti.engine.task.Task;
+import org.activiti.engine.form.FormProperty;
 
 @Component
 public class BenefitEvalSvc{
@@ -42,6 +44,9 @@ public class BenefitEvalSvc{
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private FormService formService;
 
     @Autowired
     BenefitEvalRepository benefitEvalRepo;
@@ -57,6 +62,16 @@ public class BenefitEvalSvc{
 
 	@Autowired
 	EvalCodeGenRepository evalCodeGenRepo;
+
+    public Map<String, String> getDealRsltOption(String taskID) {
+        List<FormProperty> formProperties = formService.getTaskFormData(taskID).getFormProperties();
+        Map<String, String> rsltOption = null;
+        for (FormProperty formProperty : formProperties){
+            if (formProperty.getType().getName() == "enum")
+                rsltOption =  (Map<String, String>)formService.getTaskFormData(taskID).getFormProperties().get(0).getType().getInformation("values");
+        }
+        return rsltOption;
+    }
 
     public List<TaskHisItemVO> getTaskHis(String processID) {
         return benefitEvalRepo.getTaskHis(processID);
@@ -187,12 +202,14 @@ public class BenefitEvalSvc{
         if (task != null){
             String taskID = task.getId();
             variables = taskService.getVariablesLocal(taskID);
-            String assignee = variables.get("assignee").toString(); 
-            String dealRslt = variables.get("dealRslt").toString(); 
-            String dealOpinion = taskService.getTaskComments(taskID, "BenefitEval").get(0).getFullMessage();
-            benefitEvalVO.setAssignee(assignee);
-            benefitEvalVO.setDealRslt(dealRslt);
-            benefitEvalVO.setDealOpinion(dealOpinion);
+            if (variables != null) {
+                String assignee = variables.get("assignee").toString(); 
+                String dealRslt = variables.get("dealRslt").toString(); 
+                String dealOpinion = taskService.getTaskComments(taskID, "BenefitEval").get(0).getFullMessage();
+                benefitEvalVO.setAssignee(assignee);
+                benefitEvalVO.setDealRslt(dealRslt);
+                benefitEvalVO.setDealOpinion(dealOpinion);
+            }
         }
 
         
