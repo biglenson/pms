@@ -87,7 +87,7 @@ public class ProcessController extends BaseController{
     @Autowired
     private BenefitEvalItemSvc benefitEvalItemSvc;
 
-    @RequestMapping(value = "submitBenefitEval", method = RequestMethod.GET)  
+    @RequestMapping(value = "submitBenefitEval", method = RequestMethod.POST)  
 	public String submitBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("evalInfo") String evalInfo, 
                                     @RequestParam("evalForm") String evalForm

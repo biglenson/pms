@@ -65,25 +65,29 @@ public class BenefitEvalSvc{
 
     @Transactional
     public BenefitEvalVO submitBenefitEvalInfo(BenefitEvalVO benefitEvalVO, List<BenefitEvalItemVO> benefitEvalForm) {
+        Map<String, String> variables = new HashMap<String, String>();
         this.saveBenefitEvalInfo(benefitEvalVO, benefitEvalForm);   
-        String processID = benefitEvalVO.getProcessID();
 
+
+        String processID = benefitEvalVO.getProcessID();
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         String taskID = task.getId();
-        Map<String, String> variables = new HashMap<String, String>();
-        String dealRsltPropName = null;
+
         variables.put("assignee", "lenson");
+        variables.put("dealRslt", benefitEvalVO.getDealRslt());
+        taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
+        taskService.setVariablesLocal(taskID, variables);
+        variables.clear();
+
+        String dealRsltPropName = null;
+        variables.put("vAssignee", "lenson");
         variables.put("hasDept", benefitEvalVO.getHasDept()+"");
         List<FormProperty> formProperties = formService.getTaskFormData(taskID).getFormProperties();
         for (FormProperty formProperty : formProperties){
             if (formProperty.getType().getName() == "enum") dealRsltPropName = formProperty.getName();
         }
         variables.put(dealRsltPropName, benefitEvalVO.getDealRslt());
-        taskService.setVariablesLocal(taskID, variables);
-        taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
         formService.submitTaskFormData(taskID, variables);
-
-
 
         return benefitEvalVO;
     }
@@ -225,8 +229,9 @@ public class BenefitEvalSvc{
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         if (task != null){
             String taskID = task.getId();
+            logger.info("-----------tttt-----------------taskID:   "+taskID); 
             variables = taskService.getVariablesLocal(taskID);
-            if (variables != null) {
+            if (variables != null && variables.size() !=0) {
                 String assignee = variables.get("assignee").toString(); 
                 String dealRslt = variables.get("dealRslt").toString(); 
                 String dealOpinion = taskService.getTaskComments(taskID, "BenefitEval").get(0).getFullMessage();
