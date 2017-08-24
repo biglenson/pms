@@ -87,8 +87,24 @@ public class ProcessController extends BaseController{
     @Autowired
     private BenefitEvalItemSvc benefitEvalItemSvc;
 
-    //@Autowired
-    //private EvalCodeGenSvc evalCodeGenSvc;
+    @RequestMapping(value = "submitBenefitEval", method = RequestMethod.GET)  
+	public String submitBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
+                                    @RequestParam("evalInfo") String evalInfo, 
+                                    @RequestParam("evalForm") String evalForm
+                                    ) {		 	
+        evalInfo = StringEscapeUtils.unescapeHtml(evalInfo);
+        logger.info("-BenefitEval------------------------origin evalInfo:    "+evalInfo); 
+        evalForm = StringEscapeUtils.unescapeHtml(evalForm);
+        logger.info("-BenefitEval------------------------origin evalform:    "+evalForm); 
+        BenefitEvalVO benefitEvalVO = JSON.parseObject(evalInfo, BenefitEvalVO.class);
+        List<BenefitEvalItemVO> benefitEvalForm = JSON.parseArray(evalForm, BenefitEvalItemVO.class);
+        
+        benefitEvalSvc.submitBenefitEvalInfo(benefitEvalVO, benefitEvalForm);   
+        
+        model.addAttribute("feedback","评估信息提交成功！" );
+
+        return CMCCConstant.Feedback;
+    }
 
     @RequestMapping(value = "delBenefitEval", method = RequestMethod.GET)  
 	public String delBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
