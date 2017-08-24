@@ -57,10 +57,33 @@ function submit() {
 		if (!creator) {
 			alert('标题不能为空！');
 		}else  {
-			/* document.frm.submit(); */
+			console.log('===========测试中！======================>修改再保存----');
+			var obj = {};
+			$('.formTable').find('[dbField]').each(function(index, elem) {
+				var dbField = $(elem).attr("dbField");
+				var vtype = $(elem).attr("vtype");
+				obj[dbField] = getVtypeVal(vtype, elem);
+			});
+			var arr = new Array();
+			for (var i = 1; i <= <%=formInfos.size()%>; i++) {
+				var obj2 = {};
+				$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
+					var dbField = $(elem).attr("dbField"+i);
+					var vtype = $(elem).attr("vtype");
+					obj2[dbField] = getVtypeVal(vtype, elem);
+					arr[i-1] = obj2;
+				});
+			}
+			
+			console.log(obj);
+			console.log(arr);
+			
 			document.frm.operation.value="submit";
-			document.frm.action="<%=path%>/datamap/benefitEvalPopup2";
+			document.frm.evalInfo.value=JSON.stringify(obj);
+			document.frm.evalForm.value=JSON.stringify(arr);
+			document.frm.action="<%=path%>/datamap/saveBenefitEval";
 			etSubmit(document.frm);
+			parent.ET.setModalWindowReturnValue("1");
 		}
 	}); 
 }
