@@ -7,7 +7,7 @@
 	String path = request.getContextPath();
 	//获取基本信息
 	BenefitEvalVO benefitEvalInfo = (BenefitEvalVO)request.getAttribute("benefitEvalInfo");
-	String dealRslt = (String)request.getAttribute("dealRslt");
+	String dealRslt = benefitEvalInfo.getDealRslt();
 	//获取下一步流程评审意见信息（下拉框枚举值）
 	Map<String,String> rsltOption = (Map)request.getAttribute("rsltOption");
 %>
@@ -47,7 +47,7 @@
 			<td colspan="5" height="5"></td>
 		</tr>
 		<tr>
-			<td class="label">处理结果<%=dealRslt%><font class="red">*</font></td>
+			<td class="label">处理结果<font class="red">*</font></td>
 			<td class="content" id="dealRslt_statustd"> 
 				<select vtype="select" dbField="dealRslt">
 				<%if("".equals(dealRslt) || dealRslt == null) { %>
@@ -57,7 +57,7 @@
 					<%}%>
 				<% }else {
 					for (Map.Entry<String, String> entry : rsltOption.entrySet()) {
-						if(entry.getKey() == dealRslt) { %>
+						if(entry.getKey().equals(dealRslt)) { %>
 							<option value="<%=entry.getKey()%>" selected="selected"><%=entry.getValue()%></option>
 					<% 	}else { %>
 							<option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
