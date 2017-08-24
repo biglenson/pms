@@ -185,8 +185,10 @@ public class ProcessController extends BaseController{
 	public String getBenefitEvalInfo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
                                     @RequestParam("pageTitle") String pageTitle,
                                     @RequestParam("url") String url, 
-                                    @RequestParam("processID") String processID) {		 	
-        logger.info("测试中！----------------------------evalForm"); 
+                                    @RequestParam("processID") String processID,
+                                    @RequestParam("submitFrom") String submitFrom
+                                    ) {		 	
+        logger.info("测试中！----------------------------submitFrom:  "+submitFrom); 
         
         int isEditable = 0;
         int evalID = benefitEvalSvc.getEvalIDByProcessID(processID);
@@ -215,6 +217,7 @@ public class ProcessController extends BaseController{
         model.addAttribute("url", url);
         model.addAttribute("isEditable", isEditable);
         model.addAttribute("rsltOption", rsltOption );
+        model.addAttribute("submitFrom", submitFrom );
 
         return CMCCConstant.BenefitEvalPopup;
 	 } 
