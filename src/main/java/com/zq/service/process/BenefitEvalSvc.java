@@ -229,12 +229,10 @@ public class BenefitEvalSvc{
         benefitEvalVO.setTplTitle(benefitEvalTpl.getTplTitle());
         benefitEvalVO.setEvalPhase(benefitEvalTpl.getEvalPhase());
         benefitEvalVO.setEvalFor(benefitEvalTpl.getEvalFor());
-        benefitEvalVO.setTaskName(task.getName());
-        logger.info("-----------dddddd-----------------createDate:   "+benefitEvalVO.getCreateDate()); 
-        logger.info("-----------dddddd-----------------createDate:   "+benefitEval.getCreateDate()); 
 
         Map<String, Object> variables = null;
         if (task != null){
+            benefitEvalVO.setTaskName(task.getName());
             String taskID = task.getId();
             logger.info("-----------tttt-----------------taskID:   "+taskID); 
             variables = taskService.getVariablesLocal(taskID);
@@ -247,6 +245,8 @@ public class BenefitEvalSvc{
                 benefitEvalVO.setDealRslt(dealRslt);
                 benefitEvalVO.setDealOpinion(dealOpinion);
             }
+        } else {
+            benefitEvalVO.setTaskName("流程结束");
         }
 
         
