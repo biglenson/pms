@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
+<%@ page import="com.zq.commons.utils.TypeUtils" %>
 <%@ page import= "com.zq.vo.process.BenefitEvalVO" %>
 <%
 	String path = request.getContextPath();
@@ -32,7 +33,7 @@
 			<td class="label">处理人<font class="red">*</font></td>
 			<td class="content  " id="creator">
 				<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-					<input vtype="input" dbfield="assignee" class="text" value="<%=benefitEvalInfo.getAssignee()%>" readonly="" style="cursor: pointer;" type="text">
+					<input vtype="input" dbfield="assignee" class="text" value="<%=TypeUtils.nullToString(benefitEvalInfo.getAssignee())%>" readonly="" style="cursor: pointer;" type="text">
 					<img src="/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 				</div> 
 				<script type="text/javascript">
@@ -49,7 +50,7 @@
 		<tr>
 			<td class="label">处理结果<font class="red">*</font></td>
 			<td class="content" id="dealRslt_statustd"> 
-				<select vtype="select" dbField="dealRslt">
+				<select vtype="select" dbField="dealRslt" id="next-step-select">
 				<%if("".equals(dealRslt) || dealRslt == null) { %>
 					<option value="">--请选择--</option>
 					<%for (Map.Entry<String, String> entry : rsltOption.entrySet()) {%>	  
@@ -73,7 +74,7 @@
 		<tr>
 			<td class="label">处理意见</td>
 			<td class="content" id="evalCode"> 
-				<textarea vtype="textarea" dbfield="dealOpinion" rows="3" cols="20"><%=benefitEvalInfo.getDealOpinion()%></textarea>
+				<textarea vtype="textarea" dbfield="dealOpinion" rows="3" cols="20"><%=TypeUtils.nullToString(benefitEvalInfo.getDealOpinion())%></textarea>
 			</td>
 		</tr>
 	</tbody>

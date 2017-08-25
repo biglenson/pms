@@ -90,6 +90,9 @@ function submit() {
 		var vtype = $(elem).attr("vtype");
 		obj[dbField] = getVtypeVal(vtype, elem);
 	});
+	var selectValue = $("#next-step-select").find("option:selected").text();
+	obj.rsltDesc = selectValue;
+	console.log('提交的下拉框选中词语:  '+selectValue);
 	var arr = new Array();
 	for (var i = 1; i <= <%=formInfos.size()%>; i++) {
 		var obj2 = {};
@@ -121,6 +124,9 @@ function save() {
 		var vtype = $(elem).attr("vtype");
 		obj[dbField] = getVtypeVal(vtype, elem);
 	});
+	var selectValue = $("#next-step-select").find("option:selected").text();
+	obj.rsltDesc = selectValue;
+	console.log('提交的下拉框选中词语:  '+selectValue);
 	var arr = new Array();
 	for (var i = 1; i <= <%=formInfos.size()%>; i++) {
 		var obj2 = {};
@@ -310,7 +316,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="label">创建时间</td>
 				<td class="content  " id="createDatetd">
 					<div class="content-line" id="content-div-createDate">
-						<%if("todo".equals(submitFrom)) { %>
+						<%if(benefitEvalInfo.getCreateDate() == null) { %>
 							系统自动创建
 						<%}else { %>
 							<fmt:formatDate value="<%=benefitEvalInfo.getCreateDate()%>" pattern="yyyy-MM-dd HH:mm:ss"/>

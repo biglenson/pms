@@ -352,6 +352,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 					<td class="content white_background-color"></td>
 					<td class="seperator">
 						<input type="hidden" vtype="select" dbField="dealRslt" value="1"/>
+						<input type="hidden" vtype="select" dbField="rsltDesc" value="提交"/>
 						<input type="hidden" vtype="textarea" dbfield="dealOpinion" value=""/>
 					</td>
 					<td class="label white_background-color"></td>
