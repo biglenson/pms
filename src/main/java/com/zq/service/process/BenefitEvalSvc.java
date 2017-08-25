@@ -73,8 +73,9 @@ public class BenefitEvalSvc{
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         String taskID = task.getId();
 
-        variables.put("assignee", "lenson");
+        variables.put("assignee", benefitEvalVO.getAssignee());
         variables.put("dealRslt", benefitEvalVO.getDealRslt());
+        variables.put("rsltDesc", benefitEvalVO.getRsltDesc());
         //variables.put("rsltVal", benefitEvalVO.getDealRslt());
         variables.put("dealOpinion", benefitEvalVO.getDealOpinion());
         //taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
@@ -82,7 +83,7 @@ public class BenefitEvalSvc{
         variables.clear();
 
         String dealRsltPropName = null;
-        variables.put("vAssignee", "lenson");
+        variables.put("vAssignee", benefitEvalVO.getAssignee());
         variables.put("hasDept", benefitEvalVO.getHasDept()+"");
         List<FormProperty> formProperties = formService.getTaskFormData(taskID).getFormProperties();
         for (FormProperty formProperty : formProperties){
@@ -118,7 +119,7 @@ public class BenefitEvalSvc{
         BenefitEvalItem benefitEvalItem = null;
         String processID = "";
         Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("vAssignee", "lenson");
+        variables.put("vAssignee", benefitEvalVO.getAssignee());
 
         String evalCode = benefitEvalVO.getEvalCode();
         int evalPhase = benefitEvalVO.getEvalPhase();
@@ -146,7 +147,7 @@ public class BenefitEvalSvc{
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
             benefitEval.setHasDept( benefitEvalVO.getHasDept() );
             benefitEval.setTplID( benefitEvalVO.getTplID() );
-            benefitEval.setCreator("lenson");
+            benefitEval.setCreator(benefitEvalVO.getAssignee());
             benefitEval.setCreateDate(new Date());
             benefitEvalRepo.save(benefitEval);
             evalID =  benefitEval.getEvalID();
@@ -189,7 +190,7 @@ public class BenefitEvalSvc{
         String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
         logger.info("------------taskID:  "+ taskID+"   ----------------processID: "+ processID); 
         Map<String, Object> submitInfo = new HashMap<String, Object>();
-        submitInfo.put("assignee", "lenson");
+        submitInfo.put("assignee", benefitEvalVO.getAssignee());
         submitInfo.put("dealRslt", benefitEvalVO.getDealRslt());
         submitInfo.put("rsltDesc", benefitEvalVO.getRsltDesc());
         submitInfo.put("dealOpinion", benefitEvalVO.getDealOpinion());
@@ -253,11 +254,11 @@ public class BenefitEvalSvc{
 
         return benefitEvalVO;
     }
-    public List<TaskTodoItemVO> getTaskTodo() {
-            return benefitEvalRepo.getTaskTodo("lenson");
+    public List<TaskTodoItemVO> getTaskTodo(String loginName) {
+            return benefitEvalRepo.getTaskTodo(loginName);
     }
-    public List<TaskTodoItemVO> getTaskDone() {
-            return benefitEvalRepo.getTaskDone("lenson");
+    public List<TaskTodoItemVO> getTaskDone(String loginName) {
+            return benefitEvalRepo.getTaskDone(loginName);
 
     }
 }

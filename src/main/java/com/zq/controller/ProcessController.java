@@ -156,7 +156,7 @@ public class ProcessController extends BaseController{
         Map<String, String> rsltOption = null;
         String processID = benefitEvalVO.getProcessID();
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
-        String curUser = new String("lenson");
+        String curUser = getStaffName();
         if (task != null) {
             taskID = task.getId();
             if (task.getAssignee().equals(curUser)){
@@ -196,7 +196,7 @@ public class ProcessController extends BaseController{
         int evalID = benefitEvalSvc.getEvalIDByProcessID(processID);
         String taskID = null;
         Map<String, String> rsltOption = null;
-        String curUser = new String("lenson");
+        String curUser = getStaffName();
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         if (task != null) {
             taskID = task.getId();
@@ -238,7 +238,7 @@ public class ProcessController extends BaseController{
                                     @RequestParam("url") String url) {		 	
         logger.info("测试中！----------------------------taskTodo"); 
 
-        List<TaskTodoItemVO> taskTodo = benefitEvalSvc.getTaskTodo();
+        List<TaskTodoItemVO> taskTodo = benefitEvalSvc.getTaskTodo(getStaffName());
         model.addAttribute("taskTodo", taskTodo);
         model.addAttribute("pageTitle", pageTitle);
         model.addAttribute("url", url);
@@ -251,7 +251,7 @@ public class ProcessController extends BaseController{
 						            @RequestParam("url") String url) {		 			 	
         logger.info("测试中！----------------------------taskDone"); 
 
-        List<TaskTodoItemVO> taskDone = benefitEvalSvc.getTaskDone();
+        List<TaskTodoItemVO> taskDone = benefitEvalSvc.getTaskDone(getStaffName());
         model.addAttribute("taskDone", taskDone);
         model.addAttribute("pageTitle", pageTitle);
         model.addAttribute("url", url);
