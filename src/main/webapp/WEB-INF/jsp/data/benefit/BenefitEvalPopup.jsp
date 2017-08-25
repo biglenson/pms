@@ -30,7 +30,7 @@
 	List<BenefitEvalItemVO> formInfos = (List)request.getAttribute("benefitEvalForm");
 	//获取唯一任务单ID号
 	String taskID = (String)request.getAttribute("taskID");
-	//获取是否可编辑信息(即区分待办或者已办,0是已办,1是待办)
+	//获取是否可编辑信息(即区分评估发起人或者飞发起人,0是非发起者,1是发起者)
 	String isEditable =  String.valueOf(request.getAttribute("isEditable"));
 	//获取任务单来源,todo为待办,done为已办
 	String submitFrom = (String)request.getAttribute("submitFrom");
@@ -285,9 +285,11 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td colspan="4" class="content" id="evalTitle">
 					<%if("done".equals(submitFrom)) { %>
 						<div class="content-line" id="div-titleName"><%=benefitEvalInfo.getEvalTitle()%></div>
-					<%}else { %>
+					<%}else if("1".equals(isEditable)){ %>
 						<input vtype="input" dbField="evalTitle" class="text" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
-					<%}%>
+					<%}else { %>
+						<div class="content-line" id="div-titleName"><%=benefitEvalInfo.getEvalTitle()%></div>
+					<% }%>
 				</td>
 			</tr>
 			<tr>
@@ -339,21 +341,25 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 						if("done".equals(submitFrom)) {
 					%>
 							<div class="content-line">是</div>
-						<%} else{%>
+						<%} else if("1".equals(isEditable)) {%>
 							<select vtype="select" dbField="hasDept" id="selector_status">
 							  <option value="1" selected="selected">是</option>
 							  <option value="0">否</option>
 							</select>
+						<%} else { %>
+							<div class="content-line">是</div>
 						<%} %>
 					<%}else if(benefitEvalInfo.getHasDept() == 0) {
 						if("done".equals(submitFrom)) {
 					%>
 							<div class="content-line">否</div>
-						<%} else{%>
+						<%} else if("1".equals(isEditable)) {%>
 							<select vtype="select" dbField="hasDept" id="selector_status">
 							  <option value="1">是</option>
 							  <option value="0" selected="selected">否</option>
 							</select>
+						<%} else { %>
+							<div class="content-line">否</div>
 						<%} %>
 					<%}%>
 				</td>

@@ -21,7 +21,7 @@
 	int nameWidth = (760-30-180-80-50-100-(isAfterEval?160:0)-10);
 	boolean canEdit = true;
 	boolean isNew = true;
-	//获取是否可编辑信息(即区分待办或者已办,0是已办,1是待办)
+	//获取是否可编辑信息(即区分评估发起人或者飞发起人,0是非发起者,1是发起者)
 	String isEditable =  String.valueOf(request.getAttribute("isEditable"));
 	//获取任务单来源,todo为待办,done为已办
 	String submitFrom = (String)request.getAttribute("submitFrom");
@@ -112,25 +112,37 @@
 			</td>
 			<%if(isAfterEval){%>
 			<td align="right">
-				<%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" readonly="readonly" value="<%=item.getEvalValue()%>"/>
+				<%if(canEdit){
+					if("1".equals(isEditable)) { %>
+						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" readonly="readonly" value="<%=item.getEvalValue()%>"/>
+					<%} else { %>
+						<%=TypeUtils.nullToString(item.getEvalValue())%>
+					<%}%>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalValue())%>
 				<%}%>
 			</td>
 			<%}%>
 			<td align="right">
-				 <%if(canEdit){%>
-					<input vtype="input" dbField<%=indexKey%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
-					 contentType="N10.2" value="<%=TypeUtils.nullToString(item.getEvalValue())%>"/>
+				 <%if(canEdit){
+				 	if("1".equals(isEditable)) { %>
+				 		<input vtype="input" dbField<%=indexKey%>="evalValue" type="text" class="text" style="width: 78px;text-align: right;" <%if(isAfterEval){%>onchange="cmccScoreChangeFun(this);"<%}%>
+						 contentType="N10.2" value="<%=TypeUtils.nullToString(item.getEvalValue())%>"/>
+				 	<%}else { %>
+				 		<%=TypeUtils.nullToString(item.getEvalValue())%>
+				 	<%}%>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalValue())%>
 				<%}%>
 			</td>
 			<%if(isAfterEval){%>
 			<td align="right">
-				<%if(canEdit){%>
-					<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" readonly="readonly" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
+				<%if(canEdit){
+					if("1".equals(isEditable)) { %>
+						<input type="text" class="text" style="width: 78px;text-align: right;border: none;" contentType="N10.2" readonly="readonly" value="<%=TypeUtils.nullToString(item.getEvalItem())%>"/>
+					<%}else { %>
+						<%=TypeUtils.nullToString(item.getEvalItem())%>
+					<%}%>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalItem())%>
 				<%}%>
@@ -145,8 +157,12 @@
 			</td>
 			<td title="<%=item.getEvalNote()%>">
 				<div style="width: 100px" class="nowrapText">
-					<%if(canEdit){%>
-						<input vtype="input" dbField<%=indexKey%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
+					<%if(canEdit){
+						if("1".equals(isEditable)) { %>
+							<input vtype="input" dbField<%=indexKey%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
+						<%}else { %>
+							<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>
+						<%}%>
 					<%}else{%>
 						<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>
 					<%}%>
