@@ -84,35 +84,48 @@ function logFun(){
 //提交
 function submit() {
 	console.log('===========测试中！======================>提交----');
-	var obj = {};
-	$('.formTable').find('[dbField]').each(function(index, elem) {
-		var dbField = $(elem).attr("dbField");
-		var vtype = $(elem).attr("vtype");
-		obj[dbField] = getVtypeVal(vtype, elem);
+	$(function () {
+		var creator = $('input[dbField=evalTitle]').val();
+		var assignee = $('input[dbField=assignee]').val();
+		var dealRslt = $('select[dbField=dealRslt]').val();
+		if (!creator) {
+			alert('标题不能为空！');
+		}else if (!assignee) {
+			alert('处理人不能为空！');
+		}else if (!dealRslt) {
+			alert('处理结果不能为空！');
+		}else {
+			var obj = {};
+			$('.formTable').find('[dbField]').each(function(index, elem) {
+				var dbField = $(elem).attr("dbField");
+				var vtype = $(elem).attr("vtype");
+				obj[dbField] = getVtypeVal(vtype, elem);
+			});
+			var selectValue = $("#next-step-select").find("option:selected").text();
+			obj.rsltDesc = selectValue;
+			console.log('提交的下拉框选中词语:  '+selectValue);
+			var arr = new Array();
+			for (var i = 1; i <= <%=formInfos.size()%>; i++) {
+				var obj2 = {};
+				$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
+					var dbField = $(elem).attr("dbField"+i);
+					var vtype = $(elem).attr("vtype");
+					obj2[dbField] = getVtypeVal(vtype, elem);
+					arr[i-1] = obj2;
+				});
+			}
+			
+			console.log(obj);
+			console.log(arr);
+			
+			document.frm.operation.value="submit";
+			document.frm.evalInfo.value=JSON.stringify(obj);
+			document.frm.evalForm.value=JSON.stringify(arr);
+			document.frm.action="<%=path%>/datamap/submitBenefitEval";
+			etSubmit(document.frm);
+			parent.ET.setModalWindowReturnValue("1");
+		}
 	});
-	var selectValue = $("#next-step-select").find("option:selected").text();
-	obj.rsltDesc = selectValue;
-	console.log('提交的下拉框选中词语:  '+selectValue);
-	var arr = new Array();
-	for (var i = 1; i <= <%=formInfos.size()%>; i++) {
-		var obj2 = {};
-		$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
-			var dbField = $(elem).attr("dbField"+i);
-			var vtype = $(elem).attr("vtype");
-			obj2[dbField] = getVtypeVal(vtype, elem);
-			arr[i-1] = obj2;
-		});
-	}
-	
-	console.log(obj);
-	console.log(arr);
-	
-	document.frm.operation.value="submit";
-	document.frm.evalInfo.value=JSON.stringify(obj);
-	document.frm.evalForm.value=JSON.stringify(arr);
-	document.frm.action="<%=path%>/datamap/submitBenefitEval";
-	etSubmit(document.frm);
-	parent.ET.setModalWindowReturnValue("1");
 }
 
 //保存

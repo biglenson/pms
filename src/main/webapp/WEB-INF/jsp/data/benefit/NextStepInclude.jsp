@@ -39,8 +39,9 @@
 			<td class="label">处理人<font class="red">*</font></td>
 			<td class="content  " id="creator">
 				<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-					<input vtype="input" dbfield="assignee" class="text" value="<%=TypeUtils.nullToString(benefitEvalInfo.getAssignee())%>" readonly="" style="cursor: pointer;" type="text">
-					<img src="/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
+					<%-- <input vtype="input" dbfield="assignee" class="text" value="<%=TypeUtils.nullToString(benefitEvalInfo.getAssignee())%>" readonly="" style="cursor: pointer;" type="text">
+					<img src="/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle"> --%>
+					<input vtype="input" dbfield="assignee" class="text" value="<%=TypeUtils.nullToString(benefitEvalInfo.getAssignee())%>" style="cursor: pointer;" type="text">
 				</div> 
 				<script type="text/javascript">
 					ET.Utils.addEvent(document.getElementById('content-div-res01'),'click',function(){ 
