@@ -22,8 +22,8 @@
 	    	<th ><div style="width:20px">&nbsp;</div></th>
 	        <th ><div style="width:30px">序号</div></th>
 			<th width="100%"><div style="width:150px;margin: 0px auto;">活动名称</div></th>
-			<th ><div style="width:200px">责任人</div></th>
-			<th ><div style="width:120px">处理时间</div></th>
+			<th ><div style="width:120px">责任人</div></th>
+			<th ><div style="width:200px">处理时间</div></th>
 			<th ><div style="width:120px">处理结果</div></th>
 			<th ><div style="width:120px">处理意见</div></th>
 			</tr> 
@@ -47,7 +47,7 @@
 			<td>
 				<%=index%>
 			</td>
-			<td>
+			<td title="<%=TypeUtils.nullToString(item.getTaskName())%>">
 				<%=TypeUtils.nullToString(item.getTaskName())%>
 			</td>
 			<td>
@@ -56,10 +56,10 @@
 			<td>
 				<fmt:formatDate value="<%=item.getDealTime()%>" pattern="yyyy-MM-dd HH:mm:ss"/>
 			</td>
-			<td>
+			<td title="<%=TypeUtils.nullToString(item.getDealResult())%>">
 				<%=TypeUtils.nullToString(item.getDealResult())%>
 			</td>
-			<td>
+			<td title="<%=TypeUtils.nullToString(item.getDealOpinion())%>">
 				<%=TypeUtils.nullToString(item.getDealOpinion())%>
 			</td>
 		</tr>
