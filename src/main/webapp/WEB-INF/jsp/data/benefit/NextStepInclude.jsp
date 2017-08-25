@@ -50,7 +50,7 @@
 		<tr>
 			<td class="label">处理结果<font class="red">*</font></td>
 			<td class="content" id="dealRslt_statustd"> 
-				<select vtype="select" dbField="dealRslt">
+				<select vtype="select" dbField="dealRslt" id="next-step-select">
 				<%if("".equals(dealRslt) || dealRslt == null) { %>
 					<option value="">--请选择--</option>
 					<%for (Map.Entry<String, String> entry : rsltOption.entrySet()) {%>	  
