@@ -11,6 +11,7 @@ public class BenefitEvalVO {
 	private String taskName;
 	private String assignee;
 	private String dealRslt;
+	private String rsltDesc;
 	private String dealOpinion;
 	private String evalCode;
 	private String evalTitle;
@@ -40,6 +41,14 @@ public class BenefitEvalVO {
 
 	public void setDealOpinion(String dealOpinion) {
 		this.dealOpinion = dealOpinion;
+	}
+
+	public String getRsltDesc() {
+		return this.rsltDesc;
+	}
+
+	public void setRsltDesc(String rsltDesc) {
+		this.rsltDesc = rsltDesc;
 	}
 
 	public String getDealRslt() {

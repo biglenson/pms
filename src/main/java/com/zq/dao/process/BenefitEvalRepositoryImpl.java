@@ -28,7 +28,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             "    select a.ACT_NAME_ taskName, ASSIGNEE_ assignee, ifnull(END_TIME_,sysdate()) endTime, c.TEXT_ dealResult, b.TEXT_ comment    " +
             "      from ACT_HI_ACTINST a     " +
             "           left join ACT_HI_VARINST b on a.TASK_ID_ = b.TASK_ID_ and b.NAME_ = 'dealOpinion'   " +
-            "           left join ACT_HI_VARINST c on a.TASK_ID_ = c.TASK_ID_ and c.NAME_ = 'dealRslt'     " +
+            "           left join ACT_HI_VARINST c on a.TASK_ID_ = c.TASK_ID_ and c.NAME_ = 'rsltDesc'     " +
             "     where a.PROC_INST_ID_ = :processID     " +
             "           and ACT_TYPE_ in ('startEvent', 'userTask', 'endEvent')    " +
             "     order by  START_TIME_ desc, endTime desc, dealResult desc    "; 
