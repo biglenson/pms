@@ -25,7 +25,13 @@
 		<tr>
 			<td class="label white_background-color"></td>
 			<td class="content white_background-color"></td>
-			<td class="seperator"></td>
+			<td class="seperator">
+			<%if("提出人创建编辑评估".equals(benefitEvalInfo.getTaskName())) { %>
+				<input type="hidden" vtype="select" dbField="dealRslt" value="1"/>
+				<input type="hidden" vtype="select" dbField="rsltDesc" value="提交"/>
+				<input type="hidden" vtype="textarea" dbfield="dealOpinion" value=""/>
+			<%} %>
+			</td>
 			<td class="label white_background-color"></td>
 			<td class="content white_background-color"></td>
 		</tr>
@@ -44,39 +50,41 @@
 				</script>
 			</td>
 		</tr>
-		<tr>
-			<td colspan="5" height="5"></td>
-		</tr>
-		<tr>
-			<td class="label">处理结果<font class="red">*</font></td>
-			<td class="content" id="dealRslt_statustd"> 
-				<select vtype="select" dbField="dealRslt" id="next-step-select">
-				<%if("".equals(dealRslt) || dealRslt == null) { %>
-					<option value="">--请选择--</option>
-					<%for (Map.Entry<String, String> entry : rsltOption.entrySet()) {%>	  
-						<option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
-					<%}%>
-				<% }else {
-					for (Map.Entry<String, String> entry : rsltOption.entrySet()) {
-						if(entry.getKey().equals(dealRslt)) { %>
-							<option value="<%=entry.getKey()%>" selected="selected"><%=entry.getValue()%></option>
-					<% 	}else { %>
+		<%if(!"提出人创建编辑评估".equals(benefitEvalInfo.getTaskName())) { %>
+			<tr>
+				<td colspan="5" height="5"></td>
+			</tr>
+			<tr>
+				<td class="label">处理结果<font class="red">*</font></td>
+				<td class="content" id="dealRslt_statustd"> 
+					<select vtype="select" dbField="dealRslt" id="next-step-select">
+					<%if("".equals(dealRslt) || dealRslt == null) { %>
+						<option value="">--请选择--</option>
+						<%for (Map.Entry<String, String> entry : rsltOption.entrySet()) {%>	  
 							<option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
-					<%	}
-					}%>
-				<%} %>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="5" height="5"></td>
-		</tr>
-		<tr>
-			<td class="label">处理意见</td>
-			<td class="content" id="evalCode"> 
-				<textarea vtype="textarea" dbfield="dealOpinion" rows="3" cols="20"><%=TypeUtils.nullToString(benefitEvalInfo.getDealOpinion())%></textarea>
-			</td>
-		</tr>
+						<%}%>
+					<% }else {
+						for (Map.Entry<String, String> entry : rsltOption.entrySet()) {
+							if(entry.getKey().equals(dealRslt)) { %>
+								<option value="<%=entry.getKey()%>" selected="selected"><%=entry.getValue()%></option>
+						<% 	}else { %>
+								<option value="<%=entry.getKey()%>"><%=entry.getValue()%></option>
+						<%	}
+						}%>
+					<%} %>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="5" height="5"></td>
+			</tr>
+			<tr>
+				<td class="label">处理意见</td>
+				<td class="content" id="evalCode"> 
+					<textarea vtype="textarea" dbfield="dealOpinion" rows="3" cols="20"><%=TypeUtils.nullToString(benefitEvalInfo.getDealOpinion())%></textarea>
+				</td>
+			</tr>
+		<%} %>
 	</tbody>
 </table>
 <%=UIUtils.togglePanelEnd(request)%>
