@@ -243,7 +243,9 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 <%if("todo".equals(submitFrom)){ %>
 <%=UIUtils.toolbarButton(true, "javascript:submit();", "提交", "save.gif", false, false, request)%>
 <%=UIUtils.toolbarButton(true, "javascript:save();", "保存", "save.gif", false, false, request)%>
-<%=UIUtils.toolbarButton(true, "javascript:del();", "删除", "save.gif", false, false, request)%>
+<%if("1".equals(isEditable)) { %>
+	<%=UIUtils.toolbarButton(true, "javascript:del();", "删除", "save.gif", false, false, request)%>
+<%}%>
 <%=UIUtils.toolbarButton(true, "javascript:cancel();", "取消", "back.gif", false, false, request)%>
 <%} %>
 <%if("done".equals(submitFrom)){ %>
