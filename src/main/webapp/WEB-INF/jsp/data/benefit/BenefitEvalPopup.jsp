@@ -85,15 +85,19 @@ function logFun(){
 function submit() {
 	console.log('===========测试中！======================>提交----');
 	$(function () {
-		var creator = $('input[dbField=evalTitle]').val();
+		var evalTitle = $('input[dbField=evalTitle]').val();
+		var evalTitle2 = $('div[dbField=evalTitle]').text();
 		var assignee = $('input[dbField=assignee]').val();
 		var dealRslt = $('select[dbField=dealRslt]').val();
-		if (!creator) {
+		var dealRslt2 = $('input[dbField=dealRslt]').val();
+		if (!evalTitle && !evalTitle2) {
 			alert('标题不能为空！');
 		}else if (!assignee) {
 			alert('处理人不能为空！');
 		}else if (!dealRslt) {
-			alert('处理结果不能为空！');
+			if (!dealRslt2) {
+				alert('处理结果不能为空！');
+			}
 		}else {
 			var obj = {};
 			$('.formTable').find('[dbField]').each(function(index, elem) {
@@ -299,11 +303,11 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<td class="label">标题<font class="red">*</font></td>
 				<td colspan="4" class="content" id="evalTitle">
 					<%if("done".equals(submitFrom)) { %>
-						<div class="content-line" id="div-titleName"><%=benefitEvalInfo.getEvalTitle()%></div>
+						<div vtype="div" dbField="evalTitle" class="content-line" id="div-evalTitle"><%=benefitEvalInfo.getEvalTitle()%></div>
 					<%}else if("1".equals(isEditable)){ %>
 						<input vtype="input" dbField="evalTitle" class="text" value="<%=benefitEvalInfo.getEvalTitle()%>" maxlength="250" altstr="<%=benefitEvalInfo.getEvalTitle()%>" type="text">
 					<%}else { %>
-						<div class="content-line" id="div-titleName"><%=benefitEvalInfo.getEvalTitle()%></div>
+						<div vtype="div" dbField="evalTitle" class="content-line" id="div-titleName"><%=benefitEvalInfo.getEvalTitle()%></div>
 					<% }%>
 				</td>
 			</tr>
@@ -327,7 +331,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 			<tr>
 				<td class="label">创建人</td>
 				<td class="content  " id="creator">
-					<div class="content-line" style="cursor: pointer;"><%=benefitEvalInfo.getCreator()%></div> 
+					<div vtype="div" dbField="creator" class="content-line" style="cursor: pointer;"><%=benefitEvalInfo.getCreator()%></div> 
 				</td>
 				<td class="seperator"></td>
 				<td class="label">创建时间</td>
@@ -356,6 +360,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 						if("done".equals(submitFrom)) {
 					%>
 							<div class="content-line">是</div>
+							<input type="hidden" vtype="input" dbField="hasDept" value="1"/>
 						<%} else if("1".equals(isEditable)) {%>
 							<select vtype="select" dbField="hasDept" id="selector_status">
 							  <option value="1" selected="selected">是</option>
@@ -363,11 +368,13 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 							</select>
 						<%} else { %>
 							<div class="content-line">是</div>
+							<input type="hidden" vtype="input" dbField="hasDept" value="1"/>
 						<%} %>
 					<%}else if(benefitEvalInfo.getHasDept() == 0) {
 						if("done".equals(submitFrom)) {
 					%>
 							<div class="content-line">否</div>
+							<input type="hidden" vtype="input" dbField="hasDept" value="0"/>
 						<%} else if("1".equals(isEditable)) {%>
 							<select vtype="select" dbField="hasDept" id="selector_status">
 							  <option value="1">是</option>
@@ -375,6 +382,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 							</select>
 						<%} else { %>
 							<div class="content-line">否</div>
+							<input type="hidden" vtype="input" dbField="hasDept" value="0"/>
 						<%} %>
 					<%}%>
 				</td>
@@ -414,6 +422,8 @@ function getVtypeVal(vtype, elem) {
 		val = $(elem).val();
 	} else if (vtype == "textarea") {	// 文本域
 		val = $(elem).val();
+	} else if (vtype == "div") { // div
+		val = $(elem).text();
 	}
 	if (!val) {
 		val = "";
