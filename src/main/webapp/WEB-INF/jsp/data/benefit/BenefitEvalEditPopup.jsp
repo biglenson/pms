@@ -206,7 +206,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 				<tr>
 					<td class="label">创建人</td>
 					<td class="content  " id="creator">
-						<div class="content-line" style="cursor: pointer;"><%=loginInfo.getLoginName()%></div> 
+						<div vtype="div" dbField="creator" class="content-line" style="cursor: pointer;"><%=loginInfo.getLoginName()%></div> 
 					</td>
 					<td class="seperator"></td>
 					<td class="label">创建时间</td>
@@ -406,6 +406,8 @@ function getVtypeVal(vtype, elem) {
 		val = $(elem).val();
 	} else if (vtype == "textarea") {	// 文本域
 		val = $(elem).val();
+	} else if (vtype == "div") { // div
+		val = $(elem).text();
 	}
 	if (!val) {
 		val = "";

@@ -90,6 +90,7 @@ function submit() {
 		var assignee = $('input[dbField=assignee]').val();
 		var dealRslt = $('select[dbField=dealRslt]').val();
 		var dealRslt2 = $('input[dbField=dealRslt]').val();
+		console.log('执行了-==========================');
 		if (!evalTitle && !evalTitle2) {
 			alert('标题不能为空！');
 		}else if (!assignee) {
@@ -98,38 +99,46 @@ function submit() {
 			if (!dealRslt2) {
 				alert('处理结果不能为空！');
 			}
+			console.log('处理校验通过==========处理结果通过校验===========');
+			confirmSubmit();
 		}else {
-			var obj = {};
-			$('.formTable').find('[dbField]').each(function(index, elem) {
-				var dbField = $(elem).attr("dbField");
-				var vtype = $(elem).attr("vtype");
-				obj[dbField] = getVtypeVal(vtype, elem);
-			});
-			var selectValue = $("#next-step-select").find("option:selected").text();
-			obj.rsltDesc = selectValue;
-			console.log('提交的下拉框选中词语:  '+selectValue);
-			var arr = new Array();
-			for (var i = 1; i <= <%=formInfos.size()%>; i++) {
-				var obj2 = {};
-				$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
-					var dbField = $(elem).attr("dbField"+i);
-					var vtype = $(elem).attr("vtype");
-					obj2[dbField] = getVtypeVal(vtype, elem);
-					arr[i-1] = obj2;
-				});
-			}
-			
-			console.log(obj);
-			console.log(arr);
-			
-			document.frm.operation.value="submit";
-			document.frm.evalInfo.value=JSON.stringify(obj);
-			document.frm.evalForm.value=JSON.stringify(arr);
-			document.frm.action="<%=path%>/datamap/submitBenefitEval";
-			etSubmit(document.frm);
-			parent.ET.setModalWindowReturnValue("1");
+			console.log('处理校验通过==========全部通过校验===========');
+			confirmSubmit();
 		}
 	});
+}
+
+<%-- 确认提交 --%>
+function confirmSubmit() {
+	var obj = {};
+	$('.formTable').find('[dbField]').each(function(index, elem) {
+		var dbField = $(elem).attr("dbField");
+		var vtype = $(elem).attr("vtype");
+		obj[dbField] = getVtypeVal(vtype, elem);
+	});
+	var selectValue = $("#next-step-select").find("option:selected").text();
+	obj.rsltDesc = selectValue;
+	console.log('提交的下拉框选中词语:  '+selectValue);
+	var arr = new Array();
+	for (var i = 1; i <= <%=formInfos.size()%>; i++) {
+		var obj2 = {};
+		$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
+			var dbField = $(elem).attr("dbField"+i);
+			var vtype = $(elem).attr("vtype");
+			obj2[dbField] = getVtypeVal(vtype, elem);
+			arr[i-1] = obj2;
+		});
+	}
+	
+	console.log(obj);
+	console.log(arr);
+	
+	document.frm.operation.value="submit";
+	document.frm.evalInfo.value=JSON.stringify(obj);
+	document.frm.evalForm.value=JSON.stringify(arr);
+	document.frm.action="<%=path%>/datamap/submitBenefitEval";
+	etSubmit(document.frm);
+	parent.ET.setModalWindowReturnValue("1");
 }
 
 //保存
