@@ -73,14 +73,14 @@ public class BenefitEvalSvc{
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         String taskID = task.getId();
 
+        /*
         variables.put("assignee", benefitEvalVO.getAssignee());
         variables.put("dealRslt", benefitEvalVO.getDealRslt());
         variables.put("rsltDesc", benefitEvalVO.getRsltDesc());
-        //variables.put("rsltVal", benefitEvalVO.getDealRslt());
         variables.put("dealOpinion", benefitEvalVO.getDealOpinion());
-        //taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
         taskService.setVariablesLocal(taskID, variables);
         variables.clear();
+        */
 
         String dealRsltPropName = null;
         variables.put("vAssignee", benefitEvalVO.getAssignee());
@@ -119,7 +119,6 @@ public class BenefitEvalSvc{
         BenefitEvalItem benefitEvalItem = null;
         String processID = "";
         Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("vAssignee", benefitEvalVO.getAssignee());
 
         String evalCode = benefitEvalVO.getEvalCode();
         int evalPhase = benefitEvalVO.getEvalPhase();
@@ -135,6 +134,7 @@ public class BenefitEvalSvc{
         */
         
         if (evalCode == null || evalCode.length() == 0 ) {
+            variables.put("vAssignee", benefitEvalVO.getCreator());
             evalCode = this.getEvalCode("XYPG", evalPhase);
             logger.info("获取EvalCode！----------------------------evalCode: "+ evalCode); 
             logger.info("获取EvalCode！----------------------------hasDept: "+ benefitEvalVO.getHasDept()); 
@@ -147,7 +147,7 @@ public class BenefitEvalSvc{
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
             benefitEval.setHasDept( benefitEvalVO.getHasDept() );
             benefitEval.setTplID( benefitEvalVO.getTplID() );
-            benefitEval.setCreator(benefitEvalVO.getAssignee());
+            benefitEval.setCreator(benefitEvalVO.getCreator());
             benefitEval.setCreateDate(new Date());
             benefitEvalRepo.save(benefitEval);
             evalID =  benefitEval.getEvalID();
@@ -162,6 +162,7 @@ public class BenefitEvalSvc{
 
         } else {
             logger.info("保存已有Eval！----------------------------: "); 
+            //variables.put("vAssignee", benefitEvalVO.getAssignee());
             
             evalID = benefitEvalVO.getEvalID();
             benefitEval = benefitEvalRepo.getBenefitEvalByEvalID(evalID);
@@ -195,7 +196,6 @@ public class BenefitEvalSvc{
         submitInfo.put("rsltDesc", benefitEvalVO.getRsltDesc());
         submitInfo.put("dealOpinion", benefitEvalVO.getDealOpinion());
         taskService.setVariablesLocal(taskID, submitInfo);
-        //taskService.addComment(taskID, processID, "BenefitEval", benefitEvalVO.getDealOpinion());
 
         BeanUtils.copyProperties(benefitEval, benefitEvalVO);
         return benefitEvalVO;
