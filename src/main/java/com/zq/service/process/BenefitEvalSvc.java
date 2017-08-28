@@ -74,7 +74,7 @@ public class BenefitEvalSvc{
         String taskID = task.getId();
 
         /*
-        variables.put("assignee", benefitEvalVO.getAssignee());
+        variables.put("tAssignee", benefitEvalVO.getAssignee());
         variables.put("dealRslt", benefitEvalVO.getDealRslt());
         variables.put("rsltDesc", benefitEvalVO.getRsltDesc());
         variables.put("dealOpinion", benefitEvalVO.getDealOpinion());
@@ -191,7 +191,7 @@ public class BenefitEvalSvc{
         String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
         logger.info("------------taskID:  "+ taskID+"   ----------------processID: "+ processID); 
         Map<String, Object> submitInfo = new HashMap<String, Object>();
-        submitInfo.put("assignee", benefitEvalVO.getAssignee());
+        submitInfo.put("tAssignee", benefitEvalVO.getAssignee());
         submitInfo.put("dealRslt", benefitEvalVO.getDealRslt());
         submitInfo.put("rsltDesc", benefitEvalVO.getRsltDesc());
         submitInfo.put("dealOpinion", benefitEvalVO.getDealOpinion());
@@ -238,7 +238,7 @@ public class BenefitEvalSvc{
             logger.info("-----------tttt-----------------taskID:   "+taskID); 
             variables = taskService.getVariablesLocal(taskID);
             if (variables != null && variables.size() !=0) {
-                String assignee = variables.get("assignee").toString(); 
+                String assignee = variables.get("tAssignee").toString(); 
                 String dealRslt = variables.get("dealRslt").toString(); 
                 String rsltDesc= variables.get("rsltDesc").toString(); 
                 String dealOpinion = variables.get("dealOpinion").toString(); 
