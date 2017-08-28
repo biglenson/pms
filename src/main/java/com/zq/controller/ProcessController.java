@@ -36,6 +36,8 @@ import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.HistoryService;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -71,6 +73,9 @@ public class ProcessController extends BaseController{
 
     @Autowired
     private FormService formService;
+
+    @Autowired
+    private HistoryService historyService;
 
     @Autowired
     private IdentityService identityService;
@@ -155,13 +160,14 @@ public class ProcessController extends BaseController{
         String taskID = null;
         Map<String, String> rsltOption = null;
         String processID = benefitEvalVO.getProcessID();
+        HistoricProcessInstance hisProcInst = historyService.createHistoricProcessInstanceQuery().processInstanceId(processID).singleResult(); 
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         String curUser = getStaffName();
         if (task != null) {
             taskID = task.getId();
-            if (task.getAssignee().equals(curUser)){
+             rsltOption = benefitEvalSvc.getDealRsltOption(taskID);
+            if (hisProcInst.getStartUserId().equals(curUser)){
                  isEditable = 1;
-                 rsltOption = benefitEvalSvc.getDealRsltOption(taskID);
             }
             
         }
@@ -197,12 +203,13 @@ public class ProcessController extends BaseController{
         String taskID = null;
         Map<String, String> rsltOption = null;
         String curUser = getStaffName();
+        HistoricProcessInstance hisProcInst = historyService.createHistoricProcessInstanceQuery().processInstanceId(processID).singleResult(); 
         Task task = taskService.createTaskQuery().processInstanceId(processID).singleResult();
         if (task != null) {
             taskID = task.getId();
-            if (task.getAssignee().equals(curUser)){
+             rsltOption = benefitEvalSvc.getDealRsltOption(taskID);
+            if (hisProcInst.getStartUserId().equals(curUser)){
                 isEditable = 1;
-                 rsltOption = benefitEvalSvc.getDealRsltOption(taskID);
             }
             logger.info("测试中！----------------------------assigneeeee:   "+ task.getAssignee()); 
         }

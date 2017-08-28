@@ -27,6 +27,7 @@ import java.io.*;
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
+import org.activiti.engine.IdentityService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.FormService;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -41,6 +42,9 @@ public class BenefitEvalSvc{
     private static Log logger = LogFactory.getLog(BenefitEvalSvc.class);
     @Autowired
     private RuntimeService runtimeService;
+
+    @Autowired
+    private IdentityService identityService;
 
     @Autowired
     private TaskService taskService;
@@ -130,14 +134,15 @@ public class BenefitEvalSvc{
                 logger.info(task.getName());
                     taskName = new String(task.getName());
         }
-        identityService.setAuthenticatedUserId("lenson");
         */
         
         if (evalCode == null || evalCode.length() == 0 ) {
-            variables.put("vAssignee", benefitEvalVO.getCreator());
+            String procCreator= benefitEvalVO.getCreator();
+            variables.put("vAssignee", procCreator);
             evalCode = this.getEvalCode("XYPG", evalPhase);
             logger.info("获取EvalCode！----------------------------evalCode: "+ evalCode); 
             logger.info("获取EvalCode！----------------------------hasDept: "+ benefitEvalVO.getHasDept()); 
+            identityService.setAuthenticatedUserId(procCreator);
             ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("BenefitEvalProcess", evalCode, variables);
             benefitEval = new BenefitEval();
             processID = processInstance.getProcessInstanceId();
@@ -147,7 +152,7 @@ public class BenefitEvalSvc{
             benefitEval.setEvalTitle( benefitEvalVO.getEvalTitle() );
             benefitEval.setHasDept( benefitEvalVO.getHasDept() );
             benefitEval.setTplID( benefitEvalVO.getTplID() );
-            benefitEval.setCreator(benefitEvalVO.getCreator());
+            benefitEval.setCreator(procCreator);
             benefitEval.setCreateDate(new Date());
             benefitEvalRepo.save(benefitEval);
             evalID =  benefitEval.getEvalID();
