@@ -130,9 +130,11 @@
 						 contentType="N10.2" value="<%=TypeUtils.nullToString(item.getEvalValue())%>"/>
 				 	<%}else { %>
 				 		<%=TypeUtils.nullToString(item.getEvalValue())%>
+				 		<input type="hidden" vtype="input" dbField<%=indexKey%>="evalValue" value="<%=TypeUtils.nullToString(item.getEvalValue())%>"/>
 				 	<%}%>
 				<%}else{%>
 					<%=TypeUtils.nullToString(item.getEvalValue())%>
+					<input type="hidden" vtype="input" dbField<%=indexKey%>="evalValue" value="<%=TypeUtils.nullToString(item.getEvalValue())%>"/>
 				<%}%>
 			</td>
 			<%if(isAfterEval){%>
@@ -162,9 +164,11 @@
 							<input vtype="input" dbField<%=indexKey%>="evalNote" type="text" class="text" style="width:98px;" maxlength="100" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
 						<%}else { %>
 							<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>
+							<input type="hidden" vtype="input" dbField<%=indexKey%>="evalNote" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
 						<%}%>
 					<%}else{%>
 						<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>
+						<input type="hidden" vtype="input" dbField<%=indexKey%>="evalNote" value="<%=TypeUtils.xmlEncoderForIE(item.getEvalNote())%>"/>
 					<%}%>
 				</div>
 			</td>

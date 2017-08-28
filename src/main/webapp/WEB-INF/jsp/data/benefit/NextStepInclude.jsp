@@ -27,8 +27,8 @@
 			<td class="content white_background-color"></td>
 			<td class="seperator">
 			<%if("提出人创建编辑评估".equals(benefitEvalInfo.getTaskName())) { %>
-				<input type="hidden" vtype="select" dbField="dealRslt" value="1"/>
-				<input type="hidden" vtype="select" dbField="rsltDesc" value="提交"/>
+				<input type="hidden" vtype="input" dbField="dealRslt" value="1"/>
+				<input type="hidden" vtype="input" dbField="rsltDesc" value="提交"/>
 				<input type="hidden" vtype="textarea" dbfield="dealOpinion" value=""/>
 			<%} %>
 			</td>
