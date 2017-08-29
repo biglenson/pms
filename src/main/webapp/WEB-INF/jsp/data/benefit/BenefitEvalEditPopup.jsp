@@ -86,6 +86,8 @@ function submit() {
 			document.frm.evalForm.value=JSON.stringify(arr);
 			document.frm.action="<%=path%>/datamap/submitBenefitEval";
 			etSubmit(document.frm);
+			parent.ET.setModalWindowTheme("feedback");
+			parent.ET.setModalWindowSize(220, 120);
 			parent.ET.setModalWindowReturnValue("1");
 		}
 	}); 

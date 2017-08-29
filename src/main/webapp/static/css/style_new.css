@@ -5298,3 +5298,12 @@ input[type='checkbox']:not (:checked ):disabled+img.checkbox_imgDIV {
 	padding: 0px 0px 0px 0px;
 	display: none;
 }
+.uiDom.window.feedback {
+    background-color: #fff;
+    position: absolute;
+    clear: both;
+    border: 1px solid #bfbfbf;
+    box-shadow: 1px 1px 10px #bfbfbf;
+    top: 250px !important;
+    left: 700px !important;
+}
