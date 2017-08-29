@@ -100,11 +100,15 @@ function submit() {
 				alert('处理结果不能为空！');
 			}else {
 				console.log('处理校验通过==========处理结果通过校验===========');
-				confirmSubmit();
+				if (window.confirm("确定提交该任务单?")) {
+					confirmSubmit();
+				}
 			}
 		}else {
 			console.log('处理校验通过==========全部通过校验===========');
-			confirmSubmit();
+			if (window.confirm("确定提交该任务单?")) {
+				confirmSubmit();
+			}
 		}
 	});
 }
