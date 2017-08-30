@@ -212,6 +212,11 @@ function openForm(processID, evalPhase) {
             	document.frm.operation.value="toggle";
             	document.frm.page = 1;
             	etSubmit(document.frm);
+			}else if($(this).index() == 0) {
+				document.frm.action = "<%=path%>/datamap/getTaskTodo";
+            	document.frm.operation.value="toggle";
+            	document.frm.page = 1;
+            	etSubmit(document.frm);
 			}
         });
     });
