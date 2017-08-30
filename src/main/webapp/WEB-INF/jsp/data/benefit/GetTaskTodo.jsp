@@ -210,12 +210,12 @@ function openForm(processID, evalPhase) {
             if ($(this).index() == 1) {
             	document.frm.action = "<%=path%>/datamap/getTaskDone";
             	document.frm.operation.value="toggle";
-            	document.frm.page = 1;
+            	document.frm.page.value = 1;
             	etSubmit(document.frm);
 			}else if($(this).index() == 0) {
 				document.frm.action = "<%=path%>/datamap/getTaskTodo";
             	document.frm.operation.value="toggle";
-            	document.frm.page = 1;
+            	document.frm.page.value = 1;
             	etSubmit(document.frm);
 			}
         });
