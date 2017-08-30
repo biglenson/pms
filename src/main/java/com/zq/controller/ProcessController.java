@@ -240,7 +240,7 @@ public class ProcessController extends BaseController{
     }
     */
     //@RequestMapping(value = "simpleFromBenefit", method = RequestMethod.GET)  
-	@RequestMapping(value = "getTaskTodo", method = RequestMethod.GET)  
+	@RequestMapping(value = "getTaskTodo", method = RequestMethod.POST)  
 	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
                                     @RequestParam("pageTitle") String pageTitle,
                                     @RequestParam("page") Integer pageNo,
@@ -264,7 +264,7 @@ public class ProcessController extends BaseController{
         return CMCCConstant.GetTaskTodo;
 	 } 
 
-	@RequestMapping(value = "getTaskDone", method = RequestMethod.GET)  
+	@RequestMapping(value = "getTaskDone", method = RequestMethod.POST)  
 	public String getTaskDone(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
 						            @RequestParam("pageTitle") String pageTitle,
                                     @RequestParam("page") Integer pageNo,

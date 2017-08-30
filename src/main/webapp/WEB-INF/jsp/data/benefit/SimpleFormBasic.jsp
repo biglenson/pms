@@ -25,7 +25,7 @@ function openFormScorecard() {
 
 <!-- 内容主体 -->
 <div class="popBodyDIV popBodyDIVNew">
-<form name="frm" action="<%=path%>/datamap/getTaskTodo" method="GET">
+<form name="frm" action="<%=path%>/datamap/getTaskTodo" method="POST">
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
 <input type="hidden" name="page" value="${pageInfo.currentPage}">
