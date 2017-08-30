@@ -124,6 +124,7 @@ function openForm(processID, evalPhase) {
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
 <input type="hidden" name="operation" value="">
+<input type="hidden" name="currentPage" value="${pageInfo.currentPage}">
 
 <%=UIUtils.tabPanelStart(request)%>
 <%=UIUtils.tabPanel(true, "javascript:simpleForm();", pageTitle+"基本信息", null, false, request)%>
@@ -193,7 +194,7 @@ function openForm(processID, evalPhase) {
      <div id='todo'></div>
 	<!-- 以上为表单 -->
 	<!-- 分页导航条 -->
-	<%-- <%=UIUtils.pageToolbar(pageInfo, request)%> --%>
+	<%=UIUtils.pageToolbar(pageInfo, request)%>
 </form>
 </div>
 
