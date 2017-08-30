@@ -27,6 +27,7 @@ function openFormScorecard() {
 <form name="frm" action="<%=path%>/datamap/getTaskTodo" method="GET">
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
+<input type="hidden" name="currentPage" value="${pageInfo.currentPage}">
 
 <%=UIUtils.tabPanelStart(request)%>
 <%=UIUtils.tabPanel(true, "javascript:simpleForm();", pageTitle+"基本信息", null, true, request)%>
