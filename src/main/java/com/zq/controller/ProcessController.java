@@ -260,6 +260,7 @@ public class ProcessController extends BaseController{
         model.addAttribute("pageTitle", pageTitle);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("url", url);
+        logger.info("测试中！----------------------------totalRows----" + pageInfo.getTotalRows()); 
         return CMCCConstant.GetTaskTodo;
 	 } 
 

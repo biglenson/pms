@@ -52,7 +52,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
     public PageModel<TaskTodoItemVO> getTaskTodo(String userID, int pageNo) {
         List<TaskTodoItemVO> taskTodo = new ArrayList<TaskTodoItemVO>();
         TaskTodoItemVO taskTodoItemVO = null;
-        int pageSize = 15;
+        int pageSize = 10;
         int totalItems = 0;
         int totalPages = 0;
         PageModel taskTodoPage = new PageModel<TaskTodoItemVO>();
@@ -60,7 +60,8 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         String queryString = 
             " select count(*) from ACT_RU_TASK where ASSIGNEE_ = :userID ";
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
-        totalItems = q.getResultList().size();
+        //totalItems = q.getResultList().size();
+        totalItems = Integer.parseInt(q.getSingleResult().toString());
         totalPages = (int)(totalItems / pageSize) +1;
         System.out.println("totalItems: "+totalItems+ "----totalPages: "+totalPages);
         System.out.println("pageSize: "+pageSize+ "----pageNo: "+pageNo); 
@@ -103,7 +104,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
     public PageModel<TaskTodoItemVO> getTaskDone(String userID, int pageNo) {
         List<TaskTodoItemVO> taskDone = new ArrayList<TaskTodoItemVO>();
         TaskTodoItemVO taskDoneItemVO = null;
-        int pageSize = 15;
+        int pageSize = 10;
         int totalItems = 0;
         int totalPages = 0;
         PageModel taskDonePage = new PageModel<TaskTodoItemVO>();
@@ -111,7 +112,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         String queryString = 
             " select count(*)  from ACT_HI_TASKINST where ASSIGNEE_ = :userID  and END_TIME_ is not null ";
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
-        totalItems = q.getResultList().size();
+        totalItems = Integer.parseInt(q.getSingleResult().toString());
         totalPages = (int)(totalItems / pageSize) +1;
         System.out.println("totalItems: "+totalItems+ "----totalPages: "+totalPages);
         System.out.println("pageSize: "+pageSize+ "----pageNo: "+pageNo); 
