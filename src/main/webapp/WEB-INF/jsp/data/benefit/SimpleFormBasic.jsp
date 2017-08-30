@@ -15,7 +15,7 @@
 //效益评估
 function openFormScorecard() {
 	document.frm.action = "<%=path%>/datamap/getTaskTodo";
-	document.frm.page = 1;
+	document.frm.page.value = 1;
 	etSubmit(document.frm);
 }
 </script>
