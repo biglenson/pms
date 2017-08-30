@@ -26,10 +26,10 @@
     .g_msg {
         position: relative;
         top: -10px;
-        font-size: 15px;
+        font-size: 13px;
     }   
     .g_cont {
-	    height: 35px;
+	    height: 45px;
 	    background: #fff;
 	    padding-top: 30px;
 	    text-align: center;
