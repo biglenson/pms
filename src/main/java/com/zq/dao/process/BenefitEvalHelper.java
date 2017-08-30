@@ -8,7 +8,7 @@ import com.zq.vo.process.*;
 public interface BenefitEvalHelper{
 
     List<TaskHisItemVO> getTaskHis(String processID);
-    List<TaskTodoItemVO> getTaskTodo(String userID);
-    List<TaskTodoItemVO> getTaskDone(String userID);
+    PageModel<TaskTodoItemVO> getTaskTodo(String userID, int currentPage);
+    PageModel<TaskTodoItemVO> getTaskDone(String userID, int currentPage);
 
 }

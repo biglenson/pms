@@ -259,10 +259,10 @@ public class BenefitEvalSvc{
 
         return benefitEvalVO;
     }
-    public List<TaskTodoItemVO> getTaskTodo(String loginName) {
+    public PageModel<TaskTodoItemVO> getTaskTodo(String loginName) {
             return benefitEvalRepo.getTaskTodo(loginName);
     }
-    public List<TaskTodoItemVO> getTaskDone(String loginName) {
+    public PageModel<TaskTodoItemVO> getTaskDone(String loginName) {
             return benefitEvalRepo.getTaskDone(loginName);
 
     }

@@ -49,9 +49,21 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         return taskHis;
     }
 
-    public List<TaskTodoItemVO> getTaskTodo(String userID) {
+    public PageModel<TaskTodoItemVO> getTaskTodo(String userID, int pageNo) {
         List<TaskTodoItemVO> taskTodo = new ArrayList<TaskTodoItemVO>();
         TaskTodoItemVO taskTodoItemVO = null;
+        int pageSize = 15;
+        int totalItems = 0;
+        int totalPages = 0;
+        PageModel taskTodoPage = new PageModel<TaskTodoItemVO>();
+
+        String queryString = 
+            " select count(*) from ACT_RU_TASK where ASSIGNEE_ = :userID ";
+        Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
+        totalItems = p.getResultList().size();
+        totalPages = (int)(totalItems / pageSize) +1;
+        System.out.println("totalItems: "+totalItems+ "----totalPages: "+totalPages);
+        System.out.println("pageSize: "+pageSize+ "----pageNo: "+pageNo); 
         
         String queryString = 
             " select a.processID, a.evalTitle, b.ID_ taskID , b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.CREATE_TIME_ createTime "+
@@ -62,6 +74,8 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             " order by b.CREATE_TIME_ desc";
 
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
+        q.setMaxResults(pageSize);
+        q.setFirstResult(pageNo * pageSize);
 
         List rslt = q.getResultList();
         Iterator rsltIter = rslt.iterator();
@@ -79,35 +93,45 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             taskTodoItemVO.setCreateTime((Timestamp)obj[8]);
             taskTodo.add(taskTodoItemVO);
         }
-        return taskTodo;
+        taskTodoPage.setResultList(taskTodo);
+        taskTodoPage.setTotalItems(totalItems);
+        taskTodoPage.setTotalPages(totalPages);
+
+        return taskTodoPage;
     }
 
-    public List<TaskTodoItemVO> getTaskDone(String userID) {
+    public PageModel<TaskTodoItemVO> getTaskDone(String userID, int pageNo) {
         List<TaskTodoItemVO> taskDone = new ArrayList<TaskTodoItemVO>();
         TaskTodoItemVO taskDoneItemVO = null;
-        
-        /*
+        int pageSize = 15;
+        int totalItems = 0;
+        int totalPages = 0;
+        PageModel taskDonePage = new PageModel<TaskTodoItemVO>();
+
         String queryString = 
-            " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.START_TIME_ createTime "+
+            " select count(*)  from ACT_HI_TASKINST where ASSIGNEE_ = :userID  and END_TIME_ is not null ";
+        Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
+        totalItems = p.getResultList().size();
+        totalPages = (int)(totalItems / pageSize) +1;
+        System.out.println("totalItems: "+totalItems+ "----totalPages: "+totalPages);
+        System.out.println("pageSize: "+pageSize+ "----pageNo: "+pageNo); 
+
+
+
+        String queryString =
+            " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, " +
+            "        c.tplTitle, b.ASSIGNEE_ assignee, ifnull(b.END_TIME_, sysdate())  createTime "+
             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
             " where b.ASSIGNEE_ = :userID  "+
             "       and b.END_TIME_ is not null "+
             "       and a.processID = b.PROC_INST_ID_ "+
             "       and a.tplID=c.tplID " +
-            " order by b.START_TIME_ desc";
-            */
-
-         String queryString =
-             " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, " +
-             "        c.tplTitle, b.ASSIGNEE_ assignee, ifnull(b.END_TIME_, sysdate())  createTime "+
-             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
-             " where b.ASSIGNEE_ = :userID  "+
-             "       and b.END_TIME_ is not null "+
-             "       and a.processID = b.PROC_INST_ID_ "+
-             "       and a.tplID=c.tplID " +
-             " order by createTime desc";
+            " order by createTime desc";
 
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
+        q.setMaxResults(pageSize);
+        q.setFirstResult(pageNo * pageSize);
+
 
         List rslt = q.getResultList();
         Iterator rsltIter = rslt.iterator();
@@ -125,6 +149,10 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             taskDoneItemVO.setCreateTime((Timestamp)obj[8]);
             taskDone.add(taskDoneItemVO);
         }
-        return taskDone;
+        taskDonePage.setResultList(taskDone);
+        taskDonePage.setTotalItems(totalItems);
+        taskDonePage.setTotalPages(totalPages);
+
+        return taskDonePage;
     }
 }

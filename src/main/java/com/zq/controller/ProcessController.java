@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.transaction.annotation.*;
 
+import com.zq.commons.result.PageInfo;
 import com.zq.commons.result.Tree;
 import com.zq.commons.shiro.captcha.CMCCCaptcha;
 import com.zq.commons.utils.CMCCConstant;
@@ -242,12 +243,21 @@ public class ProcessController extends BaseController{
 	@RequestMapping(value = "getTaskTodo", method = RequestMethod.GET)  
 	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
                                     @RequestParam("pageTitle") String pageTitle,
+                                    @RequestParam("currentPage") String pageNo,
                                     @RequestParam("url") String url) {		 	
         logger.info("测试中！----------------------------taskTodo"); 
 
-        List<TaskTodoItemVO> taskTodo = benefitEvalSvc.getTaskTodo(getStaffName());
+        PageModel<TaskTodoItemVO> taskTodoPage = benefitEvalSvc.getTaskTodo(getStaffName(), pageNo);
+        PageInfo pageInfo = new PageInfo();
+        taskTodo = taskTodoPage.getResultList();
+        pageInfo.setPageSize(taskTodoPage.size());
+        pageInfo.setTotalRows(taskTodoPage.getTotalItems());
+        pageInfo.setPageCount(taskTodoPage.getTotalPages());
+        pageInfo.setCurrentPage(pageNo);
+
         model.addAttribute("taskTodo", taskTodo);
         model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("url", url);
         return CMCCConstant.GetTaskTodo;
 	 } 
@@ -255,12 +265,21 @@ public class ProcessController extends BaseController{
 	@RequestMapping(value = "getTaskDone", method = RequestMethod.GET)  
 	public String getTaskDone(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
 						            @RequestParam("pageTitle") String pageTitle,
+                                    @RequestParam("currentPage") String pageNo,
 						            @RequestParam("url") String url) {		 			 	
         logger.info("测试中！----------------------------taskDone"); 
 
-        List<TaskTodoItemVO> taskDone = benefitEvalSvc.getTaskDone(getStaffName());
+        PageModel<TaskTodoItemVO> taskDonePage = benefitEvalSvc.getTaskDone(getStaffName(), pageNo);
+        PageInfo pageInfo = new PageInfo();
+        taskDone = taskDonePage.getResultList();
+        pageInfo.setPageSize(taskDonePage.size());
+        pageInfo.setTotalRows(taskDonePage.getTotalItems());
+        pageInfo.setPageCount(taskDonePage.getTotalPages());
+        pageInfo.setCurrentPage(pageNo);
+
         model.addAttribute("taskDone", taskDone);
         model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("url", url);
 		return CMCCConstant.GetTaskDone;  
 	 } 
