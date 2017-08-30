@@ -243,9 +243,10 @@ public class ProcessController extends BaseController{
 	@RequestMapping(value = "getTaskTodo", method = RequestMethod.GET)  
 	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
                                     @RequestParam("pageTitle") String pageTitle,
-                                    @RequestParam("page") int pageNo,
+                                    @RequestParam("page") Integer pageNo,
                                     @RequestParam("url") String url) {		 	
         logger.info("测试中！----------------------------taskTodo"); 
+        logger.info("测试中！----------------------------pageNo----" + pageNo); 
 
         PageModel<TaskTodoItemVO> taskTodoPage = benefitEvalSvc.getTaskTodo(getStaffName(), pageNo-1);
         PageInfo pageInfo = new PageInfo();
@@ -265,7 +266,7 @@ public class ProcessController extends BaseController{
 	@RequestMapping(value = "getTaskDone", method = RequestMethod.GET)  
 	public String getTaskDone(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
 						            @RequestParam("pageTitle") String pageTitle,
-                                    @RequestParam("page") int pageNo,
+                                    @RequestParam("page") Integer pageNo,
 						            @RequestParam("url") String url) {		 			 	
         logger.info("测试中！----------------------------taskDone"); 
 
