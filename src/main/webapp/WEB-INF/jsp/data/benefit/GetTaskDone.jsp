@@ -124,7 +124,7 @@ function openForm(processID, evalPhase) {
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
 <input type="hidden" name="operation" value="">
-<input type="hidden" name="currentPage" value="${pageInfo.currentPage}">
+<input type="hidden" name="page" value="${pageInfo.currentPage}">
 
 <%=UIUtils.tabPanelStart(request)%>
 <%=UIUtils.tabPanel(true, "javascript:simpleForm();", pageTitle+"基本信息", null, false, request)%>
@@ -208,6 +208,7 @@ function openForm(processID, evalPhase) {
             if ($(this).index() == 0) {
             	document.frm.action = "<%=path%>/datamap/getTaskTodo";
             	document.frm.operation.value="toggle";
+            	document.frm.page = 1;
             	etSubmit(document.frm);
 			}
         });
