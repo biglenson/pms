@@ -243,13 +243,13 @@ public class ProcessController extends BaseController{
 	@RequestMapping(value = "getTaskTodo", method = RequestMethod.GET)  
 	public String getTaskTodo(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
                                     @RequestParam("pageTitle") String pageTitle,
-                                    @RequestParam("currentPage") String pageNo,
+                                    @RequestParam("page") int pageNo,
                                     @RequestParam("url") String url) {		 	
         logger.info("测试中！----------------------------taskTodo"); 
 
-        PageModel<TaskTodoItemVO> taskTodoPage = benefitEvalSvc.getTaskTodo(getStaffName(), pageNo);
+        PageModel<TaskTodoItemVO> taskTodoPage = benefitEvalSvc.getTaskTodo(getStaffName(), pageNo-1);
         PageInfo pageInfo = new PageInfo();
-        taskTodo = taskTodoPage.getResultList();
+        List<TaskTodoItemVO> taskTodo = taskTodoPage.getResultList();
         pageInfo.setPageSize(taskTodoPage.size());
         pageInfo.setTotalRows(taskTodoPage.getTotalItems());
         pageInfo.setPageCount(taskTodoPage.getTotalPages());
@@ -265,13 +265,13 @@ public class ProcessController extends BaseController{
 	@RequestMapping(value = "getTaskDone", method = RequestMethod.GET)  
 	public String getTaskDone(HttpServletRequest request, HttpServletResponse response, Model model,String captcha,
 						            @RequestParam("pageTitle") String pageTitle,
-                                    @RequestParam("currentPage") String pageNo,
+                                    @RequestParam("page") int pageNo,
 						            @RequestParam("url") String url) {		 			 	
         logger.info("测试中！----------------------------taskDone"); 
 
-        PageModel<TaskTodoItemVO> taskDonePage = benefitEvalSvc.getTaskDone(getStaffName(), pageNo);
+        PageModel<TaskTodoItemVO> taskDonePage = benefitEvalSvc.getTaskDone(getStaffName(), pageNo-1);
         PageInfo pageInfo = new PageInfo();
-        taskDone = taskDonePage.getResultList();
+        List<TaskTodoItemVO> taskDone = taskDonePage.getResultList();
         pageInfo.setPageSize(taskDonePage.size());
         pageInfo.setTotalRows(taskDonePage.getTotalItems());
         pageInfo.setPageCount(taskDonePage.getTotalPages());

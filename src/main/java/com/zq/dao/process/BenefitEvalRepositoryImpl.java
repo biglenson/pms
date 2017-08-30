@@ -60,12 +60,12 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         String queryString = 
             " select count(*) from ACT_RU_TASK where ASSIGNEE_ = :userID ";
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
-        totalItems = p.getResultList().size();
+        totalItems = q.getResultList().size();
         totalPages = (int)(totalItems / pageSize) +1;
         System.out.println("totalItems: "+totalItems+ "----totalPages: "+totalPages);
         System.out.println("pageSize: "+pageSize+ "----pageNo: "+pageNo); 
         
-        String queryString = 
+        queryString = 
             " select a.processID, a.evalTitle, b.ID_ taskID , b.NAME_ taskName, c.evalPhase, c.evalFor, c.tplTitle, b.ASSIGNEE_ assignee, b.CREATE_TIME_ createTime "+
             "  from d_benefit_eval a, ACT_RU_TASK b, g_benefit_eval_tpl c "+
             " where b.ASSIGNEE_ = :userID "+
@@ -73,7 +73,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             "       and a.tplID=c.tplID " +
             " order by b.CREATE_TIME_ desc";
 
-        Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
+        q = em.createNativeQuery(queryString).setParameter("userID", userID);
         q.setMaxResults(pageSize);
         q.setFirstResult(pageNo * pageSize);
 
@@ -111,14 +111,14 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         String queryString = 
             " select count(*)  from ACT_HI_TASKINST where ASSIGNEE_ = :userID  and END_TIME_ is not null ";
         Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
-        totalItems = p.getResultList().size();
+        totalItems = q.getResultList().size();
         totalPages = (int)(totalItems / pageSize) +1;
         System.out.println("totalItems: "+totalItems+ "----totalPages: "+totalPages);
         System.out.println("pageSize: "+pageSize+ "----pageNo: "+pageNo); 
 
 
 
-        String queryString =
+        queryString =
             " select a.processID, a.evalTitle, b.ID_ taskID, b.NAME_ taskName, c.evalPhase, c.evalFor, " +
             "        c.tplTitle, b.ASSIGNEE_ assignee, ifnull(b.END_TIME_, sysdate())  createTime "+
             "  from d_benefit_eval a, ACT_HI_TASKINST b, g_benefit_eval_tpl c "+
@@ -128,7 +128,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
             "       and a.tplID=c.tplID " +
             " order by createTime desc";
 
-        Query q = em.createNativeQuery(queryString).setParameter("userID", userID);
+        q = em.createNativeQuery(queryString).setParameter("userID", userID);
         q.setMaxResults(pageSize);
         q.setFirstResult(pageNo * pageSize);
 
