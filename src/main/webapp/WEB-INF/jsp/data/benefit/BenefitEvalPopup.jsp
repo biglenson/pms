@@ -98,12 +98,17 @@ function submit() {
 		}else if (!dealRslt) {
 			if (!dealRslt2) {
 				alert('处理结果不能为空！');
+			}else {
+				console.log('处理校验通过==========处理结果通过校验===========');
+				if (window.confirm("确定提交该任务单?")) {
+					confirmSubmit();
+				}
 			}
-			console.log('处理校验通过==========处理结果通过校验===========');
-			confirmSubmit();
 		}else {
 			console.log('处理校验通过==========全部通过校验===========');
-			confirmSubmit();
+			if (window.confirm("确定提交该任务单?")) {
+				confirmSubmit();
+			}
 		}
 	});
 }
@@ -138,6 +143,8 @@ function confirmSubmit() {
 	document.frm.evalForm.value=JSON.stringify(arr);
 	document.frm.action="<%=path%>/datamap/submitBenefitEval";
 	etSubmit(document.frm);
+	parent.ET.setModalWindowTheme("feedback");
+	parent.ET.setModalWindowSize(220, 120);
 	parent.ET.setModalWindowReturnValue("1");
 }
 

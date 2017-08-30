@@ -23,6 +23,7 @@ function openFormScorecard() {
 <jsp:include page="../../common/Head1.jsp" />
 
 <!-- 内容主体 -->
+<div class="popBodyDIV popBodyDIVNew">
 <form name="frm" action="<%=path%>/datamap/getTaskTodo" method="GET">
 <input type="hidden" name="pageTitle" value="<%= pageTitle %>">
 <input type="hidden" name="url" value="<%= url %>">
@@ -40,5 +41,6 @@ function openFormScorecard() {
 
 <!-- 以上为表单 -->
 </form>
+</div>
 <%-- 输出公共BodyEnd模块 --%>
 <jsp:include page="../../common/BodyEnd.jsp" />

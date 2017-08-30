@@ -61,32 +61,36 @@ function submit() {
 			alert('处理人不能为空！');
 		}else {
 			console.log('===========测试中！======================>修改再保存----');
-			var obj = {};
-			$('.formTable').find('[dbField]').each(function(index, elem) {
-				var dbField = $(elem).attr("dbField");
-				var vtype = $(elem).attr("vtype");
-				obj[dbField] = getVtypeVal(vtype, elem);
-			});
-			var arr = new Array();
-			for (var i = 1; i <= <%=formInfos.size()%>; i++) {
-				var obj2 = {};
-				$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
-					var dbField = $(elem).attr("dbField"+i);
+			if (window.confirm("确定提交该任务单?")) {
+				var obj = {};
+				$('.formTable').find('[dbField]').each(function(index, elem) {
+					var dbField = $(elem).attr("dbField");
 					var vtype = $(elem).attr("vtype");
-					obj2[dbField] = getVtypeVal(vtype, elem);
-					arr[i-1] = obj2;
+					obj[dbField] = getVtypeVal(vtype, elem);
 				});
+				var arr = new Array();
+				for (var i = 1; i <= <%=formInfos.size()%>; i++) {
+					var obj2 = {};
+					$('.listTable').find('[dbField'+i+']').each(function(index, elem) {
+						var dbField = $(elem).attr("dbField"+i);
+						var vtype = $(elem).attr("vtype");
+						obj2[dbField] = getVtypeVal(vtype, elem);
+						arr[i-1] = obj2;
+					});
+				}
+				
+				console.log(obj);
+				console.log(arr);
+				
+				document.frm.operation.value="submit";
+				document.frm.evalInfo.value=JSON.stringify(obj);
+				document.frm.evalForm.value=JSON.stringify(arr);
+				document.frm.action="<%=path%>/datamap/submitBenefitEval";
+				etSubmit(document.frm);
+				parent.ET.setModalWindowTheme("feedback");
+				parent.ET.setModalWindowSize(220, 120);
+				parent.ET.setModalWindowReturnValue("1");
 			}
-			
-			console.log(obj);
-			console.log(arr);
-			
-			document.frm.operation.value="submit";
-			document.frm.evalInfo.value=JSON.stringify(obj);
-			document.frm.evalForm.value=JSON.stringify(arr);
-			document.frm.action="<%=path%>/datamap/submitBenefitEval";
-			etSubmit(document.frm);
-			parent.ET.setModalWindowReturnValue("1");
 		}
 	}); 
 }
