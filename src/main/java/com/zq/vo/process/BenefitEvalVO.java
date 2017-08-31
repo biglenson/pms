@@ -22,6 +22,7 @@ public class BenefitEvalVO {
 	private int evalPhase;
 	private int evalFor;
 	private int hasDept;
+	private List<AttachmentVO> attachments = new ArrayList<AttachmentVO>();
 
 	public int getEvalID() {
 		return this.evalID;
@@ -33,6 +34,14 @@ public class BenefitEvalVO {
 	 */
 	public void setEvalID(int evalID) {
 		this.evalID = evalID;
+	}
+
+	public List<AttachmentVO> getAttachments() {
+		return this.attachments;
+	}
+
+	public void setAttachments(List<AttachmentVO> attachments) {
+		this.attachments = attachments;
 	}
 
 	public String getDealOpinion() {

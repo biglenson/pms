@@ -33,6 +33,7 @@ import org.activiti.engine.FormService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.activiti.engine.task.Attachment;
 import org.apache.shiro.SecurityUtils;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.form.FormProperty;
@@ -236,10 +237,27 @@ public class BenefitEvalSvc{
         benefitEvalVO.setEvalPhase(benefitEvalTpl.getEvalPhase());
         benefitEvalVO.setEvalFor(benefitEvalTpl.getEvalFor());
 
+
+
         Map<String, Object> variables = null;
         if (task != null){
             benefitEvalVO.setTaskName(task.getName());
             String taskID = task.getId();
+            List<Attachment> attachments = taskService.getTaskAttachments(taskID);
+
+            if (attachments.size() != 0) {
+                AttachmentVO attachmentVO = null;
+                List<AttachmentVO> attachmentsVO = benefitEvalVO.getAttachments();
+                for (Attachment attachment:attachments) {
+
+                    attachmentVO = new AttachmentVO();
+                    attachmentVO.setAttachID(attachment.getId());
+                    attachmentVO.setAttachName(attachment.getName());
+                    attachmentVO.setAttachType(attachment.getType());
+                    attachmentsVO.add(attachmentVO);
+                }
+            }
+
             logger.info("-----------tttt-----------------taskID:   "+taskID); 
             variables = taskService.getVariablesLocal(taskID);
             if (variables != null && variables.size() !=0) {

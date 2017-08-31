@@ -47,10 +47,6 @@ public class BenefitEval implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 	
-	@ManyToOne(targetEntity=Attachments.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumns({ @JoinColumn(name="evalAttach", referencedColumnName="attachID") })	
-	private Attachments evalAttach;
-	
 	public int getEvalID() {
 		return evalID;
 	}
@@ -108,14 +104,6 @@ public class BenefitEval implements Serializable {
 	
 	public Date getCreateDate() {
 		return createDate;
-	}
-	
-	public void setEvalAttach(Attachments value) {
-		this.evalAttach = value;
-	}
-	
-	public Attachments getEvalAttach() {
-		return evalAttach;
 	}
 	
 	
