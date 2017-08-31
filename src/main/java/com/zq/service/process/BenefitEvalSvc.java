@@ -3,6 +3,7 @@ package com.zq.service.process;
 import com.zq.vo.process.*;
 import com.zq.entity.process.*;
 import com.zq.dao.process.*;
+import com.zq.commons.utils.*;
 
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.*;
@@ -67,6 +69,41 @@ public class BenefitEvalSvc{
 
 	@Autowired
 	EvalCodeGenRepository evalCodeGenRepo;
+
+
+	@Transactional
+	public void downloadFile(HttpServletResponse response, String attachID) throws IOException, UnsupportedEncodingException{
+        Attachment attachment = taskService.getAttachment(attachID);
+        String fileName = attachment.getName();
+        InputStream fileData = taskService.getAttachmentContent(attachID);
+        String contentType = attachment.getType();
+        
+        response.addHeader("Content-Type", contentType + ";charset=UTF-8");
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        IOUtils.copy(new BufferedInputStream(fileData), response.getOutputStream());
+
+    }
+
+	@Transactional
+	public String delAttachment(String attachID){
+        taskService.deleteAttachment(attachID);
+        return "done";
+    }
+
+	@Transactional
+	public String addAttachment(String processID, MultipartFile fileData) throws IOException, UnsupportedEncodingException{
+
+        String fileName = new String(fileData.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");
+        String extName =  "";
+        String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
+        if (fileName.lastIndexOf(".") >= 0) {
+                    extName = fileName.substring(fileName.lastIndexOf("."));
+        }
+        String fileType = fileData.getContentType();
+
+        taskService.createAttachment(fileType, taskID, processID, fileName, fileName, fileData.getInputStream());
+		return "done";
+	}
 
     @Transactional
     public BenefitEvalVO submitBenefitEvalInfo(BenefitEvalVO benefitEvalVO, List<BenefitEvalItemVO> benefitEvalForm) {

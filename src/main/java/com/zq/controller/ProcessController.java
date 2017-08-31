@@ -1,6 +1,7 @@
 package com.zq.controller;
 
 import java.util.List;
+import java.io.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.transaction.annotation.*;
 
 import com.zq.commons.result.PageInfo;
@@ -92,6 +94,27 @@ public class ProcessController extends BaseController{
 
     @Autowired
     private BenefitEvalItemSvc benefitEvalItemSvc;
+
+
+    @RequestMapping(value = "downloadFile", method = RequestMethod.POST)                                    
+    public void downloadFile(HttpServletRequest request, HttpServletResponse response, Model model,
+                                    @RequestParam("attachID") String attachID
+                                    ) throws IOException, UnsupportedEncodingException {
+        benefitEvalSvc.downloadFile(response, attachID);
+    }
+    @RequestMapping(value = "delAttachment", method = RequestMethod.POST)                                    
+    public void delAttachment(HttpServletRequest request, HttpServletResponse response, Model model,
+                                    @RequestParam("attachID") String attachID
+                                    ) {
+        benefitEvalSvc.delAttachment(attachID);                    
+    }
+    @RequestMapping(value = "addAttachment", method = RequestMethod.POST)                                    
+    public void processFileUpload(HttpServletRequest request, HttpServletResponse response, Model model,
+                                    @RequestParam("processID") String processID, 
+                                    @RequestParam("attachment") MultipartFile attachment
+                                    ) throws IOException, UnsupportedEncodingException {
+        benefitEvalSvc.addAttachment(processID, attachment);                    
+    }
 
     @RequestMapping(value = "submitBenefitEval", method = RequestMethod.POST)  
 	public String submitBenefitEval(HttpServletRequest request, HttpServletResponse response, Model model,
