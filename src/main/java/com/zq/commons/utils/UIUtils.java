@@ -562,4 +562,48 @@ public class UIUtils {
 	    sb.append("</div>");
 	    return sb.toString();
 	}
+	
+	public static String spacer(String height, HttpServletRequest request) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("<tr>");
+	    sb.append("<td height='");
+	    sb.append(height == null ? "5" : height);
+	    sb.append("px'></td>");
+	    sb.append("</tr>");
+	    return sb.toString();
+	}
+
+	public static String groupBoxStart(String title, HttpServletRequest request) {
+	    String path = request.getContextPath();
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("<table width='100%' border='0' cellspacing='0' cellpadding='0'>");
+	    sb.append("<tr><td width='10px' align='left'><img src='");
+	    sb.append(path);
+	    sb.append("/static/images/benefit/top_left.gif' style='height:22px;vertical-align:top;'></td><td nowrap align='left' class='groupTitle'>");
+	    sb.append("&nbsp;");
+	    sb.append(title);
+	    sb.append("&nbsp;");
+	    sb.append("</td>");
+	    sb.append("<td width='100%' background='");
+	    sb.append(path);
+	    sb.append("/static/images/benefit/top_bg.gif'>&nbsp;</td><td align='right'><img src='");
+	    sb.append(path);
+	    sb.append("/static/images/benefit/top_right.gif' style='height:22px;vertical-align:top;'></td></tr></table>");
+	    sb.append("<table class='groupBox' width='100%' border='0' cellspacing='0' cellpadding='0'>");
+	    return sb.toString();
+	}
+
+	public static String groupBoxEnd(HttpServletRequest request) {
+	    String path = request.getContextPath();
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("</table><table width='100%' border='0' cellspacing='0' cellpadding='0'>");
+	    sb.append("<tr><td nowrap style='width:5px;height:8px;vertical-align:top;line-height:8px;'><img src='");
+	    sb.append(path);
+	    sb.append("/static/images/benefit/bottom_left.gif' style='width:5px;height:8px;vertical-align:top;'></td><td style=\"background:url('");
+	    sb.append(path);
+	    sb.append("/static/images/benefit/bottom_bg.gif') left top repeat-x ;height:8px;width:100%;vertical-align:top;line-height:8px;\" ></td><td style='width:5px;height:8px;line-height:8px;vertical-align:top;text-align:right;'><img src='");
+	    sb.append(path);
+	    sb.append("/static/images/benefit/bottom_right.gif' style='width:5px;height:8px;vertical-align:top;'></td></tr></table>");
+	    return sb.toString();
+	}
 }

@@ -2,28 +2,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
-<%@ page import= "com.zq.commons.result.PageInfo" %>
+<%@ page import= "com.zq.vo.process.BenefitEvalVO" %>
 <%
 	String path = request.getContextPath();
-	String pageTitle = (String)request.getAttribute("pageTitle");
-	Integer appid = (Integer)request.getAttribute("appid");
-	Long pid = (Long)request.getAttribute("pid");
-	String url = (String)request.getAttribute("url");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	
-	int nameWidth = (760-30-180-80-50-100-(true?160:0)-10); //是否是后评估，这里还没有变量，先写成true
+	//获取基本信息
+	BenefitEvalVO benefitEvalInfo = (BenefitEvalVO)request.getAttribute("benefitEvalInfo");
+	String processID = (String)request.getAttribute("processID");
 %>
 
 <script type="text/javascript">
+<%-- 选择附件窗体 --%>
+function newAttachFun() {
+	var arg = new Array();
+	arg.src = "<%=path%>/datamap/openUploadWin?processID=<%=processID%>&_id=" + Math.random();
+	arg.title = '新建附件';
+	arg.width = 450;
+	arg.height = 360;
+	arg.theme = "search";
+	ET.showModalWindow(arg, function (arry) { 
+		
+	});	
+}
 
+<%-- 打开附件 --%>
+function openAttachFun(id) {
+	var url = "<%=path%>/AttachAction.do?operation=open&documentID=" + id + "&_id=" + Math.random();
+	url+="&objectID="+document.frm.objectID.value;
+		url+="&objectType="+document.frm.objectType.value;
+		url+="&objectSubType="+document.frm.objectSubType.value;
+	var width = 840;
+	var height = document.body.clientHeight;
+	var left = (screen.width - width) /2;
+	var top = (screen.height - height) /2;
+	formWin = open(url,'formWin', 'width='+ width + ',height='+ height + ',left='+ left + ',top='+ top + ',status=0,resizable=yes,scrollbars=yes');
+	formWin.focus();
+}
+
+<%-- 下载附件 --%>
+function downloadAttachFun(documentID,attachmentID,attachmentType) {
+	document.frm.documentID.value = documentID;
+	document.frm.attachmentID.value = attachmentID;
+	document.frm.attachmentType.value = attachmentType;
+	document.frm.action="<%=path%>/AttachAction.do";
+	document.frm.operation.value="download";
+	etSubmit(document.frm);
+	document.frm.action="<%=path%>/DemandAction.do";	
+}
 </script>
 
 <form>
 <!-- 附件 -->
 <%=UIUtils.togglePanelStart("附件", true, request)%>
-	<%-- <%=UIUtils.toolbarStart(request)%>
-	<%=UIUtils.toolbarButton(true, "javascript:newAttachFun();", "附件", "doc_attachment.gif", false, false,request)%>
-	<%=UIUtils.toolbarEnd(request)%> --%>
+	<%=UIUtils.toolbarStart(request)%>
+	<%=UIUtils.toolbarButton(true, "javascript:newAttachFun();", "添加附件", "doc_attachment.gif", false, false,request)%>
+	<%=UIUtils.toolbarEnd(request)%>
 	
 	<table style="width:100%;border:0;cellpadding:0;cellspacing:0" class="listTable" id="attachTable">
 		 <tbody>
