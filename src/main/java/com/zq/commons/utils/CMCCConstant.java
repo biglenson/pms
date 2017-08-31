@@ -197,6 +197,7 @@ public class CMCCConstant {
     public static final String BenefitEvalEditPopup = "data/benefit/BenefitEvalEditPopup";
     //反馈页面
     public static final String Feedback = "data/benefit/FeedBack";
+    public static final String UploadWin = "data/benefit/FileUpload";
 
 
 

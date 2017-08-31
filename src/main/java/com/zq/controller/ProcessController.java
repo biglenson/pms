@@ -96,6 +96,15 @@ public class ProcessController extends BaseController{
     private BenefitEvalItemSvc benefitEvalItemSvc;
 
 
+    @RequestMapping(value = "openUploadWin", method = RequestMethod.GET)                                    
+    public String openUploadWin(HttpServletRequest request, HttpServletResponse response, Model model,
+                                    @RequestParam("processID") String processID
+                                    ) {
+        model.addAttribute("processID", processID);
+        
+        return CMCCConstant.UploadWin;
+    }
+
     @RequestMapping(value = "downloadFile", method = RequestMethod.POST)                                    
     public void downloadFile(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("attachID") String attachID
