@@ -292,7 +292,7 @@ public class BenefitEvalSvc{
         if (task != null){
             benefitEvalVO.setTaskName(task.getName());
             String taskID = task.getId();
-            List<Attachment> attachments = taskService.getTaskAttachments(taskID);
+            List<Attachment> attachments = taskService.getProcessInstanceAttachments(processID);
 
             if (attachments.size() != 0) {
                 AttachmentVO attachmentVO = null;
