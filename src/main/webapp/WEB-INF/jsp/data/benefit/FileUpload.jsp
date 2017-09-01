@@ -117,10 +117,6 @@ ET.Utils.addOnloadEvent("initFileHeight()");
 	<tr>
 		<td>2、只允许上传下列扩展名的文件：所有类型文件。</td>
 	</tr>
-	<%=UIUtils.spacer(null, request)%>
-	<%-- <tr>
-		<td>3、<a href='<%=path %>/ContractAction.do?operation=downloadImportTemplate' style='border-bottom: 1px;cursor:pointer;color: red;'>下载模版</a></td>
-	</tr> --%>
 	<%=UIUtils.groupBoxEnd(request)%>
 	   
 	<div id="new_attachDIV">
@@ -165,7 +161,6 @@ ET.Utils.addOnloadEvent("initFileHeight()");
 <jsp:include page="../../common/BodyEnd.jsp" />
 
 <script type="text/javascript">
-
 $(function() {
 	console.log('文件上传插件开启..........');
 	if (!Array.prototype.indexOf) {

@@ -24,8 +24,10 @@ function newAttachFun() {
 	arg.height = 360;
 	arg.theme = "search";
 	ET.showModalWindow(arg, function (arry) { 
-		
-	});	
+		console.log('===========测试中！======================>'+arry);
+		//调用保存刷新数据
+		save();
+	});
 }
 
 <%-- 预览附件 --%>
