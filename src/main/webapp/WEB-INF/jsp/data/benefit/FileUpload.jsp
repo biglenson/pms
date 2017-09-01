@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
+	String processID = (String)request.getAttribute("processID");
 %>
 
 <%-- 输出Head1模块 --%>
@@ -41,16 +42,16 @@ $(function () {
 
 //确定
 function OkFun() {
-	/* var support = WebUploader.Uploader.support();
+	var support = WebUploader.Uploader.support();
 	var isIE8 = /msie 8/i.test(navigator.userAgent);
 	if(!support || isIE8){
 		var fileName = document.frm.documentName.value;
 		if(fileName == "") {
-			alert('<bean:message key="namenotnull"/>');
+			alert('文件名不能为空');
 			return false;
 		}
 		if(fileName.length > 120) {
-			alert("<bean:message key="uploadAlert"/>");
+			alert("文件名过长");
 			return false;
 		}
 		if(!checkFileExt(fileName)){
@@ -64,8 +65,11 @@ function OkFun() {
 		document.frm.okBtn.disabled = true;
 		document.frm.cancelBtn.disabled = true;
 	}else{
+		console.log('===========测试中！======================>文件上传----');
+		console.log('===========测试中！======================>processID----'+<%=processID%>);
+		uploader.options.formData.processID = <%=processID%>;
 		window.uploader.upload();
-	} */
+	}
 }
 
 //取消
@@ -83,10 +87,26 @@ function findFile(){
 		objFile.dispatchEvent(evt);
 	}
 }
+
+function initFileHeight(){
+	var objFile = document.getElementById("name");
+	var fileDIV = document.getElementById("fileDIV");
+	if(ET.is_ie){
+		var ieHiddenDIV = document.getElementById("ieHiddenDIV");
+		ieHiddenDIV.style.height="10px";
+		objFile.className="input_file_ie";
+		fileDIV.className="fileDIV_ie";
+	}else{
+		objFile.className="input_file";
+		fileDIV.className="fileDIV";
+	}
+}
+ET.Utils.addOnloadEvent("initFileHeight()");
 </script>
 
 <div class="popBodyDIV">
 <form name="frm" method="post" action="" enctype="multipart/form-data">
+<input type="hidden" name="processID" value="<%=processID%>"/>
 
 <div id="searchDIV"  class="searchContainerDIV" >
 	<%=UIUtils.groupBoxStart("上传文件的说明", request)%>
@@ -103,26 +123,12 @@ function findFile(){
 	</tr> --%>
 	<%=UIUtils.groupBoxEnd(request)%>
 	   
-	<!-- <div id="old_attachDIV">
-		<div id="fileDIV" >
-		<input type="text" class="text" style="width: 70%;height:25px;cursor:pointer;background-color: #d4d0c8;" id="fileText" readonly="readonly" name="fileText" onclick="findFile();"/>
-		<input type="button" id="fileButton" name="fileButton" class="kbutton" value="上传2"  style="width: 20%;height: 24px;cursor:pointer;background-color: #d4d0c8;" onclick="findFile();"/>
-	</div>  
-	<input class="input_file" size="48" type="file"  name="name" id="name" onchange="fileChangeFun();"  height="22px" />
-	<div id="ieHiddenDIV" style="height: 0px"></div>
-	<div ID="progressBar" style="display: none; position: relative; top: 10px; left: 0px; background-color: #FFFFFF; width: 400px; height: 30px;">
-		<div ID="barBox" style="position: absolute; top: 0px;left: 0px; border: 1px inset;background-color: #eeeeee; width: 400px; height:20px;"></div>
-		<div ID="bar" style="position: absolute; top: 1px;left: 1px; border-right: 1px solid #444; background-color:#DFAE47;width:0px; height: 18px;"></div>		
-		<div ID="barText" style="position: absolute; top: 0px; left: 0px; color: #201B74; text-align: center; font-size: 12px; width: 400px; height: 20px;">0%</div>		
-	</div> -->
-	
-	
 	<div id="new_attachDIV">
 		<div id="uploader">
 			<div id="picker" style="width:60px;height:30px; margin:10px auto;" class="webuploader-container">
-				<div class="webuploader-pick">上传</div>
+				<div class="webuploader-pick">添加</div>
 				<div id="rt_rt_1boqtc14juh31foc1ecf1efhr3v1" style="position: absolute; top: 0px; left: 0px; width: 54px; height: 37px; overflow: hidden; bottom: auto; right: auto;">
-					<input name="file" class="webuploader-element-invisible" multiple="multiple" type="file" style="height: 37px;">
+					<input name="attachment" class="webuploader-element-invisible" multiple="multiple" type="file">
 					<label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255) none repeat scroll 0% 0%;"></label>
 				</div>
 			</div>
@@ -145,11 +151,10 @@ function findFile(){
 	
 </div>
 
-
 <div class="OKButtonBottom">
 	<div class="OKButtonDIV">
-		<input class="kbutton OKButton" type="button" value='确定' onclick='OkFun();'>
-		<input class="kbutton" type="button" value='取消' onclick="cancelFun()">
+		<input name="okBtn" class="kbutton OKButton" type="button" value='上传' onclick='OkFun();'>
+		<input name="cancelBtn" class="kbutton" type="button" value='取消' onclick="cancelFun()">
 	</div>	
 </div>
 
@@ -184,9 +189,9 @@ $(function() {
 	}
 	//文件上传请求的参数表，每次发送都会发送此对象中的参数。
 	function getFormData(){
-		var jhiddens=$(' form input, form textarea ,form select ');
-		var result={};
-		jhiddens.each(function(index,hidden){
+		var jhiddens=$('form input, form textarea, form select');
+		var result = {};
+		jhiddens.each(function(index, hidden){
 			if(hidden.type=="radio"||hidden.type=="checkbox"){
 				if(hidden.checked){
 					result[hidden.name]=$(hidden).val();
@@ -194,7 +199,9 @@ $(function() {
 			}else{
 				result[hidden.name]=$(hidden).val();
 			}
-		})
+		});
+		console.log('===========测试中！======================>上传数据----');
+		console.log(result);
 		return result;
 	}
 	var support = WebUploader.Uploader.support();
@@ -210,7 +217,7 @@ $(function() {
 		//实例化
 		var uploader = WebUploader.create({
 			swf: '<%=path%>/static/Uploader.swf',
-		    server: '',
+		    server: '/datamap/addAttachment',
 		   	//指定选择文件的按钮容器，不指定则不创建按钮
 		    pick: {
 		    	//指定选择文件的按钮容器
@@ -218,8 +225,10 @@ $(function() {
 		    	//开起同时选择多个文件能力
 		    	multiple: true
 		    },
+		    //设置文件上传域的name，默认值是file 
+		    fileVal: 'attachment',
 		    //验证文件总大小是否超出限制, 超出则不允许加入队列
-		    fileSizeLimit:'10485760',
+		    fileSizeLimit: 10*1024*1024,
 		    //向服务端传递数据
 		    formData: getFormData(),
 		    //允许通过粘贴来添加截屏的图片上传
@@ -235,11 +244,11 @@ $(function() {
 		$list.on("click", ".item-close", function(event) {
 			var file_id = $(this).parent().attr("id");
 			var file = uploader.getFile(file_id);
-			uploader.removeFile(file,true);
+			uploader.removeFile(file, true);
 			//js的indexOf方法在IE8中报错
 			//若不加入上面一段，下面indexOf方法在ie8上会报错
 			var index = filesArray.indexOf(file);
-			filesArray.splice(index,1);
+			filesArray.splice(index, 1);
 			$(this).parent().remove();
 			scrollBar.resize(true);
 		});

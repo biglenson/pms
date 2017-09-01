@@ -7,7 +7,7 @@
 	String path = request.getContextPath();
 	//获取基本信息
 	BenefitEvalVO benefitEvalInfo = (BenefitEvalVO)request.getAttribute("benefitEvalInfo");
-	String processID = (String)request.getAttribute("processID");
+	String processID = benefitEvalInfo.getProcessID();
 %>
 
 <script type="text/javascript">
