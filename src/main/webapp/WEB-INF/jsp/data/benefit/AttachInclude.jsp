@@ -28,7 +28,7 @@ function newAttachFun() {
 	});	
 }
 
-<%-- 打开附件 --%>
+<%-- 预览附件 --%>
 function openAttachFun(id) {
 	console.log('===========测试中！======================>预览附件----');
 	var url = "<%=path%>/AttachAction.do?operation=open&documentID=" + id + "&_id=" + Math.random();
@@ -47,15 +47,37 @@ function openAttachFun(id) {
 function downloadAttachFun(attachID) {
 	console.log('===========测试中！======================>下载附件----');
 	console.log('===========测试中！======================>'+attachID);
-	document.frm2.attachID.value=attachID;
-	document.frm2.action="<%=path%>/datamap/downloadFile";
-	document.frm2.operation.value="download";
+	document.frm2.attachID.value = attachID;
+	document.frm2.action = "<%=path%>/datamap/downloadFile";
+	document.frm2.operation.value = "download";
 	etSubmit(document.frm2);
 }
 
 <%-- 删除附件 --%>
-function deleteAttachFun() {
+function deleteAttachFun(obj, attachID) {
 	console.log('===========测试中！======================>删除附件----');
+	_currentAttachRow = obj.parentNode.parentNode;
+	if(confirm("您确定要删除所选定的附件吗？")){
+		$.ajax({
+			type: "POST",
+			url: "<%=path%>/datamap/delAttachment",
+			data: {
+				attachID: attachID
+			},        
+			success: function(data){
+				console.log('===========测试中！======================>附件删除成功！！----');
+				var attachTable = document.getElementById("attachTable");
+				attachTable.deleteRow(_currentAttachRow.rowIndex);
+				if(attachTable.rows.length == 0) {
+					var newRow = attachTable1.rows[1].cloneNode(true);	
+		    		attachTable.tBodies[0].appendChild(newRow);
+		    	}
+			},
+			error: function(){
+				
+			}         
+		});
+	}
 }
 </script>
 
@@ -73,13 +95,11 @@ function deleteAttachFun() {
 			<%for(AttachmentVO attachment : attachmentList) { %> 	
 			<tr class="listTableTR"  id="attachRow___<%=attachment.getAttachID()%>" >
 				<td align="left" >
-					<%-- <input type="hidden" name="attachID" value="<%=attachment.getAttachID()%>" />
-					<input type="hidden" name="attachType" value="<%=attachment.getAttachType()%>" /> --%>
 					<span><img src="/static/images/attachment.png"></span>
 					<a href="javascript:openAttachFun(<%=attachment.getAttachID()%>);"><%=attachment.getAttachName()%></a><span style="color: #949FA1;">(11 KB)</span>&nbsp;&nbsp;
 					<a href="javascript:downloadAttachFun(<%=attachment.getAttachID()%>);"><span style="color: #35A0E5;">下载</span></a>&nbsp;&nbsp;
 					<%if("1".equals(isEditable)){ %>
-						<span style="color:  #35A0E5;cursor: pointer;" onclick="deleteAttachFun(this,<%=attachment.getAttachID()%>);">删除</span>
+						<span style="color:  #35A0E5;cursor: pointer;" onclick="deleteAttachFun(this, <%=attachment.getAttachID()%>);">删除</span>
 					<%} %>
 				</td>
 			</tr>
