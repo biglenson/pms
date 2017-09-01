@@ -93,7 +93,8 @@ public class BenefitEvalSvc{
 	@Transactional
 	public String addAttachment(String processID, MultipartFile fileData) throws IOException, UnsupportedEncodingException{
 
-        String fileName = new String(fileData.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");
+        //String fileName = new String(fileData.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");
+        String fileName = fileData.getOriginalFilename();
         String extName =  "";
         String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
         if (fileName.lastIndexOf(".") >= 0) {
