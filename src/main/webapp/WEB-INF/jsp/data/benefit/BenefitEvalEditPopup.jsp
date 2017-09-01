@@ -138,6 +138,11 @@ function cancel() {
 	parent.ET.closeModalWindow();
 }
 
+//添加附件
+function newAttachFun() {
+	alert('添加附件前，请先保存评估信息');
+}
+
 //自动适配当前窗体高度
 function autoContentHeight(){
 	ET.MainScroll("contentDIV");
@@ -348,8 +353,12 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 		</table>
 		<%=UIUtils.togglePanelEnd(request)%>
 		
-		<%-- 附件 --%>
-		<jsp:include page="./AttachInclude.jsp"/>
+		<!-- 附件 -->
+		<%=UIUtils.togglePanelStart("附件", true, request)%>
+			<%=UIUtils.toolbarStart(request)%>
+			<%=UIUtils.toolbarButton(true, "javascript:newAttachFun();", "添加附件", "doc_attachment.gif", false, false,request)%>
+			<%=UIUtils.toolbarEnd(request)%>
+		<%=UIUtils.togglePanelEnd(request)%>
 		<%-- 下一步 --%>
 		<%=UIUtils.togglePanelStart("下一步", true, request)%>
 		<table style="border:0;align:center;cellpadding:0;cellspacing:0" id="fieldTable" class="formTable">						

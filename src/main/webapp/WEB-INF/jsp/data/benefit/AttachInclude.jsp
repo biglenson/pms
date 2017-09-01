@@ -7,14 +7,14 @@
 	String path = request.getContextPath();
 	//获取基本信息
 	BenefitEvalVO benefitEvalInfo = (BenefitEvalVO)request.getAttribute("benefitEvalInfo");
-	String processID = benefitEvalInfo.getProcessID();
+	/* String processID = benefitEvalInfo.getProcessID(); */
 %>
 
 <script type="text/javascript">
 <%-- 选择附件窗体 --%>
 function newAttachFun() {
 	var arg = new Array();
-	arg.src = "<%=path%>/datamap/openUploadWin?processID=<%=processID%>&_id=" + Math.random();
+	arg.src = "<%=path%>/datamap/openUploadWin?processID=<%=benefitEvalInfo.getProcessID()%>&_id=" + Math.random();
 	arg.title = '新建附件';
 	arg.width = 450;
 	arg.height = 360;
