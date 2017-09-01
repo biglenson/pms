@@ -1,4 +1,4 @@
-<%@page import="org.apache.commons.io.filefilter.FalseFileFilter"%>
+<%@ page import="org.apache.commons.io.filefilter.FalseFileFilter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import= "com.zq.commons.utils.UIUtils" %>
@@ -30,6 +30,7 @@ function newAttachFun() {
 
 <%-- 打开附件 --%>
 function openAttachFun(id) {
+	console.log('===========测试中！======================>预览附件----');
 	var url = "<%=path%>/AttachAction.do?operation=open&documentID=" + id + "&_id=" + Math.random();
 	url+="&objectID="+document.frm.objectID.value;
 		url+="&objectType="+document.frm.objectType.value;
@@ -43,18 +44,24 @@ function openAttachFun(id) {
 }
 
 <%-- 下载附件 --%>
-function downloadAttachFun(documentID,attachmentID,attachmentType) {
-	document.frm.documentID.value = documentID;
-	document.frm.attachmentID.value = attachmentID;
-	document.frm.attachmentType.value = attachmentType;
-	document.frm.action="<%=path%>/AttachAction.do";
-	document.frm.operation.value="download";
-	etSubmit(document.frm);
-	document.frm.action="<%=path%>/DemandAction.do";	
+function downloadAttachFun(attachID) {
+	console.log('===========测试中！======================>下载附件----');
+	console.log('===========测试中！======================>'+attachID);
+	document.frm2.attachID.value=attachID;
+	document.frm2.action="<%=path%>/datamap/downloadFile";
+	document.frm2.operation.value="download";
+	etSubmit(document.frm2);
+}
+
+<%-- 删除附件 --%>
+function deleteAttachFun() {
+	console.log('===========测试中！======================>删除附件----');
 }
 </script>
 
-<form>
+<form name="frm2" method="POST" action="">
+<input type="hidden" name="operation" value="">
+<input type="hidden" name="attachID" value="" />
 <!-- 附件 -->
 <%=UIUtils.togglePanelStart("附件", true, request)%>
 	<%=UIUtils.toolbarStart(request)%>
@@ -66,11 +73,11 @@ function downloadAttachFun(documentID,attachmentID,attachmentType) {
 			<%for(AttachmentVO attachment : attachmentList) { %> 	
 			<tr class="listTableTR"  id="attachRow___<%=attachment.getAttachID()%>" >
 				<td align="left" >
-					<input type="hidden" name="_documentID" value="<%=attachment.getAttachID()%>">
-					<input type="hidden" name="_attachmentType" value="<%=attachment.getAttachType()%>">
+					<%-- <input type="hidden" name="attachID" value="<%=attachment.getAttachID()%>" />
+					<input type="hidden" name="attachType" value="<%=attachment.getAttachType()%>" /> --%>
 					<span><img src="/static/images/attachment.png"></span>
 					<a href="javascript:openAttachFun(<%=attachment.getAttachID()%>);"><%=attachment.getAttachName()%></a><span style="color: #949FA1;">(11 KB)</span>&nbsp;&nbsp;
-					<a href="javascript:downloadAttachFun(<%=attachment.getAttachID()%>,<%=attachment.getAttachName()%>,<%=attachment.getAttachType()%>);"><span style="color: #35A0E5;">下载</span></a>&nbsp;&nbsp;
+					<a href="javascript:downloadAttachFun(<%=attachment.getAttachID()%>);"><span style="color: #35A0E5;">下载</span></a>&nbsp;&nbsp;
 					<%if("1".equals(isEditable)){ %>
 						<span style="color:  #35A0E5;cursor: pointer;" onclick="deleteAttachFun(this,<%=attachment.getAttachID()%>);">删除</span>
 					<%} %>
@@ -89,24 +96,3 @@ function downloadAttachFun(documentID,attachmentID,attachmentType) {
 
 <!-- 以上为表单 -->
 </form>
-
-<!----------------------------结束------------------------------>	
-<!-----------------------------附件克隆表----------------------------->	
-<%-- <table id="attachTable1" width="100%" border="0" cellpadding="0" cellspacing="0" style="display:none;">
-	<tr class="listTableTR" >
-		<td id="attachName" align="left">
-			<input type="hidden" name="_documentID" value="">
-			<input type="hidden" name="_attachmentID" value="">
-			<input type="hidden" name="_attachmentType" value="">
-			<input type="hidden" name="_disableItems" value="">
-			<span><img src="<%=path%>/images/16x16/empty.png"/></span>
-			<a href="#"></a><span style="color: #949FA1;"></span>&nbsp;&nbsp;
-			<a href="#"><span style="color: #35A0E5;"><bean:message key="download"/></span></a>&nbsp;&nbsp;
-			<a href="#"><span style="color:  #35A0E5;"><bean:message key="preview"/></span></a>&nbsp;&nbsp;
-			<span style="color:  #35A0E5;cursor: pointer;"><bean:message key="delete"/></span></a>
-		</td>
-	</tr>
-  	<tr class="listTableTR" id="noAttachTR">
-		  <td><bean:message key="NoRecord"/></td>
-	</tr>
-</table> --%>
