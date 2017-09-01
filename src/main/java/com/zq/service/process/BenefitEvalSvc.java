@@ -6,6 +6,9 @@ import com.zq.dao.process.*;
 import com.zq.commons.utils.*;
 
 import java.util.*;
+import java.net.URLEncoder;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.*;
+//import org.apache.commons.io.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -74,12 +78,16 @@ public class BenefitEvalSvc{
 	@Transactional
 	public void downloadFile(HttpServletResponse response, String attachID) throws IOException, UnsupportedEncodingException{
         Attachment attachment = taskService.getAttachment(attachID);
-        String fileName = attachment.getName();
         InputStream fileData = taskService.getAttachmentContent(attachID);
-        String contentType = attachment.getType();
-        
+
+        String contentType = StringUtils.substringBefore(attachment.getType(), ";");
         response.addHeader("Content-Type", contentType + ";charset=UTF-8");
+        
+        String extName = StringUtils.substringAfter(attachment.getType(), ";");
+        String fileName = URLEncoder.encode(attachment.getName() + "." + extName, "UTF-8");
+        
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+
         IOUtils.copy(new BufferedInputStream(fileData), response.getOutputStream());
 
     }
@@ -93,16 +101,19 @@ public class BenefitEvalSvc{
 	@Transactional
 	public String addAttachment(String processID, MultipartFile fileData) throws IOException, UnsupportedEncodingException{
 
+        String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
+
         //String fileName = new String(fileData.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");
         String fileName = fileData.getOriginalFilename();
-        String extName =  "";
-        String taskID = taskService.createTaskQuery().processInstanceId(processID).singleResult().getId();
+        String extName =  FilenameUtils.getExtension(fileName);
+        /*
         if (fileName.lastIndexOf(".") >= 0) {
                     extName = fileName.substring(fileName.lastIndexOf("."));
         }
-        String fileType = fileData.getContentType();
+        */
+        String fileType = fileData.getContentType()  + ";" +  extName;
 
-        taskService.createAttachment(fileType, taskID, processID, fileName, fileName, fileData.getInputStream());
+        taskService.createAttachment(fileType, taskID, processID, FilenameUtils.getBaseName(fileName), fileName, fileData.getInputStream());
 		return "done";
 	}
 
