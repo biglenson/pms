@@ -12,6 +12,8 @@
 	List<AttachmentVO> attachmentList = benefitEvalInfo.getAttachments();
 	//获取是否可编辑信息(即区分评估发起人或者飞发起人,0是非发起者,1是发起者)
 	String isEditable =  String.valueOf(request.getAttribute("isEditable"));
+	//获取任务单来源,todo为待办,done为已办
+	String submitFrom = (String)request.getAttribute("submitFrom");
 %>
 
 <script type="text/javascript">
@@ -47,8 +49,8 @@ function openAttachFun(id) {
 
 <%-- 下载附件 --%>
 function downloadAttachFun(attachID) {
-	console.log('===========测试中！======================>下载附件----');
-	console.log('===========测试中！======================>'+attachID);
+	/* console.log('===========测试中！======================>下载附件----');
+	console.log('===========测试中！======================>'+attachID); */
 	document.frm2.attachID.value = attachID;
 	document.frm2.action = "<%=path%>/datamap/downloadFile";
 	document.frm2.operation.value = "download";
@@ -88,10 +90,12 @@ function deleteAttachFun(obj, attachID) {
 <input type="hidden" name="attachID" value="" />
 <!-- 附件 -->
 <%=UIUtils.togglePanelStart("附件", true, request)%>
+<%if("todo".equals(submitFrom)){ %>
+	<%if("1".equals(isEditable)) {%>
 	<%=UIUtils.toolbarStart(request)%>
 	<%=UIUtils.toolbarButton(true, "javascript:newAttachFun();", "添加附件", "doc_attachment.gif", false, false,request)%>
 	<%=UIUtils.toolbarEnd(request)%>
-	
+<%}}%>	
 	<table style="width:100%;border:0;cellpadding:0;cellspacing:0" class="listTable" id="attachTable">
 		 <tbody>
 			<%for(AttachmentVO attachment : attachmentList) { %> 	
