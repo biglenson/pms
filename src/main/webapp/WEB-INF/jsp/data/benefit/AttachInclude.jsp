@@ -104,7 +104,7 @@ function deleteAttachFun(obj, attachID) {
 					<span><img src="/static/images/attachment.png"></span>
 					<a href="javascript:openAttachFun(<%=attachment.getAttachID()%>);"><%=attachment.getAttachName()%></a><span style="color: #949FA1;">(11 KB)</span>&nbsp;&nbsp;
 					<a href="javascript:downloadAttachFun(<%=attachment.getAttachID()%>);"><span style="color: #35A0E5;">下载</span></a>&nbsp;&nbsp;
-					<%if("1".equals(isEditable)){ %>
+					<%if("todo".equals(submitFrom) && "1".equals(isEditable)){ %>
 						<span style="color:  #35A0E5;cursor: pointer;" onclick="deleteAttachFun(this, <%=attachment.getAttachID()%>);">删除</span>
 					<%} %>
 				</td>

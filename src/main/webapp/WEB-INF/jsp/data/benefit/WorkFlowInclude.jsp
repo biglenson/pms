@@ -33,12 +33,12 @@
 		//获取工作流信息
 		List<TaskHisItemVO> taskHisList = (List)request.getAttribute("taskHis");
 		if(taskHisList != null && taskHisList.size() > 0){
-			int index = 1; //自定义索引
+			int index = taskHisList.size(); //自定义索引
 			for(TaskHisItemVO item : taskHisList){
 		%>
 		<tr class="listTableTR" >
 			<td>
-				<%if(index != 1){%>
+				<%if(index != taskHisList.size()){%>
 					<img src="<%=path%>/static/images/userSelect_check.png">
 				<%}else {%>
 					<img src="<%=path%>/static/images/bulletin_board_on.gif">
@@ -63,7 +63,7 @@
 				<%=TypeUtils.nullToString(item.getDealOpinion())%>
 			</td>
 		</tr>
-		<%index++;}}else{%>
+		<%index--;}}else{%>
 		<tr class="listTableTR" >
 			<td colspan="9">没有记录</td>
 		</tr>
