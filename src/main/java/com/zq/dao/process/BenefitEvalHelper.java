@@ -10,5 +10,7 @@ public interface BenefitEvalHelper{
     List<TaskHisItemVO> getTaskHis(String processID);
     PageModel<TaskTodoItemVO> getTaskTodo(String userID, int currentPage);
     PageModel<TaskTodoItemVO> getTaskDone(String userID, int currentPage);
+    List<UserInfoVO> getUserInfoList();
+
 
 }

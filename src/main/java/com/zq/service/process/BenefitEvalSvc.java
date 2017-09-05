@@ -75,6 +75,11 @@ public class BenefitEvalSvc{
 	EvalCodeGenRepository evalCodeGenRepo;
 
 
+	public List<UserInfoVO> getUserInfoList(){
+        List<UserInfoVO> userInfoListVO = benefitEvalRepo.getUserInfoList();
+
+        return userInfoListVO;
+    }
 	@Transactional
 	public void downloadFile(HttpServletResponse response, String attachID) throws IOException, UnsupportedEncodingException{
         Attachment attachment = taskService.getAttachment(attachID);
