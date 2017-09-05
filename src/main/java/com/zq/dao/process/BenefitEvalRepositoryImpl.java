@@ -16,7 +16,7 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         UserInfoVO userInfoVO = null;
         
         String queryString = 
-            "select a.id, a.name, b.id, b.name from sys_user b, sys_department a where b.department_code = a.id order by a.name, b.name";
+            "select a.id deptID, a.name deptName, b.id userID, b.name userName from sys_user b, sys_department a where b.department_code = a.id order by a.name, b.name";
         Query q = em.createNativeQuery(queryString);
 
         List rslt = q.getResultList();
