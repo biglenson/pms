@@ -1,6 +1,7 @@
 package com.zq.dao.process;
 
 import java.util.*;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import javax.persistence.*;
 
@@ -24,9 +25,9 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
         while ( rsltIter.hasNext() ) {
             userInfoVO = new UserInfoVO();
             Object[] obj = (Object[])rsltIter.next();
-            userInfoVO.setDeptID((Long)obj[0]);
+            userInfoVO.setDeptID(((BigInteger)obj[0]).longValue());
             userInfoVO.setDeptName((String)obj[1]);
-            userInfoVO.setUserID((Long)obj[2]);
+            userInfoVO.setUserID(((BigInteger)obj[2]).longValue());
             userInfoVO.setUserName((String)obj[3]);
             userInfoListVO.add(userInfoVO);
         }

@@ -9,7 +9,6 @@ public class UserInfoVO {
 
 	public UserInfoVO() {
 		// TODO - implement UserInfoVO.UserInfoVO
-		throw new UnsupportedOperationException();
 	}
 
 	public long getDeptID() {
