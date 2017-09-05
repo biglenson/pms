@@ -11,6 +11,28 @@ public class BenefitEvalRepositoryImpl implements BenefitEvalHelper {
     @PersistenceContext
     private EntityManager em;
 
+    public List<UserInfoVO> getUserInfoList() {
+        List<UserInfoVO> userInfoListVO = new ArrayList<UserInfoVO>();
+        UserInfoVO userInfoVO = null;
+        
+        String queryString = 
+            "select a.id, a.name, b.id, b.name from sys_user b, sys_department a where b.department_code = a.id order by a.name, b.name";
+        Query q = em.createNativeQuery(queryString);
+
+        List rslt = q.getResultList();
+        Iterator rsltIter = rslt.iterator();
+        while ( rsltIter.hasNext() ) {
+            userInfoVO = new UserInfoVO();
+            Object[] obj = (Object[])rsltIter.next();
+            userInfoVO.setDeptID((Long)obj[0]);
+            userInfoVO.setDeptName((String)obj[1]);
+            userInfoVO.setUserID((Long)obj[2]);
+            userInfoVO.setUserName((String)obj[3]);
+            userInfoListVO.add(userInfoVO);
+        }
+        return userInfoListVO;
+    }
+
     public List<TaskHisItemVO> getTaskHis(String processID) {
         List<TaskHisItemVO> taskHis = new ArrayList<TaskHisItemVO>();
         TaskHisItemVO taskHisItemVO = null;

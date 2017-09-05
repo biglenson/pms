@@ -96,6 +96,15 @@ public class ProcessController extends BaseController{
     private BenefitEvalItemSvc benefitEvalItemSvc;
 
 
+    @RequestMapping(value = "getUserList", method = RequestMethod.POST)                                    
+    public String getUserInfoList(HttpServletRequest request, HttpServletResponse response, Model model) {
+        List<UserInfoVO> userInfoListVO = benefitEvalSvc.getUserInfoList();
+        
+        model.addAttribute("userList", userInfoListVO);
+        
+        return CMCCConstant.UserInfoList;
+    }
+
     @RequestMapping(value = "openUploadWin", method = RequestMethod.GET)                                    
     public String openUploadWin(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("processID") String processID
