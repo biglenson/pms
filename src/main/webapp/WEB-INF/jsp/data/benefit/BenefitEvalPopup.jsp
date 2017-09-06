@@ -83,14 +83,12 @@ function logFun(){
 
 //提交
 function submit() {
-	console.log('===========测试中！======================>提交----');
 	$(function () {
 		var evalTitle = $('input[dbField=evalTitle]').val();
 		var evalTitle2 = $('div[dbField=evalTitle]').text();
 		var assignee = $('input[dbField=assignee]').val();
 		var dealRslt = $('select[dbField=dealRslt]').val();
 		var dealRslt2 = $('input[dbField=dealRslt]').val();
-		console.log('执行了-==========================');
 		if (!evalTitle && !evalTitle2) {
 			alert('标题不能为空！');
 		}else if (!assignee) {
@@ -99,13 +97,11 @@ function submit() {
 			if (!dealRslt2) {
 				alert('处理结果不能为空！');
 			}else {
-				console.log('处理校验通过==========处理结果通过校验===========');
 				if (window.confirm("确定提交该任务单?")) {
 					confirmSubmit();
 				}
 			}
 		}else {
-			console.log('处理校验通过==========全部通过校验===========');
 			if (window.confirm("确定提交该任务单?")) {
 				confirmSubmit();
 			}
@@ -123,7 +119,6 @@ function confirmSubmit() {
 	});
 	var selectValue = $("#next-step-select").find("option:selected").text();
 	obj.rsltDesc = selectValue;
-	console.log('提交的下拉框选中词语:  '+selectValue);
 	var arr = new Array();
 	for (var i = 1; i <= <%=formInfos.size()%>; i++) {
 		var obj2 = {};
@@ -135,9 +130,6 @@ function confirmSubmit() {
 		});
 	}
 	
-	console.log(obj);
-	console.log(arr);
-	
 	document.frm.operation.value="submit";
 	document.frm.evalInfo.value=JSON.stringify(obj);
 	document.frm.evalForm.value=JSON.stringify(arr);
@@ -146,35 +138,6 @@ function confirmSubmit() {
 	parent.ET.setModalWindowTheme("feedback");
 	parent.ET.setModalWindowSize(220, 140);
 	parent.ET.setModalWindowReturnValue("1");
-	
-	<%-- $.ajax({
-		type: "POST",
-		url: "<%=path%>/datamap/submitBenefitEval",
-		data: {
-			evalInfo: JSON.stringify(obj),
-			evalForm: JSON.stringify(arr)
-		},
-		/* datatype: "html", */
-		//在请求之前调用的函数
-		beforeSend: function(){
-			
-		},
-		//成功返回之后调用的函数             
-		success: function(data){
-			console.log(decodeURI(data));     
-			alert('<%=request.getAttribute("feedback")%>');
-		},
-		//调用执行后调用的函数
-		complete: function(XMLHttpRequest, textStatus){
-		   /* alert(XMLHttpRequest.responseText);
-		   alert(textStatus); */
-		},
-		//调用出错执行的函数
-		error: function(){
-			//请求出错处理
-		}         
-		});
-		parent.ET.setModalWindowReturnValue("1"); --%>
 }
 
 //保存
@@ -209,8 +172,6 @@ function save() {
 
 //删除
 function del() {
-	console.log('===========测试中！======================>删除----');
-	
 	if (window.confirm("确定删除该任务单?")) {
 		var arg = new Array();
 		arg.src="<%=path%>/datamap/delBenefitEval?taskID=<%=taskID%>";
@@ -223,9 +184,7 @@ function del() {
 					function cc() {
 						//刷新待办任务
 						document.frm.action = "<%=path%>/datamap/getTaskTodo";
-						etSubmit(document.frm);
-						console.log('===========测试中！======================>刷新了待办任务----');
-						
+						etSubmit(document.frm);						
 					}
 			);
 		});
@@ -234,7 +193,6 @@ function del() {
 
 //取消
 function cancel() {
-	console.log('===========测试中！======================>取消----');
 	parent.ET.closeModalWindow();
 }
 

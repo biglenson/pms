@@ -60,7 +60,6 @@ function submit() {
 		}else if(!assignee) {
 			alert('处理人不能为空！');
 		}else {
-			console.log('===========测试中！======================>修改再保存----');
 			if (window.confirm("确定提交该任务单?")) {
 				var obj = {};
 				$('.formTable').find('[dbField]').each(function(index, elem) {
@@ -78,9 +77,6 @@ function submit() {
 						arr[i-1] = obj2;
 					});
 				}
-				
-				console.log(obj);
-				console.log(arr);
 				
 				document.frm.operation.value="submit";
 				document.frm.evalInfo.value=JSON.stringify(obj);
@@ -118,9 +114,6 @@ function save() {
 					arr[i-1] = obj2;
 				});
 			}
-			
-			console.log(obj);
-			console.log(arr);
 			
 			document.frm.operation.value="save";
 			document.frm.submitFrom.value="todo";
@@ -392,8 +385,6 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 							arg.theme = "search";
 							arg.height = 310;
 							parent.ET.showModalWindow(arg, function (ret) { 
-								console.log('返回值结果：  ' + ret);
-								console.log('===========测试中！======================>刷新了----');
 								//设置选中的下一步处理人
 								if (ret) {
 									document.getElementById('operator_del').value = ret;
