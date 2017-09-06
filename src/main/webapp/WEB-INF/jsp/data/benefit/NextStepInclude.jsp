@@ -13,10 +13,6 @@
 	Map<String,String> rsltOption = (Map)request.getAttribute("rsltOption");
 %>
 
-<script type="text/javascript">
-
-</script>
-
 <div>
 <!-- 下一步 -->
 <%=UIUtils.togglePanelStart("下一步", true, request)%>
@@ -39,15 +35,26 @@
 			<td class="label">处理人<font class="red">*</font></td>
 			<td class="content  " id="creator">
 				<div class="content-div" id="content-div-res01" style="cursor: pointer;">
-					<%-- <input vtype="input" dbfield="assignee" class="text" value="<%=TypeUtils.nullToString(benefitEvalInfo.getAssignee())%>" readonly="" style="cursor: pointer;" type="text">
-					<img src="/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle"> --%>
-					<input vtype="input" dbfield="assignee" class="text" value="<%=TypeUtils.nullToString(benefitEvalInfo.getAssignee())%>" style="cursor: pointer;" type="text">
+					<input vtype="input" dbfield="assignee" id="operator_del" class="text" value="<%=TypeUtils.nullToString(benefitEvalInfo.getAssignee())%>" readonly="" style="cursor: pointer;" type="text">
+					<img src="/static/images/benefit/assign_resources.gif" id="div-img-res01" align="absmiddle">
 				</div> 
 				<script type="text/javascript">
-					ET.Utils.addEvent(document.getElementById('content-div-res01'),'click',function(){ 
-						var img=document.getElementById('div-img-res01');
-						treeSelectUtils.showUserSelect(img.parentElement.children[0],img.parentElement.children[1], 7,69,true); 
-					}) 
+				//选择联系人
+				ET.Utils.addEvent(document.getElementById('content-div-res01'), 'click', function() { 
+					var arg=new Array();
+					var scorecardType = 0;
+					arg.src = "<%=path%>/datamap/getUserList?_id=" + Math.random();
+					arg.title = '选择联系人';
+					arg.width = 400;
+					arg.theme = "search";
+					arg.height = 310;
+					parent.ET.showModalWindow(arg, function (ret) { 
+						console.log('返回值结果：  ' + ret);
+						console.log('===========测试中！======================>刷新了----');
+						//设置选中的下一步处理人
+						document.getElementById('operator_del').value = ret;
+					});
+				}) 
 				</script>
 			</td>
 		</tr>

@@ -96,7 +96,7 @@ public class ProcessController extends BaseController{
     private BenefitEvalItemSvc benefitEvalItemSvc;
 
 
-    @RequestMapping(value = "getUserList", method = RequestMethod.POST)                                    
+    @RequestMapping(value = "getUserList", method = RequestMethod.GET)                                    
     public String getUserInfoList(HttpServletRequest request, HttpServletResponse response, Model model) {
         List<UserInfoVO> userInfoListVO = benefitEvalSvc.getUserInfoList();
         
