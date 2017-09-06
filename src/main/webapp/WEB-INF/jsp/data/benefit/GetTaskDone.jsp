@@ -85,7 +85,6 @@ function newFormFun(evalFor, evalPhase, chooseItem) {
 	arg.width = 840;
 	arg.height = parent.document.body.clientHeight - 20;
 	parent.ET.showModalWindow(arg, function (ret) { 
-		console.log('===========测试中！======================>关闭了弹出窗口----');
 		if(ret != null){
 			cleanFun();
 			etSubmit(document.frm);
@@ -93,7 +92,6 @@ function newFormFun(evalFor, evalPhase, chooseItem) {
 		//刷新待办任务
 		document.frm.action = "<%=path%>/datamap/getTaskTodo";
 		etSubmit(document.frm);
-		console.log('===========测试中！======================>刷新了待办任务----');
 	});
 }
 
@@ -115,7 +113,6 @@ function openForm(processID, evalPhase) {
     	//刷新已办任务
 		document.frm.action = "<%=path%>/datamap/getTaskDone";
     	etSubmit(document.frm);
-		console.log('===========测试中！======================>刷新了已办任务----');
 	});
 }
 </script>
@@ -201,10 +198,8 @@ function openForm(processID, evalPhase) {
 <script>
     $(document).ready(function() {
         $("#tab li").click(function() {
-        	console.log('当前索引2'+$(this).index());
             $("#tab li").eq($(this).index()).css("background-color", "#FFF").siblings().css("background-color", "#F4F4F4");
             $("div[id=todo]").hide().eq($(this).index()).show();
-            //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on'); 
             if ($(this).index() == 0) {
             	document.frm.action = "<%=path%>/datamap/getTaskTodo";
             	document.frm.operation.value="toggle";

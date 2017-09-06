@@ -245,7 +245,6 @@ function cancel() {
 
 //关闭 
 function closeBtn() {
-	console.log('===========测试中！======================>关闭----');
 	parent.ET.closeModalWindow("1");
 }
 
