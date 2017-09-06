@@ -201,43 +201,6 @@ function closeBtn() {
 	parent.ET.closeModalWindow("1");
 }
 
-<%-- function showMoreButton (obj){
-	var listMenu = new Array();
-	listMenu.items = new Array();
-	var i=0;
-	<%if (!isEdit) {%>
-		<%if(isVersionSupport){%>
-			<%if(lineList.size()>0){ %>
-				listMenu.items[i] = new Array();
-				listMenu.items[i]["type"] 		= 'item';
-				listMenu.items[i]["function"]	= 'compareVersionFun()';
-				listMenu.items[i]["label"]		= '版本比较';
-				i++;
-			<%} %>
-		<%}else if(schema.getId()==CMCCConstant.FEE_DETAIL||schema.getId()==CMCCConstant.ZICHAN_DETAIL){%>
-			listMenu.items[i] = new Array();
-			listMenu.items[i]["type"] 		= 'item';
-			listMenu.items[i]["function"]	= 'compareFeedVersionFun()';
-			listMenu.items[i]["label"]		= '跟原始版本比较';
-			i++;
-		<%}%>
-		
-		<%if(isLixiang&&wfSchema!=null){%>
-			
-			listMenu.items[i] = new Array();
-			listMenu.items[i]["type"] 		= 'item';
-			listMenu.items[i]["function"]	= 'logFun()';
-			listMenu.items[i]["label"]		= '日志';
-			i++;
-		<%}%>
-		listMenu.items[i] = new Array();
-		listMenu.items[i]["type"] 		= 'item';
-		listMenu.items[i]["function"]	= 'exportExcel()';
-		listMenu.items[i]["label"]		= '<bean:message key="outAsExcelFun"/>';
-	<%} %>
-	popupMenu(obj, listMenu, "");
-} --%>
-
 //自动适配当前窗体高度
 function autoContentHeight(){
 	ET.MainScroll("contentDIV");
@@ -268,7 +231,7 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 
 
 <%=UIUtils.toolbarFloatRight(request)%>
-	<%=UIUtils.toolbarButton(true, "javascript:showMoreButton(this);","更多", null, false, false, request)%>
+	<%-- <%=UIUtils.toolbarButton(true, "javascript:showMoreButton(this);","更多", null, false, false, request)%> --%>
 <%=UIUtils.toolbarEnd(request)%>
 
 <div style="overflow: auto;" class='relativeDIV' id="contentDIV">
