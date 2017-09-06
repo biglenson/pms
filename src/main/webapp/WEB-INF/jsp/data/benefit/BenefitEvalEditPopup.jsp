@@ -395,7 +395,9 @@ ET.Utils.addOnloadEvent(autoContentHeight);
 								console.log('返回值结果：  ' + ret);
 								console.log('===========测试中！======================>刷新了----');
 								//设置选中的下一步处理人
-								document.getElementById('operator_del').value = ret;
+								if (ret) {
+									document.getElementById('operator_del').value = ret;
+								}
 							});
 						}) 
 						</script>

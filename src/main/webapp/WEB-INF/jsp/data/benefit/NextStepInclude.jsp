@@ -50,9 +50,11 @@
 					arg.height = 310;
 					parent.ET.showModalWindow(arg, function (ret) { 
 						console.log('返回值结果：  ' + ret);
-						console.log('===========测试中！======================>刷新了----');
+						console.log('===========测试中！======================>用户已经选定下一步处理人----');
 						//设置选中的下一步处理人
-						document.getElementById('operator_del').value = ret;
+						if (ret) {
+							document.getElementById('operator_del').value = ret;
+						}
 					});
 				}) 
 				</script>

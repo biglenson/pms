@@ -64,6 +64,7 @@ function OkFun() {
 	console.log('================测试中==============>联系人已经被选定--');
 	$('.areas_list').find('.areas_list_two li').find('span').each(function(index, elem) {
 		if ($(elem).hasClass('hover')) {
+			//返回下一步处理人(回调函数)
 			parent.ET.closeModalWindow($(elem).text());
 			return;
 		}
