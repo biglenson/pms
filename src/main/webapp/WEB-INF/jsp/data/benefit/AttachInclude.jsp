@@ -26,7 +26,6 @@ function newAttachFun() {
 	arg.height = 360;
 	arg.theme = "search";
 	ET.showModalWindow(arg, function (arry) { 
-		console.log('===========测试中！======================>'+arry);
 		//调用保存刷新数据
 		save();
 	});
@@ -34,23 +33,12 @@ function newAttachFun() {
 
 <%-- 预览附件 --%>
 function openAttachFun(id) {
-	console.log('===========测试中！======================>预览附件----');
-	var url = "<%=path%>/AttachAction.do?operation=open&documentID=" + id + "&_id=" + Math.random();
-	url+="&objectID="+document.frm.objectID.value;
-		url+="&objectType="+document.frm.objectType.value;
-		url+="&objectSubType="+document.frm.objectSubType.value;
-	var width = 840;
-	var height = document.body.clientHeight;
-	var left = (screen.width - width) /2;
-	var top = (screen.height - height) /2;
-	formWin = open(url,'formWin', 'width='+ width + ',height='+ height + ',left='+ left + ',top='+ top + ',status=0,resizable=yes,scrollbars=yes');
-	formWin.focus();
+	//预览暂时不做，直接调用下载服务
+	downloadAttachFun(id);
 }
 
 <%-- 下载附件 --%>
 function downloadAttachFun(attachID) {
-	/* console.log('===========测试中！======================>下载附件----');
-	console.log('===========测试中！======================>'+attachID); */
 	document.frm2.attachID.value = attachID;
 	document.frm2.action = "<%=path%>/datamap/downloadFile";
 	document.frm2.operation.value = "download";
@@ -59,7 +47,6 @@ function downloadAttachFun(attachID) {
 
 <%-- 删除附件 --%>
 function deleteAttachFun(obj, attachID) {
-	console.log('===========测试中！======================>删除附件----');
 	_currentAttachRow = obj.parentNode.parentNode;
 	if(confirm("您确定要删除所选定的附件吗？")){
 		$.ajax({
@@ -69,7 +56,6 @@ function deleteAttachFun(obj, attachID) {
 				attachID: attachID
 			},        
 			success: function(data){
-				console.log('===========测试中！======================>附件删除成功！！----');
 				var attachTable = document.getElementById("attachTable");
 				attachTable.deleteRow(_currentAttachRow.rowIndex);
 				if(attachTable.rows.length == 0) {

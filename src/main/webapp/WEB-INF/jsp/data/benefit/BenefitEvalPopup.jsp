@@ -179,7 +179,6 @@ function confirmSubmit() {
 
 //保存
 function save() {	
-	console.log('===========测试中！======================>修改再保存----');
 	var obj = {};
 	$('.formTable').find('[dbField]').each(function(index, elem) {
 		var dbField = $(elem).attr("dbField");
@@ -188,7 +187,6 @@ function save() {
 	});
 	var selectValue = $("#next-step-select").find("option:selected").text();
 	obj.rsltDesc = selectValue;
-	console.log('提交的下拉框选中词语:  '+selectValue);
 	var arr = new Array();
 	for (var i = 1; i <= <%=formInfos.size()%>; i++) {
 		var obj2 = {};
@@ -199,9 +197,6 @@ function save() {
 			arr[i-1] = obj2;
 		});
 	}
-	
-	console.log(obj);
-	console.log(arr);
 	
 	document.frm.operation.value="save";
 	document.frm.submitFrom.value="todo";

@@ -36,10 +36,6 @@
 
 <!-- 内容主体 -->
 <script type="text/javascript">
-$(function () {
-	console.log('测试..........');
-});
-
 //确定
 function OkFun() {
 	var support = WebUploader.Uploader.support();
@@ -65,8 +61,6 @@ function OkFun() {
 		document.frm.okBtn.disabled = true;
 		document.frm.cancelBtn.disabled = true;
 	}else{
-		console.log('===========测试中！======================>文件上传----');
-		console.log('===========测试中！======================>processID----'+<%=processID%>);
 		uploader.options.formData.processID = <%=processID%>;
 		window.uploader.upload();
 	}
@@ -75,17 +69,6 @@ function OkFun() {
 //取消
 function cancelFun(){
 	parent.ET.closeModalWindow();
-}
-
-function findFile(){
-	var objFile = document.getElementById("name");
-	if(objFile.click){
-	 	objFile.click();
-	}else{
-		var evt = document.createEvent('HTMLEvents');
-		evt.initEvent('click',true,true);
-		objFile.dispatchEvent(evt);
-	}
 }
 
 function initFileHeight(){
@@ -162,7 +145,6 @@ ET.Utils.addOnloadEvent("initFileHeight()");
 
 <script type="text/javascript">
 $(function() {
-	console.log('文件上传插件开启..........');
 	if (!Array.prototype.indexOf) {
 		Array.prototype.indexOf = function(elt) {
 		  var len = this.length >>> 0;
@@ -195,8 +177,6 @@ $(function() {
 				result[hidden.name]=$(hidden).val();
 			}
 		});
-		console.log('===========测试中！======================>上传数据----');
-		console.log(result);
 		return result;
 	}
 	var support = WebUploader.Uploader.support();
