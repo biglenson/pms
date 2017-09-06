@@ -81,7 +81,7 @@ public class BenefitEvalSvc{
         return userInfoListVO;
     }
 	@Transactional
-	public void downloadFile(HttpServletResponse response, String attachID) throws IOException, UnsupportedEncodingException{
+	public void downloadFile(HttpServletRequest request, HttpServletResponse response, String attachID) throws IOException, UnsupportedEncodingException{
         Attachment attachment = taskService.getAttachment(attachID);
         InputStream fileData = taskService.getAttachmentContent(attachID);
 
@@ -89,9 +89,17 @@ public class BenefitEvalSvc{
         response.addHeader("Content-Type", contentType + ";charset=UTF-8");
         
         String extName = StringUtils.substringAfter(attachment.getType(), ";");
-        String fileName = URLEncoder.encode(attachment.getName() + "." + extName, "UTF-8");
+        //String 
+        String fileName = attachment.getName() + "." + extName;
+
+        String agent=request.getHeader("User-Agent").toLowerCase();
+        if (agent.indexOf("firefox")>0) {
+            fileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+        } else {
+            fileName = URLEncoder.encode(fileName, "UTF-8");
+        }
         
-        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 
         IOUtils.copy(new BufferedInputStream(fileData), response.getOutputStream());
 

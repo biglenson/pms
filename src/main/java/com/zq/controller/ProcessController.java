@@ -118,7 +118,7 @@ public class ProcessController extends BaseController{
     public void downloadFile(HttpServletRequest request, HttpServletResponse response, Model model,
                                     @RequestParam("attachID") String attachID
                                     ) throws IOException, UnsupportedEncodingException {
-        benefitEvalSvc.downloadFile(response, attachID);
+        benefitEvalSvc.downloadFile(request, response, attachID);
     }
     @RequestMapping(value = "delAttachment", method = RequestMethod.POST)                                    
     public void delAttachment(HttpServletRequest request, HttpServletResponse response, Model model,
